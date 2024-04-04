@@ -12,7 +12,6 @@ public class IcePanelToolsMain {
   static CommandLine commandLine;
   static IcePanelToPlantUMLConverter icePanelToPlantUMLConverter;
 
-//  private static String javaPackagePath = "";
   private static String icePanelJSONExportFile = "";
   private static String outputFile = "";
   private static String configurationFile = "";
@@ -23,7 +22,6 @@ public class IcePanelToolsMain {
     Debugger.reset();
 
     icePanelJSONExportFile = "";
-//    javaPackagePath = "";
     outputFile = "";
     configurationFile = "";
 

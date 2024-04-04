@@ -1,6 +1,5 @@
 package it.brunasti.icepanel.tools;
 
-import org.apache.bcel.classfile.JavaClass;
 import org.json.simple.JSONObject;
 
 import java.io.PrintStream;
@@ -109,13 +108,13 @@ public class IcePanelToPlantUMLConverter {
     output.println("' IcePanel JSON File : [" + icePanelJSONFile + "]");
     output.println("' Configuration      : [" + configurationFile + "]");
     output.println("' Generated at       : " + new Date());
-//    String includeFileContent = Utils.readFileToString(includeFileName);
-//    if (!includeFileContent.isBlank()) {
-//      output.println();
-//      output.println("' Include         : [" + includeFileName + "] ---------");
-//      output.println(includeFileContent);
-//      output.println("' Include end     : --------------------------");
-//    }
+    String includeFileContent = Utils.readFileToString(includeFileName);
+    if (!includeFileContent.isBlank()) {
+      output.println();
+      output.println("' Include         : [" + includeFileName + "] ---------");
+      output.println(includeFileContent);
+      output.println("' Include end     : --------------------------");
+    }
     output.println();
   }
 
@@ -130,7 +129,7 @@ public class IcePanelToPlantUMLConverter {
     if ((name == null) || (name.isBlank())) {
       name = object.toString();
     }
-    name = name.replaceAll("\n", " - ");
+    name = name.replace("\n", " - ");
     return name;
   }
 
@@ -142,25 +141,11 @@ public class IcePanelToPlantUMLConverter {
     output.println("' "+modelObjects);
     modelObjects.keySet().forEach(
             object -> {
-//              output.println("class \"" + object + "\" as " + object);
               JSONObject modelObject = (JSONObject) modelObjects.get(object);
-//              \\ (JSONObject)object;
               String name = getName(object, modelObject);
               output.println("class \"" + name + "\" as " + object + " ");
       }
     );
-
-//    classes.forEach(javaClass -> {
-//      if (javaClass.isEnum()) {
-//        generateEnum(javaClass, classLoader);
-//      } else if (javaClass.isInterface()) {
-//        output.println("interface " + javaClass.getClassName());
-//      } else if (javaClass.isAbstract()) {
-//        output.println("abstract " + javaClass.getClassName());
-//      } else {
-//        output.println("class " + javaClass.getClassName());
-//      }
-//    });
     output.println();
   }
 
@@ -184,47 +169,13 @@ public class IcePanelToPlantUMLConverter {
     }
 
     JSONObject jsonObject = loadIcePanelJsonFromFile(icePanelJSONFile);
-    if (!initiated) {
-      System.err.println("Exclusion config not loaded");
+    if (jsonObject == null) {
+      System.err.println("IcePanel JSON file not loaded");
       return;
     }
 
-
-//    ArrayList<String> files = new ArrayList<>();
-//    try {
-//      Set<String> dirs = Utils.listDirectories(icePanelJSONFile);
-//      dirs.forEach(dir -> files.addAll(iterateSubDirectories(icePanelJSONFile, dir)));
-//    } catch (IOException e) {
-//      System.err.println("Error listing directories : " + e.getMessage());
-//    }
-//
-//    ClassLoader classLoader = getClassLoader(icePanelJSONFile);
-//    Debugger.debug(2, "classLoader [" + classLoader + "]");
-//    if (null == classLoader) {
-//      System.err.println("Class loader not created");
-//      return;
-//    }
-//
-//    ClassLoaderRepository rep = new ClassLoaderRepository(classLoader);
-//
-//    ArrayList<JavaClass> classes = new ArrayList<>();
-//
-//    files.forEach(file -> {
-//      try {
-//        JavaClass javaClass = rep.loadClass(file);
-//        classes.add(javaClass);
-//      } catch (ClassNotFoundException e) {
-//        System.err.println("Error loading class : " + e.getMessage());
-//      }
-//    });
-
     generateHeader(icePanelJSONFile, configurationFile);
     generateClasses(jsonObject);
-//    generateInheritances(classes);
-//    generateImplements(classes);
-//    generateFields(classes);
-//    generateUses(classes);
-//    generateImports(classes, javaFilesPath);
     generateFooter();
   }
 
