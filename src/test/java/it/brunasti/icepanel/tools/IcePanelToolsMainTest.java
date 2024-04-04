@@ -41,46 +41,42 @@ public class IcePanelToolsMainTest implements TestConstants {
   void testMainMethod_Params() {
     System.err.println("IcePanelToolsMain.main ------ 2 args -----");
     String[] args = new String[2];
-    args[0] = classesDirectory;
+    args[0] = icePanelJSONFile;
     args[1] = outputFileName;
     assertDoesNotThrow(() -> IcePanelToolsMain.main(args));
 
-    System.err.println("IcePanelToolsMain.main ------ 11 args -----");
-    String[] fullArgs = new String[11];
-    fullArgs[0] = classesDirectory;
+    System.err.println("IcePanelToolsMain.main ------ 9 args -----");
+    String[] fullArgs = new String[9];
+    fullArgs[0] = icePanelJSONFile;
     fullArgs[1] = outputFileName;
     fullArgs[2] = "-d";
     fullArgs[3] = "-c";
     fullArgs[4] = configurationFileName;
     fullArgs[5] = "-o";
     fullArgs[6] = outputFileName;
-    fullArgs[7] = "-p";
-    fullArgs[8] = classesDirectory;
-    fullArgs[9] = "-i";
-    fullArgs[10] = javaSrcDirectory;
+    fullArgs[7] = "-j";
+    fullArgs[8] = icePanelJSONFile;
     assertDoesNotThrow(() -> IcePanelToolsMain.main(fullArgs));
 
-    System.err.println("IcePanelToolsMain.main ------ 8 args -----");
-    String[] moreArgs = new String[8];
+    System.err.println("IcePanelToolsMain.main ------ 6 args -----");
+    String[] moreArgs = new String[6];
     moreArgs[0] = "-c";
     moreArgs[1] = configurationFileName;
     moreArgs[2] = "-o";
     moreArgs[3] = outputFileName;
-    moreArgs[4] = "-p";
-    moreArgs[5] = classesDirectory;
-    moreArgs[6] = "-i";
-    moreArgs[7] = javaSrcDirectory;
+    moreArgs[4] = "-j";
+    moreArgs[5] = icePanelJSONFile;
     assertDoesNotThrow(() -> IcePanelToolsMain.main(moreArgs));
 
-    System.err.println("IcePanelToolsMain.main ------ 6 args ----- configurationWithLegendFileName");
-    String[] lastArgs = new String[6];
-    lastArgs[0] = "-c";
-    lastArgs[1] = configurationWithIncludeFileName;
-    lastArgs[2] = "-o";
-    lastArgs[3] = outputFileName;
-    lastArgs[4] = "-p";
-    lastArgs[5] = classesDirectory;
-    assertDoesNotThrow(() -> IcePanelToolsMain.main(lastArgs));
+//    System.err.println("IcePanelToolsMain.main ------ 6 args ----- configurationWithLegendFileName");
+//    String[] lastArgs = new String[6];
+//    lastArgs[0] = "-c";
+//    lastArgs[1] = configurationWithIncludeFileName;
+//    lastArgs[2] = "-o";
+//    lastArgs[3] = outputFileName;
+//    lastArgs[4] = "-p";
+//    lastArgs[5] = icePanelJSONFile;
+//    assertDoesNotThrow(() -> IcePanelToolsMain.main(lastArgs));
   }
 
   @Test
@@ -138,43 +134,43 @@ public class IcePanelToolsMainTest implements TestConstants {
   @DisplayName("Call IcePanelToolsMain main to StdOut")
   void testMainMethod_StdOut() {
     String[] args = new String[1];
-    args[0] = classesDirectory;
+    args[0] = icePanelJSONFile;
     assertDoesNotThrow(() -> IcePanelToolsMain.main(args));
   }
 
-  @Test
-  @DisplayName("Call IcePanelToolsMain main on test classes")
-  void testMainMethod_Test() {
-
-    String[] fullArgs = new String[12];
-    fullArgs[0] = testClassesDirectory;
-    fullArgs[1] = testOutputFileName;
-    fullArgs[2] = "-d";
-    fullArgs[3] = "6";
-    fullArgs[4] = "-c";
-    fullArgs[5] = configurationFileName;
-    fullArgs[6] = "-o";
-    fullArgs[7] = testOutputFileName;
-    fullArgs[8] = "-p";
-    fullArgs[9] = testClassesDirectory;
-    fullArgs[10] = "-i";
-    fullArgs[11] = testJavaSrcDirectory;
-    assertDoesNotThrow(() -> IcePanelToolsMain.main(fullArgs));
-
-    String[] args = new String[3];
-    args[0] = testClassesDirectory;
-    args[1] = testOutputFileName;
-    args[2] = "-d";
-    assertDoesNotThrow(() -> IcePanelToolsMain.main(args));
-
-
-  }
+//  @Test
+//  @DisplayName("Call IcePanelToolsMain main on test classes")
+//  void testMainMethod_Test() {
+//
+//    String[] fullArgs = new String[12];
+//    fullArgs[0] = testClassesDirectory;
+//    fullArgs[1] = testOutputFileName;
+//    fullArgs[2] = "-d";
+//    fullArgs[3] = "6";
+//    fullArgs[4] = "-c";
+//    fullArgs[5] = configurationFileName;
+//    fullArgs[6] = "-o";
+//    fullArgs[7] = testOutputFileName;
+//    fullArgs[8] = "-p";
+//    fullArgs[9] = testClassesDirectory;
+//    fullArgs[10] = "-i";
+//    fullArgs[11] = testJavaSrcDirectory;
+//    assertDoesNotThrow(() -> IcePanelToolsMain.main(fullArgs));
+//
+//    String[] args = new String[3];
+//    args[0] = testClassesDirectory;
+//    args[1] = testOutputFileName;
+//    args[2] = "-d";
+//    assertDoesNotThrow(() -> IcePanelToolsMain.main(args));
+//
+//
+//  }
 
   @Test
   @DisplayName("Call IcePanelToolsMain main with output for non existing file")
   void testMainMethod_ErrorOutputFile() {
     String[] args = new String[2];
-    args[0] = testClassesDirectory;
+    args[0] = nonExistingJsonFileName;
     args[1] = nonExistingDirectoryAndFile;
     assertDoesNotThrow(() -> IcePanelToolsMain.main(args));
   }
