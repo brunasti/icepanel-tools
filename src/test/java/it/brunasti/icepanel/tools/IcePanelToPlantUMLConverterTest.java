@@ -12,7 +12,7 @@ public class IcePanelToPlantUMLConverterTest implements TestConstants {
   @DisplayName("Generate Diagram")
   void testGenerateDiagram() {
     IcePanelToPlantUMLConverter IcePanelToPlantUMLConverter = new IcePanelToPlantUMLConverter();
-    assertDoesNotThrow(() -> IcePanelToPlantUMLConverter.convertIcePanelToUML(icePanelJSONFile, configurationFileName));
+    assertDoesNotThrow(() -> IcePanelToPlantUMLConverter.convertIcePanelToUML(icePanelJSONFile, configurationFileName, outputFileName));
   }
 
 //  @Test

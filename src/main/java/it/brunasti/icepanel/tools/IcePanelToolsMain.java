@@ -199,8 +199,10 @@ public class IcePanelToolsMain {
         output = new PrintStream(file, true);
       }
 
+      String subOutputFileNameBase = "icePanel-C4-output";
+
       icePanelToPlantUMLConverter = new IcePanelToPlantUMLConverter(output);
-      icePanelToPlantUMLConverter.convertIcePanelToUML(icePanelJSONExportFile, configurationFile);
+      icePanelToPlantUMLConverter.convertIcePanelToUML(icePanelJSONExportFile, configurationFile, subOutputFileNameBase);
 
       if (null != file) {
         file.close();
