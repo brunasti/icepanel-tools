@@ -1,9 +1,8 @@
 package it.brunasti.icepanel.tools;
 
-import org.json.simple.JSONArray;
+import org.apache.bcel.classfile.JavaClass;
 import org.json.simple.JSONObject;
 
-import java.io.IOException;
 import java.io.PrintStream;
 import java.util.*;
 
@@ -13,6 +12,8 @@ public class IcePanelToPlantUMLConverter {
   // By default is the Standard.out, but it can be redirected
   // to a file.
   private final PrintStream output;
+
+  private String includeFileName = "";
 
   /**
    * Instantiate a ClassDiagrammer with output directed to StandardOut.
@@ -35,6 +36,7 @@ public class IcePanelToPlantUMLConverter {
 
   private void cleanLocalVars() {
     // Reset all variables to avoid conflicts in case of multiple run
+    includeFileName = "";
   }
 
 
@@ -51,10 +53,10 @@ public class IcePanelToPlantUMLConverter {
 
   private void loadIncludeFileConfiguration(JSONObject jsonObject) {
     Object includeFile = jsonObject.get("includeFile");
-//    if (includeFile != null) {
-//      includeFileName = includeFile.toString();
-//      Debugger.debug(4, "  - includeFile [" + includeFileName + "]");
-//    }
+    if (includeFile != null) {
+      includeFileName = includeFile.toString();
+      Debugger.debug(4, "  - includeFile [" + includeFileName + "]");
+    }
   }
 
 
@@ -105,9 +107,6 @@ public class IcePanelToPlantUMLConverter {
     output.println("' CONVERT ICEPANEL DIAGRAM ===========");
     output.println("' Convert            : " + this.getClass().getName());
     output.println("' IcePanel JSON File : [" + icePanelJSONFile + "]");
-//    if ((null != javaFilesPath) && (!javaFilesPath.isBlank())) {
-//      output.println("' Java Files Path : [" + javaFilesPath + "]");
-//    }
     output.println("' Configuration      : [" + configurationFile + "]");
     output.println("' Generated at       : " + new Date());
 //    String includeFileContent = Utils.readFileToString(includeFileName);
@@ -126,6 +125,44 @@ public class IcePanelToPlantUMLConverter {
     output.println("@enduml");
   }
 
+  private String getName(Object object, final JSONObject modelObject) {
+    String name = modelObject.get("name").toString();
+    if ((name == null) || (name.isBlank())) {
+      name = object.toString();
+    }
+    name = name.replaceAll("\n", " - ");
+    return name;
+  }
+
+  private void generateClasses(final JSONObject jsonObject) {
+    Debugger.debug(2, "generateClasses() ------------------");
+    output.println();
+    output.println("' CLASSES =======");
+    JSONObject modelObjects = (JSONObject)jsonObject.get("modelObjects");
+    output.println("' "+modelObjects);
+    modelObjects.keySet().forEach(
+            object -> {
+//              output.println("class \"" + object + "\" as " + object);
+              JSONObject modelObject = (JSONObject) modelObjects.get(object);
+//              \\ (JSONObject)object;
+              String name = getName(object, modelObject);
+              output.println("class \"" + name + "\" as " + object + " ");
+      }
+    );
+
+//    classes.forEach(javaClass -> {
+//      if (javaClass.isEnum()) {
+//        generateEnum(javaClass, classLoader);
+//      } else if (javaClass.isInterface()) {
+//        output.println("interface " + javaClass.getClassName());
+//      } else if (javaClass.isAbstract()) {
+//        output.println("abstract " + javaClass.getClassName());
+//      } else {
+//        output.println("class " + javaClass.getClassName());
+//      }
+//    });
+    output.println();
+  }
 
 
 
@@ -135,15 +172,23 @@ public class IcePanelToPlantUMLConverter {
    * @param configurationFile The configuration file with the list
    *                          of packages and classes to exclude.
    */
-  public void generateDiagram(final String icePanelJSONFile,
-                              final String configurationFile) {
+  public void convertIcePanelToUML(final String icePanelJSONFile,
+                                   final String configurationFile) {
     cleanLocalVars();
+    Debugger.debug(2, "convertIcePanelToUML [" + icePanelJSONFile + "][" + configurationFile + "]");
 
     boolean initiated = loadConfiguration(configurationFile);
+    if (!initiated) {
+      System.err.println("Configuration JSON not loaded");
+      return;
+    }
+
+    JSONObject jsonObject = loadIcePanelJsonFromFile(icePanelJSONFile);
     if (!initiated) {
       System.err.println("Exclusion config not loaded");
       return;
     }
+
 
 //    ArrayList<String> files = new ArrayList<>();
 //    try {
@@ -174,7 +219,7 @@ public class IcePanelToPlantUMLConverter {
 //    });
 
     generateHeader(icePanelJSONFile, configurationFile);
-//    generateClasses(classes, classLoader);
+    generateClasses(jsonObject);
 //    generateInheritances(classes);
 //    generateImplements(classes);
 //    generateFields(classes);

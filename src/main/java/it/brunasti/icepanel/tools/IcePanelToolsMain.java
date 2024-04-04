@@ -202,7 +202,7 @@ public class IcePanelToolsMain {
       }
 
       icePanelToPlantUMLConverter = new IcePanelToPlantUMLConverter(output);
-//      icePanelToPlantUMLConverter.generateDiagram(classesPackagePath, configurationFile, javaPackagePath);
+      icePanelToPlantUMLConverter.convertIcePanelToUML(icePanelJSONExportFile, configurationFile);
 
       if (null != file) {
         file.close();
