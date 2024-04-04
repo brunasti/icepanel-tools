@@ -1,0 +1,23 @@
+{
+  "exclude": {
+    "classes": [
+      {
+        "class": "org.slf4j.Logger"
+      },
+      {
+        "class": "java.lang.String"
+      }
+    ],
+    "packages": [
+      {
+        "package": "Ljava.lang."
+      },
+      {
+        "package": "java.lang."
+      },
+      {
+        "package": "java.util."
+      }
+    ]
+  }
+}
