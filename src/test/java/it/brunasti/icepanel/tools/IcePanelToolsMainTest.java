@@ -67,16 +67,19 @@ public class IcePanelToolsMainTest implements TestConstants {
     moreArgs[4] = "-j";
     moreArgs[5] = icePanelJSONFile;
     assertDoesNotThrow(() -> IcePanelToolsMain.main(moreArgs));
+  }
 
-//    System.err.println("IcePanelToolsMain.main ------ 6 args ----- configurationWithLegendFileName");
-//    String[] lastArgs = new String[6];
-//    lastArgs[0] = "-c";
-//    lastArgs[1] = configurationWithIncludeFileName;
-//    lastArgs[2] = "-o";
-//    lastArgs[3] = outputFileName;
-//    lastArgs[4] = "-p";
-//    lastArgs[5] = icePanelJSONFile;
-//    assertDoesNotThrow(() -> IcePanelToolsMain.main(lastArgs));
+  @Test
+  @DisplayName("Call IcePanelToolsMain main to create example")
+  void testMainMethod_Example() {
+    System.err.println("testMainMethod_Example ------ 2 args -----");
+    String[] args = new String[4];
+    args[0] = icePanelJSONFileCompact_02;
+    args[1] = outputFileName;
+    args[2] = "-d";
+    args[3] = "10";
+
+    assertDoesNotThrow(() -> IcePanelToolsMain.main(args));
   }
 
   @Test

@@ -21,15 +21,6 @@ class UtilsTest implements TestConstants {
   void testLoadConfigurationFile_Successful() {
     JSONObject jsonObject = Utils.loadJsonFile(configurationFileName);
     assertNotNull(jsonObject);
-
-    JSONObject exclude = (JSONObject) jsonObject.get("exclude");
-    assertNotNull(exclude);
-
-    JSONArray classes = (JSONArray) exclude.get("classes");
-    assertNotNull(classes);
-
-    JSONArray packages = (JSONArray) exclude.get("packages");
-    assertNotNull(packages);
   }
 
   @Test

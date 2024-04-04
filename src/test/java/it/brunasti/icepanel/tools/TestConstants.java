@@ -20,6 +20,7 @@ public interface TestConstants {
 
 //  String srcDirectory = "./src/";
   String icePanelJSONFile = testResourcesDirectory + "icepanel-structured.json";
+  String icePanelJSONFileCompact_02 = testResourcesDirectory + "icepanel-plain-02.json";
 //  String testJavaSrcDirectory = srcDirectory + "test/java";
 
 //  String classesDirectory = "./target/classes";
