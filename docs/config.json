@@ -1,3 +1,4 @@
 {
-  "includeFile" : ""
+  "includeFile" : "",
+  "outputPath" : "./docs"
 }

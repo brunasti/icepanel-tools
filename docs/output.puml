@@ -3,8 +3,8 @@
 ' CONVERT ICEPANEL DIAGRAM ===========
 ' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUMLConverter
 ' IcePanel JSON File : [./src/test/resources/icepanel-plain-02.json]
-' Configuration      : []
-' Generated at       : Fri Apr 05 13:16:43 CEST 2024
+' Configuration      : [./docs/config.json]
+' Generated at       : Fri Apr 05 13:35:30 CEST 2024
 
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml

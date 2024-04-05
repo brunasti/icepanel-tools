@@ -17,6 +17,7 @@ public class IcePanelToPlantUMLConverter {
   private final PrintStream output;
 
   private String includeFileName = "";
+  private String outputPath = "./";
 
   /**
    * Instantiate a ClassDiagrammer with output directed to StandardOut.
@@ -39,7 +40,7 @@ public class IcePanelToPlantUMLConverter {
 
   private void cleanLocalVars() {
     // Reset all variables to avoid conflicts in case of multiple run
-    includeFileName = "";
+    setDefaultConfiguration();
   }
 
 
@@ -48,10 +49,12 @@ public class IcePanelToPlantUMLConverter {
 
   private void setDefaultConfiguration() {
     includeFileName = "";
+    outputPath = "";
   }
 
   private void loadJsonConfiguration(JSONObject jsonObject) {
     loadIncludeFileConfiguration(jsonObject);
+    loadOutputPathConfiguration(jsonObject);
   }
 
   private void loadIncludeFileConfiguration(JSONObject jsonObject) {
@@ -59,6 +62,17 @@ public class IcePanelToPlantUMLConverter {
     if (includeFile != null) {
       includeFileName = includeFile.toString();
       Debugger.debug(4, "  - includeFile [" + includeFileName + "]");
+    }
+  }
+
+  private void loadOutputPathConfiguration(JSONObject jsonObject) {
+    Object outputPathObj = jsonObject.get("outputPath");
+    if (outputPathObj != null) {
+      outputPath = outputPathObj.toString();
+      if (!outputPath.endsWith("/")) {
+        outputPath = outputPath + "/";
+      }
+      Debugger.debug(4, "  - outputPath [" + outputPath + "]");
     }
   }
 
@@ -628,7 +642,7 @@ public class IcePanelToPlantUMLConverter {
       return;
     }
 
-    convertIcePanelToUML(icePanelJSONFile, icePanelDiagramJSON, configurationFile, subOutputFileNameBase);
+    convertIcePanelToUML(icePanelJSONFile, icePanelDiagramJSON, configurationFile, outputPath+subOutputFileNameBase);
   }
 
 }
