@@ -539,6 +539,7 @@ public class IcePanelToPlantUMLConverter {
           final JSONObject base,
           final String configurationFile,
           final String subOutputFileNameBase) {
+    // TODO: Reiterate in sub sub diagrams (as BAHPCA API Component Diagram)
     Debugger.debug(2, "generateSubDiagram() ------------------");
 
     String name = getValue(base, "name");

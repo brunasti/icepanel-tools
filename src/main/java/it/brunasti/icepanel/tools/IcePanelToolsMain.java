@@ -88,21 +88,6 @@ public class IcePanelToolsMain {
         if (!setDebugOption(optionDebug)) {
           return false;
         }
-//        String debugLevelString = commandLine.getOptionValue(optionDebug.getOpt());
-//        System.err.println(optionDebug.getDescription()
-//                + SET_TO + debugLevelString + "]");
-//        if (debugLevelString != null) {
-//          try {
-//            int dl = Integer.parseInt(debugLevelString);
-//            Debugger.setDebug(dl);
-//          } catch (NumberFormatException ex) {
-//            System.err.println("Error the option Debug ("
-//                    + optionDebug.getDescription() + ") : " + ex.getMessage());
-//            return false;
-//          }
-//        } else {
-//          Debugger.setDebug(true);
-//        }
       }
       if (Debugger.isDebug()) {
         Utils.dump("ARGS", args, System.err);
