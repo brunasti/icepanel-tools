@@ -3,6 +3,8 @@ package it.brunasti.icepanel.tools;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.PrintStream;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
@@ -105,10 +107,10 @@ public class IcePanelToPlantUMLConverter {
     output.println("@startuml");
     output.println(
 """
-            !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
-            !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
-            ' uncomment the following line and comment the first to use locally
-            ' !include C4_Context.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+' uncomment the following line and comment the first to use locally
+' !include C4_Context.puml
 """);
     output.println("'https://plantuml.com/class-diagram");
     output.println();
@@ -128,6 +130,10 @@ public class IcePanelToPlantUMLConverter {
   }
 
   private void generateFooter() {
+    generateFooter(output);
+  }
+
+  private void generateFooter(final PrintStream output) {
     Debugger.debug(2, "generateFooter() ------------------");
     output.println();
     output.println("@enduml");
@@ -201,26 +207,28 @@ public class IcePanelToPlantUMLConverter {
     modelObjects.keySet().forEach(
             object -> {
               JSONObject modelObject = (JSONObject) modelObjects.get(object);
-              String name = getName(object, modelObject);
-              String type = getValue(modelObject, "type", "");
-              String description = getValue(modelObject,"description", " ");
+              generateClassInDiagram(output, modelObject);
 
-              if ("system".equals(type)) {
-                output.println("System(" + object + ", \"" + name + "\", \"" + description + "\" ) ");
-              } else if ("actor".equals(type)) {
-                output.println("Person(" + object + ", \"" + name + "\", \"" + description + "\" ) ");
-              } else if ("app".equals(type)) {
-                output.println("Component(" + object + ", \"" + name + "\", \"" + description + "\" ) ");
-              } else if ("store".equals(type)) {
-                output.println("ContainerDb(" + object + ", \"" + name + "\", \"" + description + "\", \"\" ) ");
-              } else if ("area".equals(type)) {
-                output.println("System_Boundary(" + object + ", \"" + name + "\", \"" + description + "\", \"\" ) ");
-              } else if ("component".equals(type)) {
-                // TODO: Add technologies
-                output.println("Container(" + object + ", \"" + name + "\", \"" + description + "\", \"\" ) ");
-              } else {
-                Debugger.debug(2, "unknown type : [" + type + "]");
-              }
+//              String name = getName(object, modelObject);
+//              String type = getValue(modelObject, "type", "");
+//              String description = getValue(modelObject,"description", " ");
+//
+//              if ("system".equals(type)) {
+//                output.println("System(" + object + ", \"" + name + "\", \"" + description + "\" ) ");
+//              } else if ("actor".equals(type)) {
+//                output.println("Person(" + object + ", \"" + name + "\", \"" + description + "\" ) ");
+//              } else if ("app".equals(type)) {
+//                output.println("Component(" + object + ", \"" + name + "\", \"" + description + "\" ) ");
+//              } else if ("store".equals(type)) {
+//                output.println("ContainerDb(" + object + ", \"" + name + "\", \"" + description + "\", \"\" ) ");
+//              } else if ("area".equals(type)) {
+//                output.println("System_Boundary(" + object + ", \"" + name + "\", \"" + description + "\", \"\" ) ");
+//              } else if ("component".equals(type)) {
+//                // TODO: Add technologies
+//                output.println("Container(" + object + ", \"" + name + "\", \"" + description + "\", \"\" ) ");
+//              } else {
+//                Debugger.debug(2, "unknown type : [" + type + "]");
+//              }
       }
     );
     output.println();
@@ -252,29 +260,191 @@ public class IcePanelToPlantUMLConverter {
     return children;
   }
 
+  private void generateSubDiagramHeader(final PrintStream output,
+                                        final String icePanelJSONFile,
+                                        final String configurationFile) {
+    Debugger.debug(2, "generateHeader() ------------------");
+    output.println("@startuml");
+    output.println(
+"""
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+' uncomment the following line and comment the first to use locally
+' !include C4_Context.puml
+""");
+    output.println("'https://plantuml.com/class-diagram");
+    output.println();
+    output.println("' CONVERT ICEPANEL DIAGRAM ===========");
+    output.println("' Converter          : " + this.getClass().getName());
+    output.println("' IcePanel JSON File : [" + icePanelJSONFile + "]");
+    output.println("' Configuration      : [" + configurationFile + "]");
+    output.println("' Generated at       : " + new Date());
+    String includeFileContent = Utils.readFileToString(includeFileName);
+    if (!includeFileContent.isBlank()) {
+      output.println();
+      output.println("' Include         : [" + includeFileName + "] ---------");
+      output.println(includeFileContent);
+      output.println("' Include end     : --------------------------");
+    }
+    output.println();
+  }
 
-  private void generateSubDiagram(final JSONObject icePanelDiagramJSON, final JSONObject base, final String subOutputFileNameBase) {
+
+  private void generateSubDiagramBoundaryEnd(final PrintStream output) {
+    output.println("}");
+  }
+
+  private void generateSubDiagramBoundaryStart(final PrintStream output,
+                                       final JSONObject jsonObject) {
+    Debugger.debug(2, "generateSubDiagramBoundary() ------------------");
+    String id = getValue(jsonObject, "id");
+    String name = getValue(jsonObject, "name");
+    String type = getValue(jsonObject, "type", "");
+    String description = getValue(jsonObject,"description", " ");
+
+    if ("system".equals(type)) {
+      output.println("System_Boundary(" + id + ", \"" + name + "\" ) {");
+    } else if ("actor".equals(type)) {
+      output.println("Person(" + id + ", \"" + name + "\", \"" + description + "\" ) { ");
+    } else if ("app".equals(type)) {
+      output.println("Component(" + id + ", \"" + name + "\", \"" + description + "\" ) { ");
+    } else if ("store".equals(type)) {
+      output.println("ContainerDb(" + id + ", \"" + name + "\", \"" + description + "\", \"\" ) { ");
+    } else if ("area".equals(type)) {
+      output.println("System_Boundary(" + id + ", \"" + name + "\", \"" + description + "\", \"\" ) { ");
+    } else if ("component".equals(type)) {
+      // TODO: Add technologies
+      output.println("Container(" + id + ", \"" + name + "\", \"" + description + "\", \"\" ) { ");
+    } else {
+      Debugger.debug(2, "unknown type : [" + type + "]");
+    }
+  }
+
+  private void generateClassInDiagram(final PrintStream output,
+                                      final JSONObject jsonObject) {
+    generateClassInDiagram("", output, jsonObject);
+  }
+  private void generateClassInDiagram(final String head,
+                                      final PrintStream output,
+                                      final JSONObject jsonObject) {
+    Debugger.debug(2, "generateClassInDiagram() ------------------");
+    String id = getValue(jsonObject, "id");
+    String name = getValue(jsonObject, "name");
+    String type = getValue(jsonObject, "type", "");
+    String description = getValue(jsonObject,"description", " ");
+
+    if ("system".equals(type)) {
+      output.println(head + "System(" + id + ", \"" + name + "\", \"" + description + "\" ) ");
+    } else if ("actor".equals(type)) {
+      output.println(head + "Person(" + id + ", \"" + name + "\", \"" + description + "\" ) ");
+    } else if ("app".equals(type)) {
+      output.println(head + "Component(" + id + ", \"" + name + "\", \"" + description + "\" ) ");
+    } else if ("store".equals(type)) {
+      output.println(head + "ContainerDb(" + id + ", \"" + name + "\", \"" + description + "\", \"\" ) ");
+    } else if ("area".equals(type)) {
+      output.println(head + "System_Boundary(" + id + ", \"" + name + "\", \"" + description + "\", \"\" ) ");
+    } else if ("component".equals(type)) {
+      // TODO: Add technologies
+      output.println(head + "Container(" + id + ", \"" + name + "\", \"" + description + "\", \"\" ) ");
+    } else {
+      Debugger.debug(2, "unknown type : [" + type + "]");
+    }
+  }
+
+  private void generateSubDiagramClasses(final PrintStream output,
+                                         final JSONObject icePanelDiagramJSON,
+                                         final ArrayList<JSONObject> children) {
+    Debugger.debug(2, "generateSubDiagramClasses() ------------------");
+    output.println();
+    generateSubDiagramBoundaryStart(output,icePanelDiagramJSON);
+    output.println("' CLASSES =======");
+//    JSONObject modelObjects = (JSONObject)icePanelDiagramJSON.get("modelObjects");
+    children.forEach(
+      object -> {
+        generateClassInDiagram("    ", output, object);
+//              JSONObject modelObject = (JSONObject) modelObjects.get(object);
+//              String name = getName(object, modelObject);
+//              String type = getValue(modelObject, "type", "");
+//              String description = getValue(modelObject,"description", " ");
+//
+//              if ("system".equals(type)) {
+//                output.println("System(" + object + ", \"" + name + "\", \"" + description + "\" ) ");
+//              } else if ("actor".equals(type)) {
+//                output.println("Person(" + object + ", \"" + name + "\", \"" + description + "\" ) ");
+//              } else if ("app".equals(type)) {
+//                output.println("Component(" + object + ", \"" + name + "\", \"" + description + "\" ) ");
+//              } else if ("store".equals(type)) {
+//                output.println("ContainerDb(" + object + ", \"" + name + "\", \"" + description + "\", \"\" ) ");
+//              } else if ("area".equals(type)) {
+//                output.println("System_Boundary(" + object + ", \"" + name + "\", \"" + description + "\", \"\" ) ");
+//              } else if ("component".equals(type)) {
+//                // TODO: Add technologies
+//                output.println("Container(" + object + ", \"" + name + "\", \"" + description + "\", \"\" ) ");
+//              } else {
+//                Debugger.debug(2, "unknown type : [" + type + "]");
+//              }
+      }
+    );
+    generateSubDiagramBoundaryEnd(output);
+    output.println();
+  }
+
+
+
+  private void generateSubDiagram(
+          final String icePanelJSONFile,
+          final JSONObject icePanelDiagramJSON,
+          final JSONObject base,
+          final String configurationFile,
+          final String subOutputFileNameBase) {
     Debugger.debug(2, "generateSubDiagram() ------------------");
 
     String name = getValue(base, "name");
     String id = getValue(base, "id");
     Debugger.debug(2, "generateSubDiagram (" + id + ", " + name + ") ---------");
-    ArrayList<JSONObject> children = extractChildren(icePanelDiagramJSON, base);
 
     String toFileName = subOutputFileNameBase + "-" + name + ".puml";
     Debugger.debug(2, "==== generateSubDiagram to file (" + toFileName + ") ---------");
+
+    ArrayList<JSONObject> children = extractChildren(icePanelDiagramJSON, base);
+
+    PrintStream output = System.out;
+
+    if ((null != toFileName) && (!toFileName.isBlank())) {
+      try {
+        // Creates a FileOutputStream
+        FileOutputStream file = new FileOutputStream(toFileName);
+
+        // Creates a PrintWriter
+        output = new PrintStream(file, true);
+
+        generateSubDiagramHeader(output, icePanelJSONFile, configurationFile);
+
+        generateSubDiagramClasses(output, base, children);
+
+        generateFooter(output);
+
+        output.close();
+      } catch (FileNotFoundException fnf) {
+        fnf.printStackTrace();
+        return;
+      }
+    }
+
+    Debugger.debug(2, "==== generateSubDiagram to file (" + toFileName + ") END ---------");
   }
 
 
-  private void generateSubDiagrams(final JSONObject icePanelDiagramJSON, final ArrayList<JSONObject> bases, final String subOutputFileNameBase) {
+  private void generateSubDiagrams(
+          final String icePanelJSONFile,
+          final JSONObject icePanelDiagramJSON,
+          final ArrayList<JSONObject> bases,
+          final String configurationFile,
+          final String subOutputFileNameBase) {
     Debugger.debug(2, "generateSubDiagrams() ------------------");
 
     bases.forEach( base -> {
-      generateSubDiagram(icePanelDiagramJSON, base, subOutputFileNameBase);
-//      String name = getValue(base, "name");
-//      String id = getValue(base, "id");
-//      Debugger.debug(2, "generateSubDiagram (" + id + ", " + name + ") ---------");
-//      ArrayList<JSONObject> children = extractChildren(icePanelDiagramJSON, base);
+      generateSubDiagram(icePanelJSONFile, icePanelDiagramJSON, base, configurationFile, subOutputFileNameBase);
     });
 
   }
@@ -335,7 +505,7 @@ public class IcePanelToPlantUMLConverter {
     generateConnections(icePanelDiagramJSON, rootName);
     generateFooter();
 
-    generateSubDiagrams(icePanelDiagramJSON, findSystems(icePanelDiagramJSON), subOutputFileNameBase);
+    generateSubDiagrams(icePanelJSONFile, icePanelDiagramJSON, findSystems(icePanelDiagramJSON), configurationFile, subOutputFileNameBase);
   }
 
 
