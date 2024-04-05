@@ -1,0 +1,76 @@
+@startuml
+'https://plantuml.com/class-diagram
+' CONVERT ICEPANEL DIAGRAM ===========
+' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUMLConverter
+' IcePanel JSON File : [./examples/sg/sg-001.json]
+' Configuration      : [./examples/sg/config.json]
+' Generated at       : Fri Apr 05 16:25:46 CEST 2024
+
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+
+
+' CLASSES =======
+Container(kmbDI3cUwBYgzZCyulAH, "Visula Studio Code", "", "" )
+Component(Kl9tTaoCuXqdHTvo4lkZ, "Signavio BPM Connector", "" )
+Component(UDzF9znNIXtFk9LwBDHM, "Destination Service", "" )
+System(kcZ6JMZ3WNq8pReNTFS2, "SolMan - SAP  - Solution Manager", "" )
+Component(QkIAEDVBPA2TLsAXXWO2, "Test SAP SolMan 7.2", "" )
+System(361EAHg7DvZanb8dq9yb, "Signavio - Business Process Manager", "" )
+Component(BNfOC7foqk1s1ibyQ05W, "Ubuntu Test VM", "" )
+ContainerDb(UWeoMC7K0ntstoLn4FBh, "Git Repository", "", "" )
+System(z8HfnmEu1FwVBLuoFTXM, "Subscriber Account (Customer)", "" )
+Container(j57mi6bn5IBAPBBcqa2b, "Local File System", "", "" )
+System(ju6YD7lQwAayquUTalMi, "Test Env", "" )
+Container(FMEFRLGEAtEaY3KE4ZT3, "Cypress Engine", "", "" )
+Component(7exSkve2BLQcqhzdAB20, "SAP HANA  - Cloud", "" )
+System(gTWo4W2ihM3ZFFQsRPF5, "Connector", "" )
+Component(3TXGCv2PXpssXY07gX0S, "User Authentication (XSUAA)", "" )
+Component(42e8Z1KIHKsxaWdqk3nq, "Test Signavio BPM", "" )
+Component(OHrd5OnZcC3om9jIhGs3, "SCC - SAP Cloud Connector", "" )
+
+
+' CONNECTIONS =======
+Rel(FMEFRLGEAtEaY3KE4ZT3, Kl9tTaoCuXqdHTvo4lkZ, "Execute Tests" )
+Rel(UDzF9znNIXtFk9LwBDHM, 42e8Z1KIHKsxaWdqk3nq, "HTTPS / Basic" )
+Rel(42e8Z1KIHKsxaWdqk3nq, UDzF9znNIXtFk9LwBDHM, "Return of HTTPS / Basic" )
+Rel(UWeoMC7K0ntstoLn4FBh, j57mi6bn5IBAPBBcqa2b, "Push/Pull" )
+Rel(j57mi6bn5IBAPBBcqa2b, UWeoMC7K0ntstoLn4FBh, "Return of Push/Pull" )
+Rel(kmbDI3cUwBYgzZCyulAH, FMEFRLGEAtEaY3KE4ZT3, "Run" )
+Rel(z8HfnmEu1FwVBLuoFTXM, 361EAHg7DvZanb8dq9yb, "Transfers" )
+Rel(361EAHg7DvZanb8dq9yb, z8HfnmEu1FwVBLuoFTXM, "Return of Transfers" )
+Rel(kmbDI3cUwBYgzZCyulAH, j57mi6bn5IBAPBBcqa2b, "Access" )
+Rel(kcZ6JMZ3WNq8pReNTFS2, z8HfnmEu1FwVBLuoFTXM, "Transfers" )
+Rel(z8HfnmEu1FwVBLuoFTXM, kcZ6JMZ3WNq8pReNTFS2, "Return of Transfers" )
+Rel(FMEFRLGEAtEaY3KE4ZT3, j57mi6bn5IBAPBBcqa2b, "Read Tests" )
+Rel(kmbDI3cUwBYgzZCyulAH, UWeoMC7K0ntstoLn4FBh, "Access" )
+Rel(Kl9tTaoCuXqdHTvo4lkZ, UDzF9znNIXtFk9LwBDHM, "Trusted Call" )
+Rel(UDzF9znNIXtFk9LwBDHM, Kl9tTaoCuXqdHTvo4lkZ, "Return of Trusted Call" )
+Rel(FMEFRLGEAtEaY3KE4ZT3, QkIAEDVBPA2TLsAXXWO2, "Setup Test Data" )
+Rel(FMEFRLGEAtEaY3KE4ZT3, 42e8Z1KIHKsxaWdqk3nq, "Setup Test Data" )
+Rel(UDzF9znNIXtFk9LwBDHM, OHrd5OnZcC3om9jIhGs3, "Secure VPN tunnel" )
+Rel(Kl9tTaoCuXqdHTvo4lkZ, 7exSkve2BLQcqhzdAB20, "HTTPS / OAuth2" )
+Rel(7exSkve2BLQcqhzdAB20, Kl9tTaoCuXqdHTvo4lkZ, "Return of HTTPS / OAuth2" )
+Rel(OHrd5OnZcC3om9jIhGs3, QkIAEDVBPA2TLsAXXWO2, "HTTPS / Basic" )
+
+
+' PARENT CONNECTIONS =======
+  BNfOC7foqk1s1ibyQ05W <.. kmbDI3cUwBYgzZCyulAH 
+  ju6YD7lQwAayquUTalMi <.. kmbDI3cUwBYgzZCyulAH 
+  gTWo4W2ihM3ZFFQsRPF5 <.. Kl9tTaoCuXqdHTvo4lkZ 
+  z8HfnmEu1FwVBLuoFTXM <.. UDzF9znNIXtFk9LwBDHM 
+  kcZ6JMZ3WNq8pReNTFS2 <.. QkIAEDVBPA2TLsAXXWO2 
+  ju6YD7lQwAayquUTalMi <.. BNfOC7foqk1s1ibyQ05W 
+  ju6YD7lQwAayquUTalMi <.. UWeoMC7K0ntstoLn4FBh 
+  BNfOC7foqk1s1ibyQ05W <.. j57mi6bn5IBAPBBcqa2b 
+  ju6YD7lQwAayquUTalMi <.. j57mi6bn5IBAPBBcqa2b 
+  BNfOC7foqk1s1ibyQ05W <.. FMEFRLGEAtEaY3KE4ZT3 
+  ju6YD7lQwAayquUTalMi <.. FMEFRLGEAtEaY3KE4ZT3 
+  gTWo4W2ihM3ZFFQsRPF5 <.. 7exSkve2BLQcqhzdAB20 
+  z8HfnmEu1FwVBLuoFTXM <.. 3TXGCv2PXpssXY07gX0S 
+  361EAHg7DvZanb8dq9yb <.. 42e8Z1KIHKsxaWdqk3nq 
+  kcZ6JMZ3WNq8pReNTFS2 <.. OHrd5OnZcC3om9jIhGs3 
+
+
+@enduml

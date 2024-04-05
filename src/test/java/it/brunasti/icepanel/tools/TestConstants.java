@@ -12,6 +12,7 @@ public interface TestConstants {
 
   // Test config ---------------------------
   String tempDirectory = "./temp/";
+  String examplesDirectory = "./examples/";
   String testResourcesDirectory = "./src/test/resources/";
   String docsDirectory = "./docs/";
 //  String nonExistingDirectory = "./errorDir";
@@ -39,5 +40,16 @@ public interface TestConstants {
   String nonExistingJsonFileName = tempDirectory + "nofile.json";
 
   String defaultLegendFileName = docsDirectory + "includedFile.txt";
+
+
+  String PG_DIR = examplesDirectory + "pg/";
+  String PG_JSON = PG_DIR + "pg-001.json";
+  String PG_OUT = PG_DIR + "pg-001.puml";
+  String PG_CONF = PG_DIR + "config.json";
+
+  String SG_DIR = examplesDirectory + "sg/";
+  String SG_JSON = SG_DIR + "sg-001.json";
+  String SG_OUT = SG_DIR + "sg-001.puml";
+  String SG_CONF = SG_DIR + "config.json";
 
 }

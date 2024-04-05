@@ -70,18 +70,35 @@ public class IcePanelToolsMainTest implements TestConstants {
   }
 
   @Test
-  @DisplayName("Call IcePanelToolsMain main to create example")
+  @DisplayName("Call IcePanelToolsMain main to create examples")
   void testMainMethod_Example() {
-    System.err.println("testMainMethod_Example ------ 2 args -----");
+    System.err.println("testMainMethod_Examples ------ BA -----");
     String[] args = new String[6];
+
     args[0] = icePanelJSONFileCompact_02;
     args[1] = outputFileName;
     args[2] = "-d";
     args[3] = "10";
     args[4] = "-c";
     args[5] = configurationFileName;
-
     assertDoesNotThrow(() -> IcePanelToolsMain.main(args));
+
+    args[0] = PG_JSON;
+    args[1] = PG_OUT;
+    args[2] = "-d";
+    args[3] = "10";
+    args[4] = "-c";
+    args[5] = PG_CONF;
+    assertDoesNotThrow(() -> IcePanelToolsMain.main(args));
+
+    args[0] = SG_JSON;
+    args[1] = SG_OUT;
+    args[2] = "-d";
+    args[3] = "10";
+    args[4] = "-c";
+    args[5] = SG_CONF;
+    assertDoesNotThrow(() -> IcePanelToolsMain.main(args));
+
   }
 
   @Test

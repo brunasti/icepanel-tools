@@ -211,13 +211,15 @@ public class IcePanelToPlantUMLConverter {
               JSONObject modelObject = (JSONObject) modelObjects.get(object);
               JSONArray parentIds = (JSONArray) modelObject.get(PARENT_IDS);
 
-              parentIds.forEach(
-                  parentId -> {
-                    if (!rootName.equals(parentId)) {
-                      output.println("  " + parentId + " <.. " + object + " ");
-                    }
-                  }
-              );
+              if (parentIds != null) {
+                parentIds.forEach(
+                        parentId -> {
+                          if (!rootName.equals(parentId)) {
+                            output.println("  " + parentId + " <.. " + object + " ");
+                          }
+                        }
+                );
+              }
             }
     );
     output.println();
@@ -490,8 +492,6 @@ public class IcePanelToPlantUMLConverter {
               + OUTPUT_VAL_SEPARATOR_STRING + description + OUTPUT_VAL_SEPARATOR_STRING + OUTPUT_VAL_CLOSER_STRING);
     } else if (TYPE_AREA.equals(type)) {
       Debugger.debug(2, "skip type : [" + type + "]");
-//      output.println(head + SYSTEM_BOUNDARY + id + ", \"" + name
-//              + OUTPUT_VAL_SEPARATOR_STRING + description + OUTPUT_VAL_SEPARATOR_STRING + OUTPUT_VAL_CLOSER_STRING);
     } else if (TYPE_COMPONENT.equals(type)) {
       // TODO: Add technologies
       output.println(head + CONTAINER + id + ", \"" + name

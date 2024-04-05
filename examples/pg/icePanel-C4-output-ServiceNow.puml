@@ -1,0 +1,31 @@
+@startuml
+'https://plantuml.com/class-diagram
+' CONVERT ICEPANEL DIAGRAM ===========
+' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUMLConverter
+' IcePanel JSON File : [./examples/pg/pg-001.json]
+' Configuration      : [./examples/pg/config.json]
+' Generated at       : Fri Apr 05 16:25:46 CEST 2024
+
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+
+
+Component(w8uGBpoOuSbjImUW8RfU, "ServiceNow", "null" ) { 
+    ' CLASSES =======
+    Container(5WKulSoGilOyWkIT57li, "ServiceNow WebSite", "null", "" )
+    Container(L5SXGD6iXvA78tETTY6B, "ServiceNow  - Standard reports", "null", "" )
+    Container(89UjCMyoDzRPm09TGMCZ, "ServiceNow - Core", "null", "" )
+    Container(NVzttd0H1pzo67Z0guTw, "ServiceNow API", "null", "" )
+}
+
+
+' NEIGHBOR CLASSES =======
+Component(BDy6EhnLdszv0o1UYCZp, "Homepage  - TBC Plugins", "null" )
+
+
+' CONNECTIONS =======
+Rel(BDy6EhnLdszv0o1UYCZp, NVzttd0H1pzo67Z0guTw, "Create Case" )
+
+
+@enduml

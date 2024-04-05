@@ -1,0 +1,31 @@
+@startuml
+'https://plantuml.com/class-diagram
+' CONVERT ICEPANEL DIAGRAM ===========
+' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUMLConverter
+' IcePanel JSON File : [./examples/sg/sg-001.json]
+' Configuration      : [./examples/sg/config.json]
+' Generated at       : Fri Apr 05 16:25:46 CEST 2024
+
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+
+
+System_Boundary(361EAHg7DvZanb8dq9yb, "Signavio - Business Process Manager" ) {
+    ' CLASSES =======
+    Component(42e8Z1KIHKsxaWdqk3nq, "Test Signavio BPM", "" )
+}
+
+
+' NEIGHBOR CLASSES =======
+Component(UDzF9znNIXtFk9LwBDHM, "Destination Service", "" )
+Container(FMEFRLGEAtEaY3KE4ZT3, "Cypress Engine", "", "" )
+
+
+' CONNECTIONS =======
+Rel(UDzF9znNIXtFk9LwBDHM, 42e8Z1KIHKsxaWdqk3nq, "HTTPS / Basic" )
+Rel(42e8Z1KIHKsxaWdqk3nq, UDzF9znNIXtFk9LwBDHM, "Return of HTTPS / Basic" )
+Rel(FMEFRLGEAtEaY3KE4ZT3, 42e8Z1KIHKsxaWdqk3nq, "Setup Test Data" )
+
+
+@enduml

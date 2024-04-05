@@ -1,0 +1,57 @@
+@startuml
+'https://plantuml.com/class-diagram
+' CONVERT ICEPANEL DIAGRAM ===========
+' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUMLConverter
+' IcePanel JSON File : [./examples/pg/pg-001.json]
+' Configuration      : [./examples/pg/config.json]
+' Generated at       : Fri Apr 05 16:25:46 CEST 2024
+
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+
+
+System_Boundary(XyelrH1G0uxlThooT8jX, "Web Site" ) {
+    ' CLASSES =======
+    Component(Bt0upOQ7ISx0R8IRiY7Y, "Static WebSite", "null" )
+    Component(sYLxW4jvnSXS0361wc3B, "TBC User Profile", "null" )
+    Component(zZAdJ3R6x990ODKCL5ex, "TBC Payment API", "null" )
+    Component(AInfIdvnaXbaFmyIidHG, "Dynamic WebSite", "null" )
+    Component(aE7OfZew41kPVk1SABBx, "TBC WebShop", "null" )
+    Component(BDy6EhnLdszv0o1UYCZp, "Homepage  - TBC Plugins", "null" )
+    Component(Lmcmoump6qMx52ccGHD9, "TBC myPureGym", "null" )
+    Component(tUwesLk4JNiuUO6JJFiZ, "Classes booking", "null" )
+}
+
+
+' NEIGHBOR CLASSES =======
+Component(XWiacBLGn7k983RqmMWv, "MyFit App (membership app)", "null" )
+Container(NVzttd0H1pzo67Z0guTw, "ServiceNow API", "null", "" )
+Person(Df8PP21Dc8ejtFQtIHmV, "Member", "null" )
+Person(tWBMOSLhpcqKS34CzvM1, "Prospect", "null" )
+System(SLMBPAA5stAJyw9w6YTR, "TBC Member Service", "null" )
+System(SLmOFIXEutPoocdCdOE1, "Agilea (CRM)", "null" )
+
+
+' CONNECTIONS =======
+Rel(SLMBPAA5stAJyw9w6YTR, aE7OfZew41kPVk1SABBx, "Club information - Contract information - Coupon information - FAQ" )
+Rel(SLMBPAA5stAJyw9w6YTR, BDy6EhnLdszv0o1UYCZp, "Unnamed connection" )
+Rel(Df8PP21Dc8ejtFQtIHmV, AInfIdvnaXbaFmyIidHG, "Dynamic activities" )
+Rel(AInfIdvnaXbaFmyIidHG, Df8PP21Dc8ejtFQtIHmV, "Return of Dynamic activities" )
+Rel(BDy6EhnLdszv0o1UYCZp, NVzttd0H1pzo67Z0guTw, "Create Case" )
+Rel(aE7OfZew41kPVk1SABBx, SLMBPAA5stAJyw9w6YTR, "Staff Provision" )
+Rel(XWiacBLGn7k983RqmMWv, Lmcmoump6qMx52ccGHD9, "SSO" )
+Rel(Lmcmoump6qMx52ccGHD9, SLmOFIXEutPoocdCdOE1, "Login - Upgrade Flats - Upgrade Contract - Change Member Information - Cancellation - Break" )
+Rel(BDy6EhnLdszv0o1UYCZp, aE7OfZew41kPVk1SABBx, "Price information" )
+Rel(BDy6EhnLdszv0o1UYCZp, SLMBPAA5stAJyw9w6YTR, "Book trial training" )
+Rel(tWBMOSLhpcqKS34CzvM1, AInfIdvnaXbaFmyIidHG, "Subscribe new Membership" )
+Rel(AInfIdvnaXbaFmyIidHG, tWBMOSLhpcqKS34CzvM1, "Return of Subscribe new Membership" )
+Rel(aE7OfZew41kPVk1SABBx, SLMBPAA5stAJyw9w6YTR, "New Members" )
+Rel(BDy6EhnLdszv0o1UYCZp, SLMBPAA5stAJyw9w6YTR, "Club informations, content and picture" )
+Rel(Df8PP21Dc8ejtFQtIHmV, Bt0upOQ7ISx0R8IRiY7Y, "Access www" )
+Rel(Bt0upOQ7ISx0R8IRiY7Y, Df8PP21Dc8ejtFQtIHmV, "Return of Access www" )
+Rel(sYLxW4jvnSXS0361wc3B, SLmOFIXEutPoocdCdOE1, "User Data" )
+Rel(SLmOFIXEutPoocdCdOE1, sYLxW4jvnSXS0361wc3B, "Return of User Data" )
+
+
+@enduml

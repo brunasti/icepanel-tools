@@ -1,0 +1,41 @@
+@startuml
+'https://plantuml.com/class-diagram
+' CONVERT ICEPANEL DIAGRAM ===========
+' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUMLConverter
+' IcePanel JSON File : [./examples/pg/pg-001.json]
+' Configuration      : [./examples/pg/config.json]
+' Generated at       : Fri Apr 05 16:25:46 CEST 2024
+
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+
+
+System_Boundary(AB7gRm4G0FDSwC6Ax9Br, "CH" ) {
+    ' CLASSES =======
+    ContainerDb(lzbazUSB1JSCrGUmiIvS, "XML Bank Movemnts", "null", "" )
+    ContainerDb(sdXhz2x5m12JfZI7CPqK, "XML Payment Requests File", "null", "" )
+    ContainerDb(09BlbXVqavc3SISvhm3x, "XLS Bank Executed Payments File", "null", "" )
+    Component(TC84Zedf7r0MPG7SEkx2, "", "null" )
+    ContainerDb(6zrbWT3rue9s7yTmq2vt, "Basico Executed Payments File", "null", "" )
+}
+
+
+' NEIGHBOR CLASSES =======
+Person(dJ9mBEcPcpgDp4FzPGBJ, "Bank", "null" )
+System(AdhsdndKmvhsBWvLfJTK, "Member Service System", "null" )
+System(7yUxSWwQWb7vyfM17Jbo, "Basico Bots", "null" )
+System(soKzn6Drl9ZnctLZPvDw, "Finance System", "null" )
+
+
+' CONNECTIONS =======
+Rel(dJ9mBEcPcpgDp4FzPGBJ, 09BlbXVqavc3SISvhm3x, "Export Payments" )
+Rel(sdXhz2x5m12JfZI7CPqK, dJ9mBEcPcpgDp4FzPGBJ, "Uploading payments file" )
+Rel(dJ9mBEcPcpgDp4FzPGBJ, lzbazUSB1JSCrGUmiIvS, "Export movements" )
+Rel(6zrbWT3rue9s7yTmq2vt, soKzn6Drl9ZnctLZPvDw, "Manual Import" )
+Rel(09BlbXVqavc3SISvhm3x, 7yUxSWwQWb7vyfM17Jbo, "Process incoming payment" )
+Rel(lzbazUSB1JSCrGUmiIvS, AdhsdndKmvhsBWvLfJTK, "Write movements" )
+Rel(soKzn6Drl9ZnctLZPvDw, sdXhz2x5m12JfZI7CPqK, "Generate XML with Payments" )
+
+
+@enduml

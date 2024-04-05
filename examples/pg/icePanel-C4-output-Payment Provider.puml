@@ -1,0 +1,27 @@
+@startuml
+'https://plantuml.com/class-diagram
+' CONVERT ICEPANEL DIAGRAM ===========
+' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUMLConverter
+' IcePanel JSON File : [./examples/pg/pg-001.json]
+' Configuration      : [./examples/pg/config.json]
+' Generated at       : Fri Apr 05 16:25:46 CEST 2024
+
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+
+
+System_Boundary(nWx1zIRMw0TdhvWCNIQ0, "Payment Provider" ) {
+    ' CLASSES =======
+    Component(IBWaUUzUjXn4rwTwok5k, "Concardis", "null" )
+    Component(SIfTHbXR8kSApPyFqsd9, "PostFinance", "null" )
+}
+
+
+' NEIGHBOR CLASSES =======
+
+
+' CONNECTIONS =======
+
+
+@enduml

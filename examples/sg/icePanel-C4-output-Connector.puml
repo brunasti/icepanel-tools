@@ -1,0 +1,34 @@
+@startuml
+'https://plantuml.com/class-diagram
+' CONVERT ICEPANEL DIAGRAM ===========
+' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUMLConverter
+' IcePanel JSON File : [./examples/sg/sg-001.json]
+' Configuration      : [./examples/sg/config.json]
+' Generated at       : Fri Apr 05 16:25:46 CEST 2024
+
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+
+
+System_Boundary(gTWo4W2ihM3ZFFQsRPF5, "Connector" ) {
+    ' CLASSES =======
+    Component(Kl9tTaoCuXqdHTvo4lkZ, "Signavio BPM Connector", "" )
+    Component(7exSkve2BLQcqhzdAB20, "SAP HANA  - Cloud", "" )
+}
+
+
+' NEIGHBOR CLASSES =======
+Component(UDzF9znNIXtFk9LwBDHM, "Destination Service", "" )
+Container(FMEFRLGEAtEaY3KE4ZT3, "Cypress Engine", "", "" )
+
+
+' CONNECTIONS =======
+Rel(FMEFRLGEAtEaY3KE4ZT3, Kl9tTaoCuXqdHTvo4lkZ, "Execute Tests" )
+Rel(Kl9tTaoCuXqdHTvo4lkZ, UDzF9znNIXtFk9LwBDHM, "Trusted Call" )
+Rel(UDzF9znNIXtFk9LwBDHM, Kl9tTaoCuXqdHTvo4lkZ, "Return of Trusted Call" )
+Rel(Kl9tTaoCuXqdHTvo4lkZ, 7exSkve2BLQcqhzdAB20, "HTTPS / OAuth2" )
+Rel(7exSkve2BLQcqhzdAB20, Kl9tTaoCuXqdHTvo4lkZ, "Return of HTTPS / OAuth2" )
+
+
+@enduml
