@@ -103,30 +103,31 @@ public class IcePanelToPlantUMLConverter {
 
   private void generateHeader(final String icePanelJSONFile,
                               final String configurationFile) {
-    Debugger.debug(2, "generateHeader() ------------------");
-    output.println("@startuml");
-    output.println(
-"""
-!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
-!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
-' uncomment the following line and comment the first to use locally
-' !include C4_Context.puml
-""");
-    output.println("'https://plantuml.com/class-diagram");
-    output.println();
-    output.println("' CONVERT ICEPANEL DIAGRAM ===========");
-    output.println("' Converter          : " + this.getClass().getName());
-    output.println("' IcePanel JSON File : [" + icePanelJSONFile + "]");
-    output.println("' Configuration      : [" + configurationFile + "]");
-    output.println("' Generated at       : " + new Date());
-    String includeFileContent = Utils.readFileToString(includeFileName);
-    if (!includeFileContent.isBlank()) {
-      output.println();
-      output.println("' Include         : [" + includeFileName + "] ---------");
-      output.println(includeFileContent);
-      output.println("' Include end     : --------------------------");
-    }
-    output.println();
+    generateSubDiagramHeader(output,icePanelJSONFile,configurationFile);
+//    Debugger.debug(2, "generateHeader() ------------------");
+//    output.println("@startuml");
+//    output.println(
+//"""
+//!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+//!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+//' uncomment the following line and comment the first to use locally
+//' !include C4_Context.puml
+//""");
+//    output.println("'https://plantuml.com/class-diagram");
+//    output.println();
+//    output.println("' CONVERT ICEPANEL DIAGRAM ===========");
+//    output.println("' Converter          : " + this.getClass().getName());
+//    output.println("' IcePanel JSON File : [" + icePanelJSONFile + "]");
+//    output.println("' Configuration      : [" + configurationFile + "]");
+//    output.println("' Generated at       : " + new Date());
+//    String includeFileContent = Utils.readFileToString(includeFileName);
+//    if (!includeFileContent.isBlank()) {
+//      output.println();
+//      output.println("' Include         : [" + includeFileName + "] ---------");
+//      output.println(includeFileContent);
+//      output.println("' Include end     : --------------------------");
+//    }
+//    output.println();
   }
 
   private void generateFooter() {
@@ -208,27 +209,6 @@ public class IcePanelToPlantUMLConverter {
             object -> {
               JSONObject modelObject = (JSONObject) modelObjects.get(object);
               generateClassInDiagram(output, modelObject);
-
-//              String name = getName(object, modelObject);
-//              String type = getValue(modelObject, "type", "");
-//              String description = getValue(modelObject,"description", " ");
-//
-//              if ("system".equals(type)) {
-//                output.println("System(" + object + ", \"" + name + "\", \"" + description + "\" ) ");
-//              } else if ("actor".equals(type)) {
-//                output.println("Person(" + object + ", \"" + name + "\", \"" + description + "\" ) ");
-//              } else if ("app".equals(type)) {
-//                output.println("Component(" + object + ", \"" + name + "\", \"" + description + "\" ) ");
-//              } else if ("store".equals(type)) {
-//                output.println("ContainerDb(" + object + ", \"" + name + "\", \"" + description + "\", \"\" ) ");
-//              } else if ("area".equals(type)) {
-//                output.println("System_Boundary(" + object + ", \"" + name + "\", \"" + description + "\", \"\" ) ");
-//              } else if ("component".equals(type)) {
-//                // TODO: Add technologies
-//                output.println("Container(" + object + ", \"" + name + "\", \"" + description + "\", \"\" ) ");
-//              } else {
-//                Debugger.debug(2, "unknown type : [" + type + "]");
-//              }
       }
     );
     output.println();
@@ -269,8 +249,6 @@ public class IcePanelToPlantUMLConverter {
 """
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
-' uncomment the following line and comment the first to use locally
-' !include C4_Context.puml
 """);
     output.println("'https://plantuml.com/class-diagram");
     output.println();
@@ -357,32 +335,10 @@ public class IcePanelToPlantUMLConverter {
     Debugger.debug(2, "generateSubDiagramClasses() ------------------");
     output.println();
     generateSubDiagramBoundaryStart(output,icePanelDiagramJSON);
-    output.println("' CLASSES =======");
-//    JSONObject modelObjects = (JSONObject)icePanelDiagramJSON.get("modelObjects");
+    output.println("    ' CLASSES =======");
     children.forEach(
       object -> {
         generateClassInDiagram("    ", output, object);
-//              JSONObject modelObject = (JSONObject) modelObjects.get(object);
-//              String name = getName(object, modelObject);
-//              String type = getValue(modelObject, "type", "");
-//              String description = getValue(modelObject,"description", " ");
-//
-//              if ("system".equals(type)) {
-//                output.println("System(" + object + ", \"" + name + "\", \"" + description + "\" ) ");
-//              } else if ("actor".equals(type)) {
-//                output.println("Person(" + object + ", \"" + name + "\", \"" + description + "\" ) ");
-//              } else if ("app".equals(type)) {
-//                output.println("Component(" + object + ", \"" + name + "\", \"" + description + "\" ) ");
-//              } else if ("store".equals(type)) {
-//                output.println("ContainerDb(" + object + ", \"" + name + "\", \"" + description + "\", \"\" ) ");
-//              } else if ("area".equals(type)) {
-//                output.println("System_Boundary(" + object + ", \"" + name + "\", \"" + description + "\", \"\" ) ");
-//              } else if ("component".equals(type)) {
-//                // TODO: Add technologies
-//                output.println("Container(" + object + ", \"" + name + "\", \"" + description + "\", \"\" ) ");
-//              } else {
-//                Debugger.debug(2, "unknown type : [" + type + "]");
-//              }
       }
     );
     generateSubDiagramBoundaryEnd(output);

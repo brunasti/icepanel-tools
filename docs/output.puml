@@ -1,8 +1,6 @@
 @startuml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
-' uncomment the following line and comment the first to use locally
-' !include C4_Context.puml
 
 'https://plantuml.com/class-diagram
 
@@ -10,7 +8,7 @@
 ' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUMLConverter
 ' IcePanel JSON File : [./src/test/resources/icepanel-plain-02.json]
 ' Configuration      : []
-' Generated at       : Fri Apr 05 10:16:05 CEST 2024
+' Generated at       : Fri Apr 05 10:20:13 CEST 2024
 
 
 ' CLASSES =======
