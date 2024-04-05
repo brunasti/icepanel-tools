@@ -12,10 +12,10 @@ import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 
-public class IcePanelToolsMain {
+public class IcePanelToolsMain implements IcePanelConstants {
 
   // TODO: Check the diagrams: examples/ml/icePanel-C4-output-Mollie  - API Extension - Julian.puml : Description too long
-  private static final String SET_TO = " set to [";
+
 
   static CommandLine commandLine;
   static IcePanelToPlantUMLConverter icePanelToPlantUMLConverter;
@@ -39,7 +39,7 @@ public class IcePanelToolsMain {
   private static boolean setDebugOption(Option optionDebug) {
     String debugLevelString = commandLine.getOptionValue(optionDebug.getOpt());
     System.err.println(optionDebug.getDescription()
-            + SET_TO + debugLevelString + "]");
+            + DEBUG_TEXT_SET_TO + debugLevelString + "]");
     if (debugLevelString != null) {
       try {
         int dl = Integer.parseInt(debugLevelString);
@@ -114,15 +114,15 @@ public class IcePanelToolsMain {
       if (commandLine.hasOption(optionInputJsonFile.getOpt())) {
         icePanelJSONExportFile = commandLine.getOptionValue(optionInputJsonFile.getOpt());
         Debugger.debug(optionInputJsonFile.getDescription()
-                + SET_TO + icePanelJSONExportFile + "]");
+                + DEBUG_TEXT_SET_TO + icePanelJSONExportFile + "]");
       }
       if (commandLine.hasOption(optionOutputFile.getOpt())) {
         outputFile = commandLine.getOptionValue(optionOutputFile.getOpt());
-        Debugger.debug(optionOutputFile.getDescription() + SET_TO + outputFile + "]");
+        Debugger.debug(optionOutputFile.getDescription() + DEBUG_TEXT_SET_TO + outputFile + "]");
       }
       if (commandLine.hasOption(optionConfigFile.getOpt())) {
         configurationFile = commandLine.getOptionValue(optionConfigFile.getOpt());
-        Debugger.debug(optionConfigFile.getDescription() + SET_TO + configurationFile + "]");
+        Debugger.debug(optionConfigFile.getDescription() + DEBUG_TEXT_SET_TO + configurationFile + "]");
       }
 
     } catch (ParseException | NullPointerException e) {

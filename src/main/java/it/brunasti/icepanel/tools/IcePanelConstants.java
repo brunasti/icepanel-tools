@@ -1,16 +1,5 @@
 package it.brunasti.icepanel.tools;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.PrintStream;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.concurrent.atomic.AtomicReference;
-
 /**
  *
  */
@@ -44,6 +33,7 @@ public interface IcePanelConstants {
   String OUTPUT_SUBDIAGRAM_CLOSER_STRING = "\" ) { ";
   String OUTPUT_VAL_CLOSER_STRING = "\" )";
 
+  String DEBUG_TEXT_SET_TO = " set to [";
 
 
 }
