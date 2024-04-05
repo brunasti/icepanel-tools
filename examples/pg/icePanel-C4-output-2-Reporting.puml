@@ -4,7 +4,7 @@
 ' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUMLConverter
 ' IcePanel JSON File : [./examples/pg/pg-001.json]
 ' Configuration      : [./examples/pg/config.json]
-' Generated at       : Fri Apr 05 18:21:20 CEST 2024
+' Generated at       : Fri Apr 05 18:30:42 CEST 2024
 
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
@@ -13,7 +13,7 @@
 
 System_Boundary(hPa1gkYEDR8ckn11BmCT, "Reporting" ) {
     ' CLASSES =======
-    Component(830mvzOBd9mjs0ueDxHQ, "", "null" )
+    Component(830mvzOBd9mjs0ueDxHQ, "830mvzOBd9mjs0ueDxHQ", "null" )
     Component(dEiIJVGFUes52kwYOBfJ, "Apollo Reporting Tool", "null" )
     ContainerDb(oVGxmBWAZwzORBGnm63k, "Apollo Datalake", "null", "" )
 }

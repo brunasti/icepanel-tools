@@ -4,7 +4,7 @@
 ' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUMLConverter
 ' IcePanel JSON File : [./examples/pg/pg-001.json]
 ' Configuration      : [./examples/pg/config.json]
-' Generated at       : Fri Apr 05 18:21:20 CEST 2024
+' Generated at       : Fri Apr 05 18:30:42 CEST 2024
 
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
@@ -48,7 +48,7 @@ System(l7kJveASOMuUr1n5XbYu, "Apps DK", "null" )
 System(Dh7TjqtXo9JVsCCn3bol, "POS", "null" )
 ContainerDb(09BlbXVqavc3SISvhm3x, "XLS Bank Executed Payments File", "null", "" )
 Person(4YBP6BlFzBp8pOuJwQQE, "Lakshmana Davisetti", "null" )
-Component(830mvzOBd9mjs0ueDxHQ, "", "null" )
+Component(830mvzOBd9mjs0ueDxHQ, "830mvzOBd9mjs0ueDxHQ", "null" )
 System(SLmOFIXEutPoocdCdOE1, "Agilea (CRM)", "null" )
 Person(LV2WD5SPjO4cbOAOnQ3R, "Jordan Woodley", "null" )
 Component(S9hMClYptC27gpcb8h11, "Standard reports", "null" )
@@ -79,7 +79,7 @@ System(AB7gRm4G0FDSwC6Ax9Br, "CH", "null" )
 System(vgrxHGsMNRMr3oRKap7i, "Access Control", "null" )
 System(CwYK3KziEmXqFacwvvOw, "Payment IQ (Bambora)", "null" )
 Person(PQmlX7q91Kh3Yf0F3HKA, "Martin Neble Green", "null" )
-Component(TC84Zedf7r0MPG7SEkx2, "", "null" )
+Component(TC84Zedf7r0MPG7SEkx2, "TC84Zedf7r0MPG7SEkx2", "null" )
 Component(q8mphiB74ORpViZtWerc, "Card Reader", "null" )
 System(aMYszCJvHb6cP7hiHw7f, "Nayax Vending Machine", "null" )
 Person(30kdN3ZfUiaC147oEUgD, "Jack", "null" )

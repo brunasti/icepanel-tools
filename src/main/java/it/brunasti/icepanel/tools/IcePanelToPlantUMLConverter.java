@@ -458,6 +458,9 @@ public class IcePanelToPlantUMLConverter implements IcePanelConstants {
     Debugger.debug(2, "generateClassInDiagram() ------------------");
     String id = getValue(jsonObject, "id");
     String name = getValue(jsonObject, "name");
+    if ((name == null) || (name.isBlank())) {
+      name = id;
+    }
     String type = getValue(jsonObject, "type", "");
     String description = getValue(jsonObject, "description", " ");
 
