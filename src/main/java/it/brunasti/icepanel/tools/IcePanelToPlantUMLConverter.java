@@ -35,6 +35,7 @@ public class IcePanelToPlantUMLConverter {
   public static final String CONTAINER_DB = "ContainerDb(";
   public static final String CONTAINER = "Container(";
   public static final String DEBUG_ENDING_STRING = ") ------------------";
+
   public static final String OUTPUT_VAL_SEPARATOR_STRING = "\", \"";
   public static final String OUTPUT_SUBDIAGRAM_CLOSER_STRING = "\" ) { ";
   public static final String OUTPUT_VAL_CLOSER_STRING = "\" )";
@@ -47,6 +48,7 @@ public class IcePanelToPlantUMLConverter {
 
   private String includeFileName = "";
   private String outputPath = "./";
+  private boolean generateSubDiagrams = false;
 
   /**
    * Instantiate a ClassDiagrammer with output directed to StandardOut.
@@ -79,6 +81,7 @@ public class IcePanelToPlantUMLConverter {
   private void setDefaultConfiguration() {
     includeFileName = "";
     outputPath = "";
+    generateSubDiagrams = false;
   }
 
   private void loadJsonConfiguration(JSONObject jsonObject) {
@@ -101,6 +104,7 @@ public class IcePanelToPlantUMLConverter {
       if (!outputPath.endsWith("/")) {
         outputPath = outputPath + "/";
       }
+      generateSubDiagrams = true;
       Debugger.debug(4, "  - outputPath [" + outputPath + "]");
     }
   }
@@ -112,6 +116,7 @@ public class IcePanelToPlantUMLConverter {
     if (null == jsonObject) {
       Debugger.debug(2,
               "loadJsonConfigurationFromFile : no data in config file " + configurationFileName);
+      generateSubDiagrams = false;
       return false;
     }
 
@@ -685,17 +690,19 @@ public class IcePanelToPlantUMLConverter {
     generateConnections(icePanelDiagramJson, rootName);
     generateFooter();
 
-    generateSubDiagrams(icePanelJsonFile,
-            icePanelDiagramJson,
-            findSystems(icePanelDiagramJson),
-            configurationFile,
-            subOutputFileNameBase);
+    if (generateSubDiagrams) {
+      generateSubDiagrams(icePanelJsonFile,
+              icePanelDiagramJson,
+              findSystems(icePanelDiagramJson),
+              configurationFile,
+              subOutputFileNameBase);
 
-    generateSubDiagrams(icePanelJsonFile,
-            icePanelDiagramJson,
-            findParents(icePanelDiagramJson, rootName),
-            configurationFile,
-            subOutputFileNameBase);
+      generateSubDiagrams(icePanelJsonFile,
+              icePanelDiagramJson,
+              findParents(icePanelDiagramJson, rootName),
+              configurationFile,
+              subOutputFileNameBase);
+    }
   }
 
 

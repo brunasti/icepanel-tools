@@ -14,6 +14,11 @@ import org.apache.commons.cli.ParseException;
 
 public class IcePanelToolsMain {
 
+  // TODO: Made the sub diagram names more meaningful (Level...)
+  // TODO: Check the diagrams: examples/pg/icePanel-C4-output-.puml
+  // TODO: Check the diagrams: examples/pg/icePanel-C4-output-CH.puml
+  // TODO: Check the diagrams: examples/pg/icePanel-C4-output-Reporting.puml
+  // TODO: Check the diagrams: examples/pg/pg-001.puml
   private static final String SET_TO = " set to [";
 
   static CommandLine commandLine;
