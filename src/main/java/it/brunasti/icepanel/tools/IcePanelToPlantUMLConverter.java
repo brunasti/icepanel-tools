@@ -489,8 +489,9 @@ public class IcePanelToPlantUMLConverter {
       output.println(head + CONTAINER_DB + id + ", \"" + name
               + OUTPUT_VAL_SEPARATOR_STRING + description + OUTPUT_VAL_SEPARATOR_STRING + OUTPUT_VAL_CLOSER_STRING);
     } else if (TYPE_AREA.equals(type)) {
-      output.println(head + SYSTEM_BOUNDARY + id + ", \"" + name
-              + OUTPUT_VAL_SEPARATOR_STRING + description + OUTPUT_VAL_SEPARATOR_STRING + OUTPUT_VAL_CLOSER_STRING);
+      Debugger.debug(2, "skip type : [" + type + "]");
+//      output.println(head + SYSTEM_BOUNDARY + id + ", \"" + name
+//              + OUTPUT_VAL_SEPARATOR_STRING + description + OUTPUT_VAL_SEPARATOR_STRING + OUTPUT_VAL_CLOSER_STRING);
     } else if (TYPE_COMPONENT.equals(type)) {
       // TODO: Add technologies
       output.println(head + CONTAINER + id + ", \"" + name
