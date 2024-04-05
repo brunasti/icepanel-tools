@@ -5,14 +5,14 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
-public class IcePanelToPlantUMLConverterTest implements TestConstants {
+class IcePanelToPlantUMLConverterTest implements TestConstants {
 
   // Test generateDiagram function ---------------------------
   @Test
   @DisplayName("Generate Diagram")
   void testGenerateDiagram() {
     IcePanelToPlantUMLConverter IcePanelToPlantUMLConverter = new IcePanelToPlantUMLConverter();
-    assertDoesNotThrow(() -> IcePanelToPlantUMLConverter.convertIcePanelToUML(icePanelJSONFile, configurationFileName, outputFileName));
+    assertDoesNotThrow(() -> IcePanelToPlantUMLConverter.convertIcePanelToUml(icePanelJSONFile, configurationFileName, outputFileName));
   }
 
 //  @Test

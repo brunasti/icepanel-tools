@@ -1,21 +1,15 @@
 package it.brunasti.icepanel.tools;
 
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
-
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 
 /**
@@ -79,7 +73,7 @@ public final class Utils {
    * @param title Identification title of the output text.
    * @param array ArrayList of Objects to be dumped.
    */
-  public static void dump(final String title, final ArrayList<Object> array) {
+  public static void dump(final String title, final List<Object> array) {
     if (null == array) {
       dump(title, (Object[]) null);
     } else {
@@ -100,45 +94,6 @@ public final class Utils {
       dump(title, set.toArray());
     }
   }
-
-//  // Directories functions -----------------------------------------
-//
-//  /**
-//   * List files in a directory.
-//   *
-//   * @param dir Directory from which extract the list of files
-//   * @return Set of file names
-//   * @throws IOException If the directory is not found
-//   */
-//  public static Set<String> listFiles(final String dir)
-//          throws IOException {
-//    try (Stream<Path> stream = Files.list(Paths.get(dir))) {
-//      return stream
-//              .filter(file -> !Files.isDirectory(file))
-//              .map(Path::getFileName)
-//              .map(Path::toString)
-//              .collect(Collectors.toSet());
-//    }
-//  }
-//
-//  /**
-//   * List directories in a directory.
-//   *
-//   * @param dir Directory from which extract the list of directories
-//   * @return Set of directory names
-//   * @throws IOException If the root directory is not found
-//   */
-//  public static Set<String> listDirectories(final String dir)
-//          throws IOException {
-//    try (Stream<Path> stream = Files.list(Paths.get(dir))) {
-//      return stream
-//              .filter(Files::isDirectory)
-//              .map(Path::getFileName)
-//              .map(Path::toString)
-//              .collect(Collectors.toSet());
-//    }
-//  }
-//
 
 
   // JSON functions ----------------------------------

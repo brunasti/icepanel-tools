@@ -1,15 +1,41 @@
 package it.brunasti.icepanel.tools;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicReference;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
+/**
+ *
+ */
 public class IcePanelToPlantUMLConverter {
+
+  public static final String ORIGIN_ID = "originId";
+  public static final String TARGET_ID = "targetId";
+  public static final String DIRECTION = "direction";
+  public static final String MODEL_CONNECTIONS = "modelConnections";
+  public static final String MODEL_OBJECTS = "modelObjects";
+  public static final String PARENT_IDS = "parentIds";
+
+  public static final String TYPE_SYSTEM = "system";
+  public static final String TYPE_ACTOR = "actor";
+  public static final String TYPE_APP = "app";
+  public static final String TYPE_STORE = "store";
+  public static final String TYPE_AREA = "area";
+  public static final String TYPE_COMPONENT = "component";
+
+  public static final String SYSTEM_BOUNDARY = "System_Boundary(";
+  public static final String PERSON = "Person(";
+  public static final String COMPONENT = "Component(";
+  public static final String CONTAINER_DB = "ContainerDb(";
+  public static final String CONTAINER = "Container(";
+  public static final String DEBUG_ENDING_STRING = ") ------------------";
+
 
   // Reference to a PrintStream to be used for the diagram
   // By default is the Standard.out, but it can be redirected
@@ -103,21 +129,21 @@ public class IcePanelToPlantUMLConverter {
 
   // Load the JSON file exported from IcePanel ---------------------------
 
-  private JSONObject loadIcePanelJsonFromFile(String icePanelJSONFileName) {
-    Debugger.debug(1, "loadIcePanelJsonFromFile : " + icePanelJSONFileName);
-    JSONObject jsonObject = Utils.loadJsonFile(icePanelJSONFileName);
+  private JSONObject loadIcePanelJsonFromFile(String icePanelJsonFileName) {
+    Debugger.debug(1, "loadIcePanelJsonFromFile : " + icePanelJsonFileName);
+    JSONObject jsonObject = Utils.loadJsonFile(icePanelJsonFileName);
     if (null == jsonObject) {
       Debugger.debug(2,
-              "loadIcePanelJsonFromFile : no data in config file " + icePanelJSONFileName);
+              "loadIcePanelJsonFromFile : no data in config file " + icePanelJsonFileName);
       return null;
     }
     return jsonObject;
   }
 
 
-  private void generateHeader(final String icePanelJSONFile,
+  private void generateHeader(final String icePanelJsonFile,
                               final String configurationFile) {
-    generateSubDiagramHeader(output,icePanelJSONFile,configurationFile);
+    generateSubDiagramHeader(output, icePanelJsonFile, configurationFile);
   }
 
   private void generateFooter() {
@@ -142,24 +168,24 @@ public class IcePanelToPlantUMLConverter {
 
   private String getName(Object object, final JSONObject modelObject) {
     String name = getValue(modelObject, "name");
-    if ((name == null) || (name.isBlank())) {
+    if (name.isBlank()) {
       name = object.toString();
     }
     return name;
   }
 
-  private void generateConnections(final JSONObject icePanelDiagramJSON, String rootName) {
+  private void generateConnections(final JSONObject icePanelDiagramJson, String rootName) {
     Debugger.debug(2, "generateConnections() ------------------");
     output.println();
     output.println("' CONNECTIONS =======");
-    JSONObject modelConnections = (JSONObject)icePanelDiagramJSON.get("modelConnections");
+    JSONObject modelConnections = (JSONObject) icePanelDiagramJson.get(MODEL_CONNECTIONS);
     modelConnections.keySet().forEach(
             object -> {
               JSONObject modelObject = (JSONObject) modelConnections.get(object);
               String name = getName(object, modelObject);
-              String source = getValue(modelObject, "originId");
-              String target = getValue(modelObject, "targetId");
-              String direction = getValue(modelObject, "direction");
+              String source = getValue(modelObject, ORIGIN_ID);
+              String target = getValue(modelObject, TARGET_ID);
+              String direction = getValue(modelObject, DIRECTION);
               if ("outgoing".equals(direction)) {
                 output.println("Rel(" + source + ", " + target + ", \"" + name + "\" )");
               } else if ("bidirectional".equals(direction)) {
@@ -172,18 +198,18 @@ public class IcePanelToPlantUMLConverter {
 
     output.println();
     output.println("' PARENT CONNECTIONS =======");
-    JSONObject modelObjects = (JSONObject)icePanelDiagramJSON.get("modelObjects");
+    JSONObject modelObjects = (JSONObject) icePanelDiagramJson.get(MODEL_OBJECTS);
     modelObjects.keySet().forEach(
             object -> {
               JSONObject modelObject = (JSONObject) modelObjects.get(object);
-              JSONArray parentIds = (JSONArray)modelObject.get("parentIds");
+              JSONArray parentIds = (JSONArray) modelObject.get(PARENT_IDS);
 
               parentIds.forEach(
-                parentId -> {
-                  if (!rootName.equals(parentId)) {
-                    output.println("  " + parentId + " <.. " + object + " ");
+                  parentId -> {
+                    if (!rootName.equals(parentId)) {
+                      output.println("  " + parentId + " <.. " + object + " ");
+                    }
                   }
-                }
               );
             }
     );
@@ -193,46 +219,48 @@ public class IcePanelToPlantUMLConverter {
   // output, base, children, neighbors
   private void generateSubDiagramLinks(
           final PrintStream output,
-          final JSONObject icePanelDiagramJSON,
-          final JSONObject base,
+          final JSONObject icePanelDiagramJson,
           ArrayList<JSONObject> children,
-          ArrayList<JSONObject> neighbors
-          ) {
+          ArrayList<JSONObject> neighbors) {
     Debugger.debug(2, "generateSubDiagramLinks() ------------------");
 
     HashMap<String, JSONObject> childrenMap = new HashMap<>();
-    children.forEach( jsonObject -> {
+    children.forEach(jsonObject -> {
       String id = getValue(jsonObject, "id", "");
       childrenMap.put(id, jsonObject);
     });
 
-    // Map of the neighbors to add and check existence
-    HashMap<String, JSONObject> neighborsMap = new HashMap<>();
-    neighbors.forEach( jsonObject -> {
-      String id = getValue(jsonObject, "id", "");
-      neighborsMap.put(id, jsonObject);
-    });
+//    // Map of the neighbors to add and check existence
+//    HashMap<String, JSONObject> neighborsMap = new HashMap<>();
+//    neighbors.forEach(jsonObject -> {
+//      String id = getValue(jsonObject, "id", "");
+//      neighborsMap.put(id, jsonObject);
+//    });
 
     output.println();
     output.println("' CONNECTIONS =======");
-    JSONObject modelConnections = (JSONObject)icePanelDiagramJSON.get("modelConnections");
+    JSONObject modelConnections = (JSONObject) icePanelDiagramJson.get(MODEL_CONNECTIONS);
     modelConnections.keySet().forEach(
             object -> {
               JSONObject connectionObject = (JSONObject) modelConnections.get(object);
               String name = getName(object, connectionObject);
-              String source = getValue(connectionObject, "originId");
-              String target = getValue(connectionObject, "targetId");
-              String direction = getValue(connectionObject, "direction");
+              String source = getValue(connectionObject, ORIGIN_ID);
+              String target = getValue(connectionObject, TARGET_ID);
+              String direction = getValue(connectionObject, DIRECTION);
 
-              JSONObject sourceObject = getObject(icePanelDiagramJSON, source);
-              JSONObject targetObject = getObject(icePanelDiagramJSON, target);
+              JSONObject sourceObject = getObject(icePanelDiagramJson, source);
+              JSONObject targetObject = getObject(icePanelDiagramJson, target);
 
-              if (childrenMap.containsValue(sourceObject) || childrenMap.containsValue(targetObject)) {
+              if (childrenMap.containsValue(sourceObject)
+                      || childrenMap.containsValue(targetObject)) {
                 if ("outgoing".equals(direction)) {
-                  output.println("Rel(" + source + ", " + target + ", \"" + name + "\" )");
+                  output.println("Rel(" + source + ", " + target
+                          + ", \"" + name + "\" )");
                 } else if ("bidirectional".equals(direction)) {
-                  output.println("Rel(" + source + ", " + target + ", \"" + name + "\" )");
-                  output.println("Rel(" + target + ", " + source + ", \"Return of " + name + "\" )");
+                  output.println("Rel(" + source + ", " + target
+                          + ", \"" + name + "\" )");
+                  output.println("Rel(" + target + ", " + source
+                          + ", \"Return of " + name + "\" )");
                 }
               }
             }
@@ -240,11 +268,11 @@ public class IcePanelToPlantUMLConverter {
     output.println();
   }
 
-  private void generateClasses(final JSONObject icePanelDiagramJSON) {
+  private void generateClasses(final JSONObject icePanelDiagramJson) {
     Debugger.debug(2, "generateClasses() ------------------");
     output.println();
     output.println("' CLASSES =======");
-    JSONObject modelObjects = (JSONObject)icePanelDiagramJSON.get("modelObjects");
+    JSONObject modelObjects = (JSONObject) icePanelDiagramJson.get(MODEL_OBJECTS);
     modelObjects.keySet().forEach(
             object -> {
               JSONObject modelObject = (JSONObject) modelObjects.get(object);
@@ -255,88 +283,87 @@ public class IcePanelToPlantUMLConverter {
   }
 
 
-  private ArrayList<JSONObject> extractChildren(final JSONObject icePanelDiagramJSON, final JSONObject parent) {
-    Debugger.debug(2, "extractChildren(" + parent + ") ------------------");
+  private ArrayList<JSONObject> extractChildren(
+          final JSONObject icePanelDiagramJson, 
+          final JSONObject parent) {
+    Debugger.debug(2, "extractChildren(" + parent + DEBUG_ENDING_STRING);
 
     String givenParentId = getValue(parent, "id");
-    Debugger.debug(2, "extractChildren(" + givenParentId + ") ------------------");
-    JSONObject modelObjects = (JSONObject)icePanelDiagramJSON.get("modelObjects");
-    ArrayList<JSONObject> children = new ArrayList<JSONObject>();
+    Debugger.debug(2, "extractChildren(" + givenParentId + DEBUG_ENDING_STRING);
+    JSONObject modelObjects = (JSONObject) icePanelDiagramJson.get(MODEL_OBJECTS);
+    ArrayList<JSONObject> children = new ArrayList<>();
     modelObjects.keySet().forEach(
-      object -> {
-        JSONObject modelObject = (JSONObject) modelObjects.get(object);
-        String type = getValue(modelObject, "type", "");
+        object -> {
+          JSONObject modelObject = (JSONObject) modelObjects.get(object);
+          String type = getValue(modelObject, "type", "");
 
-        if (!"root".equals(type)) {
-          String parentId = getValue(modelObject, "parentId");
+          if (!"root".equals(type)) {
+            String parentId = getValue(modelObject, "parentId");
 
-          if (givenParentId.equals(parentId)) {
-            Debugger.debug(2, "extractChildren add object (" + object + ") ------------------");
-            children.add(modelObject);
+            if (givenParentId.equals(parentId)) {
+              Debugger.debug(2, "extractChildren add object (" + object + DEBUG_ENDING_STRING);
+              children.add(modelObject);
+            }
           }
         }
-      }
     );
     return children;
   }
 
 
-  private JSONObject getObject(final JSONObject icePanelDiagramJSON, String objectId) {
-    JSONObject modelObjects = (JSONObject)icePanelDiagramJSON.get("modelObjects");
+  private JSONObject getObject(final JSONObject icePanelDiagramJson, String objectId) {
+    JSONObject modelObjects = (JSONObject) icePanelDiagramJson.get(MODEL_OBJECTS);
     return (JSONObject) modelObjects.get(objectId);
   }
 
   private ArrayList<JSONObject> extractNodeNeighbors(
-          final JSONObject icePanelDiagramJSON,
-          final JSONObject parent,
+          final JSONObject icePanelDiagramJson,
           final JSONObject child) {
     ArrayList<JSONObject> neighbors = new ArrayList<>();
 
     String childId = getValue(child, "id");
 
-    Debugger.debug(2, "extractNodeNeighbors( " + childId + ") ------------------");
-    JSONObject modelConnections = (JSONObject)icePanelDiagramJSON.get("modelConnections");
-    JSONObject modelObjects = (JSONObject)icePanelDiagramJSON.get("modelObjects");
+    Debugger.debug(2, "extractNodeNeighbors( " + childId + DEBUG_ENDING_STRING);
+    JSONObject modelConnections = (JSONObject) icePanelDiagramJson.get(MODEL_CONNECTIONS);
     modelConnections.keySet().forEach(
-      object -> {
-        JSONObject modelObject = (JSONObject) modelConnections.get(object);
-        String name = getName(object, modelObject);
-        String source = getValue(modelObject, "originId");
-        String target = getValue(modelObject, "targetId");
-        String direction = getValue(modelObject, "direction");
+        object -> {
+          JSONObject modelObject = (JSONObject) modelConnections.get(object);
+          String source = getValue(modelObject, ORIGIN_ID);
+          String target = getValue(modelObject, TARGET_ID);
 
-        if (childId.equals(source) || childId.equals(target)) {
-          // TODO: find the other object and add it to the neighbors array
-          Debugger.debug(2, "   extractNodeNeighbors ["+source+"]["+target+"]------------------");
-          JSONObject jsonObject = null;
-          if (childId.equals(source)) {
-            jsonObject = getObject(icePanelDiagramJSON,target);
-          } else {
-            jsonObject = getObject(icePanelDiagramJSON,source);
+          if (childId.equals(source) || childId.equals(target)) {
+            Debugger.debug(2, "   extractNodeNeighbors ["
+                    + source + "][" + target + "]------");
+            JSONObject jsonObject;
+            if (childId.equals(source)) {
+              jsonObject = getObject(icePanelDiagramJson, target);
+            } else {
+              jsonObject = getObject(icePanelDiagramJson, source);
+            }
+            Debugger.debug(2, "   ---> extractNodeNeighbors add ["
+                    + childId + "][" + jsonObject + "]---");
+            neighbors.add(jsonObject);
           }
-          Debugger.debug(2, "   ---> extractNodeNeighbors add ["+childId+"]["+jsonObject+"]------------------");
-          neighbors.add(jsonObject);
         }
-      }
     );
 
     return neighbors;
   }
 
   private ArrayList<JSONObject> extractNeighbors(
-          final JSONObject icePanelDiagramJSON,
+          final JSONObject icePanelDiagramJson,
           final JSONObject parent,
           final ArrayList<JSONObject> children) {
-    Debugger.debug(2, "extractNeighbors(" + parent + ") ------------------");
+    Debugger.debug(2, "extractNeighbors(" + parent + DEBUG_ENDING_STRING);
 
     String givenParentId = getValue(parent, "id");
-    Debugger.debug(2, "extractNeighbors(" + givenParentId + ") ------------------");
+    Debugger.debug(2, "extractNeighbors(" + givenParentId + DEBUG_ENDING_STRING);
 
     // Definition of neighbors: not part of the group, but connected to one of the group
 
     // Map of children to facilitate checks
     HashMap<String, JSONObject> childrenMap = new HashMap<>();
-    children.forEach( jsonObject -> {
+    children.forEach(jsonObject -> {
       String id = getValue(jsonObject, "id", "");
       childrenMap.put(id, jsonObject);
     });
@@ -346,47 +373,49 @@ public class IcePanelToPlantUMLConverter {
 
     // For each child search for its neighbors
     children.forEach(child -> {
-      Debugger.debug(2, "extractNeighbors of child (" + child + ") ------------------");
-      ArrayList<JSONObject> childNeighbors = extractNodeNeighbors(icePanelDiagramJSON, parent, child);
+      Debugger.debug(2, "extractNeighbors of child (" + child + ") --------");
+      ArrayList<JSONObject> childNeighbors
+              = extractNodeNeighbors(icePanelDiagramJson, child);
       childNeighbors.forEach(neighbor -> {
-        String neighborId = getValue(neighbor,"id");
-        Debugger.debug(2, "   extractNeighbors add object (" + neighborId + "," + neighbor + ") ------------------");
+        String neighborId = getValue(neighbor, "id");
+        Debugger.debug(2, "   extractNeighbors add object (" 
+                + neighborId + "," + neighbor + DEBUG_ENDING_STRING);
         neighborsMap.put(neighborId, neighbor);
       });
     });
 
-    ArrayList<JSONObject> neighbors = new ArrayList<JSONObject>();
+    ArrayList<JSONObject> neighbors = new ArrayList<>();
     neighborsMap.values().forEach(
-      object -> {
-        Debugger.debug(2, "extractNeighbors LAST add object (" + object + ") ------------------");
-        String objectId = getValue(object, "id");
-        // Check if it's one of the children
-        JSONObject child = childrenMap.get(objectId);
-        if (child == null) {
-          neighbors.add(object);
+        object -> {
+          Debugger.debug(2, "extractNeighbors LAST add object (" + object + ") -------");
+          String objectId = getValue(object, "id");
+          // Check if it's one of the children
+          JSONObject child = childrenMap.get(objectId);
+          if (child == null) {
+            neighbors.add(object);
+          }
         }
-      }
     );
     return neighbors;
   }
 
   private void generateSubDiagramHeader(final PrintStream output,
-                                        final String icePanelJSONFile,
+                                        final String icePanelJsonFile,
                                         final String configurationFile) {
     Debugger.debug(2, "generateHeader() ------------------");
     output.println("@startuml");
     output.println("'https://plantuml.com/class-diagram");
     output.println("' CONVERT ICEPANEL DIAGRAM ===========");
     output.println("' Converter          : " + this.getClass().getName());
-    output.println("' IcePanel JSON File : [" + icePanelJSONFile + "]");
+    output.println("' IcePanel JSON File : [" + icePanelJsonFile + "]");
     output.println("' Configuration      : [" + configurationFile + "]");
     output.println("' Generated at       : " + new Date());
     output.println();
     output.println(
-"""
-!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
-!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
-""");
+        """
+        !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+        !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+        """);
     String includeFileContent = Utils.readFileToString(includeFileName);
     if (!includeFileContent.isBlank()) {
       output.println();
@@ -408,21 +437,27 @@ public class IcePanelToPlantUMLConverter {
     String id = getValue(jsonObject, "id");
     String name = getValue(jsonObject, "name");
     String type = getValue(jsonObject, "type", "");
-    String description = getValue(jsonObject,"description", " ");
+    String description = getValue(jsonObject, "description", " ");
 
-    if ("system".equals(type)) {
-      output.println("System_Boundary(" + id + ", \"" + name + "\" ) {");
-    } else if ("actor".equals(type)) {
-      output.println("Person(" + id + ", \"" + name + "\", \"" + description + "\" ) { ");
-    } else if ("app".equals(type)) {
-      output.println("Component(" + id + ", \"" + name + "\", \"" + description + "\" ) { ");
-    } else if ("store".equals(type)) {
-      output.println("ContainerDb(" + id + ", \"" + name + "\", \"" + description + "\", \"\" ) { ");
-    } else if ("area".equals(type)) {
-      output.println("System_Boundary(" + id + ", \"" + name + "\", \"" + description + "\", \"\" ) { ");
-    } else if ("component".equals(type)) {
+    if (TYPE_SYSTEM.equals(type)) {
+      output.println(SYSTEM_BOUNDARY
+              + id + ", \"" + name + "\" ) {");
+    } else if (TYPE_ACTOR.equals(type)) {
+      output.println(PERSON
+              + id + ", \"" + name + "\", \"" + description + "\" ) { ");
+    } else if (TYPE_APP.equals(type)) {
+      output.println(COMPONENT
+              + id + ", \"" + name + "\", \"" + description + "\" ) { ");
+    } else if (TYPE_STORE.equals(type)) {
+      output.println(CONTAINER_DB
+              + id + ", \"" + name + "\", \"" + description + "\", \"\" ) { ");
+    } else if (TYPE_AREA.equals(type)) {
+      output.println(SYSTEM_BOUNDARY
+              + id + ", \"" + name + "\", \"" + description + "\", \"\" ) { ");
+    } else if (TYPE_COMPONENT.equals(type)) {
       // TODO: Add technologies
-      output.println("Container(" + id + ", \"" + name + "\", \"" + description + "\", \"\" ) { ");
+      output.println(CONTAINER
+              + id + ", \"" + name + "\", \"" + description + "\", \"\" ) { ");
     } else {
       Debugger.debug(2, "unknown type : [" + type + "]");
     }
@@ -432,6 +467,7 @@ public class IcePanelToPlantUMLConverter {
                                       final JSONObject jsonObject) {
     generateClassInDiagram("", output, jsonObject);
   }
+
   private void generateClassInDiagram(final String head,
                                       final PrintStream output,
                                       final JSONObject jsonObject) {
@@ -439,37 +475,43 @@ public class IcePanelToPlantUMLConverter {
     String id = getValue(jsonObject, "id");
     String name = getValue(jsonObject, "name");
     String type = getValue(jsonObject, "type", "");
-    String description = getValue(jsonObject,"description", " ");
+    String description = getValue(jsonObject, "description", " ");
 
-    if ("system".equals(type)) {
-      output.println(head + "System(" + id + ", \"" + name + "\", \"" + description + "\" ) ");
-    } else if ("actor".equals(type)) {
-      output.println(head + "Person(" + id + ", \"" + name + "\", \"" + description + "\" ) ");
-    } else if ("app".equals(type)) {
-      output.println(head + "Component(" + id + ", \"" + name + "\", \"" + description + "\" ) ");
-    } else if ("store".equals(type)) {
-      output.println(head + "ContainerDb(" + id + ", \"" + name + "\", \"" + description + "\", \"\" ) ");
-    } else if ("area".equals(type)) {
-      output.println(head + "System_Boundary(" + id + ", \"" + name + "\", \"" + description + "\", \"\" ) ");
-    } else if ("component".equals(type)) {
+    if (TYPE_SYSTEM.equals(type)) {
+      output.println(head + "System(" + id + ", \"" + name
+              + "\", \"" + description + "\" ) ");
+    } else if (TYPE_ACTOR.equals(type)) {
+      output.println(head + PERSON + id + ", \"" + name
+              + "\", \"" + description + "\" ) ");
+    } else if (TYPE_APP.equals(type)) {
+      output.println(head + COMPONENT + id + ", \"" + name
+              + "\", \"" + description + "\" ) ");
+    } else if (TYPE_STORE.equals(type)) {
+      output.println(head + CONTAINER_DB + id + ", \"" + name
+              + "\", \"" + description + "\", \"\" ) ");
+    } else if (TYPE_AREA.equals(type)) {
+      output.println(head + SYSTEM_BOUNDARY + id + ", \"" + name
+              + "\", \"" + description + "\", \"\" ) ");
+    } else if (TYPE_COMPONENT.equals(type)) {
       // TODO: Add technologies
-      output.println(head + "Container(" + id + ", \"" + name + "\", \"" + description + "\", \"\" ) ");
+      output.println(head + CONTAINER + id + ", \"" + name
+              + "\", \"" + description + "\", \"\" ) ");
     } else {
       Debugger.debug(2, "unknown type : [" + type + "]");
     }
   }
 
   private void generateSubDiagramClasses(final PrintStream output,
-                                         final JSONObject icePanelDiagramJSON,
+                                         final JSONObject icePanelDiagramJson,
                                          final ArrayList<JSONObject> children) {
     Debugger.debug(2, "generateSubDiagramClasses() ------------------");
     output.println();
-    generateSubDiagramBoundaryStart(output,icePanelDiagramJSON);
+    generateSubDiagramBoundaryStart(output, icePanelDiagramJson);
     output.println("    ' CLASSES =======");
     children.forEach(
-      object -> {
-        generateClassInDiagram("    ", output, object);
-      }
+        object -> {
+          generateClassInDiagram("    ", output, object);
+        }
     );
     generateSubDiagramBoundaryEnd(output);
     output.println();
@@ -477,15 +519,14 @@ public class IcePanelToPlantUMLConverter {
 
 
   private void generateSubDiagramNeighborClasses(final PrintStream output,
-                                         final JSONObject icePanelDiagramJSON,
                                          final ArrayList<JSONObject> children) {
     Debugger.debug(2, "generateSubDiagramNeighborClasses() ------------------");
     output.println();
     output.println("' NEIGHBOR CLASSES =======");
     children.forEach(
-      object -> {
-        generateClassInDiagram("", output, object);
-      }
+        object -> {
+          generateClassInDiagram("", output, object);
+        }
     );
     output.println();
   }
@@ -493,8 +534,8 @@ public class IcePanelToPlantUMLConverter {
 
 
   private void generateSubDiagram(
-          final String icePanelJSONFile,
-          final JSONObject icePanelDiagramJSON,
+          final String icePanelJsonFile,
+          final JSONObject icePanelDiagramJson,
           final JSONObject base,
           final String configurationFile,
           final String subOutputFileNameBase) {
@@ -507,87 +548,84 @@ public class IcePanelToPlantUMLConverter {
     String toFileName = subOutputFileNameBase + "-" + name + ".puml";
     Debugger.debug(2, "==== generateSubDiagram to file (" + toFileName + ") ---------");
 
-    ArrayList<JSONObject> children = extractChildren(icePanelDiagramJSON, base);
+    ArrayList<JSONObject> children = extractChildren(icePanelDiagramJson, base);
 
-    ArrayList<JSONObject> neighbors = extractNeighbors(icePanelDiagramJSON, base, children);
+    PrintStream output;
 
+    try {
+      // Creates a FileOutputStream
+      FileOutputStream file = new FileOutputStream(toFileName);
 
-    PrintStream output = System.out;
-
-    if ((null != toFileName) && (!toFileName.isBlank())) {
-      try {
-        // Creates a FileOutputStream
-        FileOutputStream file = new FileOutputStream(toFileName);
-
-        // Creates a PrintWriter
-        output = new PrintStream(file, true);
-
-        generateSubDiagramHeader(output, icePanelJSONFile, configurationFile);
-
-        generateSubDiagramClasses(output, base, children);
-
-        generateSubDiagramNeighborClasses(output, base, neighbors);
-
-        generateSubDiagramLinks(output, icePanelDiagramJSON, base, children, neighbors);
-
-        generateFooter(output);
-
-        output.close();
-      } catch (FileNotFoundException fnf) {
-        fnf.printStackTrace();
-        return;
-      }
+      // Creates a PrintWriter
+      output = new PrintStream(file, true);
+    } catch (FileNotFoundException fnf) {
+      fnf.printStackTrace();
+      return;
     }
+
+    ArrayList<JSONObject> neighbors = extractNeighbors(icePanelDiagramJson, base, children);
+
+    generateSubDiagramHeader(output, icePanelJsonFile, configurationFile);
+    generateSubDiagramClasses(output, base, children);
+    generateSubDiagramNeighborClasses(output, neighbors);
+    generateSubDiagramLinks(output, icePanelDiagramJson, children, neighbors);
+    generateFooter(output);
+
+    output.close();
 
     Debugger.debug(2, "==== generateSubDiagram to file (" + toFileName + ") END ---------");
   }
 
 
   private void generateSubDiagrams(
-          final String icePanelJSONFile,
-          final JSONObject icePanelDiagramJSON,
+          final String icePanelJsonFile,
+          final JSONObject icePanelDiagramJson,
           final ArrayList<JSONObject> bases,
           final String configurationFile,
           final String subOutputFileNameBase) {
     Debugger.debug(2, "generateSubDiagrams() ------------------");
 
-    bases.forEach( base -> {
-      generateSubDiagram(icePanelJSONFile, icePanelDiagramJSON, base, configurationFile, subOutputFileNameBase);
+    bases.forEach(base -> {
+      generateSubDiagram(icePanelJsonFile,
+              icePanelDiagramJson,
+              base,
+              configurationFile,
+              subOutputFileNameBase);
     });
 
   }
 
 
-  private String findRoot(final JSONObject icePanelDiagramJSON) {
+  private String findRoot(final JSONObject icePanelDiagramJson) {
     Debugger.debug(2, "findRoot() ------------------");
-    JSONObject modelObjects = (JSONObject)icePanelDiagramJSON.get("modelObjects");
+    JSONObject modelObjects = (JSONObject) icePanelDiagramJson.get(MODEL_OBJECTS);
     AtomicReference<String> root = new AtomicReference<>("");
     modelObjects.keySet().forEach(
-      object -> {
-        JSONObject modelObject = (JSONObject) modelObjects.get(object);
-        String type = getValue(modelObject, "type", "");
+        object -> {
+          JSONObject modelObject = (JSONObject) modelObjects.get(object);
+          String type = getValue(modelObject, "type", "");
 
-        if ("root".equals(type)) {
-          root.set(object.toString());
+          if ("root".equals(type)) {
+            root.set(object.toString());
+          }
         }
-      }
     );
     return root.get();
   }
 
-  private ArrayList<JSONObject> findSystems(final JSONObject icePanelDiagramJSON) {
+  private ArrayList<JSONObject> findSystems(final JSONObject icePanelDiagramJson) {
     Debugger.debug(2, "findSystems() ------------------");
-    JSONObject modelObjects = (JSONObject)icePanelDiagramJSON.get("modelObjects");
-    ArrayList<JSONObject> systems = new ArrayList<JSONObject>();
+    JSONObject modelObjects = (JSONObject) icePanelDiagramJson.get(MODEL_OBJECTS);
+    ArrayList<JSONObject> systems = new ArrayList<>();
     modelObjects.keySet().forEach(
-      object -> {
-        JSONObject modelObject = (JSONObject) modelObjects.get(object);
-        String type = getValue(modelObject, "type", "");
+        object -> {
+          JSONObject modelObject = (JSONObject) modelObjects.get(object);
+          String type = getValue(modelObject, "type", "");
 
-        if ("system".equals(type)) {
-          systems.add(modelObject);
+          if (TYPE_SYSTEM.equals(type)) {
+            systems.add(modelObject);
+          }
         }
-      }
     );
     return systems;
   }
@@ -596,39 +634,46 @@ public class IcePanelToPlantUMLConverter {
 
   /** Generate a diagram for the IcePanel JSON file.
    *
-   * @param icePanelJSONFile The JSON file exported from IcePanel to be converted
+   * @param icePanelJsonFile The JSON file exported from IcePanel to be converted
    * @param configurationFile The configuration file with the list
    *                          of packages and classes to exclude.
    */
-  public void convertIcePanelToUML(final String icePanelJSONFile,
-                                   final JSONObject icePanelDiagramJSON,
+  public void convertIcePanelToUml(final String icePanelJsonFile,
+                                   final JSONObject icePanelDiagramJson,
                                    final String configurationFile,
                                    final String subOutputFileNameBase) {
-    Debugger.debug(2, "convertIcePanelToUML [" + icePanelJSONFile + "] (jsonObject) [" + configurationFile + "] [" +subOutputFileNameBase + "]");
+    Debugger.debug(2, "convertIcePanelToUML [" + icePanelJsonFile
+            + "] (jsonObject) [" + configurationFile
+            + "] [" + subOutputFileNameBase + "]");
 
-    String rootName = findRoot(icePanelDiagramJSON);
+    String rootName = findRoot(icePanelDiagramJson);
 
-    generateHeader(icePanelJSONFile, configurationFile);
-    generateClasses(icePanelDiagramJSON);
-    generateConnections(icePanelDiagramJSON, rootName);
+    generateHeader(icePanelJsonFile, configurationFile);
+    generateClasses(icePanelDiagramJson);
+    generateConnections(icePanelDiagramJson, rootName);
     generateFooter();
 
-    generateSubDiagrams(icePanelJSONFile, icePanelDiagramJSON, findSystems(icePanelDiagramJSON), configurationFile, subOutputFileNameBase);
+    generateSubDiagrams(icePanelJsonFile,
+            icePanelDiagramJson,
+            findSystems(icePanelDiagramJson),
+            configurationFile,
+            subOutputFileNameBase);
   }
-
 
 
   /** Generate a diagram for the IcePanel JSON file.
    *
-   * @param icePanelJSONFile The JSON file exported from IcePanel to be converted
+   * @param icePanelJsonFile The JSON file exported from IcePanel to be converted
    * @param configurationFile The configuration file with the list
    *                          of packages and classes to exclude.
    */
-  public void convertIcePanelToUML(final String icePanelJSONFile,
+  public void convertIcePanelToUml(final String icePanelJsonFile,
                                    final String configurationFile,
                                    final String subOutputFileNameBase) {
     cleanLocalVars();
-    Debugger.debug(2, "convertIcePanelToUML [" + icePanelJSONFile + "][" + configurationFile + "][" + subOutputFileNameBase + "]");
+    Debugger.debug(2, "convertIcePanelToUML [" + icePanelJsonFile
+            + "][" + configurationFile
+            + "][" + subOutputFileNameBase + "]");
 
     boolean initiated = loadConfiguration(configurationFile);
     if (!initiated) {
@@ -636,13 +681,16 @@ public class IcePanelToPlantUMLConverter {
       return;
     }
 
-    JSONObject icePanelDiagramJSON = loadIcePanelJsonFromFile(icePanelJSONFile);
-    if (icePanelDiagramJSON == null) {
+    JSONObject icePanelDiagramJson = loadIcePanelJsonFromFile(icePanelJsonFile);
+    if (icePanelDiagramJson == null) {
       System.err.println("IcePanel JSON file not loaded");
       return;
     }
 
-    convertIcePanelToUML(icePanelJSONFile, icePanelDiagramJSON, configurationFile, outputPath+subOutputFileNameBase);
+    convertIcePanelToUml(icePanelJsonFile,
+            icePanelDiagramJson,
+            configurationFile,
+            outputPath + subOutputFileNameBase);
   }
 
 }

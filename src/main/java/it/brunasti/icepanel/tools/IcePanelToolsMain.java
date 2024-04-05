@@ -1,13 +1,20 @@
 package it.brunasti.icepanel.tools;
 
-import org.apache.commons.cli.*;
-
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.io.PrintWriter;
+import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.CommandLineParser;
+import org.apache.commons.cli.DefaultParser;
+import org.apache.commons.cli.HelpFormatter;
+import org.apache.commons.cli.Option;
+import org.apache.commons.cli.Options;
+import org.apache.commons.cli.ParseException;
 
 public class IcePanelToolsMain {
+
+  private static final String SET_TO = " set to [";
 
   static CommandLine commandLine;
   static IcePanelToPlantUMLConverter icePanelToPlantUMLConverter;
@@ -28,7 +35,24 @@ public class IcePanelToolsMain {
     options = null;
   }
 
-
+  private static boolean setDebugOption(Option optionDebug) {
+    String debugLevelString = commandLine.getOptionValue(optionDebug.getOpt());
+    System.err.println(optionDebug.getDescription()
+            + SET_TO + debugLevelString + "]");
+    if (debugLevelString != null) {
+      try {
+        int dl = Integer.parseInt(debugLevelString);
+        Debugger.setDebug(dl);
+      } catch (NumberFormatException ex) {
+        System.err.println("Error the option Debug ("
+                + optionDebug.getDescription() + ") : " + ex.getMessage());
+        return false;
+      }
+    } else {
+      Debugger.setDebug(true);
+    }
+    return true;
+  }
 
   private static boolean processCommandLine(String[] args) {
 
@@ -61,21 +85,24 @@ public class IcePanelToolsMain {
       commandLine = parser.parse(options, args);
 
       if (commandLine.hasOption(optionDebug.getOpt())) {
-        String debugLevelString = commandLine.getOptionValue(optionDebug.getOpt());
-        System.err.println(optionDebug.getDescription()
-                + " set to [" + debugLevelString + "]");
-        if (debugLevelString != null) {
-          try {
-            int dl = Integer.parseInt(debugLevelString);
-            Debugger.setDebug(dl);
-          } catch (NumberFormatException ex) {
-            System.err.println("Error the option Debug ("
-                    + optionDebug.getDescription() + ") : " + ex.getMessage());
-            return false;
-          }
-        } else {
-          Debugger.setDebug(true);
+        if (!setDebugOption(optionDebug)) {
+          return false;
         }
+//        String debugLevelString = commandLine.getOptionValue(optionDebug.getOpt());
+//        System.err.println(optionDebug.getDescription()
+//                + SET_TO + debugLevelString + "]");
+//        if (debugLevelString != null) {
+//          try {
+//            int dl = Integer.parseInt(debugLevelString);
+//            Debugger.setDebug(dl);
+//          } catch (NumberFormatException ex) {
+//            System.err.println("Error the option Debug ("
+//                    + optionDebug.getDescription() + ") : " + ex.getMessage());
+//            return false;
+//          }
+//        } else {
+//          Debugger.setDebug(true);
+//        }
       }
       if (Debugger.isDebug()) {
         Utils.dump("ARGS", args, System.err);
@@ -100,15 +127,16 @@ public class IcePanelToolsMain {
 
       if (commandLine.hasOption(optionInputJsonFile.getOpt())) {
         icePanelJSONExportFile = commandLine.getOptionValue(optionInputJsonFile.getOpt());
-        Debugger.debug(optionInputJsonFile.getDescription() + " set to [" + icePanelJSONExportFile + "]");
+        Debugger.debug(optionInputJsonFile.getDescription()
+                + SET_TO + icePanelJSONExportFile + "]");
       }
       if (commandLine.hasOption(optionOutputFile.getOpt())) {
         outputFile = commandLine.getOptionValue(optionOutputFile.getOpt());
-        Debugger.debug(optionOutputFile.getDescription() + " set to [" + outputFile + "]");
+        Debugger.debug(optionOutputFile.getDescription() + SET_TO + outputFile + "]");
       }
       if (commandLine.hasOption(optionConfigFile.getOpt())) {
         configurationFile = commandLine.getOptionValue(optionConfigFile.getOpt());
-        Debugger.debug(optionConfigFile.getDescription() + " set to [" + configurationFile + "]");
+        Debugger.debug(optionConfigFile.getDescription() + SET_TO + configurationFile + "]");
       }
 
     } catch (ParseException | NullPointerException e) {
@@ -176,7 +204,7 @@ public class IcePanelToolsMain {
       return;
     }
 
-    Debugger.debug( "IcePanel JSON file [" + icePanelJSONExportFile + "]\n"
+    Debugger.debug("IcePanel JSON file [" + icePanelJSONExportFile + "]\n"
                   + "OutputFile         [" + outputFile + "]\n"
                   + "ConfigurationFile  [" + configurationFile + "]");
 
@@ -202,7 +230,8 @@ public class IcePanelToolsMain {
       String subOutputFileNameBase = "icePanel-C4-output";
 
       icePanelToPlantUMLConverter = new IcePanelToPlantUMLConverter(output);
-      icePanelToPlantUMLConverter.convertIcePanelToUML(icePanelJSONExportFile, configurationFile, subOutputFileNameBase);
+      icePanelToPlantUMLConverter.convertIcePanelToUml(
+              icePanelJSONExportFile, configurationFile, subOutputFileNameBase);
 
       if (null != file) {
         file.close();
