@@ -99,6 +99,14 @@ public class IcePanelToolsMainTest implements TestConstants {
     args[5] = SG_CONF;
     assertDoesNotThrow(() -> IcePanelToolsMain.main(args));
 
+    args[0] = ML_JSON;
+    args[1] = ML_OUT;
+    args[2] = "-d";
+    args[3] = "10";
+    args[4] = "-c";
+    args[5] = ML_CONF;
+    assertDoesNotThrow(() -> IcePanelToolsMain.main(args));
+
   }
 
   @Test

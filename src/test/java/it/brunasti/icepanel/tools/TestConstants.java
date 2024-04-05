@@ -52,4 +52,9 @@ public interface TestConstants {
   String SG_OUT = SG_DIR + "sg-001.puml";
   String SG_CONF = SG_DIR + "config.json";
 
+  String ML_DIR = examplesDirectory + "ml/";
+  String ML_JSON = ML_DIR + "ml-001.json";
+  String ML_OUT = ML_DIR + "ml-001.puml";
+  String ML_CONF = ML_DIR + "config.json";
+
 }
