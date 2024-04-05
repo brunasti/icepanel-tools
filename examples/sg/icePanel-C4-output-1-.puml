@@ -1,0 +1,34 @@
+@startuml
+'https://plantuml.com/class-diagram
+' CONVERT ICEPANEL DIAGRAM ===========
+' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUMLConverter
+' IcePanel JSON File : [./examples/sg/sg-001.json]
+' Configuration      : [./examples/sg/config.json]
+' Generated at       : Fri Apr 05 18:21:20 CEST 2024
+
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+
+
+System_Boundary(3qrLJbovSy4zQUyXSMVF, "" ) {
+    ' CLASSES =======
+    System(kcZ6JMZ3WNq8pReNTFS2, "SolMan - SAP  - Solution Manager", "" )
+    System(361EAHg7DvZanb8dq9yb, "Signavio - Business Process Manager", "" )
+    System(z8HfnmEu1FwVBLuoFTXM, "Subscriber Account (Customer)", "" )
+    System(ju6YD7lQwAayquUTalMi, "Test Env", "" )
+    System(gTWo4W2ihM3ZFFQsRPF5, "Connector", "" )
+}
+
+
+' NEIGHBOR CLASSES =======
+
+
+' CONNECTIONS =======
+Rel(z8HfnmEu1FwVBLuoFTXM, 361EAHg7DvZanb8dq9yb, "Transfers" )
+Rel(361EAHg7DvZanb8dq9yb, z8HfnmEu1FwVBLuoFTXM, "Return of Transfers" )
+Rel(kcZ6JMZ3WNq8pReNTFS2, z8HfnmEu1FwVBLuoFTXM, "Transfers" )
+Rel(z8HfnmEu1FwVBLuoFTXM, kcZ6JMZ3WNq8pReNTFS2, "Return of Transfers" )
+
+
+@enduml

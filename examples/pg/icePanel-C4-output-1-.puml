@@ -4,13 +4,14 @@
 ' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUMLConverter
 ' IcePanel JSON File : [./examples/pg/pg-001.json]
 ' Configuration      : [./examples/pg/config.json]
-' Generated at       : Fri Apr 05 17:00:00 CEST 2024
+' Generated at       : Fri Apr 05 18:21:20 CEST 2024
 
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
 
 
 
+System_Boundary(88WfRG0t8ypOt3D9tEdU, "" ) {
     ' CLASSES =======
     Person(FBBbTGT0oOXfeMyhwVyC, "Sompop Khamchoo", "null" )
     Person(KpYA4jfUm7DneGIwDLve, "Jake Rostron", "null" )

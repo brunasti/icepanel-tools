@@ -4,33 +4,35 @@
 ' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUMLConverter
 ' IcePanel JSON File : [./src/test/resources/icepanel-plain-02.json]
 ' Configuration      : [./docs/config.json]
-' Generated at       : Fri Apr 05 17:00:00 CEST 2024
+' Generated at       : Fri Apr 05 18:21:20 CEST 2024
 
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
 
 
 
-Component(OmsC5XSTv64h2ua9yNDK, "Solr API", "" ) { 
+Component(4teQrlbMUj5LLqxdVcPK, "BAHPCA API", "" ) { 
     ' CLASSES =======
-    Container(Vg8nvjzPDirSBRjT8K3Q, "Solr API Code", "", "" )
+    Container(DqaxYHtWGYqlWeYgZkyP, "Common Lib", "", "" )
+    Container(Nr2rq32hBezwoAGeNT2U, "BAHPCA API Code", "", "" )
+    Container(JOCj92Vc2CEAUN8hquBI, "Spring Framework", "", "" )
 }
 
 
 ' NEIGHBOR CLASSES =======
-Container(JOCj92Vc2CEAUN8hquBI, "Spring Framework", "", "" )
 ContainerDb(MzZVLTUQ74KbySVwdHfZ, "OpenSearch", "", "" )
-Component(heuHGHPQyPiOSCrreA29, "API Gateway", "" )
-Container(DqaxYHtWGYqlWeYgZkyP, "Common Lib", "", "" )
-Component(nd7uOWs4bfaeXm73vKFa, "Solr_Repo", "" )
+Container(Vg8nvjzPDirSBRjT8K3Q, "Solr API Code", "", "" )
+Component(DzQ4VPgJYKxSkilz6snk, "BAHPCA_repo", "" )
+Component(6uyz5GXgHFSVjrwIwRKC, "Common_Repo", "" )
 
 
 ' CONNECTIONS =======
-Rel(MzZVLTUQ74KbySVwdHfZ, Vg8nvjzPDirSBRjT8K3Q, "reads data" )
+Rel(DzQ4VPgJYKxSkilz6snk, Nr2rq32hBezwoAGeNT2U, "Deployed as" )
 Rel(Vg8nvjzPDirSBRjT8K3Q, DqaxYHtWGYqlWeYgZkyP, "Uses" )
-Rel(nd7uOWs4bfaeXm73vKFa, Vg8nvjzPDirSBRjT8K3Q, "Deploy" )
+Rel(MzZVLTUQ74KbySVwdHfZ, Nr2rq32hBezwoAGeNT2U, "reads data" )
 Rel(Vg8nvjzPDirSBRjT8K3Q, JOCj92Vc2CEAUN8hquBI, "Based on" )
-Rel(heuHGHPQyPiOSCrreA29, Vg8nvjzPDirSBRjT8K3Q, "Accesses API implementations" )
+Rel(Nr2rq32hBezwoAGeNT2U, JOCj92Vc2CEAUN8hquBI, "Based on" )
+Rel(6uyz5GXgHFSVjrwIwRKC, DqaxYHtWGYqlWeYgZkyP, "Deployed as" )
 
 
 @enduml

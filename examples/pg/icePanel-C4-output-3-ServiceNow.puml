@@ -4,25 +4,28 @@
 ' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUMLConverter
 ' IcePanel JSON File : [./examples/pg/pg-001.json]
 ' Configuration      : [./examples/pg/config.json]
-' Generated at       : Fri Apr 05 17:00:00 CEST 2024
+' Generated at       : Fri Apr 05 18:21:20 CEST 2024
 
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
 
 
 
-System_Boundary(hPa1gkYEDR8ckn11BmCT, "Reporting" ) {
+Component(w8uGBpoOuSbjImUW8RfU, "ServiceNow", "null" ) { 
     ' CLASSES =======
-    Component(830mvzOBd9mjs0ueDxHQ, "", "null" )
-    Component(dEiIJVGFUes52kwYOBfJ, "Apollo Reporting Tool", "null" )
-    ContainerDb(oVGxmBWAZwzORBGnm63k, "Apollo Datalake", "null", "" )
+    Container(5WKulSoGilOyWkIT57li, "ServiceNow WebSite", "null", "" )
+    Container(L5SXGD6iXvA78tETTY6B, "ServiceNow  - Standard reports", "null", "" )
+    Container(89UjCMyoDzRPm09TGMCZ, "ServiceNow - Core", "null", "" )
+    Container(NVzttd0H1pzo67Z0guTw, "ServiceNow API", "null", "" )
 }
 
 
 ' NEIGHBOR CLASSES =======
+Component(BDy6EhnLdszv0o1UYCZp, "Homepage  - TBC Plugins", "null" )
 
 
 ' CONNECTIONS =======
+Rel(BDy6EhnLdszv0o1UYCZp, NVzttd0H1pzo67Z0guTw, "Create Case" )
 
 
 @enduml

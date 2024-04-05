@@ -1,0 +1,55 @@
+@startuml
+'https://plantuml.com/class-diagram
+' CONVERT ICEPANEL DIAGRAM ===========
+' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUMLConverter
+' IcePanel JSON File : [./src/test/resources/icepanel-plain-02.json]
+' Configuration      : [./docs/config.json]
+' Generated at       : Fri Apr 05 18:21:20 CEST 2024
+
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+
+
+System_Boundary(CtFAXDbQDsxT6tMXSJn6, "" ) {
+    ' CLASSES =======
+    System(9vmw8B9ZSNjTOfwkQyX1, "AWS", "" )
+    System(axBWvtIPYmpByC3xkoHt, "GitHub", "" )
+    Person(f1fiXJziytRGVe7hFuLo, "Commercial Analyst", "" )
+    Person(zG9XKg0FTcWTUZCp0G59, "External Consumer", "" )
+    System(ZCIGbr1fDwSZINSjOb44, "OnPrem", "" )
+    System(LqXZYPgQ9UPjc7lqtp7S, "Akamai", "" )
+    Person(oTbmuU7ncIHqPnGupIDk, "Developer", "" )
+    System(cpxxV9fxmR1pgCAxHFdB, "BAH CNG", "" )
+    Person(mtyHirRmDImFDmca6URg, "Cache Admin", "" )
+    Person(wSyyLfkRhknshpX3pdWJ, "Internal Consumer", "" )
+}
+
+
+' NEIGHBOR CLASSES =======
+Component(uFk6F6ZcKKvnkVRkCNgH, "FireWall", "" )
+Component(heuHGHPQyPiOSCrreA29, "API Gateway", "" )
+Component(DzQ4VPgJYKxSkilz6snk, "BAHPCA_repo", "" )
+Component(6uyz5GXgHFSVjrwIwRKC, "Common_Repo", "" )
+Component(ca13KkX3DwaOlAXtqCBu, "Cache Management Tool (CMT)", "" )
+Component(nd7uOWs4bfaeXm73vKFa, "Solr_Repo", "" )
+Component(Xoxj4IX90NjN8wiNvxFB, "Network Load Balancer", "" )
+Component(LOCysP2vMe5DXLAHEYdU, "OpenSearch Dashboard", "" )
+Component(aik6DuJQc2KhSf4c5QZV, "CA Exporter", "" )
+
+
+' CONNECTIONS =======
+Rel(cpxxV9fxmR1pgCAxHFdB, 9vmw8B9ZSNjTOfwkQyX1, "Deployed Within" )
+Rel(zG9XKg0FTcWTUZCp0G59, LqXZYPgQ9UPjc7lqtp7S, "Request Cache Data" )
+Rel(oTbmuU7ncIHqPnGupIDk, 6uyz5GXgHFSVjrwIwRKC, "Develops" )
+Rel(LqXZYPgQ9UPjc7lqtp7S, heuHGHPQyPiOSCrreA29, "Access  secured systems" )
+Rel(mtyHirRmDImFDmca6URg, ca13KkX3DwaOlAXtqCBu, "Create Cache" )
+Rel(oTbmuU7ncIHqPnGupIDk, DzQ4VPgJYKxSkilz6snk, "Develops" )
+Rel(wSyyLfkRhknshpX3pdWJ, Xoxj4IX90NjN8wiNvxFB, "Request Cache Data" )
+Rel(oTbmuU7ncIHqPnGupIDk, nd7uOWs4bfaeXm73vKFa, "Develops" )
+Rel(uFk6F6ZcKKvnkVRkCNgH, f1fiXJziytRGVe7hFuLo, "Analyse Commercial Data" )
+Rel(LOCysP2vMe5DXLAHEYdU, mtyHirRmDImFDmca6URg, "Visualize Cache" )
+Rel(oTbmuU7ncIHqPnGupIDk, aik6DuJQc2KhSf4c5QZV, "Develops" )
+
+
+@enduml
