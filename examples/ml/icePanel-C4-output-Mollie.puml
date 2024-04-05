@@ -1,0 +1,38 @@
+@startuml
+'https://plantuml.com/class-diagram
+' CONVERT ICEPANEL DIAGRAM ===========
+' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUMLConverter
+' IcePanel JSON File : [./examples/ml/ml-001.json]
+' Configuration      : [./examples/ml/config.json]
+' Generated at       : Fri Apr 05 17:00:00 CEST 2024
+
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+
+
+System_Boundary(BUVyar8CF5L9QiBG1ctm, "Mollie" ) {
+    ' CLASSES =======
+    Component(XPRwthglnMC6q9afCTyJ, "Mollie System", "Effortless payments, seamless checkout, multiple payment methods, powerful integrations, fast and flexible financing, robust security, an advanced dashboard and app – and even more." )
+}
+
+
+' NEIGHBOR CLASSES =======
+Container(33Kg8Q2DCyyLP8jWFykQ, "AWS Lambda", "", "" )
+Container(WstWXOpYlewLWkdCJcZ7, "GCP Function", "", "" )
+Container(GecJ5QlG47xgNEoHmv9V, "webhook", "", "" )
+Person(901quKQooOwHHO3mAvwr, "Customer", "" )
+Container(H0bjyiKM0oWqEi6zJSnu, "Notification Module", "", "" )
+Person(BCKMekwHTOlQNWYVHxta, "Bank", "" )
+
+
+' CONNECTIONS =======
+Rel(XPRwthglnMC6q9afCTyJ, BCKMekwHTOlQNWYVHxta, "Set Payment" )
+Rel(H0bjyiKM0oWqEi6zJSnu, XPRwthglnMC6q9afCTyJ, "Reads Payment" )
+Rel(901quKQooOwHHO3mAvwr, XPRwthglnMC6q9afCTyJ, "Payment" )
+Rel(XPRwthglnMC6q9afCTyJ, GecJ5QlG47xgNEoHmv9V, "Notification" )
+Rel(33Kg8Q2DCyyLP8jWFykQ, XPRwthglnMC6q9afCTyJ, "Access API" )
+Rel(WstWXOpYlewLWkdCJcZ7, XPRwthglnMC6q9afCTyJ, "Access API" )
+
+
+@enduml
