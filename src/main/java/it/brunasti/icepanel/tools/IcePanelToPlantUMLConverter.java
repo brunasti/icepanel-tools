@@ -16,12 +16,14 @@ import org.json.simple.JSONObject;
 public class IcePanelToPlantUMLConverter implements IcePanelConstants {
 
 
+  public static final String FLOW_STEPS = "steps";
   // Reference to a PrintStream to be used for the diagram
   // By default is the Standard.out, but it can be redirected
   // to a file.
   private final PrintStream output;
 
   private String includeFileName = "";
+  private String includeFlowFileName = "";
   private String outputPath = "./";
   private boolean generateSubDiagrams = false;
 
@@ -55,6 +57,7 @@ public class IcePanelToPlantUMLConverter implements IcePanelConstants {
 
   private void setDefaultConfiguration() {
     includeFileName = "";
+    includeFlowFileName = "";
     outputPath = "";
     generateSubDiagrams = false;
   }
@@ -69,6 +72,11 @@ public class IcePanelToPlantUMLConverter implements IcePanelConstants {
     if (includeFile != null) {
       includeFileName = includeFile.toString();
       Debugger.debug(4, "  - includeFile [" + includeFileName + "]");
+    }
+    Object includeFlowFile = jsonObject.get("includeFlowFile");
+    if (includeFlowFile != null) {
+      includeFlowFileName = includeFlowFile.toString();
+      Debugger.debug(4, "  - includeFlowFile [" + includeFlowFileName + "]");
     }
   }
 
@@ -383,7 +391,7 @@ public class IcePanelToPlantUMLConverter implements IcePanelConstants {
   private void generateSubDiagramHeader(final PrintStream output,
                                         final String icePanelJsonFile,
                                         final String configurationFile) {
-    Debugger.debug(2, "generateHeader() ------------------");
+    Debugger.debug(2, "generateSubDiagramHeader() ------------------");
     output.println("@startuml");
     output.println("'https://plantuml.com/class-diagram");
     output.println("' CONVERT ICEPANEL DIAGRAM ===========");
@@ -404,6 +412,34 @@ public class IcePanelToPlantUMLConverter implements IcePanelConstants {
       output.println(includeFileContent);
       output.println("' Include end     : --------------------------");
     }
+    output.println();
+  }
+
+  private void generateFlowDiagramHeader(final PrintStream output,
+                                         final String icePanelJsonFile,
+                                         final String configurationFile,
+                                         final String title) {
+    Debugger.debug(2, "generateFlowDiagramHeader() ------------------");
+    output.println("@startuml");
+    output.println("' CONVERT ICEPANEL FLOW DIAGRAM ===========");
+    output.println("' Converter          : " + this.getClass().getName());
+    output.println("' IcePanel JSON File : [" + icePanelJsonFile + "]");
+    output.println("' Configuration      : [" + configurationFile + "]");
+    output.println("' Generated at       : " + new Date());
+    output.println();
+    output.println(
+        """
+        !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+        !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+        """);
+    String includeFileContent = Utils.readFileToString(includeFileName);
+    if (!includeFileContent.isBlank()) {
+      output.println();
+      output.println("' Include         : [" + includeFileName + "] ---------");
+      output.println(includeFileContent);
+      output.println("' Include end     : --------------------------");
+    }
+    output.println("title " + title);
     output.println();
   }
 
@@ -503,6 +539,49 @@ public class IcePanelToPlantUMLConverter implements IcePanelConstants {
     output.println();
   }
 
+  private void generateFlowDiagramEntities(final PrintStream output,
+                                         final JSONObject icePanelDiagramJson,
+                                         final JSONObject flow) {
+    Debugger.debug(2, "generateFlowDiagramEntities() ------------------");
+    output.println();
+    JSONObject steps = (JSONObject)flow.get(FLOW_STEPS);
+    output.println("' Elements =======");
+    Debugger.debug(3, "Steps : " + steps);
+
+    steps.values().forEach( step -> {
+        Debugger.debug(3, "   Step - : " + step);
+        output.println("' Step (" + step + ")");
+            });
+
+    HashMap<String, JSONObject> entities = new HashMap<>();
+    steps.values().forEach( object -> {
+      JSONObject step = (JSONObject) object;
+      String originId = getValue(step, ORIGIN_ID);
+      Debugger.debug(3, "   Step - originId : " + originId);
+      JSONObject origin = getObject(icePanelDiagramJson, originId);
+      entities.put(originId, origin);
+
+      String targetId = getValue(step, TARGET_ID);
+      Debugger.debug(3, "   Step - targetId : " + targetId);
+      JSONObject target = getObject(icePanelDiagramJson, targetId);
+      entities.put(targetId, target);
+
+            });
+
+    entities.values().forEach( entity -> {
+        output.println("participant \"" + getValue(entity, NAME) + "\" as " + getValue(entity, ID)+ " ");
+    });
+
+    output.println("' Steps =======");
+
+    steps.values().forEach( object -> {
+      JSONObject step = (JSONObject) object;
+      output.println("" + getValue(step, ORIGIN_ID) + " -> " + getValue(step, TARGET_ID) + " : " + getValue(step, DESCRIPTION));
+    });
+
+    output.println();
+  }
+
 
   private void generateSubDiagramNeighborClasses(final PrintStream output,
                                          final ArrayList<JSONObject> children) {
@@ -586,6 +665,44 @@ public class IcePanelToPlantUMLConverter implements IcePanelConstants {
   }
 
 
+  private void generateFlowDiagram(
+          final String icePanelJsonFile,
+          final JSONObject icePanelDiagramJson,
+          final JSONObject flow,
+          final String configurationFile,
+          final String subOutputFileNameBase) {
+    Debugger.debug(2, "generateFlowDiagram() ------------------");
+
+    String name = getValue(flow, "name");
+    String id = getValue(flow, "id");
+    Debugger.debug(2, "generateFlowDiagram (" + id + ", " + name + ") ---------");
+
+    String toFileName = subOutputFileNameBase + "-Flow-" + name + ".puml";
+    Debugger.debug(2, "==== generateFlowDiagram to file (" + toFileName + ") ---------");
+
+    PrintStream printStream;
+
+    try {
+      // Creates a FileOutputStream
+      FileOutputStream file = new FileOutputStream(toFileName);
+
+      // Creates a PrintWriter
+      printStream = new PrintStream(file, true);
+    } catch (FileNotFoundException fnf) {
+      fnf.printStackTrace();
+      return;
+    }
+
+    generateFlowDiagramHeader(printStream, icePanelJsonFile, configurationFile, name);
+    generateFlowDiagramEntities(printStream, icePanelDiagramJson, flow);
+    generateFooter(printStream);
+
+    printStream.close();
+
+    Debugger.debug(2, "==== generateSubDiagram to file (" + toFileName + ") END ---------");
+  }
+
+
   private void generateSubDiagrams(
           final String icePanelJsonFile,
           final JSONObject icePanelDiagramJson,
@@ -622,22 +739,18 @@ public class IcePanelToPlantUMLConverter implements IcePanelConstants {
     return root.get();
   }
 
-//  private ArrayList<JSONObject> findSystems(final JSONObject icePanelDiagramJson) {
-//    Debugger.debug(2, "findSystems() ------------------");
-//    JSONObject modelObjects = (JSONObject) icePanelDiagramJson.get(MODEL_OBJECTS);
-//    ArrayList<JSONObject> systems = new ArrayList<>();
-//    modelObjects.keySet().forEach(
-//        object -> {
-//          JSONObject modelObject = (JSONObject) modelObjects.get(object);
-//          String type = getValue(modelObject, "type", "");
-//
-//          if (TYPE_SYSTEM.equals(type)) {
-//            systems.add(modelObject);
-//          }
-//        }
-//    );
-//    return systems;
-//  }
+  private ArrayList<JSONObject> findFlows(final JSONObject icePanelDiagramJson) {
+    Debugger.debug(2, "findFlows() ------------------");
+    JSONObject modelObjects = (JSONObject) icePanelDiagramJson.get(MODEL_FLOWS);
+    ArrayList<JSONObject> flows = new ArrayList<>();
+    modelObjects.keySet().forEach(
+        object -> {
+          JSONObject modelObject = (JSONObject) modelObjects.get(object);
+          flows.add(modelObject);
+        }
+    );
+    return flows;
+  }
 
   private ArrayList<JSONObject> findParents(
           final JSONObject icePanelDiagramJson,
@@ -668,11 +781,42 @@ public class IcePanelToPlantUMLConverter implements IcePanelConstants {
 
 
 
+  /** Generate a diagram for each flow in the IcePanel JSON file.
+   *
+   * @param icePanelJsonFile The JSON file exported from IcePanel to be converted
+   * @param configurationFile The configuration file with the list
+   *                          of packages and classes to exclude.
+   * @param subOutputFileNameBase Base part of the name for the sub diagrams
+   */
+  public void convertIcePanelFlowToUml(final String icePanelJsonFile,
+                                   final JSONObject icePanelDiagramJson,
+                                   final String configurationFile,
+                                   final String subOutputFileNameBase) {
+    Debugger.debug(2, "convertIcePanelToUML [" + icePanelJsonFile
+            + "] (jsonObject) [" + configurationFile
+            + "] [" + subOutputFileNameBase + "]");
+
+    ArrayList<JSONObject> flows = findFlows(icePanelDiagramJson);
+
+    if (generateSubDiagrams) {
+      flows.forEach(flow -> {
+        generateFlowDiagram(icePanelJsonFile,
+                icePanelDiagramJson,
+                flow,
+                configurationFile,
+                subOutputFileNameBase);
+      });
+    }
+  }
+
+
+
   /** Generate a diagram for the IcePanel JSON file.
    *
    * @param icePanelJsonFile The JSON file exported from IcePanel to be converted
    * @param configurationFile The configuration file with the list
    *                          of packages and classes to exclude.
+   * @param subOutputFileNameBase Base part of the name for the sub diagrams
    */
   public void convertIcePanelToUml(final String icePanelJsonFile,
                                    final JSONObject icePanelDiagramJson,
@@ -690,11 +834,6 @@ public class IcePanelToPlantUMLConverter implements IcePanelConstants {
     generateFooter();
 
     if (generateSubDiagrams) {
-      generateSubDiagram(icePanelJsonFile,
-              icePanelDiagramJson,
-              getObject(icePanelDiagramJson, rootName),
-              configurationFile,
-              subOutputFileNameBase);
       generateSubDiagrams(icePanelJsonFile,
               icePanelDiagramJson,
               findParents(icePanelDiagramJson, rootName),
@@ -731,6 +870,11 @@ public class IcePanelToPlantUMLConverter implements IcePanelConstants {
     }
 
     convertIcePanelToUml(icePanelJsonFile,
+            icePanelDiagramJson,
+            configurationFile,
+            outputPath + subOutputFileNameBase);
+
+    convertIcePanelFlowToUml(icePanelJsonFile,
             icePanelDiagramJson,
             configurationFile,
             outputPath + subOutputFileNameBase);

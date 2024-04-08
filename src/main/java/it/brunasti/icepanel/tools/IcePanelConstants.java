@@ -6,12 +6,16 @@ package it.brunasti.icepanel.tools;
 public interface IcePanelConstants {
 
   String NODE_TYPE = "type";
+  String ID = "id";
+  String NAME = "name";
+  String DESCRIPTION = "description";
   String ORIGIN_ID = "originId";
   String PARENT_ID = "parentId";
   String TARGET_ID = "targetId";
   String DIRECTION = "direction";
   String MODEL_CONNECTIONS = "modelConnections";
   String MODEL_OBJECTS = "modelObjects";
+  String MODEL_FLOWS = "flows";
   String PARENT_IDS = "parentIds";
 
   String TYPE_SYSTEM = "system";
