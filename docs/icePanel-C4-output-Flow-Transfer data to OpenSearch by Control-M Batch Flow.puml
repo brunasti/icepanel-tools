@@ -1,0 +1,59 @@
+@startuml
+' CONVERT ICEPANEL FLOW DIAGRAM ===========
+' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUMLConverter
+' IcePanel JSON File : [./src/test/resources/icepanel-plain-02.json]
+' Configuration      : [./docs/config.json]
+' Generated at       : Mon Apr 08 18:15:09 CEST 2024
+
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+title Transfer data to OpenSearch by Control-M Batch Flow
+
+
+' Elements =======
+' Step ({"originId":"gjWRDpkTJ13KPRmh36F5","targetId":"fw0FSosDQxrXPus6KZ6i","description":"Activates Control-M to trigger Bust Controller every minute","index":4,"viaId":"mCwFWu7fY794vB1Ng2TG","id":"g0abinjahh6","type":"outgoing"})
+' Step ({"originId":"HhxISGaz4P94iRFwLQgB","targetId":"FbHUk96QaZQVUumba63H","description":"Reads the query details form the CMT DB based on the ids in the MS Queries message","index":8,"viaId":"ZqRW8GtlEDCSBX8PaNbt","id":"h9ccfghmy1j","type":"outgoing"})
+' Step ({"originId":"fw0FSosDQxrXPus6KZ6i","targetId":"iCsNVDctelyaR2c4wnkh","description":"Pings the Burst Controller every minute to make it load one more message into MQ Series with one more research","index":5,"viaId":"igpWDbgWQOPPs2oYH9LI","id":"s12kdh2n4io","type":"outgoing"})
+' Step ({"originId":"FbHUk96QaZQVUumba63H","targetId":"CBSTDIDaQZluhMUnj5Mq","description":"Submits to xDistributor a request for additional details for the query","index":10,"viaId":"EpxqR0e5wA7ZhH8i1GP5","id":"q75as07cnf9","type":"outgoing"})
+' Step ({"originId":"CBSTDIDaQZluhMUnj5Mq","targetId":"oTdOuXLuTyPzLeCjIYDx","description":"Extracts the request details","index":11,"viaId":"zExr3sWivAmG4PZeDKew","id":"u5c8h7pzal7","type":"outgoing"})
+' Step ({"originId":"gjWRDpkTJ13KPRmh36F5","targetId":"HRtqQ8npZIhFIJyE4fny","description":"Activates the Control-M which execute the Stored Procedure on CMT DB to prepare the data to be exported","index":2,"viaId":"kidbiUUweBL6selQcr1N","id":"sms04pj4i","type":"outgoing"})
+' Step ({"originId":"ca13KkX3DwaOlAXtqCBu","targetId":"HhxISGaz4P94iRFwLQgB","description":"Sets search criteria","index":1,"viaId":"JfXOClDSMwQmxrSZlc4s","id":"qmcma38p69","type":"outgoing"})
+' Step ({"originId":"CBSTDIDaQZluhMUnj5Mq","targetId":"FbHUk96QaZQVUumba63H","description":"Returns the enriched details","index":12,"viaId":"EpxqR0e5wA7ZhH8i1GP5","id":"f97da3tyf97","type":"outgoing"})
+' Step ({"originId":"FbHUk96QaZQVUumba63H","targetId":"p4yomm0RrOrYTNX8VvEg","description":"Sends offer data to OpenSearch via AWS infra","index":13,"viaId":"Rj1Wa4WmWhX7ZSxmdYcP","id":"or1ct4crx0i","type":"outgoing"})
+' Step ({"originId":"JDgumJdxCj5dCURdCtKN","targetId":"FbHUk96QaZQVUumba63H","description":"Enriches query details with info from CAPTWO","index":9,"viaId":"s5Z4GHRDb70t6kPr1xmt","id":"ikm19kvsm2","type":"outgoing"})
+' Step ({"originId":"HRtqQ8npZIhFIJyE4fny","targetId":"HhxISGaz4P94iRFwLQgB","description":"Invokes Stored Procedure on Oracle DB","index":3,"viaId":"ruN1yRIEOOku0TD20mZb","id":"j4igvs28ogq","type":"outgoing"})
+' Step ({"originId":"mtyHirRmDImFDmca6URg","targetId":"ca13KkX3DwaOlAXtqCBu","description":"Populates the Criterion","index":0,"viaId":"GfWQUJ9paKqLBfBdmmIn","id":"y1ezd7crhjf","type":"outgoing"})
+' Step ({"originId":"iCsNVDctelyaR2c4wnkh","targetId":"P8FRwIacDu7PGvfS8xYm","description":"Creates a message for the Batch Controller with the ids for a new request and post it into MQ Series","index":6,"viaId":"v0mxmcVxuwN6Id16142R","id":"hne6sdeamsc","type":"outgoing"})
+' Step ({"originId":"P8FRwIacDu7PGvfS8xYm","targetId":"FbHUk96QaZQVUumba63H","description":"Extracts next Message with Batch Instruction","index":7,"viaId":"PIJ5wZ7RqDlyb5dqNJ1B","id":"qat62askbhr","type":"outgoing"})
+participant "CAPTWO" as JDgumJdxCj5dCURdCtKN 
+participant "Direct Connect" as p4yomm0RrOrYTNX8VvEg 
+participant "MQ Series" as P8FRwIacDu7PGvfS8xYm 
+participant "Control-M" as fw0FSosDQxrXPus6KZ6i 
+participant "Burst Controller" as iCsNVDctelyaR2c4wnkh 
+participant "Control-M - Stored Procedure" as HRtqQ8npZIhFIJyE4fny 
+participant "Cache Management Tool (CMT)" as ca13KkX3DwaOlAXtqCBu 
+participant "Clock" as gjWRDpkTJ13KPRmh36F5 
+participant "Config DB" as oTdOuXLuTyPzLeCjIYDx 
+participant "CMT Oracle" as HhxISGaz4P94iRFwLQgB 
+participant "xDistributor" as CBSTDIDaQZluhMUnj5Mq 
+participant "Batch Controller" as FbHUk96QaZQVUumba63H 
+participant "Cache Admin" as mtyHirRmDImFDmca6URg 
+' Steps =======
+gjWRDpkTJ13KPRmh36F5 -> fw0FSosDQxrXPus6KZ6i : Activates Control-M to trigger Bust Controller every minute
+HhxISGaz4P94iRFwLQgB -> FbHUk96QaZQVUumba63H : Reads the query details form the CMT DB based on the ids in the MS Queries message
+fw0FSosDQxrXPus6KZ6i -> iCsNVDctelyaR2c4wnkh : Pings the Burst Controller every minute to make it load one more message into MQ Series with one more research
+FbHUk96QaZQVUumba63H -> CBSTDIDaQZluhMUnj5Mq : Submits to xDistributor a request for additional details for the query
+CBSTDIDaQZluhMUnj5Mq -> oTdOuXLuTyPzLeCjIYDx : Extracts the request details
+gjWRDpkTJ13KPRmh36F5 -> HRtqQ8npZIhFIJyE4fny : Activates the Control-M which execute the Stored Procedure on CMT DB to prepare the data to be exported
+ca13KkX3DwaOlAXtqCBu -> HhxISGaz4P94iRFwLQgB : Sets search criteria
+CBSTDIDaQZluhMUnj5Mq -> FbHUk96QaZQVUumba63H : Returns the enriched details
+FbHUk96QaZQVUumba63H -> p4yomm0RrOrYTNX8VvEg : Sends offer data to OpenSearch via AWS infra
+JDgumJdxCj5dCURdCtKN -> FbHUk96QaZQVUumba63H : Enriches query details with info from CAPTWO
+HRtqQ8npZIhFIJyE4fny -> HhxISGaz4P94iRFwLQgB : Invokes Stored Procedure on Oracle DB
+mtyHirRmDImFDmca6URg -> ca13KkX3DwaOlAXtqCBu : Populates the Criterion
+iCsNVDctelyaR2c4wnkh -> P8FRwIacDu7PGvfS8xYm : Creates a message for the Batch Controller with the ids for a new request and post it into MQ Series
+P8FRwIacDu7PGvfS8xYm -> FbHUk96QaZQVUumba63H : Extracts next Message with Batch Instruction
+
+
+@enduml

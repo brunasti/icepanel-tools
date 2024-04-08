@@ -1,0 +1,33 @@
+@startuml
+' CONVERT ICEPANEL FLOW DIAGRAM ===========
+' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUMLConverter
+' IcePanel JSON File : [./examples/ml/ml-001.json]
+' Configuration      : [./examples/ml/config.json]
+' Generated at       : Mon Apr 08 18:15:09 CEST 2024
+
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+title Interaction flow
+
+
+' Elements =======
+' Step ({"originId":"9xUmKihwlYUmsasTGOsv","targetId":"iihE1V4k7JDKwrS5GunC","description":"Creates Order","index":0,"viaId":"GrZaFDgV2Y1Fa437vxC1","id":"81kjikpqrac","type":"outgoing"})
+' Step ({"originId":"03XCn8Gai9J6GFDmJFfJ","targetId":"XPRwthglnMC6q9afCTyJ","description":"Creates Order","index":2,"viaId":"xg1P4phbRgIS1q4GC46v","id":"9poj6xi8x2t","type":"outgoing"})
+' Step ({"originId":"XPRwthglnMC6q9afCTyJ","targetId":"MRgvJ9ygR2wFH6SewIIW","description":"Asynch - Creates Notification Order created","index":3,"viaId":"RmUeikKHO5vdQY1gidSl","id":"43fv4vhc5j6","type":"outgoing"})
+' Step ({"originId":"MRgvJ9ygR2wFH6SewIIW","targetId":"iihE1V4k7JDKwrS5GunC","description":"Processes Notification","index":4,"viaId":"aCEkEgIWBmSOBcqLPZRj","id":"qp7nayg6hf9","type":"outgoing"})
+' Step ({"originId":"iihE1V4k7JDKwrS5GunC","targetId":"03XCn8Gai9J6GFDmJFfJ","description":"Creates Order","index":1,"viaId":"RGJ9nWu4VCMEnlzrF3b9","id":"xm20bmo0zd","type":"outgoing"})
+participant "Merchant Shop" as 9xUmKihwlYUmsasTGOsv 
+participant "CommerceTools System" as iihE1V4k7JDKwrS5GunC 
+participant "Mollie  - API Extension - Julian" as 03XCn8Gai9J6GFDmJFfJ 
+participant "Mollie System" as XPRwthglnMC6q9afCTyJ 
+participant "Mollie - Notification Module - Mourice" as MRgvJ9ygR2wFH6SewIIW 
+' Steps =======
+9xUmKihwlYUmsasTGOsv -> iihE1V4k7JDKwrS5GunC : Creates Order
+03XCn8Gai9J6GFDmJFfJ -> XPRwthglnMC6q9afCTyJ : Creates Order
+XPRwthglnMC6q9afCTyJ -> MRgvJ9ygR2wFH6SewIIW : Asynch - Creates Notification Order created
+MRgvJ9ygR2wFH6SewIIW -> iihE1V4k7JDKwrS5GunC : Processes Notification
+iihE1V4k7JDKwrS5GunC -> 03XCn8Gai9J6GFDmJFfJ : Creates Order
+
+
+@enduml

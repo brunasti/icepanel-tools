@@ -1,0 +1,51 @@
+@startuml
+' CONVERT ICEPANEL FLOW DIAGRAM ===========
+' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUMLConverter
+' IcePanel JSON File : [./examples/ml/ml-001.json]
+' Configuration      : [./examples/ml/config.json]
+' Generated at       : Mon Apr 08 18:15:09 CEST 2024
+
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+title Customer buys
+
+
+' Elements =======
+' Step ({"originId":"BUVyar8CF5L9QiBG1ctm","targetId":"BoNLOPSR4qOFGuDfePUN","description":"Confirms payment accepted","index":9,"viaId":"gEb4k2JHnWoM7PzGMGjZ","id":"nbvgv3xl31q","type":"reply"})
+' Step ({"originId":"9xUmKihwlYUmsasTGOsv","targetId":"901quKQooOwHHO3mAvwr","description":"Confirms order placed","index":11,"viaId":"5iE5LsI7OSkewtX1kORF","id":"gy0v51273tr","type":"reply"})
+' Step ({"originId":"901quKQooOwHHO3mAvwr","targetId":"9xUmKihwlYUmsasTGOsv","description":"Checks out order","index":2,"viaId":"5iE5LsI7OSkewtX1kORF","id":"pq2mjzha02","type":"outgoing"})
+' Step ({"originId":"9xUmKihwlYUmsasTGOsv","targetId":"BoNLOPSR4qOFGuDfePUN","description":"Check out","index":3,"viaId":"GrZaFDgV2Y1Fa437vxC1","id":"w62blwdw5af","type":"outgoing"})
+' Step ({"originId":"BoNLOPSR4qOFGuDfePUN","targetId":"9xUmKihwlYUmsasTGOsv","description":"Confirm payment accepted","index":10,"viaId":"GrZaFDgV2Y1Fa437vxC1","id":"y7hqdkuzpl","type":"reply"})
+' Step ({"originId":"BoNLOPSR4qOFGuDfePUN","targetId":"9xUmKihwlYUmsasTGOsv","description":"Confirm Payment Request","index":5,"viaId":"GrZaFDgV2Y1Fa437vxC1","id":"yq166u6aaq","type":"reply"})
+' Step ({"originId":"zT1BIuiGKsOS5Iyzaz4n","targetId":"901quKQooOwHHO3mAvwr","description":"Sends products","index":13,"viaId":"xIABuoImT8fstBbLGizu","id":"kooz36otfu8","type":"outgoing"})
+' Step ({"originId":"9xUmKihwlYUmsasTGOsv","targetId":"901quKQooOwHHO3mAvwr","description":"Asks to pay","index":6,"viaId":"5iE5LsI7OSkewtX1kORF","id":"9gmftpxrvvc","type":"reply"})
+' Step ({"originId":"901quKQooOwHHO3mAvwr","targetId":"9xUmKihwlYUmsasTGOsv","description":"Browses the catalogue","index":0,"viaId":"5iE5LsI7OSkewtX1kORF","id":"sm4439yaxgb","type":"outgoing"})
+' Step ({"originId":"901quKQooOwHHO3mAvwr","targetId":"BUVyar8CF5L9QiBG1ctm","description":"Authorises payment","index":8,"viaId":"nmAD11feql0WXiW34kXO","id":"jcez4y8ccsa","type":"outgoing"})
+' Step ({"originId":"BoNLOPSR4qOFGuDfePUN","targetId":"BUVyar8CF5L9QiBG1ctm","description":"Places payment request","index":4,"viaId":"gEb4k2JHnWoM7PzGMGjZ","id":"7iqxlmxy4sf","type":"outgoing"})
+' Step ({"originId":"901quKQooOwHHO3mAvwr","targetId":"BUVyar8CF5L9QiBG1ctm","description":"Views payment request","index":7,"viaId":"nmAD11feql0WXiW34kXO","id":"prlyts70z0b","type":"outgoing"})
+' Step ({"originId":"BoNLOPSR4qOFGuDfePUN","targetId":"zT1BIuiGKsOS5Iyzaz4n","description":"Transmits order","index":12,"viaId":"4uxgx2U44xN0PqIY0w2G","id":"a9dwtmulbso","type":"outgoing"})
+' Step ({"originId":"901quKQooOwHHO3mAvwr","targetId":"9xUmKihwlYUmsasTGOsv","description":"Chooses products","index":1,"viaId":"5iE5LsI7OSkewtX1kORF","id":"o0vemfsk1mo","type":"outgoing"})
+participant "Merchant Shop" as 9xUmKihwlYUmsasTGOsv 
+participant "Mollie" as BUVyar8CF5L9QiBG1ctm 
+participant "Customer" as 901quKQooOwHHO3mAvwr 
+participant "CommerceTools" as BoNLOPSR4qOFGuDfePUN 
+participant "Seller" as zT1BIuiGKsOS5Iyzaz4n 
+' Steps =======
+BUVyar8CF5L9QiBG1ctm -> BoNLOPSR4qOFGuDfePUN : Confirms payment accepted
+9xUmKihwlYUmsasTGOsv -> 901quKQooOwHHO3mAvwr : Confirms order placed
+901quKQooOwHHO3mAvwr -> 9xUmKihwlYUmsasTGOsv : Checks out order
+9xUmKihwlYUmsasTGOsv -> BoNLOPSR4qOFGuDfePUN : Check out
+BoNLOPSR4qOFGuDfePUN -> 9xUmKihwlYUmsasTGOsv : Confirm payment accepted
+BoNLOPSR4qOFGuDfePUN -> 9xUmKihwlYUmsasTGOsv : Confirm Payment Request
+zT1BIuiGKsOS5Iyzaz4n -> 901quKQooOwHHO3mAvwr : Sends products
+9xUmKihwlYUmsasTGOsv -> 901quKQooOwHHO3mAvwr : Asks to pay
+901quKQooOwHHO3mAvwr -> 9xUmKihwlYUmsasTGOsv : Browses the catalogue
+901quKQooOwHHO3mAvwr -> BUVyar8CF5L9QiBG1ctm : Authorises payment
+BoNLOPSR4qOFGuDfePUN -> BUVyar8CF5L9QiBG1ctm : Places payment request
+901quKQooOwHHO3mAvwr -> BUVyar8CF5L9QiBG1ctm : Views payment request
+BoNLOPSR4qOFGuDfePUN -> zT1BIuiGKsOS5Iyzaz4n : Transmits order
+901quKQooOwHHO3mAvwr -> 9xUmKihwlYUmsasTGOsv : Chooses products
+
+
+@enduml
