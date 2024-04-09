@@ -18,7 +18,7 @@ public class IcePanelToolsMain implements IcePanelConstants {
 
 
   static CommandLine commandLine;
-  static IcePanelToPlantUMLConverter icePanelToPlantUMLConverter;
+  static IcePanelToPlantUmlConverter icePanelToPlantUMLConverter;
 
   private static String icePanelJSONExportFile = "";
   private static String outputFile = "";
@@ -215,7 +215,7 @@ public class IcePanelToolsMain implements IcePanelConstants {
 
       String subOutputFileNameBase = "icePanel-C4-output";
 
-      icePanelToPlantUMLConverter = new IcePanelToPlantUMLConverter(output);
+      icePanelToPlantUMLConverter = new IcePanelToPlantUmlConverter(output);
       icePanelToPlantUMLConverter.convertIcePanelToUml(
               icePanelJSONExportFile, configurationFile, subOutputFileNameBase);
 

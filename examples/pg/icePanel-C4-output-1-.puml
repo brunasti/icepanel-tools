@@ -1,10 +1,10 @@
 @startuml
 'https://plantuml.com/class-diagram
 ' CONVERT ICEPANEL DIAGRAM ===========
-' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUMLConverter
+' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
 ' IcePanel JSON File : [./examples/pg/pg-001.json]
 ' Configuration      : [./examples/pg/config.json]
-' Generated at       : Tue Apr 09 09:48:36 CEST 2024
+' Generated at       : Tue Apr 09 10:07:41 CEST 2024
 
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml

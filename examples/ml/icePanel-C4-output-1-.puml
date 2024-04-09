@@ -1,7 +1,7 @@
 @startuml
 'https://plantuml.com/class-diagram
 ' CONVERT ICEPANEL DIAGRAM ===========
-' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUMLConverter
+' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
 ' IcePanel JSON File : [./examples/ml/ml-001.json]
 ' Configuration      : [./examples/ml/config.json]
 ' Generated at       : Mon Apr 08 13:14:59 CEST 2024

@@ -14,8 +14,7 @@ import org.json.simple.JSONObject;
 /**
  *
  */
-public class IcePanelToPlantUMLConverter implements IcePanelConstants {
-
+public class IcePanelToPlantUmlConverter implements IcePanelConstants {
 
   public static final String FLOW_STEPS = "steps";
   public static final String STEP_INDEX = "index";
@@ -33,7 +32,7 @@ public class IcePanelToPlantUMLConverter implements IcePanelConstants {
   /**
    * Instantiate a ClassDiagrammer with output directed to StandardOut.
    */
-  public IcePanelToPlantUMLConverter() {
+  public IcePanelToPlantUmlConverter() {
     this.output = System.out;
   }
 
@@ -45,7 +44,7 @@ public class IcePanelToPlantUMLConverter implements IcePanelConstants {
    *
    * @param output The PrintStream to which the output will be directed.
    */
-  public IcePanelToPlantUMLConverter(PrintStream output) {
+  public IcePanelToPlantUmlConverter(PrintStream output) {
     setDefaultConfiguration();
     this.output = output;
   }
@@ -833,7 +832,6 @@ public class IcePanelToPlantUMLConverter implements IcePanelConstants {
       Debugger.debug(2, "unknown type : [" + type + "]");
     }
   }
-
 
   private void generateClasses(final JSONObject icePanelDiagramJson) {
     Debugger.debug(2, "generateClasses() ------------------");
