@@ -6,6 +6,7 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -17,6 +18,8 @@ public class IcePanelToPlantUMLConverter implements IcePanelConstants {
 
 
   public static final String FLOW_STEPS = "steps";
+  public static final String STEP_INDEX = "index";
+  public static final String DEBUG_ENDING_STRING = ") ---------";
   // Reference to a PrintStream to be used for the diagram
   // By default is the Standard.out, but it can be redirected
   // to a file.
@@ -127,6 +130,7 @@ public class IcePanelToPlantUMLConverter implements IcePanelConstants {
     if (null == jsonObject) {
       Debugger.debug(2,
               "loadIcePanelJsonFromFile : no data in config file " + icePanelJsonFileName);
+      // TODO: Convert into an exception
       return null;
     }
     return jsonObject;
@@ -324,8 +328,7 @@ public class IcePanelToPlantUMLConverter implements IcePanelConstants {
           }
         }
     );
-    ArrayList<JSONObject> systems = new ArrayList<>();
-    systems.addAll(parentsMap.values());
+    ArrayList<JSONObject> systems = new ArrayList<>(parentsMap.values());
     return systems;
   }
 
@@ -373,6 +376,32 @@ public class IcePanelToPlantUMLConverter implements IcePanelConstants {
     output.println();
   }
 
+  private JSONObject findSequenceStepNumberX(JSONObject steps, int index) {
+    String indexString = "" + index;
+    AtomicReference<JSONObject> result = new AtomicReference<>();
+    steps.values().forEach( object -> {
+      JSONObject step = (JSONObject) object;
+      String stepIndex = getValue(step, STEP_INDEX);
+      if (indexString.equalsIgnoreCase(stepIndex)) {
+        result.set(step);
+      }
+    });
+    return result.get();
+  }
+
+  private int findSequenceStepMax(JSONObject steps) {
+    AtomicInteger index = new AtomicInteger();
+    steps.values().forEach( object -> {
+      JSONObject step = (JSONObject) object;
+      String stepIndex = getValue(step, STEP_INDEX);
+      int stepIndexInt = Integer.parseInt(stepIndex);
+      if (stepIndexInt > index.get()) {
+        index.set(stepIndexInt);
+      }
+    });
+    return index.get();
+  }
+
   private void generateFlowDiagramEntities(final PrintStream output,
                                            final JSONObject icePanelDiagramJson,
                                            final JSONObject flow) {
@@ -383,6 +412,11 @@ public class IcePanelToPlantUMLConverter implements IcePanelConstants {
     JSONObject steps = (JSONObject)flow.get(FLOW_STEPS);
     output.println("' Elements =======");
     Debugger.debug(3, "Steps : " + steps);
+
+    Debugger.debug(2, "generateFlowDiagramEntities() Steps ------------------");
+    output.println("' Steps =======");
+    int maxSteps = findSequenceStepMax(steps);
+    Debugger.debug(2, "generateFlowDiagramEntities() steps : " + maxSteps);
 
     HashMap<String, JSONObject> entities = new HashMap<>();
     steps.values().forEach( object -> {
@@ -398,17 +432,41 @@ public class IcePanelToPlantUMLConverter implements IcePanelConstants {
       entities.put(targetId, target);
     });
 
-    entities.values().forEach( entity -> {
-      output.println("participant \"" + getValue(entity, NAME) + "\" as " + getValue(entity, ID)+ " ");
-    });
+    HashMap<String, JSONObject> tempEntities = (HashMap<String, JSONObject>) entities.clone();
+    for (int i=1; i<= maxSteps; i++) {
+      Debugger.debug(2, "generateFlowDiagramEntities() steps entities : " + i);
+      JSONObject step = findSequenceStepNumberX(steps, i);
+      if (step != null) {
+        String originId = getValue(step, ORIGIN_ID);
+        Debugger.debug(3, "   Step - originId : " + originId);
+        JSONObject origin = tempEntities.get(originId);
+        if (origin != null) {
+          Debugger.debug(3, "   Step - origin : " + origin);
+          output.println("participant \"" + getValue(origin, NAME) + "\" as " + getValue(origin, ID) + " ");
+          tempEntities.remove(originId);
+        }
 
-    output.println("' Steps =======");
+        String targetId = getValue(step, TARGET_ID);
+        Debugger.debug(3, "   Step - targetId : " + targetId);
+        JSONObject target = tempEntities.get(targetId);
+        if (target != null) {
+          Debugger.debug(3, "   Step - target : " + target);
+          output.println("participant \"" + getValue(target, NAME) + "\" as " + getValue(target, ID) + " ");
+          tempEntities.remove(originId);
+        }
+      }
+    }
 
-    steps.values().forEach( object -> {
-      JSONObject step = (JSONObject) object;
-      output.println(getValue(step, ORIGIN_ID) + " -> " + getValue(step, TARGET_ID) + " : " + getValue(step, DESCRIPTION));
-    });
+    output.println();
 
+    for (int i=1; i<= maxSteps; i++) {
+      Debugger.debug(2, "generateFlowDiagramEntities() steps : " + i);
+      JSONObject step = findSequenceStepNumberX(steps, i);
+      if (step != null) {
+        output.println(getValue(step, ORIGIN_ID) + " -> " + getValue(step, TARGET_ID)
+                + " : " + getValue(step, STEP_INDEX) + " " + getValue(step, DESCRIPTION));
+      }
+    }
     output.println();
   }
 
@@ -422,10 +480,10 @@ public class IcePanelToPlantUMLConverter implements IcePanelConstants {
 
     String name = getValue(flow, "name");
     String id = getValue(flow, "id");
-    Debugger.debug(2, "generateFlowDiagram (" + id + ", " + name + ") ---------");
+    Debugger.debug(2, "generateFlowDiagram (" + id + ", " + name + DEBUG_ENDING_STRING);
 
     String toFileName = subOutputFileNameBase + "-Flow-" + name + ".puml";
-    Debugger.debug(2, "==== generateFlowDiagram to file (" + toFileName + ") ---------");
+    Debugger.debug(2, "==== generateFlowDiagram to file (" + toFileName + DEBUG_ENDING_STRING);
 
     PrintStream printStream;
 
@@ -516,6 +574,7 @@ public class IcePanelToPlantUMLConverter implements IcePanelConstants {
     String type = getValue(jsonObject, "type", "");
     String description = getValue(jsonObject, "description", " ");
 
+    // TODO: Convert into a switch and manage not tested options
     if (TYPE_SYSTEM.equals(type)) {
       output.println(SYSTEM_BOUNDARY
               + id + ", \"" + name + "\" ) {");
@@ -630,7 +689,7 @@ public class IcePanelToPlantUMLConverter implements IcePanelConstants {
 
     String name = getValue(base, "name");
     String id = getValue(base, "id");
-    Debugger.debug(2, "generateSubDiagram (" + id + ", " + name + ") ---------");
+    Debugger.debug(2, "generateSubDiagram (" + id + ", " + name + DEBUG_ENDING_STRING);
 
     ArrayList<JSONObject> children = extractChildren(icePanelDiagramJson, base);
 
@@ -642,7 +701,7 @@ public class IcePanelToPlantUMLConverter implements IcePanelConstants {
     int depth = depth(icePanelDiagramJson, base);
 
     String toFileName = subOutputFileNameBase + "-" + depth + "-" + name + ".puml";
-    Debugger.debug(2, "==== generateSubDiagram to file (" + toFileName + ") ---------");
+    Debugger.debug(2, "==== generateSubDiagram to file (" + toFileName + DEBUG_ENDING_STRING);
 
     PrintStream printStream;
 
@@ -751,6 +810,7 @@ public class IcePanelToPlantUMLConverter implements IcePanelConstants {
     String type = getValue(jsonObject, "type", "");
     String description = getValue(jsonObject, "description", " ");
 
+    // TODO: Convert into a switch
     if (TYPE_SYSTEM.equals(type)) {
       output.println(head + "System(" + id + ", \"" + name
               + OUTPUT_VAL_SEPARATOR_STRING + description + OUTPUT_VAL_CLOSER_STRING);

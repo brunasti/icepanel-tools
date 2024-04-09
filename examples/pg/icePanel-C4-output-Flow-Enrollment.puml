@@ -3,7 +3,7 @@
 ' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUMLConverter
 ' IcePanel JSON File : [./examples/pg/pg-001.json]
 ' Configuration      : [./examples/pg/config.json]
-' Generated at       : Mon Apr 08 18:15:09 CEST 2024
+' Generated at       : Tue Apr 09 09:48:36 CEST 2024
 
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
@@ -12,22 +12,20 @@ title Enrollment
 
 
 ' Elements =======
-' Step ({"originId":"tWBMOSLhpcqKS34CzvM1","targetId":"Df8PP21Dc8ejtFQtIHmV","description":"","index":2,"viaId":"hBJVX70DqmVDbRNvNRy1","id":"0xb5ggniwakf","type":"outgoing"})
-' Step ({"originId":"Df8PP21Dc8ejtFQtIHmV","targetId":"vgrxHGsMNRMr3oRKap7i","description":"Exits","index":6,"viaId":"iViaaemAmca14FetDzgw","id":"nrjk7vpy65l","type":"outgoing"})
-' Step ({"originId":"tWBMOSLhpcqKS34CzvM1","targetId":"Dh7TjqtXo9JVsCCn3bol","description":"Pays","index":1,"viaId":"VgRNOsmf6mrXU20LuqHH","id":"ka2vuzum4bm","type":"outgoing"})
-' Step ({"originId":"Df8PP21Dc8ejtFQtIHmV","targetId":"vgrxHGsMNRMr3oRKap7i","description":"Access Gym Club","index":4,"viaId":"iViaaemAmca14FetDzgw","id":"qigqhxfsrg","type":"outgoing"})
-' Step ({"originId":"Df8PP21Dc8ejtFQtIHmV","targetId":"1nzUjBx1BzsmaX25lJHI","description":"Uses","index":5,"viaId":"qOPbNEJ75XimhERpjgnU","id":"lsm4zh1mum","type":"outgoing"})
+' Steps =======
 participant "Prospect" as tWBMOSLhpcqKS34CzvM1 
-participant "Member" as Df8PP21Dc8ejtFQtIHmV 
 participant "POS" as Dh7TjqtXo9JVsCCn3bol 
+participant "Member" as Df8PP21Dc8ejtFQtIHmV 
+participant "Member" as Df8PP21Dc8ejtFQtIHmV 
 participant "Access Control" as vgrxHGsMNRMr3oRKap7i 
 participant "Gym Machine" as 1nzUjBx1BzsmaX25lJHI 
-' Steps =======
-tWBMOSLhpcqKS34CzvM1 -> Df8PP21Dc8ejtFQtIHmV : 
-Df8PP21Dc8ejtFQtIHmV -> vgrxHGsMNRMr3oRKap7i : Exits
-tWBMOSLhpcqKS34CzvM1 -> Dh7TjqtXo9JVsCCn3bol : Pays
-Df8PP21Dc8ejtFQtIHmV -> vgrxHGsMNRMr3oRKap7i : Access Gym Club
-Df8PP21Dc8ejtFQtIHmV -> 1nzUjBx1BzsmaX25lJHI : Uses
+participant "Access Control" as vgrxHGsMNRMr3oRKap7i 
+
+tWBMOSLhpcqKS34CzvM1 -> Dh7TjqtXo9JVsCCn3bol : 1 Pays
+tWBMOSLhpcqKS34CzvM1 -> Df8PP21Dc8ejtFQtIHmV : 2 
+Df8PP21Dc8ejtFQtIHmV -> vgrxHGsMNRMr3oRKap7i : 4 Access Gym Club
+Df8PP21Dc8ejtFQtIHmV -> 1nzUjBx1BzsmaX25lJHI : 5 Uses
+Df8PP21Dc8ejtFQtIHmV -> vgrxHGsMNRMr3oRKap7i : 6 Exits
 
 
 @enduml
