@@ -1,9 +1,9 @@
 @startuml
 ' CONVERT ICEPANEL FLOW DIAGRAM ===========
 ' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
-' IcePanel JSON File : [./src/test/resources/icepanel-plain-02.json]
+' IcePanel JSON File : [./src/test/resources/icepanel-plain.json]
 ' Configuration      : [./docs/config.json]
-' Generated at       : Tue Apr 09 10:07:41 CEST 2024
+' Generated at       : Tue Apr 09 11:16:12 CEST 2024
 
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml

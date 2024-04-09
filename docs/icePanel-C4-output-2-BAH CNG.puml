@@ -2,9 +2,9 @@
 'https://plantuml.com/class-diagram
 ' CONVERT ICEPANEL DIAGRAM ===========
 ' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
-' IcePanel JSON File : [./src/test/resources/icepanel-plain-02.json]
+' IcePanel JSON File : [./src/test/resources/icepanel-plain.json]
 ' Configuration      : [./docs/config.json]
-' Generated at       : Tue Apr 09 10:07:41 CEST 2024
+' Generated at       : Tue Apr 09 11:16:12 CEST 2024
 
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
@@ -45,7 +45,6 @@ Rel(MzZVLTUQ74KbySVwdHfZ, Vg8nvjzPDirSBRjT8K3Q, "reads data" )
 Rel(heuHGHPQyPiOSCrreA29, 4teQrlbMUj5LLqxdVcPK, "Accesses API implementations" )
 Rel(LqXZYPgQ9UPjc7lqtp7S, heuHGHPQyPiOSCrreA29, "Access  secured systems" )
 Rel(MzZVLTUQ74KbySVwdHfZ, Nr2rq32hBezwoAGeNT2U, "reads data" )
-Rel(FbHUk96QaZQVUumba63H, MzZVLTUQ74KbySVwdHfZ, "Store Cache" )
 Rel(MzZVLTUQ74KbySVwdHfZ, LOCysP2vMe5DXLAHEYdU, "Retrieve Cache" )
 Rel(wSyyLfkRhknshpX3pdWJ, Xoxj4IX90NjN8wiNvxFB, "Request Cache Data" )
 Rel(F2hUPV68esNdYOZlEDZp, 4teQrlbMUj5LLqxdVcPK, "Deploy" )
@@ -58,6 +57,7 @@ Rel(oLiyCOrWiJ4p4jQxIr1F, MzZVLTUQ74KbySVwdHfZ, "Store Offers" )
 Rel(heuHGHPQyPiOSCrreA29, Vg8nvjzPDirSBRjT8K3Q, "Accesses API implementations" )
 Rel(uFk6F6ZcKKvnkVRkCNgH, f1fiXJziytRGVe7hFuLo, "Analyse Commercial Data" )
 Rel(LOCysP2vMe5DXLAHEYdU, mtyHirRmDImFDmca6URg, "Visualize Cache" )
+Rel(F2hUPV68esNdYOZlEDZp, OmsC5XSTv64h2ua9yNDK, "Deploy" )
 Rel(MzZVLTUQ74KbySVwdHfZ, BxsQud7gKwTvBJQ0KNj2, "Retrieve Cache" )
 Rel(MoA8eTudOD7sWkzZF9av, oLiyCOrWiJ4p4jQxIr1F, "Flow" )
 Rel(F2hUPV68esNdYOZlEDZp, BxsQud7gKwTvBJQ0KNj2, "Deploy" )

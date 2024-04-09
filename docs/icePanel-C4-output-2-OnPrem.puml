@@ -2,9 +2,9 @@
 'https://plantuml.com/class-diagram
 ' CONVERT ICEPANEL DIAGRAM ===========
 ' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
-' IcePanel JSON File : [./src/test/resources/icepanel-plain-02.json]
+' IcePanel JSON File : [./src/test/resources/icepanel-plain.json]
 ' Configuration      : [./docs/config.json]
-' Generated at       : Tue Apr 09 10:07:41 CEST 2024
+' Generated at       : Tue Apr 09 11:16:12 CEST 2024
 
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
@@ -31,7 +31,6 @@ System_Boundary(ZCIGbr1fDwSZINSjOb44, "OnPrem" ) {
 
 ' NEIGHBOR CLASSES =======
 Component(p4yomm0RrOrYTNX8VvEg, "Direct Connect", "" )
-ContainerDb(MzZVLTUQ74KbySVwdHfZ, "OpenSearch", "", "" )
 Person(mtyHirRmDImFDmca6URg, "Cache Admin", "" )
 
 
@@ -43,7 +42,6 @@ Rel(HhxISGaz4P94iRFwLQgB, FbHUk96QaZQVUumba63H, "Reads query data" )
 Rel(CBSTDIDaQZluhMUnj5Mq, oTdOuXLuTyPzLeCjIYDx, "Extract details" )
 Rel(gjWRDpkTJ13KPRmh36F5, HRtqQ8npZIhFIJyE4fny, "Activate" )
 Rel(mtyHirRmDImFDmca6URg, ca13KkX3DwaOlAXtqCBu, "Create Cache" )
-Rel(FbHUk96QaZQVUumba63H, MzZVLTUQ74KbySVwdHfZ, "Store Cache" )
 Rel(gjWRDpkTJ13KPRmh36F5, fw0FSosDQxrXPus6KZ6i, "Every 1 hour" )
 Rel(HRtqQ8npZIhFIJyE4fny, HhxISGaz4P94iRFwLQgB, "Invoke Stored Procedure" )
 Rel(M6xfKV1sWabaqUXxMo6D, zKtL799aVzgaZLWgIcD6, "Read config from" )
