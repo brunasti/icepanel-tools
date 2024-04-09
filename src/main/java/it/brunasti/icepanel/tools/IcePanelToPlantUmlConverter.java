@@ -88,8 +88,8 @@ public class IcePanelToPlantUmlConverter implements IcePanelConstants {
     Object outputPathObj = jsonObject.get("outputPath");
     if (outputPathObj != null) {
       outputPath = outputPathObj.toString();
-      if (!outputPath.endsWith("/")) {
-        outputPath = outputPath + "/";
+      if (!outputPath.endsWith(PATH_DELIMITER_STRING)) {
+        outputPath = outputPath + PATH_DELIMITER_STRING;
       }
       generateSubDiagrams = true;
       Debugger.debug(4, "  - outputPath [" + outputPath + "]");
@@ -404,8 +404,6 @@ public class IcePanelToPlantUmlConverter implements IcePanelConstants {
   private void generateFlowDiagramEntities(final PrintStream output,
                                            final JSONObject icePanelDiagramJson,
                                            final JSONObject flow) {
-    // TODO: Order the entities based on the steps sequence
-    // TODO: Order the steps on the steps sequence
     Debugger.debug(2, "generateFlowDiagramEntities() ------------------");
     output.println();
     JSONObject steps = (JSONObject) flow.get(FLOW_STEPS);
@@ -526,13 +524,11 @@ public class IcePanelToPlantUmlConverter implements IcePanelConstants {
     ArrayList<JSONObject> flows = findFlows(icePanelDiagramJson);
 
     if (generateSubDiagrams) {
-      flows.forEach(flow -> {
-        generateFlowDiagram(icePanelJsonFile,
+      flows.forEach(flow -> generateFlowDiagram(icePanelJsonFile,
                 icePanelDiagramJson,
                 flow,
                 configurationFile,
-                subOutputFileNameBase);
-      });
+                subOutputFileNameBase) );
     }
   }
 
@@ -577,30 +573,30 @@ public class IcePanelToPlantUmlConverter implements IcePanelConstants {
 
     // TODO: Convert into a switch and manage not tested options
     if (TYPE_SYSTEM.equals(type)) {
-      output.println(SYSTEM_BOUNDARY
+      output.println(OUTPUT_SYSTEM_BOUNDARY
               + id + ", \"" + name + "\" ) {");
     } else if (TYPE_ROOT.equals(type)) {
-      output.println(SYSTEM_BOUNDARY
+      output.println(OUTPUT_SYSTEM_BOUNDARY
               + id + ", \"" + name + "\" ) {");
     } else if (TYPE_ACTOR.equals(type)) {
-      output.println(PERSON
+      output.println(OUTPUT_PERSON
               + id + ", \"" + name + OUTPUT_VAL_SEPARATOR_STRING
               + description + OUTPUT_SUBDIAGRAM_CLOSER_STRING);
     } else if (TYPE_APP.equals(type)) {
-      output.println(COMPONENT
+      output.println(OUTPUT_COMPONENT
               + id + ", \"" + name + OUTPUT_VAL_SEPARATOR_STRING
               + description + OUTPUT_SUBDIAGRAM_CLOSER_STRING);
     } else if (TYPE_STORE.equals(type)) {
-      output.println(CONTAINER_DB
+      output.println(OUTPUT_CONTAINER_DB
               + id + ", \"" + name + OUTPUT_VAL_SEPARATOR_STRING
               + description + OUTPUT_VAL_SEPARATOR_STRING + OUTPUT_SUBDIAGRAM_CLOSER_STRING);
     } else if (TYPE_AREA.equals(type)) {
-      output.println(SYSTEM_BOUNDARY
+      output.println(OUTPUT_SYSTEM_BOUNDARY
               + id + ", \"" + name + OUTPUT_VAL_SEPARATOR_STRING
               + description + OUTPUT_VAL_SEPARATOR_STRING + OUTPUT_SUBDIAGRAM_CLOSER_STRING);
     } else if (TYPE_COMPONENT.equals(type)) {
       // TODO: Add technologies
-      output.println(CONTAINER
+      output.println(OUTPUT_CONTAINER
               + id + ", \"" + name + OUTPUT_VAL_SEPARATOR_STRING
               + description + OUTPUT_VAL_SEPARATOR_STRING + OUTPUT_SUBDIAGRAM_CLOSER_STRING);
     } else {
@@ -619,11 +615,7 @@ public class IcePanelToPlantUmlConverter implements IcePanelConstants {
     output.println();
     generateSubDiagramBoundaryStart(output, icePanelDiagramJson);
     output.println("    ' CLASSES =======");
-    children.forEach(
-            object -> {
-              generateClassInDiagram("    ", output, object);
-            }
-    );
+    children.forEach( object -> generateClassInDiagram("    ", output, object) );
     generateSubDiagramBoundaryEnd(output);
     output.println();
   }
@@ -634,11 +626,7 @@ public class IcePanelToPlantUmlConverter implements IcePanelConstants {
     Debugger.debug(2, "generateSubDiagramNeighborClasses() ------------------");
     output.println();
     output.println("' NEIGHBOR CLASSES =======");
-    children.forEach(
-            object -> {
-              generateClassInDiagram("", output, object);
-            }
-    );
+    children.forEach( object -> generateClassInDiagram("", output, object) );
     output.println();
   }
 
@@ -743,13 +731,11 @@ public class IcePanelToPlantUmlConverter implements IcePanelConstants {
           final String subOutputFileNameBase) {
     Debugger.debug(2, "generateSubDiagrams() ------------------");
 
-    bases.forEach(base -> {
-      generateSubDiagram(icePanelJsonFile,
+    bases.forEach(base -> generateSubDiagram(icePanelJsonFile,
               icePanelDiagramJson,
               base,
               configurationFile,
-              subOutputFileNameBase);
-    });
+              subOutputFileNameBase) );
   }
 
   // C4 Diagrams =====================================================
@@ -821,20 +807,20 @@ public class IcePanelToPlantUmlConverter implements IcePanelConstants {
       output.println(head + "System(" + id + ", \"" + name
               + OUTPUT_VAL_SEPARATOR_STRING + description + OUTPUT_VAL_CLOSER_STRING);
     } else if (TYPE_ACTOR.equals(type)) {
-      output.println(head + PERSON + id + ", \"" + name
+      output.println(head + OUTPUT_PERSON + id + ", \"" + name
               + OUTPUT_VAL_SEPARATOR_STRING + description + OUTPUT_VAL_CLOSER_STRING);
     } else if (TYPE_APP.equals(type)) {
-      output.println(head + COMPONENT + id + ", \"" + name
+      output.println(head + OUTPUT_COMPONENT + id + ", \"" + name
               + OUTPUT_VAL_SEPARATOR_STRING + description + OUTPUT_VAL_CLOSER_STRING);
     } else if (TYPE_STORE.equals(type)) {
-      output.println(head + CONTAINER_DB + id + ", \"" + name
+      output.println(head + OUTPUT_CONTAINER_DB + id + ", \"" + name
               + OUTPUT_VAL_SEPARATOR_STRING + description
               + OUTPUT_VAL_SEPARATOR_STRING + OUTPUT_VAL_CLOSER_STRING);
     } else if (TYPE_AREA.equals(type)) {
       Debugger.debug(2, "skip type : [" + type + "]");
     } else if (TYPE_COMPONENT.equals(type)) {
       // TODO: Add technologies
-      output.println(head + CONTAINER + id + ", \"" + name
+      output.println(head + OUTPUT_CONTAINER + id + ", \"" + name
               + OUTPUT_VAL_SEPARATOR_STRING + description
               + OUTPUT_VAL_SEPARATOR_STRING + OUTPUT_VAL_CLOSER_STRING);
     } else {

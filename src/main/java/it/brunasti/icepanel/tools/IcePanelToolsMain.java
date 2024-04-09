@@ -44,7 +44,7 @@ public class IcePanelToolsMain implements IcePanelConstants {
   private static boolean setDebugOption(Option optionDebug) {
     String debugLevelString = commandLine.getOptionValue(optionDebug.getOpt());
     System.err.println(optionDebug.getDescription()
-            + DEBUG_TEXT_SET_TO + debugLevelString + "]");
+            + DEBUG_TEXT_SET_TO + debugLevelString + DEBUG_CLOSE_LINE_SQUARED_STRING);
     if (debugLevelString != null) {
       try {
         int dl = Integer.parseInt(debugLevelString);
@@ -90,21 +90,20 @@ public class IcePanelToolsMain implements IcePanelConstants {
 
       commandLine = parser.parse(options, args);
 
-      if (commandLine.hasOption(optionDebug.getOpt())) {
-        if (!setDebugOption(optionDebug)) {
-          return false;
-        }
+      if (commandLine.hasOption(optionDebug.getOpt()) && (!setDebugOption(optionDebug))) {
+        return false;
       }
+
       if (Debugger.isDebug()) {
         Utils.dump("ARGS", args, System.err);
         Utils.dump("CMD", commandLine.getArgs(), System.err);
       }
-      if (commandLine.hasOption("h")) {
+      if (commandLine.hasOption(optionHelp.getOpt())) {
         printHelp(options);
         return false;
       }
 
-      if (commandLine.hasOption("?")) {
+      if (commandLine.hasOption(optionShortUsage.getOpt())) {
         printUsage(options);
         return false;
       }
@@ -119,17 +118,17 @@ public class IcePanelToolsMain implements IcePanelConstants {
       if (commandLine.hasOption(optionInputJsonFile.getOpt())) {
         icePanelJSONExportFile = commandLine.getOptionValue(optionInputJsonFile.getOpt());
         Debugger.debug(optionInputJsonFile.getDescription()
-                + DEBUG_TEXT_SET_TO + icePanelJSONExportFile + "]");
+                + DEBUG_TEXT_SET_TO + icePanelJSONExportFile + DEBUG_CLOSE_LINE_SQUARED_STRING);
       }
       if (commandLine.hasOption(optionOutputFile.getOpt())) {
         outputFile = commandLine.getOptionValue(optionOutputFile.getOpt());
         Debugger.debug(optionOutputFile.getDescription()
-                + DEBUG_TEXT_SET_TO + outputFile + "]");
+                + DEBUG_TEXT_SET_TO + outputFile + DEBUG_CLOSE_LINE_SQUARED_STRING);
       }
       if (commandLine.hasOption(optionConfigFile.getOpt())) {
         configurationFile = commandLine.getOptionValue(optionConfigFile.getOpt());
         Debugger.debug(optionConfigFile.getDescription()
-                + DEBUG_TEXT_SET_TO + configurationFile + "]");
+                + DEBUG_TEXT_SET_TO + configurationFile + DEBUG_CLOSE_LINE_SQUARED_STRING);
       }
 
     } catch (ParseException | NullPointerException e) {
@@ -190,7 +189,7 @@ public class IcePanelToolsMain implements IcePanelConstants {
 
     boolean cliIsCorrect = processCommandLine(args);
 
-    Debugger.debug("CommandLine parsed [" + cliIsCorrect + "]");
+    Debugger.debug("CommandLine parsed [" + cliIsCorrect + DEBUG_CLOSE_LINE_SQUARED_STRING);
 
     if (!cliIsCorrect) {
       printHelp();
@@ -199,7 +198,7 @@ public class IcePanelToolsMain implements IcePanelConstants {
 
     Debugger.debug("IcePanel JSON file [" + icePanelJSONExportFile + "]\n"
                   + "OutputFile         [" + outputFile + "]\n"
-                  + "ConfigurationFile  [" + configurationFile + "]");
+                  + "ConfigurationFile  [" + configurationFile + DEBUG_CLOSE_LINE_SQUARED_STRING);
 
     if ((null == icePanelJSONExportFile) || (icePanelJSONExportFile.isBlank())) {
       System.err.println("IcePanel JSON export file to be transformed not defined");
