@@ -12,10 +12,15 @@ import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 
+/**
+ * Entry point for the CLI version of the ClassDiagrammer.
+ * This ClassDiagrammerMain uses the library form Apache for Command Line Interface:
+ * <a href="https://commons.apache.org/proper/commons-cli/usage.html">commons-cli</a>
+ */
 public class IcePanelToolsMain implements IcePanelConstants {
 
-  // TODO: Check the diagrams: examples/ml/icePanel-C4-output-Mollie  - API Extension - Julian.puml : Description too long
-
+  // TODO: Check the diagrams: examples/ml/icePanel-C4-output-Mollie
+  //  - API Extension - Julian.puml : Description too long
 
   static CommandLine commandLine;
   static IcePanelToPlantUmlConverter icePanelToPlantUMLConverter;
@@ -118,11 +123,13 @@ public class IcePanelToolsMain implements IcePanelConstants {
       }
       if (commandLine.hasOption(optionOutputFile.getOpt())) {
         outputFile = commandLine.getOptionValue(optionOutputFile.getOpt());
-        Debugger.debug(optionOutputFile.getDescription() + DEBUG_TEXT_SET_TO + outputFile + "]");
+        Debugger.debug(optionOutputFile.getDescription()
+                + DEBUG_TEXT_SET_TO + outputFile + "]");
       }
       if (commandLine.hasOption(optionConfigFile.getOpt())) {
         configurationFile = commandLine.getOptionValue(optionConfigFile.getOpt());
-        Debugger.debug(optionConfigFile.getDescription() + DEBUG_TEXT_SET_TO + configurationFile + "]");
+        Debugger.debug(optionConfigFile.getDescription()
+                + DEBUG_TEXT_SET_TO + configurationFile + "]");
       }
 
     } catch (ParseException | NullPointerException e) {

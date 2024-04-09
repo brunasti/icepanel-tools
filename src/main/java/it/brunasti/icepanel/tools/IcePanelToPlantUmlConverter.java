@@ -12,13 +12,14 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 /**
- *
+ * Convert the JSON export of a project from IcePanel
+ * into a set of PlantUML diagrams.
+ * For reference see:
+ * - <a href="https://icepanel.io/">IcePanel</a>
+ * - <a href="https://plantuml.com/">PlantUML</a>
  */
 public class IcePanelToPlantUmlConverter implements IcePanelConstants {
 
-  public static final String FLOW_STEPS = "steps";
-  public static final String STEP_INDEX = "index";
-  public static final String DEBUG_ENDING_STRING = ") ---------";
   // Reference to a PrintStream to be used for the diagram
   // By default is the Standard.out, but it can be redirected
   // to a file.
@@ -285,7 +286,7 @@ public class IcePanelToPlantUmlConverter implements IcePanelConstants {
     } else {
       JSONObject parent = getObject(icePanelDiagramJson, parentId);
       int depth = depth(icePanelDiagramJson, parent) + 1;
-      Debugger.debug(2, "depth ("+depth+") ------------------");
+      Debugger.debug(2, "depth (" + depth + ") ------------------");
       return depth;
     }
   }
@@ -327,8 +328,7 @@ public class IcePanelToPlantUmlConverter implements IcePanelConstants {
           }
         }
     );
-    ArrayList<JSONObject> systems = new ArrayList<>(parentsMap.values());
-    return systems;
+    return new ArrayList<>(parentsMap.values());
   }
 
 
@@ -378,7 +378,7 @@ public class IcePanelToPlantUmlConverter implements IcePanelConstants {
   private JSONObject findSequenceStepNumberX(JSONObject steps, int index) {
     String indexString = "" + index;
     AtomicReference<JSONObject> result = new AtomicReference<>();
-    steps.values().forEach( object -> {
+    steps.values().forEach(object -> {
       JSONObject step = (JSONObject) object;
       String stepIndex = getValue(step, STEP_INDEX);
       if (indexString.equalsIgnoreCase(stepIndex)) {
@@ -390,7 +390,7 @@ public class IcePanelToPlantUmlConverter implements IcePanelConstants {
 
   private int findSequenceStepMax(JSONObject steps) {
     AtomicInteger index = new AtomicInteger();
-    steps.values().forEach( object -> {
+    steps.values().forEach(object -> {
       JSONObject step = (JSONObject) object;
       String stepIndex = getValue(step, STEP_INDEX);
       int stepIndexInt = Integer.parseInt(stepIndex);
@@ -408,7 +408,7 @@ public class IcePanelToPlantUmlConverter implements IcePanelConstants {
     // TODO: Order the steps on the steps sequence
     Debugger.debug(2, "generateFlowDiagramEntities() ------------------");
     output.println();
-    JSONObject steps = (JSONObject)flow.get(FLOW_STEPS);
+    JSONObject steps = (JSONObject) flow.get(FLOW_STEPS);
     output.println("' Elements =======");
     Debugger.debug(3, "Steps : " + steps);
 
@@ -418,7 +418,7 @@ public class IcePanelToPlantUmlConverter implements IcePanelConstants {
     Debugger.debug(2, "generateFlowDiagramEntities() steps : " + maxSteps);
 
     HashMap<String, JSONObject> entities = new HashMap<>();
-    steps.values().forEach( object -> {
+    steps.values().forEach(object -> {
       JSONObject step = (JSONObject) object;
       String originId = getValue(step, ORIGIN_ID);
       Debugger.debug(3, "   Step - originId : " + originId);
@@ -432,7 +432,7 @@ public class IcePanelToPlantUmlConverter implements IcePanelConstants {
     });
 
     HashMap<String, JSONObject> tempEntities = (HashMap<String, JSONObject>) entities.clone();
-    for (int i=1; i<= maxSteps; i++) {
+    for (int i = 1; i <= maxSteps; i++) {
       Debugger.debug(2, "generateFlowDiagramEntities() steps entities : " + i);
       JSONObject step = findSequenceStepNumberX(steps, i);
       if (step != null) {
@@ -441,7 +441,8 @@ public class IcePanelToPlantUmlConverter implements IcePanelConstants {
         JSONObject origin = tempEntities.get(originId);
         if (origin != null) {
           Debugger.debug(3, "   Step - origin : " + origin);
-          output.println("participant \"" + getValue(origin, NAME) + "\" as " + getValue(origin, ID) + " ");
+          output.println("participant \"" + getValue(origin, NAME) + "\" as "
+                  + getValue(origin, ID) + " ");
           tempEntities.remove(originId);
         }
 
@@ -450,7 +451,8 @@ public class IcePanelToPlantUmlConverter implements IcePanelConstants {
         JSONObject target = tempEntities.get(targetId);
         if (target != null) {
           Debugger.debug(3, "   Step - target : " + target);
-          output.println("participant \"" + getValue(target, NAME) + "\" as " + getValue(target, ID) + " ");
+          output.println("participant \"" + getValue(target, NAME) + "\" as "
+                  + getValue(target, ID) + " ");
           tempEntities.remove(originId);
         }
       }
@@ -458,7 +460,7 @@ public class IcePanelToPlantUmlConverter implements IcePanelConstants {
 
     output.println();
 
-    for (int i=1; i<= maxSteps; i++) {
+    for (int i = 1; i <= maxSteps; i++) {
       Debugger.debug(2, "generateFlowDiagramEntities() steps : " + i);
       JSONObject step = findSequenceStepNumberX(steps, i);
       if (step != null) {
@@ -582,20 +584,25 @@ public class IcePanelToPlantUmlConverter implements IcePanelConstants {
               + id + ", \"" + name + "\" ) {");
     } else if (TYPE_ACTOR.equals(type)) {
       output.println(PERSON
-              + id + ", \"" + name + OUTPUT_VAL_SEPARATOR_STRING + description + OUTPUT_SUBDIAGRAM_CLOSER_STRING);
+              + id + ", \"" + name + OUTPUT_VAL_SEPARATOR_STRING
+              + description + OUTPUT_SUBDIAGRAM_CLOSER_STRING);
     } else if (TYPE_APP.equals(type)) {
       output.println(COMPONENT
-              + id + ", \"" + name + OUTPUT_VAL_SEPARATOR_STRING + description + OUTPUT_SUBDIAGRAM_CLOSER_STRING);
+              + id + ", \"" + name + OUTPUT_VAL_SEPARATOR_STRING
+              + description + OUTPUT_SUBDIAGRAM_CLOSER_STRING);
     } else if (TYPE_STORE.equals(type)) {
       output.println(CONTAINER_DB
-              + id + ", \"" + name + OUTPUT_VAL_SEPARATOR_STRING + description + OUTPUT_VAL_SEPARATOR_STRING + OUTPUT_SUBDIAGRAM_CLOSER_STRING);
+              + id + ", \"" + name + OUTPUT_VAL_SEPARATOR_STRING
+              + description + OUTPUT_VAL_SEPARATOR_STRING + OUTPUT_SUBDIAGRAM_CLOSER_STRING);
     } else if (TYPE_AREA.equals(type)) {
       output.println(SYSTEM_BOUNDARY
-              + id + ", \"" + name + OUTPUT_VAL_SEPARATOR_STRING + description + OUTPUT_VAL_SEPARATOR_STRING + OUTPUT_SUBDIAGRAM_CLOSER_STRING);
+              + id + ", \"" + name + OUTPUT_VAL_SEPARATOR_STRING
+              + description + OUTPUT_VAL_SEPARATOR_STRING + OUTPUT_SUBDIAGRAM_CLOSER_STRING);
     } else if (TYPE_COMPONENT.equals(type)) {
       // TODO: Add technologies
       output.println(CONTAINER
-              + id + ", \"" + name + OUTPUT_VAL_SEPARATOR_STRING + description + OUTPUT_VAL_SEPARATOR_STRING + OUTPUT_SUBDIAGRAM_CLOSER_STRING);
+              + id + ", \"" + name + OUTPUT_VAL_SEPARATOR_STRING
+              + description + OUTPUT_VAL_SEPARATOR_STRING + OUTPUT_SUBDIAGRAM_CLOSER_STRING);
     } else {
       Debugger.debug(2, "unknown type : [" + type + "]");
     }
@@ -821,13 +828,15 @@ public class IcePanelToPlantUmlConverter implements IcePanelConstants {
               + OUTPUT_VAL_SEPARATOR_STRING + description + OUTPUT_VAL_CLOSER_STRING);
     } else if (TYPE_STORE.equals(type)) {
       output.println(head + CONTAINER_DB + id + ", \"" + name
-              + OUTPUT_VAL_SEPARATOR_STRING + description + OUTPUT_VAL_SEPARATOR_STRING + OUTPUT_VAL_CLOSER_STRING);
+              + OUTPUT_VAL_SEPARATOR_STRING + description
+              + OUTPUT_VAL_SEPARATOR_STRING + OUTPUT_VAL_CLOSER_STRING);
     } else if (TYPE_AREA.equals(type)) {
       Debugger.debug(2, "skip type : [" + type + "]");
     } else if (TYPE_COMPONENT.equals(type)) {
       // TODO: Add technologies
       output.println(head + CONTAINER + id + ", \"" + name
-              + OUTPUT_VAL_SEPARATOR_STRING + description + OUTPUT_VAL_SEPARATOR_STRING + OUTPUT_VAL_CLOSER_STRING);
+              + OUTPUT_VAL_SEPARATOR_STRING + description
+              + OUTPUT_VAL_SEPARATOR_STRING + OUTPUT_VAL_CLOSER_STRING);
     } else {
       Debugger.debug(2, "unknown type : [" + type + "]");
     }

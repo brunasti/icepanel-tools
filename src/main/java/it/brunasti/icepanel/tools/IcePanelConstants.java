@@ -1,7 +1,7 @@
 package it.brunasti.icepanel.tools;
 
 /**
- *
+ * Constants used in the project
  */
 public interface IcePanelConstants {
 
@@ -17,6 +17,9 @@ public interface IcePanelConstants {
   String MODEL_OBJECTS = "modelObjects";
   String MODEL_FLOWS = "flows";
   String PARENT_IDS = "parentIds";
+
+  String FLOW_STEPS = "steps";
+  String STEP_INDEX = "index";
 
   String TYPE_SYSTEM = "system";
   String TYPE_ACTOR = "actor";
