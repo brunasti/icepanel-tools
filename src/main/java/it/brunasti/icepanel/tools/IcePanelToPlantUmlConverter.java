@@ -296,12 +296,12 @@ public class IcePanelToPlantUmlConverter implements IcePanelConstants {
     JSONObject modelObjects = (JSONObject) icePanelDiagramJson.get(MODEL_OBJECTS);
     AtomicReference<String> root = new AtomicReference<>("");
     modelObjects.keySet().forEach(
-            object -> {
-              JSONObject modelObject = (JSONObject) modelObjects.get(object);
-              String type = getValue(modelObject, "type", "");
+            objectId -> {
+              JSONObject modelObject = (JSONObject) modelObjects.get(objectId);
+              String type = getValue(modelObject, NODE_TYPE, "");
 
-              if ("root".equals(type)) {
-                root.set(object.toString());
+              if (TYPE_ROOT.equals(type)) {
+                root.set(objectId.toString());
               }
             }
     );
@@ -315,10 +315,10 @@ public class IcePanelToPlantUmlConverter implements IcePanelConstants {
     JSONObject modelObjects = (JSONObject) icePanelDiagramJson.get(MODEL_OBJECTS);
     HashMap<String, JSONObject> parentsMap = new HashMap<>();
     modelObjects.keySet().forEach(
-        object -> {
-          JSONObject modelObject = (JSONObject) modelObjects.get(object);
+        objectId -> {
+          JSONObject modelObject = (JSONObject) modelObjects.get(objectId);
           if (modelObject != null) {
-            String parentId = getValue(modelObject, "parentId");
+            String parentId = getValue(modelObject, PARENT_ID);
             if (!rootName.equals(parentId)) {
               JSONObject parent = getObject(icePanelDiagramJson, parentId);
               if (parent != null) {
@@ -578,27 +578,10 @@ public class IcePanelToPlantUmlConverter implements IcePanelConstants {
     } else if (TYPE_ROOT.equals(type)) {
       output.println(OUTPUT_SYSTEM_BOUNDARY
               + id + ", \"" + name + "\" ) {");
-    } else if (TYPE_ACTOR.equals(type)) {
-      output.println(OUTPUT_PERSON
-              + id + ", \"" + name + OUTPUT_VAL_SEPARATOR_STRING
-              + description + OUTPUT_SUBDIAGRAM_CLOSER_STRING);
     } else if (TYPE_APP.equals(type)) {
       output.println(OUTPUT_COMPONENT
               + id + ", \"" + name + OUTPUT_VAL_SEPARATOR_STRING
               + description + OUTPUT_SUBDIAGRAM_CLOSER_STRING);
-    } else if (TYPE_STORE.equals(type)) {
-      output.println(OUTPUT_CONTAINER_DB
-              + id + ", \"" + name + OUTPUT_VAL_SEPARATOR_STRING
-              + description + OUTPUT_VAL_SEPARATOR_STRING + OUTPUT_SUBDIAGRAM_CLOSER_STRING);
-    } else if (TYPE_AREA.equals(type)) {
-      output.println(OUTPUT_SYSTEM_BOUNDARY
-              + id + ", \"" + name + OUTPUT_VAL_SEPARATOR_STRING
-              + description + OUTPUT_VAL_SEPARATOR_STRING + OUTPUT_SUBDIAGRAM_CLOSER_STRING);
-    } else if (TYPE_COMPONENT.equals(type)) {
-      // TODO: Add technologies
-      output.println(OUTPUT_CONTAINER
-              + id + ", \"" + name + OUTPUT_VAL_SEPARATOR_STRING
-              + description + OUTPUT_VAL_SEPARATOR_STRING + OUTPUT_SUBDIAGRAM_CLOSER_STRING);
     } else {
       Debugger.debug(2, "unknown type : [" + type + "]");
     }

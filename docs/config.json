@@ -1,5 +1,5 @@
 {
-  "includeFile" : "",
+  "includeFile" : "./docs/include.txt",
   "includeFlowFile" : "",
   "outputPath" : "./docs"
 }

@@ -83,6 +83,7 @@ public class IcePanelToolsMainTest implements TestConstants {
     args[5] = configurationFileName;
     assertDoesNotThrow(() -> IcePanelToolsMain.main(args));
 
+    System.err.println("testMainMethod_Examples ------ PG -----");
     args[0] = PG_JSON;
     args[1] = PG_OUT;
     args[2] = "-d";
@@ -91,6 +92,7 @@ public class IcePanelToolsMainTest implements TestConstants {
     args[5] = PG_CONF;
     assertDoesNotThrow(() -> IcePanelToolsMain.main(args));
 
+    System.err.println("testMainMethod_Examples ------ SG -----");
     args[0] = SG_JSON;
     args[1] = SG_OUT;
     args[2] = "-d";
@@ -99,6 +101,7 @@ public class IcePanelToolsMainTest implements TestConstants {
     args[5] = SG_CONF;
     assertDoesNotThrow(() -> IcePanelToolsMain.main(args));
 
+    System.err.println("testMainMethod_Examples ------ ML -----");
     args[0] = ML_JSON;
     args[1] = ML_OUT;
     args[2] = "-d";
@@ -119,6 +122,24 @@ public class IcePanelToolsMainTest implements TestConstants {
     String[] argsHelp = new String[1];
     argsHelp[0] = "-?";
     assertDoesNotThrow(() -> IcePanelToolsMain.main(argsHelp));
+
+    String[] multiArgs = new String[6];
+
+    multiArgs[0] = icePanelJSONFileCompact_02;
+    multiArgs[1] = outputFileName;
+    multiArgs[2] = "-d";
+    multiArgs[3] = "10";
+    multiArgs[4] = "-c";
+    multiArgs[5] = nonExistingJsonFileName;
+    assertDoesNotThrow(() -> IcePanelToolsMain.main(multiArgs));
+
+    multiArgs[0] = nonExistingJsonFileName;
+    multiArgs[1] = outputFileName;
+    multiArgs[2] = "-d";
+    multiArgs[3] = "10";
+    multiArgs[4] = "-c";
+    multiArgs[5] = configurationFileName;
+    assertDoesNotThrow(() -> IcePanelToolsMain.main(multiArgs));
   }
 
   @Test

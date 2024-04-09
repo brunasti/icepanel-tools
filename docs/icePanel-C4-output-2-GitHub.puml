@@ -4,11 +4,15 @@
 ' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
 ' IcePanel JSON File : [./src/test/resources/icepanel-plain.json]
 ' Configuration      : [./docs/config.json]
-' Generated at       : Tue Apr 09 17:11:10 CEST 2024
+' Generated at       : Tue Apr 09 17:45:38 CEST 2024
 
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
 
+
+' Include         : [./docs/include.txt] ---------
+hide empty members
+' Include end     : --------------------------
 
 
 System_Boundary(axBWvtIPYmpByC3xkoHt, "GitHub" ) {
