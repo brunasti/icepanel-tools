@@ -495,7 +495,7 @@ public class IcePanelToPlantUmlConverter {
       // Creates a PrintWriter
       printStream = new PrintStream(file, true);
     } catch (FileNotFoundException fnf) {
-      fnf.printStackTrace();
+      log.error(fnf);
       return;
     }
 
@@ -690,7 +690,7 @@ public class IcePanelToPlantUmlConverter {
       // Creates a PrintWriter
       printStream = new PrintStream(file, true);
     } catch (FileNotFoundException fnf) {
-      fnf.printStackTrace();
+      log.error(fnf);
       return;
     }
 

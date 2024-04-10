@@ -234,7 +234,7 @@ public class IcePanelToolsMain {
         file.close();
       }
     } catch (IOException ex) {
-      ex.printStackTrace();
+      log.error(ex);
     }
   }
 }
