@@ -52,9 +52,6 @@ public final class IcePanelConstants {
   static final String OUTPUT_SUBDIAGRAM_CLOSER_STRING = "\" ) { ";
 
 
-  static final String DEBUG_TEXT_SET_TO = " set to [";
-  static final String DEBUG_ENDING_STRING = ") ------------------";
-  static final String DEBUG_CLOSE_LINE_SQUARED_STRING = "]";
-
+  static final String DEBUG_TEXT_SET_TO = "{} set to [{}]";
 
 }
