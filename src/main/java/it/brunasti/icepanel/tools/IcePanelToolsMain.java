@@ -34,33 +34,38 @@ public class IcePanelToolsMain {
   private static String icePanelJSONExportFile = "";
   private static String outputFile = "";
   private static String configurationFile = "";
+  private static boolean debug = false;
 
   private static Options options;
 
   private static void reset() {
-    Debugger.reset();
-
     icePanelJSONExportFile = "";
     outputFile = "";
     configurationFile = "";
+
+    debug = false;
 
     options = null;
   }
 
   private static boolean setDebugOption(Option optionDebug) {
-    String debugLevelString = commandLine.getOptionValue(optionDebug.getOpt());
-    log.info(IcePanelConstants.DEBUG_TEXT_SET_TO, optionDebug.getDescription(), debugLevelString);
-    if (debugLevelString != null) {
-      try {
-        int dl = Integer.parseInt(debugLevelString);
-        Debugger.setDebug(dl);
-      } catch (NumberFormatException ex) {
-        log.error("Error the option Debug ({}) - : {}", optionDebug.getDescription(), ex.getMessage());
-        return false;
-      }
-    } else {
-      Debugger.setDebug(true);
+    if (commandLine.hasOption(optionDebug.getOpt())) {
+//      Debugger.setDebug(true);
+      debug = true;
     }
+//    String debugLevelString = commandLine.getOptionValue(optionDebug.getOpt());
+//    log.info(IcePanelConstants.DEBUG_TEXT_SET_TO, optionDebug.getDescription(), debugLevelString);
+//    if (debugLevelString != null) {
+//      try {
+//        int dl = Integer.parseInt(debugLevelString);
+//        Debugger.setDebug(dl);
+//      } catch (NumberFormatException ex) {
+//        log.error("Error the option Debug ({}) - : {}", optionDebug.getDescription(), ex.getMessage());
+//        return false;
+//      }
+//    } else {
+//      Debugger.setDebug(true);
+//    }
     return true;
   }
 
@@ -73,8 +78,8 @@ public class IcePanelToolsMain {
     Option optionHelp = new Option("h", "help", false, "Help");
     Option optionShortUsage = new Option("?", false, "Quick Reference");
     Option optionDebug = Option.builder().option("d")
-            .longOpt("debug").hasArg(true).optionalArg(true)
-            .desc("Execute in debug mode, optionally with desired level").build();
+            .longOpt("debug").hasArg(false).optionalArg(true)
+            .desc("Execute in debug mode").build();
     Option optionOutputFile = new Option("o", "output", true, "Output File");
     Option optionConfigFile = new Option("c", "config", true,
             "Configuration File");
@@ -98,7 +103,7 @@ public class IcePanelToolsMain {
         return false;
       }
 
-      if (Debugger.isDebug()) {
+      if (debug) {
         Utils.dump("ARGS", args, System.err);
         Utils.dump("CMD", commandLine.getArgs(), System.err);
       }

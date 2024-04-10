@@ -2,9 +2,9 @@
 'https://plantuml.com/class-diagram
 ' CONVERT ICEPANEL DIAGRAM ===========
 ' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
-' IcePanel JSON File : [./src/test/resources/icepanel-structured.json]
+' IcePanel JSON File : [./src/test/resources/icepanel-plain.json]
 ' Configuration      : [./docs/config.json]
-' Generated at       : Wed Apr 10 11:43:53 CEST 2024
+' Generated at       : Wed Apr 10 14:23:01 CEST 2024
 
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
@@ -22,11 +22,19 @@ Component(OmsC5XSTv64h2ua9yNDK, "Solr API", "" ) {
 
 
 ' NEIGHBOR CLASSES =======
+Container(JOCj92Vc2CEAUN8hquBI, "Spring Framework", "", "" )
 ContainerDb(MzZVLTUQ74KbySVwdHfZ, "OpenSearch", "", "" )
+Component(heuHGHPQyPiOSCrreA29, "API Gateway", "" )
+Container(DqaxYHtWGYqlWeYgZkyP, "Common Lib", "", "" )
+Component(nd7uOWs4bfaeXm73vKFa, "Solr_Repo", "" )
 
 
 ' CONNECTIONS =======
 Rel(MzZVLTUQ74KbySVwdHfZ, Vg8nvjzPDirSBRjT8K3Q, "reads data" )
+Rel(Vg8nvjzPDirSBRjT8K3Q, DqaxYHtWGYqlWeYgZkyP, "Uses" )
+Rel(nd7uOWs4bfaeXm73vKFa, Vg8nvjzPDirSBRjT8K3Q, "Deployed as" )
+Rel(Vg8nvjzPDirSBRjT8K3Q, JOCj92Vc2CEAUN8hquBI, "Based on" )
+Rel(heuHGHPQyPiOSCrreA29, Vg8nvjzPDirSBRjT8K3Q, "Accesses API implementations" )
 
 
 @enduml
