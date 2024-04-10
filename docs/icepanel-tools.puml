@@ -1,0 +1,94 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+' GENERATE CLASS DIAGRAM ===========
+' Generator       : it.brunasti.java.diagrammer.ClassDiagrammer
+' Path            : [/Users/paolobrunasti/Work/Mine/icepanel/icepanel-tools/target/classes]
+' Java Files Path : [/Users/paolobrunasti/Work/Mine/icepanel/icepanel-tools/src/main/java/]
+' Configuration   : []
+' Generated at    : Wed Apr 10 18:55:55 CEST 2024
+
+
+
+' CLASSES =======
+class it.brunasti.icepanel.tools.IcePanelToolsMain
+class it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
+class it.brunasti.icepanel.tools.IcePanelConstants
+class it.brunasti.icepanel.tools.Utils
+
+' INHERITANCES =======
+
+' IMPLEMENT INTERFACE =======
+
+' FIELDS =======
+it.brunasti.icepanel.tools.IcePanelToolsMain --> org.apache.logging.log4j.Logger
+it.brunasti.icepanel.tools.IcePanelToolsMain --> org.apache.commons.cli.CommandLine
+it.brunasti.icepanel.tools.IcePanelToolsMain --> it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
+it.brunasti.icepanel.tools.IcePanelToolsMain --> org.apache.commons.cli.Options
+it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter --> org.apache.logging.log4j.Logger
+it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter --> java.io.PrintStream
+
+' USES =======
+it.brunasti.icepanel.tools.IcePanelToolsMain ..> org.apache.commons.cli.Option
+it.brunasti.icepanel.tools.IcePanelToolsMain ..> Ljava.lang.String
+it.brunasti.icepanel.tools.IcePanelToolsMain ..> org.apache.commons.cli.Options
+it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter ..> java.io.PrintStream
+it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter ..> org.json.simple.JSONObject
+it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter ..> java.util.ArrayList
+it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter ..> java.util.HashMap
+it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter ..> java.util.concurrent.atomic.AtomicInteger
+it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter ..> java.util.concurrent.atomic.AtomicReference
+it.brunasti.icepanel.tools.Utils ..> Ljava.lang.Object
+it.brunasti.icepanel.tools.Utils ..> java.io.PrintStream
+it.brunasti.icepanel.tools.Utils ..> java.util.List
+it.brunasti.icepanel.tools.Utils ..> java.util.Set
+it.brunasti.icepanel.tools.Utils ..> org.json.simple.JSONObject
+
+' IMPORTS =======
+' Java Files Path : /Users/paolobrunasti/Work/Mine/icepanel/icepanel-tools/src/main/java/
+' it.brunasti.icepanel.tools.IcePanelToolsMain
+it.brunasti.icepanel.tools.IcePanelToolsMain ..o java.io.PrintStream
+it.brunasti.icepanel.tools.IcePanelToolsMain ..o java.io.PrintWriter
+it.brunasti.icepanel.tools.IcePanelToolsMain ..o org.apache.commons.cli.CommandLineParser
+it.brunasti.icepanel.tools.IcePanelToolsMain ..o org.apache.commons.cli.Options
+it.brunasti.icepanel.tools.IcePanelToolsMain ..o java.io.FileOutputStream
+it.brunasti.icepanel.tools.IcePanelToolsMain ..o java.io.IOException
+it.brunasti.icepanel.tools.IcePanelToolsMain ..o org.apache.commons.cli.HelpFormatter
+it.brunasti.icepanel.tools.IcePanelToolsMain ..o org.apache.commons.cli.DefaultParser
+it.brunasti.icepanel.tools.IcePanelToolsMain ..o org.apache.logging.log4j.Logger
+it.brunasti.icepanel.tools.IcePanelToolsMain ..o org.apache.commons.cli.ParseException
+it.brunasti.icepanel.tools.IcePanelToolsMain ..o org.apache.commons.cli.CommandLine
+it.brunasti.icepanel.tools.IcePanelToolsMain ..o org.apache.logging.log4j.LogManager
+it.brunasti.icepanel.tools.IcePanelToolsMain ..o org.apache.commons.cli.Option
+
+' it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
+it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter ..o java.io.PrintStream
+it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter ..o org.apache.logging.log4j.Logger
+it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter ..o org.json.simple.JSONObject
+it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter ..o java.util.concurrent.atomic.AtomicInteger
+it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter ..o java.util.Date
+it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter ..o java.io.FileOutputStream
+it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter ..o java.util.HashMap
+it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter ..o java.util.concurrent.atomic.AtomicReference
+it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter ..o org.apache.logging.log4j.LogManager
+it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter ..o org.json.simple.JSONArray
+it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter ..o java.io.FileNotFoundException
+it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter ..o java.util.ArrayList
+
+' it.brunasti.icepanel.tools.IcePanelConstants
+
+' it.brunasti.icepanel.tools.Utils
+it.brunasti.icepanel.tools.Utils ..o java.io.PrintStream
+it.brunasti.icepanel.tools.Utils ..o java.util.List
+it.brunasti.icepanel.tools.Utils ..o org.json.simple.JSONObject
+it.brunasti.icepanel.tools.Utils ..o org.json.simple.parser.ParseException
+it.brunasti.icepanel.tools.Utils ..o org.json.simple.parser.JSONParser
+it.brunasti.icepanel.tools.Utils ..o java.util.Scanner
+it.brunasti.icepanel.tools.Utils ..o java.util.Set
+it.brunasti.icepanel.tools.Utils ..o java.io.IOException
+it.brunasti.icepanel.tools.Utils ..o java.io.FileReader
+it.brunasti.icepanel.tools.Utils ..o java.io.File
+
+
+
+@enduml
