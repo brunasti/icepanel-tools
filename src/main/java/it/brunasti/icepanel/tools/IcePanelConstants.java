@@ -8,6 +8,19 @@ public interface IcePanelConstants {
   String PATH_DELIMITER_STRING = "/";
 
 
+
+  // TODO: How can these be converted into an Enum?
+  // Object types -------------------------
+  String TYPE_SYSTEM = "system";
+  String TYPE_ACTOR = "actor";
+  String TYPE_APP = "app";
+  String TYPE_STORE = "store";
+  String TYPE_AREA = "area";
+  String TYPE_COMPONENT = "component";
+  String TYPE_ROOT = "root";
+
+
+
   // IcePanel JSON fields and attributes
   String NODE_TYPE = "type";
   String ID = "id";
@@ -23,16 +36,6 @@ public interface IcePanelConstants {
   String PARENT_IDS = "parentIds";
   String FLOW_STEPS = "steps";
   String STEP_INDEX = "index";
-
-
-  // Object types -------------------------
-  String TYPE_SYSTEM = "system";
-  String TYPE_ACTOR = "actor";
-  String TYPE_APP = "app";
-  String TYPE_STORE = "store";
-  String TYPE_AREA = "area";
-  String TYPE_COMPONENT = "component";
-  String TYPE_ROOT = "root";
 
 
   // Generation keywords --------------------

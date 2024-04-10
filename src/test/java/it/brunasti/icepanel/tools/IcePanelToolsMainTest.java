@@ -39,11 +39,11 @@ public class IcePanelToolsMainTest implements TestConstants {
   @Test
   @DisplayName("Call IcePanelToolsMain main with parameters")
   void testMainMethod_Params() {
-//    System.err.println("IcePanelToolsMain.main ------ 2 args -----");
-//    String[] args = new String[2];
-//    args[0] = icePanelJSONFile;
-//    args[1] = outputFileName;
-//    assertDoesNotThrow(() -> IcePanelToolsMain.main(args));
+    System.err.println("IcePanelToolsMain.main ------ 2 args -----");
+    String[] args = new String[2];
+    args[0] = icePanelJSONFile;
+    args[1] = outputFileName;
+    assertDoesNotThrow(() -> IcePanelToolsMain.main(args));
 
     System.err.println("IcePanelToolsMain.main ------ 9 args -----");
     String[] fullArgs = new String[9];

@@ -21,6 +21,7 @@ public class IcePanelToolsMain implements IcePanelConstants {
 
   // TODO: Check the diagrams: examples/ml/icePanel-C4-output-Mollie
   //  - API Extension - Julian.puml : Description too long
+  // TODO: Names of the diagram files with "output"... change them
 
   static CommandLine commandLine;
   static IcePanelToPlantUmlConverter icePanelToPlantUMLConverter;
