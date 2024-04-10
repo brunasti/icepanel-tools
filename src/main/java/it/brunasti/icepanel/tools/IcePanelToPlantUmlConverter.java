@@ -103,11 +103,11 @@ public class IcePanelToPlantUmlConverter {
 
 
   private boolean loadJsonConfigurationFromFile(String configurationFileName) {
-    log.debug( "loadJsonConfigurationFromFile : " + configurationFileName);
+    log.debug( "loadJsonConfigurationFromFile : {}", configurationFileName);
     JSONObject jsonObject = Utils.loadJsonFile(configurationFileName);
     if (null == jsonObject) {
-      log.debug(
-              "loadJsonConfigurationFromFile : no data in config file " + configurationFileName);
+      log.debug("loadJsonConfigurationFromFile : no data in config file {}",
+              configurationFileName);
       generateSubDiagrams = false;
       return false;
     }
@@ -130,11 +130,11 @@ public class IcePanelToPlantUmlConverter {
   // Load the JSON file exported from IcePanel ---------------------------
 
   private JSONObject loadIcePanelJsonFromFile(String icePanelJsonFileName) {
-    log.debug( "loadIcePanelJsonFromFile : " + icePanelJsonFileName);
+    log.debug( "loadIcePanelJsonFromFile : {}", icePanelJsonFileName);
     JSONObject jsonObject = Utils.loadJsonFile(icePanelJsonFileName);
     if (null == jsonObject) {
-      log.debug(
-              "loadIcePanelJsonFromFile : no data in config file " + icePanelJsonFileName);
+      log.debug("loadIcePanelJsonFromFile : no data in config file {}",
+              icePanelJsonFileName);
       // TODO: Convert into an exception
       return null;
     }
@@ -169,10 +169,10 @@ public class IcePanelToPlantUmlConverter {
   private ArrayList<JSONObject> extractChildren(
           final JSONObject icePanelDiagramJson, 
           final JSONObject parent) {
-    log.debug( "extractChildren(" + parent + IcePanelConstants.DEBUG_ENDING_STRING);
+    log.debug("extractChildren({}) ------------------", parent);
 
     String givenParentId = getValue(parent, "id");
-    log.debug( "extractChildren(" + givenParentId + IcePanelConstants.DEBUG_ENDING_STRING);
+    log.debug("extractChildren({}) ------------------",  givenParentId);
     JSONObject modelObjects = (JSONObject) icePanelDiagramJson.get(IcePanelConstants.MODEL_OBJECTS);
     ArrayList<JSONObject> children = new ArrayList<>();
     modelObjects.keySet().forEach(
@@ -184,7 +184,7 @@ public class IcePanelToPlantUmlConverter {
             String parentId = getValue(modelObject, "parentId");
 
             if (givenParentId.equals(parentId)) {
-              log.debug( "extractChildren add object (" + object + IcePanelConstants.DEBUG_ENDING_STRING);
+              log.debug("extractChildren add object ({}) ------------------", object);
               children.add(modelObject);
             }
           }
@@ -205,7 +205,7 @@ public class IcePanelToPlantUmlConverter {
 
     String childId = getValue(child, "id");
 
-    log.debug( "extractNodeNeighbors( " + childId + IcePanelConstants.DEBUG_ENDING_STRING);
+    log.debug("extractNodeNeighbors( {} ) ------------------", childId);
     JSONObject modelConnections = (JSONObject) icePanelDiagramJson.get(IcePanelConstants.MODEL_CONNECTIONS);
     modelConnections.keySet().forEach(
         object -> {
@@ -214,16 +214,14 @@ public class IcePanelToPlantUmlConverter {
           String target = getValue(modelObject, IcePanelConstants.TARGET_ID);
 
           if (childId.equals(source) || childId.equals(target)) {
-            log.debug( "   extractNodeNeighbors ["
-                    + source + "][" + target + "]------");
+            log.debug( "   extractNodeNeighbors [{}][{}]------", source, target);
             JSONObject jsonObject;
             if (childId.equals(source)) {
               jsonObject = getObject(icePanelDiagramJson, target);
             } else {
               jsonObject = getObject(icePanelDiagramJson, source);
             }
-            log.debug( "   ---> extractNodeNeighbors add ["
-                    + childId + "][" + jsonObject + "]---");
+            log.debug( "   ---> extractNodeNeighbors add [{}][{}]---", childId, jsonObject);
             neighbors.add(jsonObject);
           }
         }
@@ -413,47 +411,47 @@ public class IcePanelToPlantUmlConverter {
     output.println();
     JSONObject steps = (JSONObject) flow.get(IcePanelConstants.FLOW_STEPS);
     output.println("' Elements =======");
-    log.debug( "Steps : " + steps);
+    log.debug( "Steps : {}", steps);
 
     log.debug( "generateFlowDiagramEntities() Steps ------------------");
     output.println("' Steps =======");
     int maxSteps = findSequenceStepMax(steps);
-    log.debug( "generateFlowDiagramEntities() steps : " + maxSteps);
+    log.debug( "generateFlowDiagramEntities() steps : {}", maxSteps);
 
     HashMap<String, JSONObject> entities = new HashMap<>();
     steps.values().forEach(object -> {
       JSONObject step = (JSONObject) object;
       String originId = getValue(step, IcePanelConstants.ORIGIN_ID);
-      log.debug( "   Step - originId : " + originId);
+      log.debug( "   Step - originId : {}", originId);
       JSONObject origin = getObject(icePanelDiagramJson, originId);
       entities.put(originId, origin);
 
       String targetId = getValue(step, IcePanelConstants.TARGET_ID);
-      log.debug( "   Step - targetId : " + targetId);
+      log.debug( "   Step - targetId : {}", targetId);
       JSONObject target = getObject(icePanelDiagramJson, targetId);
       entities.put(targetId, target);
     });
 
     HashMap<String, JSONObject> tempEntities = (HashMap<String, JSONObject>) entities.clone();
     for (int i = 1; i <= maxSteps; i++) {
-      log.debug( "generateFlowDiagramEntities() steps entities : " + i);
+      log.debug( "generateFlowDiagramEntities() steps entities : {}", i);
       JSONObject step = findSequenceStepNumberX(steps, i);
       if (step != null) {
         String originId = getValue(step, IcePanelConstants.ORIGIN_ID);
-        log.debug( "   Step - originId : " + originId);
+        log.debug( "   Step - originId : {}", originId);
         JSONObject origin = tempEntities.get(originId);
         if (origin != null) {
-          log.debug( "   Step - origin : " + origin);
+          log.debug( "   Step - origin : {}", origin);
           output.println("participant \"" + getValue(origin, IcePanelConstants.NAME) + "\" as "
                   + getValue(origin, IcePanelConstants.ID) + " ");
           tempEntities.remove(originId);
         }
 
         String targetId = getValue(step, IcePanelConstants.TARGET_ID);
-        log.debug( "   Step - targetId : " + targetId);
+        log.debug( "Step - targetId : {}", targetId);
         JSONObject target = tempEntities.get(targetId);
         if (target != null) {
-          log.debug( "   Step - target : " + target);
+          log.debug( "Step - target : {}",target);
           output.println("participant \"" + getValue(target, IcePanelConstants.NAME) + "\" as "
                   + getValue(target, IcePanelConstants.ID) + " ");
           tempEntities.remove(originId);
@@ -464,7 +462,7 @@ public class IcePanelToPlantUmlConverter {
     output.println();
 
     for (int i = 1; i <= maxSteps; i++) {
-      log.debug( "generateFlowDiagramEntities() steps : " + i);
+      log.debug( "generateFlowDiagramEntities() steps : {}", i);
       JSONObject step = findSequenceStepNumberX(steps, i);
       if (step != null) {
         output.println(getValue(step, IcePanelConstants.ORIGIN_ID) + " -> " + getValue(step, IcePanelConstants.TARGET_ID)
@@ -484,10 +482,10 @@ public class IcePanelToPlantUmlConverter {
 
     String name = getValue(flow, "name");
     String id = getValue(flow, "id");
-    log.debug( "generateFlowDiagram (" + id + ", " + name + IcePanelConstants.DEBUG_ENDING_STRING);
+    log.debug("generateFlowDiagram ({}, {}) ------------------", id, name);
 
     String toFileName = subOutputFileNameBase + "-Flow-" + name + ".puml";
-    log.debug( "==== generateFlowDiagram to file (" + toFileName + IcePanelConstants.DEBUG_ENDING_STRING);
+    log.debug("==== generateFlowDiagram to file ({}) ------------------", toFileName);
 
     PrintStream printStream;
 
@@ -508,7 +506,7 @@ public class IcePanelToPlantUmlConverter {
 
     printStream.close();
 
-    log.debug( "==== generateFlowDiagram to file (" + toFileName + ") END ---------");
+    log.debug( "==== generateFlowDiagram to file ({}) END ---------",toFileName);
   }
 
   /** Generate a diagram for each flow in the IcePanel JSON file.
@@ -522,9 +520,8 @@ public class IcePanelToPlantUmlConverter {
                                    final JSONObject icePanelDiagramJson,
                                    final String configurationFile,
                                    final String subOutputFileNameBase) {
-    log.debug( "convertIcePanelFlowToUml [" + icePanelJsonFile
-            + "] (jsonObject) [" + configurationFile
-            + "] [" + subOutputFileNameBase + "]");
+    log.debug( "convertIcePanelFlowToUml [{}] (jsonObject) [{}] [{}]",
+            icePanelJsonFile, configurationFile,subOutputFileNameBase);
 
     ArrayList<JSONObject> flows = findFlows(icePanelDiagramJson);
 
@@ -588,7 +585,7 @@ public class IcePanelToPlantUmlConverter {
               + id + ", \"" + name + IcePanelConstants.OUTPUT_VAL_SEPARATOR_STRING
               + description + IcePanelConstants.OUTPUT_SUBDIAGRAM_CLOSER_STRING);
     } else {
-      log.debug( "unknown type : [" + type + "]");
+      log.debug( "unknown type : [{}]", type);
     }
   }
 

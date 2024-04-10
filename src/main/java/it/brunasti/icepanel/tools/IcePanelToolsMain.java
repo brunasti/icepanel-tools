@@ -24,7 +24,7 @@ public class IcePanelToolsMain {
   // TODO: Check the diagrams: examples/ml/icePanel-C4-output-Mollie
   //  - API Extension - Julian.puml : Description too long
   // TODO: Names of the diagram files with "output"... change them
-  // TODO: Use logger instead of System.err
+  // TODO: Use logger instead of System.err - format string in log.xxx
 
   /* Get actual class name to be printed on */
   static Logger log = LogManager.getLogger(IcePanelToolsMain.class);
