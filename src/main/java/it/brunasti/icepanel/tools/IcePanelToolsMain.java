@@ -11,6 +11,8 @@ import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * Entry point for the CLI version of the ClassDiagrammer.
@@ -23,6 +25,9 @@ public class IcePanelToolsMain {
   //  - API Extension - Julian.puml : Description too long
   // TODO: Names of the diagram files with "output"... change them
   // TODO: Use logger instead of System.err
+
+  /* Get actual class name to be printed on */
+  static Logger log = LogManager.getLogger(IcePanelToolsMain.class);
 
   static CommandLine commandLine;
   static IcePanelToPlantUmlConverter icePanelToPlantUMLConverter;
@@ -45,14 +50,14 @@ public class IcePanelToolsMain {
 
   private static boolean setDebugOption(Option optionDebug) {
     String debugLevelString = commandLine.getOptionValue(optionDebug.getOpt());
-    System.err.println(optionDebug.getDescription()
+    log.info(optionDebug.getDescription()
             + IcePanelConstants.DEBUG_TEXT_SET_TO + debugLevelString + IcePanelConstants.DEBUG_CLOSE_LINE_SQUARED_STRING);
     if (debugLevelString != null) {
       try {
         int dl = Integer.parseInt(debugLevelString);
         Debugger.setDebug(dl);
       } catch (NumberFormatException ex) {
-        System.err.println("Error the option Debug ("
+        log.info("Error the option Debug ("
                 + optionDebug.getDescription() + ") : " + ex.getMessage());
         return false;
       }
@@ -119,22 +124,22 @@ public class IcePanelToolsMain {
 
       if (commandLine.hasOption(optionInputJsonFile.getOpt())) {
         icePanelJSONExportFile = commandLine.getOptionValue(optionInputJsonFile.getOpt());
-        Debugger.debug(optionInputJsonFile.getDescription()
+        log.debug(optionInputJsonFile.getDescription()
                 + IcePanelConstants.DEBUG_TEXT_SET_TO + icePanelJSONExportFile + IcePanelConstants.DEBUG_CLOSE_LINE_SQUARED_STRING);
       }
       if (commandLine.hasOption(optionOutputFile.getOpt())) {
         outputFile = commandLine.getOptionValue(optionOutputFile.getOpt());
-        Debugger.debug(optionOutputFile.getDescription()
+        log.debug(optionOutputFile.getDescription()
                 + IcePanelConstants.DEBUG_TEXT_SET_TO + outputFile + IcePanelConstants.DEBUG_CLOSE_LINE_SQUARED_STRING);
       }
       if (commandLine.hasOption(optionConfigFile.getOpt())) {
         configurationFile = commandLine.getOptionValue(optionConfigFile.getOpt());
-        Debugger.debug(optionConfigFile.getDescription()
+        log.debug(optionConfigFile.getDescription()
                 + IcePanelConstants.DEBUG_TEXT_SET_TO + configurationFile + IcePanelConstants.DEBUG_CLOSE_LINE_SQUARED_STRING);
       }
 
     } catch (ParseException | NullPointerException e) {
-      System.err.println(e.getMessage());
+      log.info(e.getMessage());
       printHelp(options);
       return false;
     }
@@ -147,7 +152,7 @@ public class IcePanelToolsMain {
 
   static void printHelp(Options options) {
     if (null == options) {
-      System.err.println("ERROR: No options provided to printHelp");
+      log.info("ERROR: No options provided to printHelp");
       return;
     }
 
@@ -169,7 +174,7 @@ public class IcePanelToolsMain {
 
   static void printUsage(Options options) {
     if (null == options) {
-      System.err.println("ERROR: No options provided to printUsage");
+      log.info("ERROR: No options provided to printUsage");
       return;
     }
 
@@ -187,23 +192,24 @@ public class IcePanelToolsMain {
    * @param args Command Line options
    */
   public static void main(String[] args) {
+    log.info("Start");
     reset();
 
     boolean cliIsCorrect = processCommandLine(args);
 
-    Debugger.debug("CommandLine parsed [" + cliIsCorrect + IcePanelConstants.DEBUG_CLOSE_LINE_SQUARED_STRING);
+    log.debug("CommandLine parsed [" + cliIsCorrect + IcePanelConstants.DEBUG_CLOSE_LINE_SQUARED_STRING);
 
     if (!cliIsCorrect) {
       printHelp();
       return;
     }
 
-    Debugger.debug("IcePanel JSON file [" + icePanelJSONExportFile + "]\n"
+    log.debug("IcePanel JSON file [" + icePanelJSONExportFile + "]\n"
                   + "OutputFile         [" + outputFile + "]\n"
                   + "ConfigurationFile  [" + configurationFile + IcePanelConstants.DEBUG_CLOSE_LINE_SQUARED_STRING);
 
     if ((null == icePanelJSONExportFile) || (icePanelJSONExportFile.isBlank())) {
-      System.err.println("IcePanel JSON export file to be transformed not defined");
+      log.info("IcePanel JSON export file to be transformed not defined");
       printHelp();
       return;
     }

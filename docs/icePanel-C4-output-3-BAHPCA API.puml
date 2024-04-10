@@ -2,9 +2,9 @@
 'https://plantuml.com/class-diagram
 ' CONVERT ICEPANEL DIAGRAM ===========
 ' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
-' IcePanel JSON File : [./src/test/resources/icepanel-plain.json]
+' IcePanel JSON File : [./src/test/resources/icepanel-structured.json]
 ' Configuration      : [./docs/config.json]
-' Generated at       : Wed Apr 10 10:08:21 CEST 2024
+' Generated at       : Wed Apr 10 11:28:48 CEST 2024
 
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
@@ -25,18 +25,10 @@ Component(4teQrlbMUj5LLqxdVcPK, "BAHPCA API", "" ) {
 
 ' NEIGHBOR CLASSES =======
 ContainerDb(MzZVLTUQ74KbySVwdHfZ, "OpenSearch", "", "" )
-Container(Vg8nvjzPDirSBRjT8K3Q, "Solr API Code", "", "" )
-Component(DzQ4VPgJYKxSkilz6snk, "BAHPCA_repo", "" )
-Component(6uyz5GXgHFSVjrwIwRKC, "Common_Repo", "" )
 
 
 ' CONNECTIONS =======
-Rel(DzQ4VPgJYKxSkilz6snk, Nr2rq32hBezwoAGeNT2U, "Deployed as" )
-Rel(Vg8nvjzPDirSBRjT8K3Q, DqaxYHtWGYqlWeYgZkyP, "Uses" )
 Rel(MzZVLTUQ74KbySVwdHfZ, Nr2rq32hBezwoAGeNT2U, "reads data" )
-Rel(Vg8nvjzPDirSBRjT8K3Q, JOCj92Vc2CEAUN8hquBI, "Based on" )
-Rel(Nr2rq32hBezwoAGeNT2U, JOCj92Vc2CEAUN8hquBI, "Based on" )
-Rel(6uyz5GXgHFSVjrwIwRKC, DqaxYHtWGYqlWeYgZkyP, "Deployed as" )
 
 
 @enduml

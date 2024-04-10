@@ -2,9 +2,9 @@
 'https://plantuml.com/class-diagram
 ' CONVERT ICEPANEL DIAGRAM ===========
 ' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
-' IcePanel JSON File : [./src/test/resources/icepanel-plain.json]
+' IcePanel JSON File : [./src/test/resources/icepanel-structured.json]
 ' Configuration      : [./docs/config.json]
-' Generated at       : Wed Apr 10 10:08:21 CEST 2024
+' Generated at       : Wed Apr 10 11:28:48 CEST 2024
 
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
@@ -39,31 +39,28 @@ System(LqXZYPgQ9UPjc7lqtp7S, "Akamai", "" )
 Container(Vg8nvjzPDirSBRjT8K3Q, "Solr API Code", "", "" )
 Container(Nr2rq32hBezwoAGeNT2U, "BAHPCA API Code", "", "" )
 Component(FbHUk96QaZQVUumba63H, "Batch Controller", "" )
+System(axBWvtIPYmpByC3xkoHt, "GitHub", "" )
 Component(F2hUPV68esNdYOZlEDZp, "Git Pipeline", "" )
 Person(mtyHirRmDImFDmca6URg, "Cache Admin", "" )
 Person(f1fiXJziytRGVe7hFuLo, "Commercial Analyst", "" )
 
 
 ' CONNECTIONS =======
-Rel(MzZVLTUQ74KbySVwdHfZ, Vg8nvjzPDirSBRjT8K3Q, "reads data" )
-Rel(heuHGHPQyPiOSCrreA29, 4teQrlbMUj5LLqxdVcPK, "Accesses API implementations" )
-Rel(LqXZYPgQ9UPjc7lqtp7S, heuHGHPQyPiOSCrreA29, "Access  secured systems" )
-Rel(MzZVLTUQ74KbySVwdHfZ, Nr2rq32hBezwoAGeNT2U, "reads data" )
-Rel(MzZVLTUQ74KbySVwdHfZ, LOCysP2vMe5DXLAHEYdU, "Retrieve Cache" )
-Rel(wSyyLfkRhknshpX3pdWJ, Xoxj4IX90NjN8wiNvxFB, "Request Cache Data" )
-Rel(F2hUPV68esNdYOZlEDZp, 4teQrlbMUj5LLqxdVcPK, "Deploy" )
-Rel(p4yomm0RrOrYTNX8VvEg, MoA8eTudOD7sWkzZF9av, "Flow" )
 Rel(FbHUk96QaZQVUumba63H, p4yomm0RrOrYTNX8VvEg, "OnPrem / AWS connectivity" )
 Rel(uFk6F6ZcKKvnkVRkCNgH, N5ViUhQIiCffQr67385p, "Access SQL Server" )
 Rel(N5ViUhQIiCffQr67385p, uFk6F6ZcKKvnkVRkCNgH, "Return of Access SQL Server" )
 Rel(BxsQud7gKwTvBJQ0KNj2, uFk6F6ZcKKvnkVRkCNgH, "Create Commercial Analysis Data" )
-Rel(oLiyCOrWiJ4p4jQxIr1F, MzZVLTUQ74KbySVwdHfZ, "Store Offers" )
-Rel(heuHGHPQyPiOSCrreA29, Vg8nvjzPDirSBRjT8K3Q, "Accesses API implementations" )
+Rel(MzZVLTUQ74KbySVwdHfZ, Vg8nvjzPDirSBRjT8K3Q, "reads data" )
 Rel(uFk6F6ZcKKvnkVRkCNgH, f1fiXJziytRGVe7hFuLo, "Analyse Commercial Data" )
 Rel(LOCysP2vMe5DXLAHEYdU, mtyHirRmDImFDmca6URg, "Visualize Cache" )
-Rel(F2hUPV68esNdYOZlEDZp, OmsC5XSTv64h2ua9yNDK, "Deploy" )
+Rel(LqXZYPgQ9UPjc7lqtp7S, heuHGHPQyPiOSCrreA29, "Access  secured systems" )
+Rel(MzZVLTUQ74KbySVwdHfZ, Nr2rq32hBezwoAGeNT2U, "reads data" )
+Rel(FbHUk96QaZQVUumba63H, MzZVLTUQ74KbySVwdHfZ, "Store Cache" )
+Rel(axBWvtIPYmpByC3xkoHt, OmsC5XSTv64h2ua9yNDK, "Deploy" )
+Rel(MzZVLTUQ74KbySVwdHfZ, LOCysP2vMe5DXLAHEYdU, "Retrieve Cache" )
+Rel(wSyyLfkRhknshpX3pdWJ, Xoxj4IX90NjN8wiNvxFB, "Request Cache Data" )
 Rel(MzZVLTUQ74KbySVwdHfZ, BxsQud7gKwTvBJQ0KNj2, "Retrieve Cache" )
-Rel(MoA8eTudOD7sWkzZF9av, oLiyCOrWiJ4p4jQxIr1F, "Flow" )
+Rel(F2hUPV68esNdYOZlEDZp, 4teQrlbMUj5LLqxdVcPK, "Deploy" )
 Rel(F2hUPV68esNdYOZlEDZp, BxsQud7gKwTvBJQ0KNj2, "Deploy" )
 Rel(hQNUt4ZkKRpf1tU4WmD7, MzZVLTUQ74KbySVwdHfZ, "Delete Cache Records" )
 
