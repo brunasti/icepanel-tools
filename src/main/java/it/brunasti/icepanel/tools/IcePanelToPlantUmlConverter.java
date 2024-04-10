@@ -23,6 +23,8 @@ import org.json.simple.JSONObject;
  */
 public class IcePanelToPlantUmlConverter {
 
+  // TODO: Check the order of the target entity in the flow generation
+
   static Logger log = LogManager.getLogger(IcePanelToPlantUmlConverter.class);
   
   // Reference to a PrintStream to be used for the diagram
@@ -584,7 +586,7 @@ public class IcePanelToPlantUmlConverter {
               + id + ", \"" + name + IcePanelConstants.OUTPUT_VAL_SEPARATOR_STRING
               + description + IcePanelConstants.OUTPUT_SUBDIAGRAM_CLOSER_STRING);
     } else {
-      log.debug( "unknown type : [{}]", type);
+      log.error( "unknown type : [{}] from object [{}]", type, jsonObject);
     }
   }
 
@@ -786,29 +788,39 @@ public class IcePanelToPlantUmlConverter {
     String type = getValue(jsonObject, "type", "");
     String description = getValue(jsonObject, "description", " ");
 
-    // TODO: Convert into a switch
-    if (IcePanelConstants.TYPE_SYSTEM.equals(type)) {
-      output.println(head + "System(" + id + ", \"" + name
-              + IcePanelConstants.OUTPUT_VAL_SEPARATOR_STRING + description + IcePanelConstants.OUTPUT_VAL_CLOSER_STRING);
-    } else if (IcePanelConstants.TYPE_ACTOR.equals(type)) {
-      output.println(head + IcePanelConstants.OUTPUT_PERSON + id + ", \"" + name
-              + IcePanelConstants.OUTPUT_VAL_SEPARATOR_STRING + description + IcePanelConstants.OUTPUT_VAL_CLOSER_STRING);
-    } else if (IcePanelConstants.TYPE_APP.equals(type)) {
-      output.println(head + IcePanelConstants.OUTPUT_COMPONENT + id + ", \"" + name
-              + IcePanelConstants.OUTPUT_VAL_SEPARATOR_STRING + description + IcePanelConstants.OUTPUT_VAL_CLOSER_STRING);
-    } else if (IcePanelConstants.TYPE_STORE.equals(type)) {
-      output.println(head + IcePanelConstants.OUTPUT_CONTAINER_DB + id + ", \"" + name
-              + IcePanelConstants.OUTPUT_VAL_SEPARATOR_STRING + description
-              + IcePanelConstants.OUTPUT_VAL_SEPARATOR_STRING + IcePanelConstants.OUTPUT_VAL_CLOSER_STRING);
-    } else if (IcePanelConstants.TYPE_AREA.equals(type)) {
-      log.debug( "skip type : [{}]",  type);
-    } else if (IcePanelConstants.TYPE_COMPONENT.equals(type)) {
-      // TODO: Add technologies
-      output.println(head + IcePanelConstants.OUTPUT_CONTAINER + id + ", \"" + name
-              + IcePanelConstants.OUTPUT_VAL_SEPARATOR_STRING + description
-              + IcePanelConstants.OUTPUT_VAL_SEPARATOR_STRING + IcePanelConstants.OUTPUT_VAL_CLOSER_STRING);
+    if (type != null) {
+      switch (type) {
+        case IcePanelConstants.TYPE_SYSTEM:
+          output.println(head + "System(" + id + ", \"" + name
+                  + IcePanelConstants.OUTPUT_VAL_SEPARATOR_STRING + description + IcePanelConstants.OUTPUT_VAL_CLOSER_STRING);
+          break;
+        case IcePanelConstants.TYPE_ACTOR:
+          output.println(head + IcePanelConstants.OUTPUT_PERSON + id + ", \"" + name
+                  + IcePanelConstants.OUTPUT_VAL_SEPARATOR_STRING + description + IcePanelConstants.OUTPUT_VAL_CLOSER_STRING);
+          break;
+        case IcePanelConstants.TYPE_APP:
+          output.println(head + IcePanelConstants.OUTPUT_COMPONENT + id + ", \"" + name
+                  + IcePanelConstants.OUTPUT_VAL_SEPARATOR_STRING + description + IcePanelConstants.OUTPUT_VAL_CLOSER_STRING);
+          break;
+        case IcePanelConstants.TYPE_STORE:
+          output.println(head + IcePanelConstants.OUTPUT_CONTAINER_DB + id + ", \"" + name
+                  + IcePanelConstants.OUTPUT_VAL_SEPARATOR_STRING + description
+                  + IcePanelConstants.OUTPUT_VAL_SEPARATOR_STRING + IcePanelConstants.OUTPUT_VAL_CLOSER_STRING);
+          break;
+        case IcePanelConstants.TYPE_AREA:
+          log.debug("skip type : [{}]", type);
+          break;
+        case IcePanelConstants.TYPE_COMPONENT:
+          // TODO: Add technologies
+          output.println(head + IcePanelConstants.OUTPUT_CONTAINER + id + ", \"" + name
+                  + IcePanelConstants.OUTPUT_VAL_SEPARATOR_STRING + description
+                  + IcePanelConstants.OUTPUT_VAL_SEPARATOR_STRING + IcePanelConstants.OUTPUT_VAL_CLOSER_STRING);
+          break;
+        default:
+          log.error("unknown type : [{}] for object [{}]", type, jsonObject);
+      }
     } else {
-      log.debug( "unknown type : [{}]", type);
+      log.error( "null type for object [{}]", jsonObject);
     }
   }
 
