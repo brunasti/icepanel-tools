@@ -575,18 +575,23 @@ public class IcePanelToPlantUmlConverter {
     String description = getValue(jsonObject, "description", " ");
 
     // TODO: Convert into a switch and manage not tested options
-    if (IcePanelConstants.TYPE_SYSTEM.equals(type)) {
-      output.println(IcePanelConstants.OUTPUT_SYSTEM_BOUNDARY
-              + id + ", \"" + name + "\" ) {");
-    } else if (IcePanelConstants.TYPE_ROOT.equals(type)) {
-      output.println(IcePanelConstants.OUTPUT_SYSTEM_BOUNDARY
-              + id + ", \"" + name + "\" ) {");
-    } else if (IcePanelConstants.TYPE_APP.equals(type)) {
-      output.println(IcePanelConstants.OUTPUT_COMPONENT
-              + id + ", \"" + name + IcePanelConstants.OUTPUT_VAL_SEPARATOR_STRING
-              + description + IcePanelConstants.OUTPUT_SUBDIAGRAM_CLOSER_STRING);
+    if (type != null) {
+      switch(type) {
+        case IcePanelConstants.TYPE_SYSTEM:
+        case IcePanelConstants.TYPE_ROOT:
+          output.println(IcePanelConstants.OUTPUT_SYSTEM_BOUNDARY
+                  + id + ", \"" + name + "\" ) {");
+          break;
+        case IcePanelConstants.TYPE_APP:
+          output.println(IcePanelConstants.OUTPUT_COMPONENT
+                  + id + ", \"" + name + IcePanelConstants.OUTPUT_VAL_SEPARATOR_STRING
+                  + description + IcePanelConstants.OUTPUT_SUBDIAGRAM_CLOSER_STRING);
+          break;
+        default:
+          log.error("unknown type : [{}] from object [{}]", type, jsonObject);
+      }
     } else {
-      log.error( "unknown type : [{}] from object [{}]", type, jsonObject);
+      log.error("null type from object [{}]", jsonObject);
     }
   }
 
