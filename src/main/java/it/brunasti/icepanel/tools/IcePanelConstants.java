@@ -3,55 +3,58 @@ package it.brunasti.icepanel.tools;
 /**
  * Constants used in the project
  */
-public interface IcePanelConstants {
-// TODO: Replace with final class and / or enum
-  String PATH_DELIMITER_STRING = "/";
+public final class IcePanelConstants {
+
+  private IcePanelConstants() {}
+
+
+  static final String PATH_DELIMITER_STRING = "/";
 
 
 
   // TODO: How can these be converted into an Enum?
   // Object types -------------------------
-  String TYPE_SYSTEM = "system";
-  String TYPE_ACTOR = "actor";
-  String TYPE_APP = "app";
-  String TYPE_STORE = "store";
-  String TYPE_AREA = "area";
-  String TYPE_COMPONENT = "component";
-  String TYPE_ROOT = "root";
+  static final String TYPE_SYSTEM = "system";
+  static final String TYPE_ACTOR = "actor";
+  static final String TYPE_APP = "app";
+  static final String TYPE_STORE = "store";
+  static final String TYPE_AREA = "area";
+  static final String TYPE_COMPONENT = "component";
+  static final String TYPE_ROOT = "root";
 
 
 
   // IcePanel JSON fields and attributes
-  String NODE_TYPE = "type";
-  String ID = "id";
-  String NAME = "name";
-  String DESCRIPTION = "description";
-  String ORIGIN_ID = "originId";
-  String PARENT_ID = "parentId";
-  String TARGET_ID = "targetId";
-  String DIRECTION = "direction";
-  String MODEL_CONNECTIONS = "modelConnections";
-  String MODEL_OBJECTS = "modelObjects";
-  String MODEL_FLOWS = "flows";
-  String PARENT_IDS = "parentIds";
-  String FLOW_STEPS = "steps";
-  String STEP_INDEX = "index";
+  static final String NODE_TYPE = "type";
+  static final String ID = "id";
+  static final String NAME = "name";
+  static final String DESCRIPTION = "description";
+  static final String ORIGIN_ID = "originId";
+  static final String PARENT_ID = "parentId";
+  static final String TARGET_ID = "targetId";
+  static final String DIRECTION = "direction";
+  static final String MODEL_CONNECTIONS = "modelConnections";
+  static final String MODEL_OBJECTS = "modelObjects";
+  static final String MODEL_FLOWS = "flows";
+  static final String PARENT_IDS = "parentIds";
+  static final String FLOW_STEPS = "steps";
+  static final String STEP_INDEX = "index";
 
 
   // Generation keywords --------------------
-  String OUTPUT_SYSTEM_BOUNDARY = "System_Boundary(";
-  String OUTPUT_PERSON = "Person(";
-  String OUTPUT_COMPONENT = "Component(";
-  String OUTPUT_CONTAINER_DB = "ContainerDb(";
-  String OUTPUT_CONTAINER = "Container(";
-  String OUTPUT_VAL_SEPARATOR_STRING = "\", \"";
-  String OUTPUT_VAL_CLOSER_STRING = "\" )";
-  String OUTPUT_SUBDIAGRAM_CLOSER_STRING = "\" ) { ";
+  static final String OUTPUT_SYSTEM_BOUNDARY = "System_Boundary(";
+  static final String OUTPUT_PERSON = "Person(";
+  static final String OUTPUT_COMPONENT = "Component(";
+  static final String OUTPUT_CONTAINER_DB = "ContainerDb(";
+  static final String OUTPUT_CONTAINER = "Container(";
+  static final String OUTPUT_VAL_SEPARATOR_STRING = "\", \"";
+  static final String OUTPUT_VAL_CLOSER_STRING = "\" )";
+  static final String OUTPUT_SUBDIAGRAM_CLOSER_STRING = "\" ) { ";
 
 
-  String DEBUG_TEXT_SET_TO = " set to [";
-  String DEBUG_ENDING_STRING = ") ------------------";
-  String DEBUG_CLOSE_LINE_SQUARED_STRING = "]";
+  static final String DEBUG_TEXT_SET_TO = " set to [";
+  static final String DEBUG_ENDING_STRING = ") ------------------";
+  static final String DEBUG_CLOSE_LINE_SQUARED_STRING = "]";
 
 
 }

@@ -18,7 +18,7 @@ import org.json.simple.JSONObject;
  * - <a href="https://icepanel.io/">IcePanel</a>
  * - <a href="https://plantuml.com/">PlantUML</a>
  */
-public class IcePanelToPlantUmlConverter implements IcePanelConstants {
+public class IcePanelToPlantUmlConverter {
 
   // Reference to a PrintStream to be used for the diagram
   // By default is the Standard.out, but it can be redirected
@@ -88,8 +88,8 @@ public class IcePanelToPlantUmlConverter implements IcePanelConstants {
     Object outputPathObj = jsonObject.get("outputPath");
     if (outputPathObj != null) {
       outputPath = outputPathObj.toString();
-      if (!outputPath.endsWith(PATH_DELIMITER_STRING)) {
-        outputPath = outputPath + PATH_DELIMITER_STRING;
+      if (!outputPath.endsWith(IcePanelConstants.PATH_DELIMITER_STRING)) {
+        outputPath = outputPath + IcePanelConstants.PATH_DELIMITER_STRING;
       }
       generateSubDiagrams = true;
       Debugger.debug(4, "  - outputPath [" + outputPath + "]");
@@ -164,11 +164,11 @@ public class IcePanelToPlantUmlConverter implements IcePanelConstants {
   private ArrayList<JSONObject> extractChildren(
           final JSONObject icePanelDiagramJson, 
           final JSONObject parent) {
-    Debugger.debug(2, "extractChildren(" + parent + DEBUG_ENDING_STRING);
+    Debugger.debug(2, "extractChildren(" + parent + IcePanelConstants.DEBUG_ENDING_STRING);
 
     String givenParentId = getValue(parent, "id");
-    Debugger.debug(2, "extractChildren(" + givenParentId + DEBUG_ENDING_STRING);
-    JSONObject modelObjects = (JSONObject) icePanelDiagramJson.get(MODEL_OBJECTS);
+    Debugger.debug(2, "extractChildren(" + givenParentId + IcePanelConstants.DEBUG_ENDING_STRING);
+    JSONObject modelObjects = (JSONObject) icePanelDiagramJson.get(IcePanelConstants.MODEL_OBJECTS);
     ArrayList<JSONObject> children = new ArrayList<>();
     modelObjects.keySet().forEach(
         object -> {
@@ -179,7 +179,7 @@ public class IcePanelToPlantUmlConverter implements IcePanelConstants {
             String parentId = getValue(modelObject, "parentId");
 
             if (givenParentId.equals(parentId)) {
-              Debugger.debug(2, "extractChildren add object (" + object + DEBUG_ENDING_STRING);
+              Debugger.debug(2, "extractChildren add object (" + object + IcePanelConstants.DEBUG_ENDING_STRING);
               children.add(modelObject);
             }
           }
@@ -189,7 +189,7 @@ public class IcePanelToPlantUmlConverter implements IcePanelConstants {
   }
 
   private JSONObject getObject(final JSONObject icePanelDiagramJson, String objectId) {
-    JSONObject modelObjects = (JSONObject) icePanelDiagramJson.get(MODEL_OBJECTS);
+    JSONObject modelObjects = (JSONObject) icePanelDiagramJson.get(IcePanelConstants.MODEL_OBJECTS);
     return (JSONObject) modelObjects.get(objectId);
   }
 
@@ -200,13 +200,13 @@ public class IcePanelToPlantUmlConverter implements IcePanelConstants {
 
     String childId = getValue(child, "id");
 
-    Debugger.debug(2, "extractNodeNeighbors( " + childId + DEBUG_ENDING_STRING);
-    JSONObject modelConnections = (JSONObject) icePanelDiagramJson.get(MODEL_CONNECTIONS);
+    Debugger.debug(2, "extractNodeNeighbors( " + childId + IcePanelConstants.DEBUG_ENDING_STRING);
+    JSONObject modelConnections = (JSONObject) icePanelDiagramJson.get(IcePanelConstants.MODEL_CONNECTIONS);
     modelConnections.keySet().forEach(
         object -> {
           JSONObject modelObject = (JSONObject) modelConnections.get(object);
-          String source = getValue(modelObject, ORIGIN_ID);
-          String target = getValue(modelObject, TARGET_ID);
+          String source = getValue(modelObject, IcePanelConstants.ORIGIN_ID);
+          String target = getValue(modelObject, IcePanelConstants.TARGET_ID);
 
           if (childId.equals(source) || childId.equals(target)) {
             Debugger.debug(2, "   extractNodeNeighbors ["
@@ -230,10 +230,10 @@ public class IcePanelToPlantUmlConverter implements IcePanelConstants {
           final JSONObject icePanelDiagramJson,
           final JSONObject parent,
           final ArrayList<JSONObject> children) {
-    Debugger.debug(2, "extractNeighbors(" + parent + DEBUG_ENDING_STRING);
+    Debugger.debug(2, "extractNeighbors(" + parent + IcePanelConstants.DEBUG_ENDING_STRING);
 
     String givenParentId = getValue(parent, "id");
-    Debugger.debug(2, "extractNeighbors(" + givenParentId + DEBUG_ENDING_STRING);
+    Debugger.debug(2, "extractNeighbors(" + givenParentId + IcePanelConstants.DEBUG_ENDING_STRING);
 
     // Definition of neighbors: not part of the group, but connected to one of the group
 
@@ -255,7 +255,7 @@ public class IcePanelToPlantUmlConverter implements IcePanelConstants {
       childNeighbors.forEach(neighbor -> {
         String neighborId = getValue(neighbor, "id");
         Debugger.debug(2, "   extractNeighbors add object (" 
-                + neighborId + "," + neighbor + DEBUG_ENDING_STRING);
+                + neighborId + "," + neighbor + IcePanelConstants.DEBUG_ENDING_STRING);
         neighborsMap.put(neighborId, neighbor);
       });
     });
@@ -277,10 +277,10 @@ public class IcePanelToPlantUmlConverter implements IcePanelConstants {
 
   private int depth(JSONObject icePanelDiagramJson, JSONObject node) {
     Debugger.debug(2, "depth ------------------");
-    String parentId = getValue(node, PARENT_ID);
+    String parentId = getValue(node, IcePanelConstants.PARENT_ID);
 
-    String type = getValue(node, NODE_TYPE);
-    if (TYPE_ROOT.equalsIgnoreCase(type)) {
+    String type = getValue(node, IcePanelConstants.NODE_TYPE);
+    if (IcePanelConstants.TYPE_ROOT.equalsIgnoreCase(type)) {
       Debugger.debug(2, "depth ROOT ------------------");
       return 1;
     } else {
@@ -293,14 +293,14 @@ public class IcePanelToPlantUmlConverter implements IcePanelConstants {
 
   private String findRoot(final JSONObject icePanelDiagramJson) {
     Debugger.debug(2, "findRoot() ------------------");
-    JSONObject modelObjects = (JSONObject) icePanelDiagramJson.get(MODEL_OBJECTS);
+    JSONObject modelObjects = (JSONObject) icePanelDiagramJson.get(IcePanelConstants.MODEL_OBJECTS);
     AtomicReference<String> root = new AtomicReference<>("");
     modelObjects.keySet().forEach(
             objectId -> {
               JSONObject modelObject = (JSONObject) modelObjects.get(objectId);
-              String type = getValue(modelObject, NODE_TYPE, "");
+              String type = getValue(modelObject, IcePanelConstants.NODE_TYPE, "");
 
-              if (TYPE_ROOT.equals(type)) {
+              if (IcePanelConstants.TYPE_ROOT.equals(type)) {
                 root.set(objectId.toString());
               }
             }
@@ -312,13 +312,13 @@ public class IcePanelToPlantUmlConverter implements IcePanelConstants {
           final JSONObject icePanelDiagramJson,
           final String rootName) {
     Debugger.debug(2, "findSystems() ------------------");
-    JSONObject modelObjects = (JSONObject) icePanelDiagramJson.get(MODEL_OBJECTS);
+    JSONObject modelObjects = (JSONObject) icePanelDiagramJson.get(IcePanelConstants.MODEL_OBJECTS);
     HashMap<String, JSONObject> parentsMap = new HashMap<>();
     modelObjects.keySet().forEach(
         objectId -> {
           JSONObject modelObject = (JSONObject) modelObjects.get(objectId);
           if (modelObject != null) {
-            String parentId = getValue(modelObject, PARENT_ID);
+            String parentId = getValue(modelObject, IcePanelConstants.PARENT_ID);
             if (!rootName.equals(parentId)) {
               JSONObject parent = getObject(icePanelDiagramJson, parentId);
               if (parent != null) {
@@ -336,7 +336,7 @@ public class IcePanelToPlantUmlConverter implements IcePanelConstants {
 
   private ArrayList<JSONObject> findFlows(final JSONObject icePanelDiagramJson) {
     Debugger.debug(2, "findFlows() ------------------");
-    JSONObject modelObjects = (JSONObject) icePanelDiagramJson.get(MODEL_FLOWS);
+    JSONObject modelObjects = (JSONObject) icePanelDiagramJson.get(IcePanelConstants.MODEL_FLOWS);
     ArrayList<JSONObject> flows = new ArrayList<>();
     modelObjects.keySet().forEach(
             object -> {
@@ -380,7 +380,7 @@ public class IcePanelToPlantUmlConverter implements IcePanelConstants {
     AtomicReference<JSONObject> result = new AtomicReference<>();
     steps.values().forEach(object -> {
       JSONObject step = (JSONObject) object;
-      String stepIndex = getValue(step, STEP_INDEX);
+      String stepIndex = getValue(step, IcePanelConstants.STEP_INDEX);
       if (indexString.equalsIgnoreCase(stepIndex)) {
         result.set(step);
       }
@@ -392,7 +392,7 @@ public class IcePanelToPlantUmlConverter implements IcePanelConstants {
     AtomicInteger index = new AtomicInteger();
     steps.values().forEach(object -> {
       JSONObject step = (JSONObject) object;
-      String stepIndex = getValue(step, STEP_INDEX);
+      String stepIndex = getValue(step, IcePanelConstants.STEP_INDEX);
       int stepIndexInt = Integer.parseInt(stepIndex);
       if (stepIndexInt > index.get()) {
         index.set(stepIndexInt);
@@ -406,7 +406,7 @@ public class IcePanelToPlantUmlConverter implements IcePanelConstants {
                                            final JSONObject flow) {
     Debugger.debug(2, "generateFlowDiagramEntities() ------------------");
     output.println();
-    JSONObject steps = (JSONObject) flow.get(FLOW_STEPS);
+    JSONObject steps = (JSONObject) flow.get(IcePanelConstants.FLOW_STEPS);
     output.println("' Elements =======");
     Debugger.debug(3, "Steps : " + steps);
 
@@ -418,12 +418,12 @@ public class IcePanelToPlantUmlConverter implements IcePanelConstants {
     HashMap<String, JSONObject> entities = new HashMap<>();
     steps.values().forEach(object -> {
       JSONObject step = (JSONObject) object;
-      String originId = getValue(step, ORIGIN_ID);
+      String originId = getValue(step, IcePanelConstants.ORIGIN_ID);
       Debugger.debug(3, "   Step - originId : " + originId);
       JSONObject origin = getObject(icePanelDiagramJson, originId);
       entities.put(originId, origin);
 
-      String targetId = getValue(step, TARGET_ID);
+      String targetId = getValue(step, IcePanelConstants.TARGET_ID);
       Debugger.debug(3, "   Step - targetId : " + targetId);
       JSONObject target = getObject(icePanelDiagramJson, targetId);
       entities.put(targetId, target);
@@ -434,23 +434,23 @@ public class IcePanelToPlantUmlConverter implements IcePanelConstants {
       Debugger.debug(2, "generateFlowDiagramEntities() steps entities : " + i);
       JSONObject step = findSequenceStepNumberX(steps, i);
       if (step != null) {
-        String originId = getValue(step, ORIGIN_ID);
+        String originId = getValue(step, IcePanelConstants.ORIGIN_ID);
         Debugger.debug(3, "   Step - originId : " + originId);
         JSONObject origin = tempEntities.get(originId);
         if (origin != null) {
           Debugger.debug(3, "   Step - origin : " + origin);
-          output.println("participant \"" + getValue(origin, NAME) + "\" as "
-                  + getValue(origin, ID) + " ");
+          output.println("participant \"" + getValue(origin, IcePanelConstants.NAME) + "\" as "
+                  + getValue(origin, IcePanelConstants.ID) + " ");
           tempEntities.remove(originId);
         }
 
-        String targetId = getValue(step, TARGET_ID);
+        String targetId = getValue(step, IcePanelConstants.TARGET_ID);
         Debugger.debug(3, "   Step - targetId : " + targetId);
         JSONObject target = tempEntities.get(targetId);
         if (target != null) {
           Debugger.debug(3, "   Step - target : " + target);
-          output.println("participant \"" + getValue(target, NAME) + "\" as "
-                  + getValue(target, ID) + " ");
+          output.println("participant \"" + getValue(target, IcePanelConstants.NAME) + "\" as "
+                  + getValue(target, IcePanelConstants.ID) + " ");
           tempEntities.remove(originId);
         }
       }
@@ -462,8 +462,8 @@ public class IcePanelToPlantUmlConverter implements IcePanelConstants {
       Debugger.debug(2, "generateFlowDiagramEntities() steps : " + i);
       JSONObject step = findSequenceStepNumberX(steps, i);
       if (step != null) {
-        output.println(getValue(step, ORIGIN_ID) + " -> " + getValue(step, TARGET_ID)
-                + " : " + getValue(step, STEP_INDEX) + " " + getValue(step, DESCRIPTION));
+        output.println(getValue(step, IcePanelConstants.ORIGIN_ID) + " -> " + getValue(step, IcePanelConstants.TARGET_ID)
+                + " : " + getValue(step, IcePanelConstants.STEP_INDEX) + " " + getValue(step, IcePanelConstants.DESCRIPTION));
       }
     }
     output.println();
@@ -479,10 +479,10 @@ public class IcePanelToPlantUmlConverter implements IcePanelConstants {
 
     String name = getValue(flow, "name");
     String id = getValue(flow, "id");
-    Debugger.debug(2, "generateFlowDiagram (" + id + ", " + name + DEBUG_ENDING_STRING);
+    Debugger.debug(2, "generateFlowDiagram (" + id + ", " + name + IcePanelConstants.DEBUG_ENDING_STRING);
 
     String toFileName = subOutputFileNameBase + "-Flow-" + name + ".puml";
-    Debugger.debug(2, "==== generateFlowDiagram to file (" + toFileName + DEBUG_ENDING_STRING);
+    Debugger.debug(2, "==== generateFlowDiagram to file (" + toFileName + IcePanelConstants.DEBUG_ENDING_STRING);
 
     PrintStream printStream;
 
@@ -572,16 +572,16 @@ public class IcePanelToPlantUmlConverter implements IcePanelConstants {
     String description = getValue(jsonObject, "description", " ");
 
     // TODO: Convert into a switch and manage not tested options
-    if (TYPE_SYSTEM.equals(type)) {
-      output.println(OUTPUT_SYSTEM_BOUNDARY
+    if (IcePanelConstants.TYPE_SYSTEM.equals(type)) {
+      output.println(IcePanelConstants.OUTPUT_SYSTEM_BOUNDARY
               + id + ", \"" + name + "\" ) {");
-    } else if (TYPE_ROOT.equals(type)) {
-      output.println(OUTPUT_SYSTEM_BOUNDARY
+    } else if (IcePanelConstants.TYPE_ROOT.equals(type)) {
+      output.println(IcePanelConstants.OUTPUT_SYSTEM_BOUNDARY
               + id + ", \"" + name + "\" ) {");
-    } else if (TYPE_APP.equals(type)) {
-      output.println(OUTPUT_COMPONENT
-              + id + ", \"" + name + OUTPUT_VAL_SEPARATOR_STRING
-              + description + OUTPUT_SUBDIAGRAM_CLOSER_STRING);
+    } else if (IcePanelConstants.TYPE_APP.equals(type)) {
+      output.println(IcePanelConstants.OUTPUT_COMPONENT
+              + id + ", \"" + name + IcePanelConstants.OUTPUT_VAL_SEPARATOR_STRING
+              + description + IcePanelConstants.OUTPUT_SUBDIAGRAM_CLOSER_STRING);
     } else {
       Debugger.debug(2, "unknown type : [" + type + "]");
     }
@@ -627,14 +627,14 @@ public class IcePanelToPlantUmlConverter implements IcePanelConstants {
 
     output.println();
     output.println("' CONNECTIONS =======");
-    JSONObject modelConnections = (JSONObject) icePanelDiagramJson.get(MODEL_CONNECTIONS);
+    JSONObject modelConnections = (JSONObject) icePanelDiagramJson.get(IcePanelConstants.MODEL_CONNECTIONS);
     modelConnections.keySet().forEach(
             object -> {
               JSONObject connectionObject = (JSONObject) modelConnections.get(object);
               String name = getName(object, connectionObject);
-              String source = getValue(connectionObject, ORIGIN_ID);
-              String target = getValue(connectionObject, TARGET_ID);
-              String direction = getValue(connectionObject, DIRECTION);
+              String source = getValue(connectionObject, IcePanelConstants.ORIGIN_ID);
+              String target = getValue(connectionObject, IcePanelConstants.TARGET_ID);
+              String direction = getValue(connectionObject, IcePanelConstants.DIRECTION);
 
               JSONObject sourceObject = getObject(icePanelDiagramJson, source);
               JSONObject targetObject = getObject(icePanelDiagramJson, target);
@@ -666,7 +666,7 @@ public class IcePanelToPlantUmlConverter implements IcePanelConstants {
 
     String name = getValue(base, "name");
     String id = getValue(base, "id");
-    Debugger.debug(2, "generateSubDiagram (" + id + ", " + name + DEBUG_ENDING_STRING);
+    Debugger.debug(2, "generateSubDiagram (" + id + ", " + name + IcePanelConstants.DEBUG_ENDING_STRING);
 
     ArrayList<JSONObject> children = extractChildren(icePanelDiagramJson, base);
 
@@ -678,7 +678,7 @@ public class IcePanelToPlantUmlConverter implements IcePanelConstants {
     int depth = depth(icePanelDiagramJson, base);
 
     String toFileName = subOutputFileNameBase + "-" + depth + "-" + name + ".puml";
-    Debugger.debug(2, "==== generateSubDiagram to file (" + toFileName + DEBUG_ENDING_STRING);
+    Debugger.debug(2, "==== generateSubDiagram to file (" + toFileName + IcePanelConstants.DEBUG_ENDING_STRING);
 
     PrintStream printStream;
 
@@ -727,14 +727,14 @@ public class IcePanelToPlantUmlConverter implements IcePanelConstants {
     Debugger.debug(2, "generateConnections() ------------------");
     output.println();
     output.println("' CONNECTIONS =======");
-    JSONObject modelConnections = (JSONObject) icePanelDiagramJson.get(MODEL_CONNECTIONS);
+    JSONObject modelConnections = (JSONObject) icePanelDiagramJson.get(IcePanelConstants.MODEL_CONNECTIONS);
     modelConnections.keySet().forEach(
             object -> {
               JSONObject modelObject = (JSONObject) modelConnections.get(object);
               String name = getName(object, modelObject);
-              String source = getValue(modelObject, ORIGIN_ID);
-              String target = getValue(modelObject, TARGET_ID);
-              String direction = getValue(modelObject, DIRECTION);
+              String source = getValue(modelObject, IcePanelConstants.ORIGIN_ID);
+              String target = getValue(modelObject, IcePanelConstants.TARGET_ID);
+              String direction = getValue(modelObject, IcePanelConstants.DIRECTION);
               if ("outgoing".equals(direction)) {
                 output.println("Rel(" + source + ", " + target + ", \"" + name + "\" )");
               } else if ("bidirectional".equals(direction)) {
@@ -747,11 +747,11 @@ public class IcePanelToPlantUmlConverter implements IcePanelConstants {
 
     output.println();
     output.println("' PARENT CONNECTIONS =======");
-    JSONObject modelObjects = (JSONObject) icePanelDiagramJson.get(MODEL_OBJECTS);
+    JSONObject modelObjects = (JSONObject) icePanelDiagramJson.get(IcePanelConstants.MODEL_OBJECTS);
     modelObjects.keySet().forEach(
             object -> {
               JSONObject modelObject = (JSONObject) modelObjects.get(object);
-              JSONArray parentIds = (JSONArray) modelObject.get(PARENT_IDS);
+              JSONArray parentIds = (JSONArray) modelObject.get(IcePanelConstants.PARENT_IDS);
 
               if (parentIds != null) {
                 parentIds.forEach(
@@ -786,26 +786,26 @@ public class IcePanelToPlantUmlConverter implements IcePanelConstants {
     String description = getValue(jsonObject, "description", " ");
 
     // TODO: Convert into a switch
-    if (TYPE_SYSTEM.equals(type)) {
+    if (IcePanelConstants.TYPE_SYSTEM.equals(type)) {
       output.println(head + "System(" + id + ", \"" + name
-              + OUTPUT_VAL_SEPARATOR_STRING + description + OUTPUT_VAL_CLOSER_STRING);
-    } else if (TYPE_ACTOR.equals(type)) {
-      output.println(head + OUTPUT_PERSON + id + ", \"" + name
-              + OUTPUT_VAL_SEPARATOR_STRING + description + OUTPUT_VAL_CLOSER_STRING);
-    } else if (TYPE_APP.equals(type)) {
-      output.println(head + OUTPUT_COMPONENT + id + ", \"" + name
-              + OUTPUT_VAL_SEPARATOR_STRING + description + OUTPUT_VAL_CLOSER_STRING);
-    } else if (TYPE_STORE.equals(type)) {
-      output.println(head + OUTPUT_CONTAINER_DB + id + ", \"" + name
-              + OUTPUT_VAL_SEPARATOR_STRING + description
-              + OUTPUT_VAL_SEPARATOR_STRING + OUTPUT_VAL_CLOSER_STRING);
-    } else if (TYPE_AREA.equals(type)) {
+              + IcePanelConstants.OUTPUT_VAL_SEPARATOR_STRING + description + IcePanelConstants.OUTPUT_VAL_CLOSER_STRING);
+    } else if (IcePanelConstants.TYPE_ACTOR.equals(type)) {
+      output.println(head + IcePanelConstants.OUTPUT_PERSON + id + ", \"" + name
+              + IcePanelConstants.OUTPUT_VAL_SEPARATOR_STRING + description + IcePanelConstants.OUTPUT_VAL_CLOSER_STRING);
+    } else if (IcePanelConstants.TYPE_APP.equals(type)) {
+      output.println(head + IcePanelConstants.OUTPUT_COMPONENT + id + ", \"" + name
+              + IcePanelConstants.OUTPUT_VAL_SEPARATOR_STRING + description + IcePanelConstants.OUTPUT_VAL_CLOSER_STRING);
+    } else if (IcePanelConstants.TYPE_STORE.equals(type)) {
+      output.println(head + IcePanelConstants.OUTPUT_CONTAINER_DB + id + ", \"" + name
+              + IcePanelConstants.OUTPUT_VAL_SEPARATOR_STRING + description
+              + IcePanelConstants.OUTPUT_VAL_SEPARATOR_STRING + IcePanelConstants.OUTPUT_VAL_CLOSER_STRING);
+    } else if (IcePanelConstants.TYPE_AREA.equals(type)) {
       Debugger.debug(2, "skip type : [" + type + "]");
-    } else if (TYPE_COMPONENT.equals(type)) {
+    } else if (IcePanelConstants.TYPE_COMPONENT.equals(type)) {
       // TODO: Add technologies
-      output.println(head + OUTPUT_CONTAINER + id + ", \"" + name
-              + OUTPUT_VAL_SEPARATOR_STRING + description
-              + OUTPUT_VAL_SEPARATOR_STRING + OUTPUT_VAL_CLOSER_STRING);
+      output.println(head + IcePanelConstants.OUTPUT_CONTAINER + id + ", \"" + name
+              + IcePanelConstants.OUTPUT_VAL_SEPARATOR_STRING + description
+              + IcePanelConstants.OUTPUT_VAL_SEPARATOR_STRING + IcePanelConstants.OUTPUT_VAL_CLOSER_STRING);
     } else {
       Debugger.debug(2, "unknown type : [" + type + "]");
     }
@@ -815,7 +815,7 @@ public class IcePanelToPlantUmlConverter implements IcePanelConstants {
     Debugger.debug(2, "generateClasses() ------------------");
     output.println();
     output.println("' CLASSES =======");
-    JSONObject modelObjects = (JSONObject) icePanelDiagramJson.get(MODEL_OBJECTS);
+    JSONObject modelObjects = (JSONObject) icePanelDiagramJson.get(IcePanelConstants.MODEL_OBJECTS);
     modelObjects.keySet().forEach(
             object -> {
               JSONObject modelObject = (JSONObject) modelObjects.get(object);
