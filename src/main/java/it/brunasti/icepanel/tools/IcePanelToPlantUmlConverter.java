@@ -23,7 +23,7 @@ import org.json.simple.JSONObject;
  */
 public class IcePanelToPlantUmlConverter {
 
-  static Logger log = LogManager.getLogger(IcePanelToolsMain.class);
+  static Logger log = LogManager.getLogger(IcePanelToPlantUmlConverter.class);
   
   // Reference to a PrintStream to be used for the diagram
   // By default is the Standard.out, but it can be redirected
@@ -80,12 +80,12 @@ public class IcePanelToPlantUmlConverter {
     Object includeFile = jsonObject.get("includeFile");
     if (includeFile != null) {
       includeFileName = includeFile.toString();
-      log.debug("  - includeFile [" + includeFileName + "]");
+      log.debug("  - includeFile [{}]", includeFileName);
     }
     Object includeFlowFile = jsonObject.get("includeFlowFile");
     if (includeFlowFile != null) {
       includeFlowFileName = includeFlowFile.toString();
-      log.debug("  - includeFlowFile [" + includeFlowFileName + "]");
+      log.debug("  - includeFlowFile [{}]", includeFlowFileName);
     }
   }
 
@@ -97,7 +97,7 @@ public class IcePanelToPlantUmlConverter {
         outputPath = outputPath + IcePanelConstants.PATH_DELIMITER_STRING;
       }
       generateSubDiagrams = true;
-      log.debug("  - outputPath [" + outputPath + "]");
+      log.debug("  - outputPath [{}]", outputPath);
     }
   }
 
@@ -233,10 +233,10 @@ public class IcePanelToPlantUmlConverter {
           final JSONObject icePanelDiagramJson,
           final JSONObject parent,
           final ArrayList<JSONObject> children) {
-    log.debug( "extractNeighbors(" + parent + IcePanelConstants.DEBUG_ENDING_STRING);
+    log.debug("extractNeighbors({}) ------------------", parent );
 
     String givenParentId = getValue(parent, "id");
-    log.debug( "extractNeighbors(" + givenParentId + IcePanelConstants.DEBUG_ENDING_STRING);
+    log.debug("extractNeighbors({}) ------------------",  givenParentId );
 
     // Definition of neighbors: not part of the group, but connected to one of the group
 
@@ -252,13 +252,12 @@ public class IcePanelToPlantUmlConverter {
 
     // For each child search for its neighbors
     children.forEach(child -> {
-      log.debug( "extractNeighbors of child (" + child + ") --------");
+      log.debug( "extractNeighbors of child ({}) --------", child);
       ArrayList<JSONObject> childNeighbors
               = extractNodeNeighbors(icePanelDiagramJson, child);
       childNeighbors.forEach(neighbor -> {
         String neighborId = getValue(neighbor, "id");
-        log.debug( "   extractNeighbors add object (" 
-                + neighborId + "," + neighbor + IcePanelConstants.DEBUG_ENDING_STRING);
+        log.debug("   extractNeighbors add object ({},{}) ------------------", neighborId, neighbor );
         neighborsMap.put(neighborId, neighbor);
       });
     });
@@ -266,7 +265,7 @@ public class IcePanelToPlantUmlConverter {
     ArrayList<JSONObject> neighbors = new ArrayList<>();
     neighborsMap.values().forEach(
         object -> {
-          log.debug( "extractNeighbors LAST add object (" + object + ") -------");
+          log.debug( "extractNeighbors LAST add object ({}) -------", object);
           String objectId = getValue(object, "id");
           // Check if it's one of the children
           JSONObject child = childrenMap.get(objectId);
@@ -289,7 +288,7 @@ public class IcePanelToPlantUmlConverter {
     } else {
       JSONObject parent = getObject(icePanelDiagramJson, parentId);
       int depth = depth(icePanelDiagramJson, parent) + 1;
-      log.debug( "depth (" + depth + ") ------------------");
+      log.debug( "depth ({}) ------------------", depth);
       return depth;
     }
   }
@@ -668,19 +667,19 @@ public class IcePanelToPlantUmlConverter {
 
     String name = getValue(base, "name");
     String id = getValue(base, "id");
-    log.debug( "generateSubDiagram (" + id + ", " + name + IcePanelConstants.DEBUG_ENDING_STRING);
+    log.debug("generateSubDiagram ({},{}) ------------------", id , name);
 
     ArrayList<JSONObject> children = extractChildren(icePanelDiagramJson, base);
 
     if (children.isEmpty()) {
-      log.debug( "NOT generateSubDiagram for (" + base + ") because no children");
+      log.debug( "NOT generateSubDiagram for ({}) because no children", base);
       return;
     }
 
     int depth = depth(icePanelDiagramJson, base);
 
     String toFileName = subOutputFileNameBase + "-" + depth + "-" + name + ".puml";
-    log.debug( "==== generateSubDiagram to file (" + toFileName + IcePanelConstants.DEBUG_ENDING_STRING);
+    log.debug("==== generateSubDiagram to file ({}) ------------------", toFileName);
 
     PrintStream printStream;
 
@@ -705,7 +704,7 @@ public class IcePanelToPlantUmlConverter {
 
     printStream.close();
 
-    log.debug( "==== generateSubDiagram to file (" + toFileName + ") END ---------");
+    log.debug( "==== generateSubDiagram to file ({}) END ---------", toFileName);
   }
 
   private void generateSubDiagrams(
@@ -802,14 +801,14 @@ public class IcePanelToPlantUmlConverter {
               + IcePanelConstants.OUTPUT_VAL_SEPARATOR_STRING + description
               + IcePanelConstants.OUTPUT_VAL_SEPARATOR_STRING + IcePanelConstants.OUTPUT_VAL_CLOSER_STRING);
     } else if (IcePanelConstants.TYPE_AREA.equals(type)) {
-      log.debug( "skip type : [" + type + "]");
+      log.debug( "skip type : [{}]",  type);
     } else if (IcePanelConstants.TYPE_COMPONENT.equals(type)) {
       // TODO: Add technologies
       output.println(head + IcePanelConstants.OUTPUT_CONTAINER + id + ", \"" + name
               + IcePanelConstants.OUTPUT_VAL_SEPARATOR_STRING + description
               + IcePanelConstants.OUTPUT_VAL_SEPARATOR_STRING + IcePanelConstants.OUTPUT_VAL_CLOSER_STRING);
     } else {
-      log.debug( "unknown type : [" + type + "]");
+      log.debug( "unknown type : [{}]", type);
     }
   }
 
@@ -853,9 +852,7 @@ public class IcePanelToPlantUmlConverter {
                                    final JSONObject icePanelDiagramJson,
                                    final String configurationFile,
                                    final String subOutputFileNameBase) {
-    log.debug( "convertIcePanelToUML [" + icePanelJsonFile
-            + "] (jsonObject) [" + configurationFile
-            + "] [" + subOutputFileNameBase + "]");
+    log.debug( "convertIcePanelToUML [{}][{}][{}]", icePanelJsonFile, configurationFile, subOutputFileNameBase);
 
     String rootName = findRoot(icePanelDiagramJson);
 
@@ -884,9 +881,7 @@ public class IcePanelToPlantUmlConverter {
                                    final String configurationFile,
                                    final String subOutputFileNameBase) {
     cleanLocalVars();
-    log.debug( "convertIcePanelToUML [" + icePanelJsonFile
-            + "][" + configurationFile
-            + "][" + subOutputFileNameBase + "]");
+    log.debug( "convertIcePanelToUML [{}][{}][{}]", icePanelJsonFile, configurationFile, subOutputFileNameBase);
 
     boolean initiated = loadConfiguration(configurationFile);
     if (!initiated) {
