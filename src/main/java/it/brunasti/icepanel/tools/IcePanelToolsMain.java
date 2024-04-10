@@ -50,22 +50,8 @@ public class IcePanelToolsMain {
 
   private static boolean setDebugOption(Option optionDebug) {
     if (commandLine.hasOption(optionDebug.getOpt())) {
-//      Debugger.setDebug(true);
       debug = true;
     }
-//    String debugLevelString = commandLine.getOptionValue(optionDebug.getOpt());
-//    log.info(IcePanelConstants.DEBUG_TEXT_SET_TO, optionDebug.getDescription(), debugLevelString);
-//    if (debugLevelString != null) {
-//      try {
-//        int dl = Integer.parseInt(debugLevelString);
-//        Debugger.setDebug(dl);
-//      } catch (NumberFormatException ex) {
-//        log.error("Error the option Debug ({}) - : {}", optionDebug.getDescription(), ex.getMessage());
-//        return false;
-//      }
-//    } else {
-//      Debugger.setDebug(true);
-//    }
     return true;
   }
 
@@ -99,9 +85,7 @@ public class IcePanelToolsMain {
 
       commandLine = parser.parse(options, args);
 
-      if (commandLine.hasOption(optionDebug.getOpt()) && (!setDebugOption(optionDebug))) {
-        return false;
-      }
+      setDebugOption(optionDebug);
 
       if (debug) {
         Utils.dump("ARGS", args, System.err);
