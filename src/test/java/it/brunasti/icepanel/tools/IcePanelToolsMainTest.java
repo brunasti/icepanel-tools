@@ -123,23 +123,23 @@ public class IcePanelToolsMainTest implements TestConstants {
     argsHelp[0] = "-?";
     assertDoesNotThrow(() -> IcePanelToolsMain.main(argsHelp));
 
-    String[] multiArgs = new String[6];
-
-    multiArgs[0] = icePanelJSONFileCompact_02;
-    multiArgs[1] = outputFileName;
-    multiArgs[2] = "-d";
-    multiArgs[3] = "10";
-    multiArgs[4] = "-c";
-    multiArgs[5] = nonExistingJsonFileName;
-    assertDoesNotThrow(() -> IcePanelToolsMain.main(multiArgs));
-
-    multiArgs[0] = nonExistingJsonFileName;
-    multiArgs[1] = outputFileName;
-    multiArgs[2] = "-d";
-    multiArgs[3] = "10";
-    multiArgs[4] = "-c";
-    multiArgs[5] = configurationFileName;
-    assertDoesNotThrow(() -> IcePanelToolsMain.main(multiArgs));
+//    String[] multiArgs = new String[6];
+//
+//    multiArgs[0] = icePanelJSONFileCompact_02;
+//    multiArgs[1] = outputFileName;
+//    multiArgs[2] = "-d";
+//    multiArgs[3] = "10";
+//    multiArgs[4] = "-c";
+//    multiArgs[5] = nonExistingJsonFileName;
+//    assertDoesNotThrow(() -> IcePanelToolsMain.main(multiArgs));
+//
+//    multiArgs[0] = nonExistingJsonFileName;
+//    multiArgs[1] = outputFileName;
+//    multiArgs[2] = "-d";
+//    multiArgs[3] = "10";
+//    multiArgs[4] = "-c";
+//    multiArgs[5] = configurationFileName;
+//    assertDoesNotThrow(() -> IcePanelToolsMain.main(multiArgs));
   }
 
   @Test

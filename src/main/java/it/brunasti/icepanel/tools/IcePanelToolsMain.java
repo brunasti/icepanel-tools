@@ -64,7 +64,7 @@ public class IcePanelToolsMain {
     Option optionHelp = new Option("h", "help", false, "Help");
     Option optionShortUsage = new Option("?", false, "Quick Reference");
     Option optionDebug = Option.builder().option("d")
-            .longOpt("debug").hasArg(false).optionalArg(true)
+            .longOpt("debug").hasArg(false)
             .desc("Execute in debug mode").build();
     Option optionOutputFile = new Option("o", "output", true, "Output File");
     Option optionConfigFile = new Option("c", "config", true,
