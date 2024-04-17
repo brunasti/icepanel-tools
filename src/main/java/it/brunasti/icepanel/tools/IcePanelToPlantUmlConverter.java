@@ -485,7 +485,8 @@ public class IcePanelToPlantUmlConverter {
           final String subOutputFileNameBase) {
     log.debug( "generateFlowDiagram() ---------");
 
-    String name = getValue(flow, "name");
+//    String name = getValue(flow, "name");
+    String name = getValue(flow, "name").replace(' ','_');
     String id = getValue(flow, "id");
     log.debug("generateFlowDiagram ({}, {}) ------------------", id, name);
 

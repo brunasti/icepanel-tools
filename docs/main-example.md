@@ -24,7 +24,5 @@
 
 ## IcePanel Flows
 
-![IcePanel Flows](./images/icePanel-C4-Flow-Transfer data to OpenSearch by Control-M Batch Flow.png)
-
-
+![IcePanel Flows](./images/icePanel-C4-Flow-Transfer_data_to_OpenSearch_by_Control-M_Batch_Flow.png)
 
