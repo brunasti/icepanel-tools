@@ -4,17 +4,17 @@
 ' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
 ' IcePanel JSON File : [./examples/sg/sg-001.json]
 ' Configuration      : [./examples/sg/config.json]
-' Generated at       : Mon Apr 15 17:04:48 CEST 2024
+' Generated at       : Wed Apr 17 11:06:08 CEST 2024
 
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
 
 
 
-System_Boundary(gTWo4W2ihM3ZFFQsRPF5, "Connector" ) {
+System_Boundary(kcZ6JMZ3WNq8pReNTFS2, "SolMan - SAP  - Solution Manager" ) {
     ' CLASSES =======
-    Component(Kl9tTaoCuXqdHTvo4lkZ, "Signavio BPM Connector", "" )
-    Component(7exSkve2BLQcqhzdAB20, "SAP HANA  - Cloud", "" )
+    Component(QkIAEDVBPA2TLsAXXWO2, "Test SAP SolMan 7.2", "" )
+    Component(OHrd5OnZcC3om9jIhGs3, "SCC - SAP Cloud Connector", "" )
 }
 
 
@@ -24,11 +24,9 @@ Container(FMEFRLGEAtEaY3KE4ZT3, "Cypress Engine", "", "" )
 
 
 ' CONNECTIONS =======
-Rel(FMEFRLGEAtEaY3KE4ZT3, Kl9tTaoCuXqdHTvo4lkZ, "Execute Tests" )
-Rel(Kl9tTaoCuXqdHTvo4lkZ, UDzF9znNIXtFk9LwBDHM, "Trusted Call" )
-Rel(UDzF9znNIXtFk9LwBDHM, Kl9tTaoCuXqdHTvo4lkZ, "Return of Trusted Call" )
-Rel(Kl9tTaoCuXqdHTvo4lkZ, 7exSkve2BLQcqhzdAB20, "HTTPS / OAuth2" )
-Rel(7exSkve2BLQcqhzdAB20, Kl9tTaoCuXqdHTvo4lkZ, "Return of HTTPS / OAuth2" )
+Rel(FMEFRLGEAtEaY3KE4ZT3, QkIAEDVBPA2TLsAXXWO2, "Setup Test Data" )
+Rel(UDzF9znNIXtFk9LwBDHM, OHrd5OnZcC3om9jIhGs3, "Secure VPN tunnel" )
+Rel(OHrd5OnZcC3om9jIhGs3, QkIAEDVBPA2TLsAXXWO2, "HTTPS / Basic" )
 
 
 @enduml
