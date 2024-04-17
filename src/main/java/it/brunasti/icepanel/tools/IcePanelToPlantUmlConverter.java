@@ -677,7 +677,7 @@ public class IcePanelToPlantUmlConverter {
           final String subOutputFileNameBase) {
     log.debug( "generateSubDiagram() ------------------");
 
-    String name = getValue(base, "name");
+    String name = getValue(base, "name").replace(' ','_');
     String id = getValue(base, "id");
     log.debug("generateSubDiagram ({},{}) ------------------", id , name);
 

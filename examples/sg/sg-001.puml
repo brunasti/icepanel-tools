@@ -4,7 +4,7 @@
 ' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
 ' IcePanel JSON File : [./examples/sg/sg-001.json]
 ' Configuration      : [./examples/sg/config.json]
-' Generated at       : Wed Apr 17 11:06:08 CEST 2024
+' Generated at       : Wed Apr 17 11:18:05 CEST 2024
 
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
