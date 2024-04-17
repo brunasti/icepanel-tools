@@ -35,6 +35,7 @@ public class IcePanelToolsMain {
   private static String outputFile = "";
   private static String configurationFile = "";
   private static boolean debug = false;
+  private static boolean mermaid = false;
 
   private static Options options;
 
@@ -66,6 +67,9 @@ public class IcePanelToolsMain {
     Option optionDebug = Option.builder().option("d")
             .longOpt("debug").hasArg(false)
             .desc("Execute in debug mode").build();
+    Option optionToMermaid = Option.builder().option("m")
+            .longOpt("mermaid").hasArg(false)
+            .desc("Export in Mermaid C4 format").build();
     Option optionOutputFile = new Option("o", "output", true, "Output File");
     Option optionConfigFile = new Option("c", "config", true,
             "Configuration File");
@@ -79,6 +83,7 @@ public class IcePanelToolsMain {
     options.addOption(optionOutputFile);
     options.addOption(optionConfigFile);
     options.addOption(optionInputJsonFile);
+    options.addOption(optionToMermaid);
 
     try {
       CommandLineParser parser = new DefaultParser();
@@ -122,6 +127,13 @@ public class IcePanelToolsMain {
         configurationFile = commandLine.getOptionValue(optionConfigFile.getOpt());
         log.debug(IcePanelConstants.DEBUG_TEXT_SET_TO,
                 optionConfigFile.getDescription(), configurationFile);
+      }
+      if (commandLine.hasOption(optionToMermaid.getOpt())) {
+        if (commandLine.hasOption(optionToMermaid.getOpt())) {
+          mermaid = true;
+        }
+        log.debug(IcePanelConstants.DEBUG_TEXT_SET_TO,
+                optionToMermaid.getDescription(), mermaid);
       }
 
     } catch (ParseException | NullPointerException e) {
@@ -192,7 +204,8 @@ public class IcePanelToolsMain {
 
     log.debug("IcePanel JSON file [{}]", icePanelJSONExportFile);
     log.debug("OutputFile         [{}]", outputFile);
-    log.debug( "ConfigurationFile  [{}]",configurationFile);
+    log.debug("ConfigurationFile  [{}]",configurationFile);
+    log.debug("Mermaid option [{}]",mermaid);
 
     if ((null == icePanelJSONExportFile) || (icePanelJSONExportFile.isBlank())) {
       log.info("IcePanel JSON export file to be transformed not defined");
@@ -215,9 +228,12 @@ public class IcePanelToolsMain {
 
       String subOutputFileNameBase = "icePanel-C4";
 
-      icePanelToPlantUMLConverter = new IcePanelToPlantUmlConverter(output);
-      icePanelToPlantUMLConverter.convertIcePanelToUml(
-              icePanelJSONExportFile, configurationFile, subOutputFileNameBase);
+      if (mermaid) {
+      } else {
+        icePanelToPlantUMLConverter = new IcePanelToPlantUmlConverter(output);
+        icePanelToPlantUMLConverter.convertIcePanelToUml(
+                icePanelJSONExportFile, configurationFile, subOutputFileNameBase);
+      }
 
       if (null != file) {
         file.close();

@@ -584,13 +584,13 @@ public class IcePanelToPlantUmlConverter {
     if (type != null) {
       switch(type) {
         case IcePanelConstants.TYPE_SYSTEM, IcePanelConstants.TYPE_ROOT:
-          output.println(IcePanelConstants.OUTPUT_SYSTEM_BOUNDARY
+          output.println(IcePanelPlantUmlConstants.OUTPUT_SYSTEM_BOUNDARY
                   + id + ", \"" + name + "\" ) {");
           break;
         case IcePanelConstants.TYPE_APP:
-          output.println(IcePanelConstants.OUTPUT_COMPONENT
-                  + id + ", \"" + name + IcePanelConstants.OUTPUT_VAL_SEPARATOR_STRING
-                  + description + IcePanelConstants.OUTPUT_SUBDIAGRAM_CLOSER_STRING);
+          output.println(IcePanelPlantUmlConstants.OUTPUT_COMPONENT
+                  + id + ", \"" + name + IcePanelPlantUmlConstants.OUTPUT_VAL_SEPARATOR_STRING
+                  + description + IcePanelPlantUmlConstants.OUTPUT_SUBDIAGRAM_CLOSER_STRING);
           break;
         default:
           log.error("unknown type : [{}] from object [{}]", type, jsonObject);
@@ -805,29 +805,29 @@ public class IcePanelToPlantUmlConverter {
       switch (type) {
         case IcePanelConstants.TYPE_SYSTEM:
           output.println(head + "System(" + id + ", \"" + name
-                  + IcePanelConstants.OUTPUT_VAL_SEPARATOR_STRING + description + IcePanelConstants.OUTPUT_VAL_CLOSER_STRING);
+                  + IcePanelPlantUmlConstants.OUTPUT_VAL_SEPARATOR_STRING + description + IcePanelPlantUmlConstants.OUTPUT_VAL_CLOSER_STRING);
           break;
         case IcePanelConstants.TYPE_ACTOR:
-          output.println(head + IcePanelConstants.OUTPUT_PERSON + id + ", \"" + name
-                  + IcePanelConstants.OUTPUT_VAL_SEPARATOR_STRING + description + IcePanelConstants.OUTPUT_VAL_CLOSER_STRING);
+          output.println(head + IcePanelPlantUmlConstants.OUTPUT_PERSON + id + ", \"" + name
+                  + IcePanelPlantUmlConstants.OUTPUT_VAL_SEPARATOR_STRING + description + IcePanelPlantUmlConstants.OUTPUT_VAL_CLOSER_STRING);
           break;
         case IcePanelConstants.TYPE_APP:
-          output.println(head + IcePanelConstants.OUTPUT_COMPONENT + id + ", \"" + name
-                  + IcePanelConstants.OUTPUT_VAL_SEPARATOR_STRING + description + IcePanelConstants.OUTPUT_VAL_CLOSER_STRING);
+          output.println(head + IcePanelPlantUmlConstants.OUTPUT_COMPONENT + id + ", \"" + name
+                  + IcePanelPlantUmlConstants.OUTPUT_VAL_SEPARATOR_STRING + description + IcePanelPlantUmlConstants.OUTPUT_VAL_CLOSER_STRING);
           break;
         case IcePanelConstants.TYPE_STORE:
-          output.println(head + IcePanelConstants.OUTPUT_CONTAINER_DB + id + ", \"" + name
-                  + IcePanelConstants.OUTPUT_VAL_SEPARATOR_STRING + description
-                  + IcePanelConstants.OUTPUT_VAL_SEPARATOR_STRING + IcePanelConstants.OUTPUT_VAL_CLOSER_STRING);
+          output.println(head + IcePanelPlantUmlConstants.OUTPUT_CONTAINER_DB + id + ", \"" + name
+                  + IcePanelPlantUmlConstants.OUTPUT_VAL_SEPARATOR_STRING + description
+                  + IcePanelPlantUmlConstants.OUTPUT_VAL_SEPARATOR_STRING + IcePanelPlantUmlConstants.OUTPUT_VAL_CLOSER_STRING);
           break;
         case IcePanelConstants.TYPE_AREA:
           log.debug("skip type : [{}]", type);
           break;
         case IcePanelConstants.TYPE_COMPONENT:
           // TODO: Add technologies
-          output.println(head + IcePanelConstants.OUTPUT_CONTAINER + id + ", \"" + name
-                  + IcePanelConstants.OUTPUT_VAL_SEPARATOR_STRING + description
-                  + IcePanelConstants.OUTPUT_VAL_SEPARATOR_STRING + IcePanelConstants.OUTPUT_VAL_CLOSER_STRING);
+          output.println(head + IcePanelPlantUmlConstants.OUTPUT_CONTAINER + id + ", \"" + name
+                  + IcePanelPlantUmlConstants.OUTPUT_VAL_SEPARATOR_STRING + description
+                  + IcePanelPlantUmlConstants.OUTPUT_VAL_SEPARATOR_STRING + IcePanelPlantUmlConstants.OUTPUT_VAL_CLOSER_STRING);
           break;
         default:
           log.error("unknown type : [{}] for object [{}]", type, jsonObject);

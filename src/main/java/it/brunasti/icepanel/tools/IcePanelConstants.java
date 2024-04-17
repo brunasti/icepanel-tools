@@ -41,17 +41,6 @@ public final class IcePanelConstants {
   static final String STEP_INDEX = "index";
 
 
-  // Generation keywords --------------------
-  static final String OUTPUT_SYSTEM_BOUNDARY = "System_Boundary(";
-  static final String OUTPUT_PERSON = "Person(";
-  static final String OUTPUT_COMPONENT = "Component(";
-  static final String OUTPUT_CONTAINER_DB = "ContainerDb(";
-  static final String OUTPUT_CONTAINER = "Container(";
-  static final String OUTPUT_VAL_SEPARATOR_STRING = "\", \"";
-  static final String OUTPUT_VAL_CLOSER_STRING = "\" )";
-  static final String OUTPUT_SUBDIAGRAM_CLOSER_STRING = "\" ) { ";
-
-
   static final String DEBUG_TEXT_SET_TO = "{} set to [{}]";
 
 }
