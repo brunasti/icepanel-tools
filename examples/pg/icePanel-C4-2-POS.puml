@@ -4,7 +4,7 @@
 ' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
 ' IcePanel JSON File : [./examples/pg/pg-001.json]
 ' Configuration      : [./examples/pg/config.json]
-' Generated at       : Wed Apr 17 10:16:45 CEST 2024
+' Generated at       : Wed Apr 17 10:37:19 CEST 2024
 
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
@@ -13,15 +13,15 @@
 
 System_Boundary(Dh7TjqtXo9JVsCCn3bol, "POS" ) {
     ' CLASSES =======
-    ContainerDb(NnTsKEkdWpfDh4c5RyvC, "Local DB", "null", "" )
-    Component(q8mphiB74ORpViZtWerc, "Card Reader", "null" )
-    Component(dB0dSFz9vWxK3sHTYoeN, "Ms Dynamics", "null" )
-    Component(aqahI4H2TS1bek5eriv4, "Clerk Console", "null" )
+    ContainerDb(NnTsKEkdWpfDh4c5RyvC, "Local DB", "", "" )
+    Component(q8mphiB74ORpViZtWerc, "Card Reader", "" )
+    Component(dB0dSFz9vWxK3sHTYoeN, "Ms Dynamics", "" )
+    Component(aqahI4H2TS1bek5eriv4, "Clerk Console", "" )
 }
 
 
 ' NEIGHBOR CLASSES =======
-System(soKzn6Drl9ZnctLZPvDw, "Finance System", "null" )
+System(soKzn6Drl9ZnctLZPvDw, "Finance System", "" )
 
 
 ' CONNECTIONS =======

@@ -4,7 +4,7 @@
 ' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
 ' IcePanel JSON File : [./examples/ml/ml-001.json]
 ' Configuration      : [./examples/ml/config.json]
-' Generated at       : Wed Apr 17 10:16:45 CEST 2024
+' Generated at       : Wed Apr 17 10:37:19 CEST 2024
 
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
@@ -13,7 +13,7 @@
 
 System_Boundary(BUVyar8CF5L9QiBG1ctm, "Mollie" ) {
     ' CLASSES =======
-    Component(XPRwthglnMC6q9afCTyJ, "Mollie System", "Effortless payments, seamless checkout, multiple payment methods, powerful integrations, fast and flexible financing, robust security, an advanced dashboard and app – and even more." )
+    Component(XPRwthglnMC6q9afCTyJ, "Mollie System", "Effortless payments, seamless checkout, multiple payment methods, powerful integrations, fast and\nflexible financing, robust security, an advanced dashboard and app – and even more." )
 }
 
 

@@ -4,14 +4,14 @@
 ' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
 ' IcePanel JSON File : [./examples/ml/ml-001.json]
 ' Configuration      : [./examples/ml/config.json]
-' Generated at       : Wed Apr 17 10:16:45 CEST 2024
+' Generated at       : Wed Apr 17 10:37:19 CEST 2024
 
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
 
 
 
-Component(03XCn8Gai9J6GFDmJFfJ, "Mollie  - API Extension - Julian", "Extend the behavior of an API with your business logic.  The commercetools Composable Commerce APIs provide default data structures and default behavior that is useful for many customers. However, each Project has its unique requirements. Similar to data structures that can be customized with [Custom Types](https://docs.commercetools.com/api/projects/types) and [Product Types](https://docs.commercetools.com/api/projects/productTypes), additional behavior can be added. For behavior to be executed within a short timeframe, [Subscriptions](https://docs.commercetools.com/api/projects/subscriptions) can be used. For behavior that needs to be executed before the API call succeeds, API Extensions can be used.  Good use cases for API Extensions are: Validating the content of a Cart (for example no more than 8 crates of beverages can be ordered at once), calculating custom shipping costs, or adding mandatory items, like insurance, to a Cart.  An API Extension gets called after the processing of a create or update request of an API call, but before the result is persisted. The API Extension can validate the object, or apply [additional updates](https://docs.commercetools.com/api/projects/api-extensions#updates-requested) to it.  ##" ) { 
+Component(03XCn8Gai9J6GFDmJFfJ, "Mollie  - API Extension - Julian", "Extend the behavior of an API with your business logic.\n\nThe commercetools Composable Commerce APIs\nprovide default data structures and default behavior that is useful for many customers. However, each Project\nhas its unique requirements. Similar to data structures that can be customized with [Custom\nTypes](https://docs.commercetools.com/api/projects/types) and [Product Types](https://docs.commercetools.com/api/projects/productTypes), additional behavior can be added.\nFor behavior to be executed within a short\ntimeframe, [Subscriptions](https://docs.commercetools.com/api/projects/subscriptions) can be used. For behavior that needs to be executed before the API call succeeds, API Extensions can be\nused.\n\nGood use cases for API Extensions are: Validating the content of a Cart (for example no more than 8 crates\nof beverages can be ordered at once), calculating custom shipping costs, or adding mandatory items, like\ninsurance, to a Cart.\n\nAn API Extension gets called after the processing of a create or update request of an\nAPI call, but before the result is persisted. The API Extension can validate the object, or\napply [additional updates](https://docs.commercetools.com/api/projects/api-extensions#updates-requested) to it.\n\n##" ) { 
     ' CLASSES =======
     Container(33Kg8Q2DCyyLP8jWFykQ, "AWS Lambda", "", "" )
     Container(WstWXOpYlewLWkdCJcZ7, "GCP Function", "", "" )
@@ -21,7 +21,7 @@ Component(03XCn8Gai9J6GFDmJFfJ, "Mollie  - API Extension - Julian", "Extend the 
 ' NEIGHBOR CLASSES =======
 ContainerDb(Ej5YcER9nMhwYyQHnI2A, "GCP - extension", "", "" )
 Container(JSFDlVBLMP20g7tshKdj, "Registered Extensions", "", "" )
-Component(XPRwthglnMC6q9afCTyJ, "Mollie System", "Effortless payments, seamless checkout, multiple payment methods, powerful integrations, fast and flexible financing, robust security, an advanced dashboard and app – and even more." )
+Component(XPRwthglnMC6q9afCTyJ, "Mollie System", "Effortless payments, seamless checkout, multiple payment methods, powerful integrations, fast and\nflexible financing, robust security, an advanced dashboard and app – and even more." )
 ContainerDb(NHBcYqGYVf3Jg92QMvlU, "mollie-commercetools-integration S3", "", "" )
 Person(Y6PAtZA6NBy0cUvAAEuZ, "AWS IAM User", "" )
 ContainerDb(HGU1rfF8iaCD4IQNbzTG, "Env Variable - CT_MOLLIE_CONFIG", "", "" )

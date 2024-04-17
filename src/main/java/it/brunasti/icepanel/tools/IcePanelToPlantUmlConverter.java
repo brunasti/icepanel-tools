@@ -577,13 +577,13 @@ public class IcePanelToPlantUmlConverter {
     String id = getValue(jsonObject, "id");
     String name = getValue(jsonObject, "name");
     String type = getValue(jsonObject, "type", "");
-    String description = getValue(jsonObject, "description", " ");
+    String description = Utils.wrapString(getValue(jsonObject, "description", "\\n"), "\\n", 100);
+    log.debug("generateSubDiagramBoundaryStart - description [{}]", description);
 
     // TODO: Convert into a switch and manage not tested options
     if (type != null) {
       switch(type) {
-        case IcePanelConstants.TYPE_SYSTEM:
-        case IcePanelConstants.TYPE_ROOT:
+        case IcePanelConstants.TYPE_SYSTEM, IcePanelConstants.TYPE_ROOT:
           output.println(IcePanelConstants.OUTPUT_SYSTEM_BOUNDARY
                   + id + ", \"" + name + "\" ) {");
           break;
@@ -798,7 +798,8 @@ public class IcePanelToPlantUmlConverter {
       name = id;
     }
     String type = getValue(jsonObject, "type", "");
-    String description = getValue(jsonObject, "description", "\n");
+    String description = Utils.wrapString(getValue(jsonObject, "description", "\\n"), "\\n", 100);
+    log.debug("generateClassInDiagram - description [{}]", description);
 
     if (type != null) {
       switch (type) {
@@ -911,13 +912,13 @@ public class IcePanelToPlantUmlConverter {
 
     boolean initiated = loadConfiguration(configurationFile);
     if (!initiated) {
-      System.err.println("Configuration JSON not loaded");
+      log.error("Configuration JSON not loaded");
       return;
     }
 
     JSONObject icePanelDiagramJson = loadIcePanelJsonFromFile(icePanelJsonFile);
     if (icePanelDiagramJson == null) {
-      System.err.println("IcePanel JSON file not loaded");
+      log.error("IcePanel JSON file not loaded");
       return;
     }
 

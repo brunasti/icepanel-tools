@@ -4,7 +4,7 @@
 ' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
 ' IcePanel JSON File : [./examples/ml/ml-001.json]
 ' Configuration      : [./examples/ml/config.json]
-' Generated at       : Wed Apr 17 10:16:45 CEST 2024
+' Generated at       : Wed Apr 17 10:37:19 CEST 2024
 
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
@@ -13,21 +13,9 @@
 
 System_Boundary(BoNLOPSR4qOFGuDfePUN, "CommerceTools" ) {
     ' CLASSES =======
-    Component(iihE1V4k7JDKwrS5GunC, "CommerceTools System", "CommerceTools is cloud-native, headless commerce APIs that gives company control over e-commerce future, enabling to create game-changing features and functionality and consistently deliver modern shopping experiences while retaining agility, scalability and performance." )
-    Component(MRgvJ9ygR2wFH6SewIIW, "Mollie - Notification Module - Mourice", "The Notification module is a publicly exposed service which receives asynchronous notifications sent by Mollie.
-
-Through notifications, Mollie provides asynchronous payment status changes like authorized, captured, or refunded.
-
-The notification module will process the notification sent by Mollie and match the commercetools payment for this notification, and modify commercetools payment accordingly." )
-    Component(03XCn8Gai9J6GFDmJFfJ, "Mollie  - API Extension - Julian", "Extend the behavior of an API with your business logic.
-
-The commercetools Composable Commerce APIs provide default data structures and default behavior that is useful for many customers. However, each Project has its unique requirements. Similar to data structures that can be customized with [Custom Types](https://docs.commercetools.com/api/projects/types) and [Product Types](https://docs.commercetools.com/api/projects/productTypes), additional behavior can be added. For behavior to be executed within a short timeframe, [Subscriptions](https://docs.commercetools.com/api/projects/subscriptions) can be used. For behavior that needs to be executed before the API call succeeds, API Extensions can be used.
-
-Good use cases for API Extensions are: Validating the content of a Cart (for example no more than 8 crates of beverages can be ordered at once), calculating custom shipping costs, or adding mandatory items, like insurance, to a Cart.
-
-An API Extension gets called after the processing of a create or update request of an API call, but before the result is persisted. The API Extension can validate the object, or apply [additional updates](https://docs.commercetools.com/api/projects/api-extensions#updates-requested) to it.
-
-##" )
+    Component(iihE1V4k7JDKwrS5GunC, "CommerceTools System", "CommerceTools is cloud-native, headless commerce APIs that gives company control over e-commerce\nfuture, enabling to create game-changing features and functionality and consistently deliver modern shopping\nexperiences while retaining agility, scalability and performance." )
+    Component(MRgvJ9ygR2wFH6SewIIW, "Mollie - Notification Module - Mourice", "The Notification module is a publicly exposed service which receives asynchronous notifications sent\nby Mollie.\n\nThrough notifications, Mollie provides asynchronous payment status changes like\nauthorized, captured, or refunded.\n\nThe notification module will process the notification sent by Mollie and\nmatch the commercetools payment for this notification, and modify commercetools payment accordingly." )
+    Component(03XCn8Gai9J6GFDmJFfJ, "Mollie  - API Extension - Julian", "Extend the behavior of an API with your business logic.\n\nThe commercetools Composable Commerce APIs\nprovide default data structures and default behavior that is useful for many customers. However, each Project\nhas its unique requirements. Similar to data structures that can be customized with [Custom\nTypes](https://docs.commercetools.com/api/projects/types) and [Product Types](https://docs.commercetools.com/api/projects/productTypes), additional behavior can be added.\nFor behavior to be executed within a short\ntimeframe, [Subscriptions](https://docs.commercetools.com/api/projects/subscriptions) can be used. For behavior that needs to be executed before the API call succeeds, API Extensions can be\nused.\n\nGood use cases for API Extensions are: Validating the content of a Cart (for example no more than 8 crates\nof beverages can be ordered at once), calculating custom shipping costs, or adding mandatory items, like\ninsurance, to a Cart.\n\nAn API Extension gets called after the processing of a create or update request of an\nAPI call, but before the result is persisted. The API Extension can validate the object, or\napply [additional updates](https://docs.commercetools.com/api/projects/api-extensions#updates-requested) to it.\n\n##" )
 }
 
 

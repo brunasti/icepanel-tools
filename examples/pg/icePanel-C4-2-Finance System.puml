@@ -4,7 +4,7 @@
 ' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
 ' IcePanel JSON File : [./examples/pg/pg-001.json]
 ' Configuration      : [./examples/pg/config.json]
-' Generated at       : Wed Apr 17 10:16:45 CEST 2024
+' Generated at       : Wed Apr 17 10:37:19 CEST 2024
 
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
@@ -13,15 +13,15 @@
 
 System_Boundary(soKzn6Drl9ZnctLZPvDw, "Finance System" ) {
     ' CLASSES =======
-    Component(OaNn8XJbXv09gCQRz3AR, "Fixed Assets BC Module ", "null" )
-    Component(ZEp4TXWq29d0jSeELGSI, "Finance BC Module", "null" )
-    Component(s7euwZEIODsQskRUz8sq, "Document Capture BC Module", "null" )
-    Component(symQsnQ4xP2tak7w7OaM, "POS (ILS Retail)  BC Module", "null" )
+    Component(OaNn8XJbXv09gCQRz3AR, "Fixed Assets BC Module ", "" )
+    Component(ZEp4TXWq29d0jSeELGSI, "Finance BC Module", "" )
+    Component(s7euwZEIODsQskRUz8sq, "Document Capture BC Module", "" )
+    Component(symQsnQ4xP2tak7w7OaM, "POS (ILS Retail)  BC Module", "" )
 }
 
 
 ' NEIGHBOR CLASSES =======
-System(Dh7TjqtXo9JVsCCn3bol, "POS", "null" )
+System(Dh7TjqtXo9JVsCCn3bol, "POS", "" )
 
 
 ' CONNECTIONS =======

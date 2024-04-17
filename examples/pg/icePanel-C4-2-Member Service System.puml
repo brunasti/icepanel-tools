@@ -4,7 +4,7 @@
 ' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
 ' IcePanel JSON File : [./examples/pg/pg-001.json]
 ' Configuration      : [./examples/pg/config.json]
-' Generated at       : Wed Apr 17 10:16:45 CEST 2024
+' Generated at       : Wed Apr 17 10:37:19 CEST 2024
 
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
@@ -13,32 +13,32 @@
 
 System_Boundary(AdhsdndKmvhsBWvLfJTK, "Member Service System" ) {
     ' CLASSES =======
-    Component(ccjXxgy74gi9Z75BYdQl, "Agilea (CRM)", "null" )
-    ContainerDb(2edKKQBcy2AdyQ3RAVWk, "Agilea DB", "null", "" )
-    Component(uPJOg6NqkRPVL5Day3b4, "Excel PowerQuery", "null" )
-    Component(KZVaNoTMJp3IWrLzKwgE, "Agilea BackEnd", "null" )
-    Component(S9hMClYptC27gpcb8h11, "Standard reports", "null" )
-    Component(NnSOwS6ppZmyWP4ygDuc, "Predefined Agilea Report", "null" )
-    ContainerDb(wOR937sPvgoWsOOpbtjl, "Email Address Zip File", "null", "" )
-    Component(w8uGBpoOuSbjImUW8RfU, "ServiceNow", "null" )
-    Component(3gBTkmv6ewqmKpnbn5XC, "PowerBI ", "null" )
-    Component(3AscZ6uydpMZWsDirR10, "TBC Member Service", "null" )
-    ContainerDb(HthjED489hlif2qbZPWs, "Agilea Export Database", "null", "" )
-    Component(GuE8eWaHXObRqHjbEd48, "Agilea WebSite", "null" )
-    ContainerDb(XTWjqMq5ZdJ9UR1KxPex, "Excel Files", "null", "" )
+    Component(ccjXxgy74gi9Z75BYdQl, "Agilea (CRM)", "" )
+    ContainerDb(2edKKQBcy2AdyQ3RAVWk, "Agilea DB", "", "" )
+    Component(uPJOg6NqkRPVL5Day3b4, "Excel PowerQuery", "" )
+    Component(KZVaNoTMJp3IWrLzKwgE, "Agilea BackEnd", "" )
+    Component(S9hMClYptC27gpcb8h11, "Standard reports", "" )
+    Component(NnSOwS6ppZmyWP4ygDuc, "Predefined Agilea Report", "" )
+    ContainerDb(wOR937sPvgoWsOOpbtjl, "Email Address Zip File", "", "" )
+    Component(w8uGBpoOuSbjImUW8RfU, "ServiceNow", "" )
+    Component(3gBTkmv6ewqmKpnbn5XC, "PowerBI ", "" )
+    Component(3AscZ6uydpMZWsDirR10, "TBC Member Service", "" )
+    ContainerDb(HthjED489hlif2qbZPWs, "Agilea Export Database", "", "" )
+    Component(GuE8eWaHXObRqHjbEd48, "Agilea WebSite", "" )
+    ContainerDb(XTWjqMq5ZdJ9UR1KxPex, "Excel Files", "", "" )
 }
 
 
 ' NEIGHBOR CLASSES =======
-System(hMTXPO2qds4ypEVlH0TC, "Mail Service", "null" )
-Person(oRWUt1MEkGzsjxGUyu1m, "Club Clerk", "null" )
-System(2p8Khp4ecjAr7jWOw1rF, "Modellia - (survey)", "null" )
-System(Rprhv7hrshfmdvxFZcy7, "Agilea  - GAT Direct - Connect", "null" )
-System(hPa1gkYEDR8ckn11BmCT, "Reporting", "null" )
-System(fhpop0p1F3Q5SH6sW7Ie, "Exterrnal Equipment Maintenance", "null" )
-System(aMYszCJvHb6cP7hiHw7f, "Nayax Vending Machine", "null" )
-System(UpEFJxsN4ZWEpN0e8RgJ, "Boditrax", "null" )
-System(gdPnpYi2Xih4P6wLQX6x, "TBC WebShop", "null" )
+System(hMTXPO2qds4ypEVlH0TC, "Mail Service", "" )
+Person(oRWUt1MEkGzsjxGUyu1m, "Club Clerk", "" )
+System(2p8Khp4ecjAr7jWOw1rF, "Modellia - (survey)", "" )
+System(Rprhv7hrshfmdvxFZcy7, "Agilea  - GAT Direct - Connect", "" )
+System(hPa1gkYEDR8ckn11BmCT, "Reporting", "" )
+System(fhpop0p1F3Q5SH6sW7Ie, "Exterrnal Equipment Maintenance", "" )
+System(aMYszCJvHb6cP7hiHw7f, "Nayax Vending Machine", "" )
+System(UpEFJxsN4ZWEpN0e8RgJ, "Boditrax", "" )
+System(gdPnpYi2Xih4P6wLQX6x, "TBC WebShop", "" )
 
 
 ' CONNECTIONS =======

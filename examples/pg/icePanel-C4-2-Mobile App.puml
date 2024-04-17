@@ -4,7 +4,7 @@
 ' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
 ' IcePanel JSON File : [./examples/pg/pg-001.json]
 ' Configuration      : [./examples/pg/config.json]
-' Generated at       : Wed Apr 17 10:16:45 CEST 2024
+' Generated at       : Wed Apr 17 10:37:19 CEST 2024
 
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
@@ -13,15 +13,15 @@
 
 System_Boundary(jSH31KrEZPWsgMgpk5Pl, "Mobile App" ) {
     ' CLASSES =======
-    Component(XWiacBLGn7k983RqmMWv, "MyFit App (membership app)", "null" )
-    Component(HkTFrWwxNCqnhXTIXGtP, "LGF Booking (classes)", "null" )
-    Component(O6KajvAyVoBTw6HQArRz, "Wexer  - (virtual courses)", "null" )
-    Component(iEGXnGRxKkVdQr2sWdDX, "Lanista  - (training planning)", "null" )
+    Component(XWiacBLGn7k983RqmMWv, "MyFit App (membership app)", "" )
+    Component(HkTFrWwxNCqnhXTIXGtP, "LGF Booking (classes)", "" )
+    Component(O6KajvAyVoBTw6HQArRz, "Wexer  - (virtual courses)", "" )
+    Component(iEGXnGRxKkVdQr2sWdDX, "Lanista  - (training planning)", "" )
 }
 
 
 ' NEIGHBOR CLASSES =======
-Component(Lmcmoump6qMx52ccGHD9, "TBC myPureGym", "null" )
+Component(Lmcmoump6qMx52ccGHD9, "TBC myPureGym", "" )
 
 
 ' CONNECTIONS =======

@@ -27,6 +27,7 @@ public final class Utils {
    * @return The content of the file as a String.
    *     In case of exception, an empty String.
    */
+  // TODO: convert to try-with-resource
   public static String readFileToString(String fileName) {
     try {
       return new Scanner(new File(fileName)).useDelimiter("\\Z").next();
@@ -95,6 +96,23 @@ public final class Utils {
     }
   }
 
+  public static String wrapString(String s, String deliminator, int length) {
+    if ((s == null) || (s.isEmpty()) || (s.isBlank())) {
+      return "";
+    }
+    String result = "";
+    int lastdelimPos = 0;
+    for (String token : s.split(" ", -1)) {
+      if (result.length() - lastdelimPos + token.length() > length) {
+        result = result + deliminator + token;
+        lastdelimPos = result.length() + 1;
+      }
+      else {
+        result += (result.isEmpty() ? "" : " ") + token;
+      }
+    }
+    return result;
+  }
 
   // JSON functions ----------------------------------
 

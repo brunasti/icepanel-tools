@@ -4,7 +4,7 @@
 ' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
 ' IcePanel JSON File : [./src/test/resources/icepanel-plain.json]
 ' Configuration      : [./docs/config.json]
-' Generated at       : Wed Apr 17 10:16:45 CEST 2024
+' Generated at       : Wed Apr 17 10:37:18 CEST 2024
 
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
@@ -28,19 +28,7 @@ System_Boundary(cpxxV9fxmR1pgCAxHFdB, "BAH CNG" ) {
     Component(MoA8eTudOD7sWkzZF9av, "Transit Gateway", "" )
     Component(uFk6F6ZcKKvnkVRkCNgH, "FireWall", "" )
     Component(4teQrlbMUj5LLqxdVcPK, "BAHPCA API", "" )
-    ContainerDb(N5ViUhQIiCffQr67385p, "BAH CA - SQL Server", "Steve Edgerton:
-
-- BAHSQL1.bah.ba.com
-- CNG , schema dbo.
-- 100.64.64.215
-- Account: bahsql-prd (147441800008)
-- TCP 1433
-
-Live and Test users
-
-System:
-
-Windows Server 2019 ,SQL Server 2017, Domain BAH.ba.com", "" )
+    ContainerDb(N5ViUhQIiCffQr67385p, "BAH CA - SQL Server", "Steve Edgerton:\n\n- BAHSQL1.bah.ba.com\n- CNG , schema dbo.\n- 100.64.64.215\n- Account: bahsql-prd\n(147441800008)\n- TCP 1433\n\nLive and Test users\n\nSystem:\n\nWindows Server 2019 ,SQL Server 2017, Domain BAH.ba.com", "" )
     ContainerDb(MzZVLTUQ74KbySVwdHfZ, "OpenSearch", "", "" )
 }
 
