@@ -129,6 +129,7 @@ public class IcePanelToPlantUmlConverter {
   }
 
 
+  // ---------------------------------------------------------------------
   // Load the JSON file exported from IcePanel ---------------------------
 
   private JSONObject loadIcePanelJsonFromFile(String icePanelJsonFileName) {
@@ -144,6 +145,7 @@ public class IcePanelToPlantUmlConverter {
   }
 
 
+  // -------------------------------------------------------------
   // Generic JSON functions --------------------------------------
 
   private String getValue(final JSONObject modelObject, String key) {
@@ -336,7 +338,35 @@ public class IcePanelToPlantUmlConverter {
   }
 
 
+  // --------------------------------------------------------------------
   // IcePanel Flows =====================================================
+
+
+  private JSONObject findSequenceStepNumberX(JSONObject steps, int index) {
+    String indexString = "" + index;
+    AtomicReference<JSONObject> result = new AtomicReference<>();
+    steps.values().forEach(object -> {
+      JSONObject step = (JSONObject) object;
+      String stepIndex = getValue(step, IcePanelConstants.STEP_INDEX);
+      if (indexString.equalsIgnoreCase(stepIndex)) {
+        result.set(step);
+      }
+    });
+    return result.get();
+  }
+
+  private int findSequenceStepMax(JSONObject steps) {
+    AtomicInteger index = new AtomicInteger();
+    steps.values().forEach(object -> {
+      JSONObject step = (JSONObject) object;
+      String stepIndex = getValue(step, IcePanelConstants.STEP_INDEX);
+      int stepIndexInt = Integer.parseInt(stepIndex);
+      if (stepIndexInt > index.get()) {
+        index.set(stepIndexInt);
+      }
+    });
+    return index.get();
+  }
 
   private ArrayList<JSONObject> findFlows(final JSONObject icePanelDiagramJson) {
     log.debug( "findFlows() ------------------");
@@ -377,32 +407,6 @@ public class IcePanelToPlantUmlConverter {
     }
     output.println("title " + title);
     output.println();
-  }
-
-  private JSONObject findSequenceStepNumberX(JSONObject steps, int index) {
-    String indexString = "" + index;
-    AtomicReference<JSONObject> result = new AtomicReference<>();
-    steps.values().forEach(object -> {
-      JSONObject step = (JSONObject) object;
-      String stepIndex = getValue(step, IcePanelConstants.STEP_INDEX);
-      if (indexString.equalsIgnoreCase(stepIndex)) {
-        result.set(step);
-      }
-    });
-    return result.get();
-  }
-
-  private int findSequenceStepMax(JSONObject steps) {
-    AtomicInteger index = new AtomicInteger();
-    steps.values().forEach(object -> {
-      JSONObject step = (JSONObject) object;
-      String stepIndex = getValue(step, IcePanelConstants.STEP_INDEX);
-      int stepIndexInt = Integer.parseInt(stepIndex);
-      if (stepIndexInt > index.get()) {
-        index.set(stepIndexInt);
-      }
-    });
-    return index.get();
   }
 
   private void generateFlowDiagramEntities(final PrintStream output,
@@ -536,6 +540,7 @@ public class IcePanelToPlantUmlConverter {
   }
 
 
+  // =====================================================================
   // C4 Sub Diagrams =====================================================
 
   private void generateSubDiagramHeader(final PrintStream output,
@@ -729,6 +734,8 @@ public class IcePanelToPlantUmlConverter {
               subOutputFileNameBase) );
   }
 
+
+  // =================================================================
   // C4 Diagrams =====================================================
 
   private void generateConnections(final JSONObject icePanelDiagramJson, String rootName) {
@@ -791,7 +798,7 @@ public class IcePanelToPlantUmlConverter {
       name = id;
     }
     String type = getValue(jsonObject, "type", "");
-    String description = getValue(jsonObject, "description", " ");
+    String description = getValue(jsonObject, "description", "\n");
 
     if (type != null) {
       switch (type) {
@@ -888,6 +895,8 @@ public class IcePanelToPlantUmlConverter {
   }
 
 
+  // ======================================================================
+  // Main entry point =====================================================
   /** Generate a diagram for the IcePanel JSON file.
    *
    * @param icePanelJsonFile The JSON file exported from IcePanel to be converted

@@ -21,9 +21,9 @@ import org.apache.logging.log4j.Logger;
  */
 public class IcePanelToolsMain {
 
+  // TODO: Enable conversion to Mermaid https://mermaid.js.org/syntax/c4.html
   // TODO: Check the diagrams: examples/ml/icePanel-C4-output-Mollie
   //  - API Extension - Julian.puml : Description too long
-  // TODO: Names of the diagram files with "output"... change them
 
   /* Get actual class name to be printed on */
   static Logger log = LogManager.getLogger(IcePanelToolsMain.class);
@@ -213,7 +213,7 @@ public class IcePanelToolsMain {
         output = new PrintStream(file, true);
       }
 
-      String subOutputFileNameBase = "icePanel-C4-output";
+      String subOutputFileNameBase = "icePanel-C4";
 
       icePanelToPlantUMLConverter = new IcePanelToPlantUmlConverter(output);
       icePanelToPlantUMLConverter.convertIcePanelToUml(
