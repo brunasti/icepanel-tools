@@ -1,0 +1,32 @@
+@startuml
+'https://plantuml.com/class-diagram
+' CONVERT ICEPANEL DIAGRAM ===========
+' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
+' IcePanel JSON File : [./examples/sg/sg-001.json]
+' Configuration      : [./examples/sg/config.json]
+' Generated at       : Wed Apr 17 11:18:05 CEST 2024
+
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+
+
+System_Boundary(kcZ6JMZ3WNq8pReNTFS2, "SolMan - SAP  - Solution Manager" ) {
+    ' CLASSES =======
+    Component(QkIAEDVBPA2TLsAXXWO2, "Test SAP SolMan 7.2", "" )
+    Component(OHrd5OnZcC3om9jIhGs3, "SCC - SAP Cloud Connector", "" )
+}
+
+
+' NEIGHBOR CLASSES =======
+Component(UDzF9znNIXtFk9LwBDHM, "Destination Service", "" )
+Container(FMEFRLGEAtEaY3KE4ZT3, "Cypress Engine", "", "" )
+
+
+' CONNECTIONS =======
+Rel(FMEFRLGEAtEaY3KE4ZT3, QkIAEDVBPA2TLsAXXWO2, "Setup Test Data" )
+Rel(UDzF9znNIXtFk9LwBDHM, OHrd5OnZcC3om9jIhGs3, "Secure VPN tunnel" )
+Rel(OHrd5OnZcC3om9jIhGs3, QkIAEDVBPA2TLsAXXWO2, "HTTPS / Basic" )
+
+
+@enduml

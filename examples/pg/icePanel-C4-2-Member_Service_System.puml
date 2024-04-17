@@ -1,0 +1,62 @@
+@startuml
+'https://plantuml.com/class-diagram
+' CONVERT ICEPANEL DIAGRAM ===========
+' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
+' IcePanel JSON File : [./examples/pg/pg-001.json]
+' Configuration      : [./examples/pg/config.json]
+' Generated at       : Wed Apr 17 11:18:05 CEST 2024
+
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+
+
+System_Boundary(AdhsdndKmvhsBWvLfJTK, "Member Service System" ) {
+    ' CLASSES =======
+    Component(ccjXxgy74gi9Z75BYdQl, "Agilea (CRM)", "" )
+    ContainerDb(2edKKQBcy2AdyQ3RAVWk, "Agilea DB", "", "" )
+    Component(uPJOg6NqkRPVL5Day3b4, "Excel PowerQuery", "" )
+    Component(KZVaNoTMJp3IWrLzKwgE, "Agilea BackEnd", "" )
+    Component(S9hMClYptC27gpcb8h11, "Standard reports", "" )
+    Component(NnSOwS6ppZmyWP4ygDuc, "Predefined Agilea Report", "" )
+    ContainerDb(wOR937sPvgoWsOOpbtjl, "Email Address Zip File", "", "" )
+    Component(w8uGBpoOuSbjImUW8RfU, "ServiceNow", "" )
+    Component(3gBTkmv6ewqmKpnbn5XC, "PowerBI ", "" )
+    Component(3AscZ6uydpMZWsDirR10, "TBC Member Service", "" )
+    ContainerDb(HthjED489hlif2qbZPWs, "Agilea Export Database", "", "" )
+    Component(GuE8eWaHXObRqHjbEd48, "Agilea WebSite", "" )
+    ContainerDb(XTWjqMq5ZdJ9UR1KxPex, "Excel Files", "", "" )
+}
+
+
+' NEIGHBOR CLASSES =======
+System(hMTXPO2qds4ypEVlH0TC, "Mail Service", "" )
+Person(oRWUt1MEkGzsjxGUyu1m, "Club Clerk", "" )
+System(2p8Khp4ecjAr7jWOw1rF, "Modellia - (survey)", "" )
+System(Rprhv7hrshfmdvxFZcy7, "Agilea  - GAT Direct - Connect", "" )
+System(hPa1gkYEDR8ckn11BmCT, "Reporting", "" )
+System(fhpop0p1F3Q5SH6sW7Ie, "Exterrnal Equipment Maintenance", "" )
+System(aMYszCJvHb6cP7hiHw7f, "Nayax Vending Machine", "" )
+System(UpEFJxsN4ZWEpN0e8RgJ, "Boditrax", "" )
+System(gdPnpYi2Xih4P6wLQX6x, "TBC WebShop", "" )
+
+
+' CONNECTIONS =======
+Rel(ccjXxgy74gi9Z75BYdQl, hPa1gkYEDR8ckn11BmCT, "Export Database" )
+Rel(UpEFJxsN4ZWEpN0e8RgJ, KZVaNoTMJp3IWrLzKwgE, "API" )
+Rel(ccjXxgy74gi9Z75BYdQl, wOR937sPvgoWsOOpbtjl, "Members Email Address" )
+Rel(w8uGBpoOuSbjImUW8RfU, hMTXPO2qds4ypEVlH0TC, "emails" )
+Rel(hMTXPO2qds4ypEVlH0TC, w8uGBpoOuSbjImUW8RfU, "Return of emails" )
+Rel(w8uGBpoOuSbjImUW8RfU, fhpop0p1F3Q5SH6sW7Ie, "Maintenance Ticket" )
+Rel(oRWUt1MEkGzsjxGUyu1m, 3AscZ6uydpMZWsDirR10, "Filling the Guests book" )
+Rel(ccjXxgy74gi9Z75BYdQl, gdPnpYi2Xih4P6wLQX6x, "Changed prices, contract templates and member informations" )
+Rel(KZVaNoTMJp3IWrLzKwgE, 2p8Khp4ecjAr7jWOw1rF, "WebHook" )
+Rel(ccjXxgy74gi9Z75BYdQl, w8uGBpoOuSbjImUW8RfU, "Tickets" )
+Rel(Rprhv7hrshfmdvxFZcy7, KZVaNoTMJp3IWrLzKwgE, "API" )
+Rel(aMYszCJvHb6cP7hiHw7f, KZVaNoTMJp3IWrLzKwgE, "REST API" )
+Rel(KZVaNoTMJp3IWrLzKwgE, w8uGBpoOuSbjImUW8RfU, "Flat File" )
+Rel(3AscZ6uydpMZWsDirR10, ccjXxgy74gi9Z75BYdQl, "New Member" )
+Rel(gdPnpYi2Xih4P6wLQX6x, 3AscZ6uydpMZWsDirR10, "New - Subscription" )
+
+
+@enduml

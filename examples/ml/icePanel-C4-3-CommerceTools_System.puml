@@ -1,0 +1,38 @@
+@startuml
+'https://plantuml.com/class-diagram
+' CONVERT ICEPANEL DIAGRAM ===========
+' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
+' IcePanel JSON File : [./examples/ml/ml-001.json]
+' Configuration      : [./examples/ml/config.json]
+' Generated at       : Wed Apr 17 11:18:05 CEST 2024
+
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+
+
+Component(iihE1V4k7JDKwrS5GunC, "CommerceTools System", "CommerceTools is cloud-native, headless commerce APIs that gives company control over e-commerce\nfuture, enabling to create game-changing features and functionality and consistently deliver modern shopping\nexperiences while retaining agility, scalability and performance." ) { 
+    ' CLASSES =======
+    Container(JSFDlVBLMP20g7tshKdj, "Registered Extensions", "", "" )
+    Container(B2danvdNerKouHi6xarl, "CommerceTools Core", "", "" )
+    Container(8pkWYfQwfpK1zZ5UJlIK, "API Extensions Framework", "", "" )
+}
+
+
+' NEIGHBOR CLASSES =======
+Container(33Kg8Q2DCyyLP8jWFykQ, "AWS Lambda", "", "" )
+Container(WstWXOpYlewLWkdCJcZ7, "GCP Function", "", "" )
+System(9xUmKihwlYUmsasTGOsv, "Merchant Shop", "" )
+Component(l52I4Jt4Jb5kAgRBaYg8, "Create Types Script", "" )
+Container(H0bjyiKM0oWqEi6zJSnu, "Notification Module", "", "" )
+
+
+' CONNECTIONS =======
+Rel(9xUmKihwlYUmsasTGOsv, B2danvdNerKouHi6xarl, "Supported By" )
+Rel(H0bjyiKM0oWqEi6zJSnu, B2danvdNerKouHi6xarl, "Updates" )
+Rel(l52I4Jt4Jb5kAgRBaYg8, B2danvdNerKouHi6xarl, "Execute Script" )
+Rel(JSFDlVBLMP20g7tshKdj, 33Kg8Q2DCyyLP8jWFykQ, "Invokes on event" )
+Rel(JSFDlVBLMP20g7tshKdj, WstWXOpYlewLWkdCJcZ7, "Invokes" )
+
+
+@enduml
