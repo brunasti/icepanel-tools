@@ -4,7 +4,7 @@
 ' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
 ' IcePanel JSON File : [./examples/ml/ml-001.json]
 ' Configuration      : [./examples/ml/config.json]
-' Generated at       : Mon Apr 15 17:04:48 CEST 2024
+' Generated at       : Wed Apr 17 10:16:45 CEST 2024
 
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
@@ -27,10 +27,22 @@ System_Boundary(1f0muXjKMuOqQb8fDcH6, "Dev Env" ) {
 
 ' NEIGHBOR CLASSES =======
 Container(33Kg8Q2DCyyLP8jWFykQ, "AWS Lambda", "", "" )
-Component(MRgvJ9ygR2wFH6SewIIW, "Mollie - Notification Module - Mourice", "The Notification module is a publicly exposed service which receives asynchronous notifications sent by Mollie.  Through notifications, Mollie provides asynchronous payment status changes like authorized, captured, or refunded.  The notification module will process the notification sent by Mollie and match the commercetools payment for this notification, and modify commercetools payment accordingly." )
+Component(MRgvJ9ygR2wFH6SewIIW, "Mollie - Notification Module - Mourice", "The Notification module is a publicly exposed service which receives asynchronous notifications sent by Mollie.
+
+Through notifications, Mollie provides asynchronous payment status changes like authorized, captured, or refunded.
+
+The notification module will process the notification sent by Mollie and match the commercetools payment for this notification, and modify commercetools payment accordingly." )
 Container(B2danvdNerKouHi6xarl, "CommerceTools Core", "", "" )
 Container(WstWXOpYlewLWkdCJcZ7, "GCP Function", "", "" )
-Component(03XCn8Gai9J6GFDmJFfJ, "Mollie  - API Extension - Julian", "Extend the behavior of an API with your business logic.  The commercetools Composable Commerce APIs provide default data structures and default behavior that is useful for many customers. However, each Project has its unique requirements. Similar to data structures that can be customized with [Custom Types](https://docs.commercetools.com/api/projects/types) and [Product Types](https://docs.commercetools.com/api/projects/productTypes), additional behavior can be added. For behavior to be executed within a short timeframe, [Subscriptions](https://docs.commercetools.com/api/projects/subscriptions) can be used. For behavior that needs to be executed before the API call succeeds, API Extensions can be used.  Good use cases for API Extensions are: Validating the content of a Cart (for example no more than 8 crates of beverages can be ordered at once), calculating custom shipping costs, or adding mandatory items, like insurance, to a Cart.  An API Extension gets called after the processing of a create or update request of an API call, but before the result is persisted. The API Extension can validate the object, or apply [additional updates](https://docs.commercetools.com/api/projects/api-extensions#updates-requested) to it.  ##" )
+Component(03XCn8Gai9J6GFDmJFfJ, "Mollie  - API Extension - Julian", "Extend the behavior of an API with your business logic.
+
+The commercetools Composable Commerce APIs provide default data structures and default behavior that is useful for many customers. However, each Project has its unique requirements. Similar to data structures that can be customized with [Custom Types](https://docs.commercetools.com/api/projects/types) and [Product Types](https://docs.commercetools.com/api/projects/productTypes), additional behavior can be added. For behavior to be executed within a short timeframe, [Subscriptions](https://docs.commercetools.com/api/projects/subscriptions) can be used. For behavior that needs to be executed before the API call succeeds, API Extensions can be used.
+
+Good use cases for API Extensions are: Validating the content of a Cart (for example no more than 8 crates of beverages can be ordered at once), calculating custom shipping costs, or adding mandatory items, like insurance, to a Cart.
+
+An API Extension gets called after the processing of a create or update request of an API call, but before the result is persisted. The API Extension can validate the object, or apply [additional updates](https://docs.commercetools.com/api/projects/api-extensions#updates-requested) to it.
+
+##" )
 
 
 ' CONNECTIONS =======

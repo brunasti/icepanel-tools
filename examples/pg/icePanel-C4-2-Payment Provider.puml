@@ -4,28 +4,24 @@
 ' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
 ' IcePanel JSON File : [./examples/pg/pg-001.json]
 ' Configuration      : [./examples/pg/config.json]
-' Generated at       : Mon Apr 15 17:04:48 CEST 2024
+' Generated at       : Wed Apr 17 10:16:45 CEST 2024
 
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
 
 
 
-Component(w8uGBpoOuSbjImUW8RfU, "ServiceNow", "null" ) { 
+System_Boundary(nWx1zIRMw0TdhvWCNIQ0, "Payment Provider" ) {
     ' CLASSES =======
-    Container(5WKulSoGilOyWkIT57li, "ServiceNow WebSite", "null", "" )
-    Container(L5SXGD6iXvA78tETTY6B, "ServiceNow  - Standard reports", "null", "" )
-    Container(89UjCMyoDzRPm09TGMCZ, "ServiceNow - Core", "null", "" )
-    Container(NVzttd0H1pzo67Z0guTw, "ServiceNow API", "null", "" )
+    Component(IBWaUUzUjXn4rwTwok5k, "Concardis", "null" )
+    Component(SIfTHbXR8kSApPyFqsd9, "PostFinance", "null" )
 }
 
 
 ' NEIGHBOR CLASSES =======
-Component(BDy6EhnLdszv0o1UYCZp, "Homepage  - TBC Plugins", "null" )
 
 
 ' CONNECTIONS =======
-Rel(BDy6EhnLdszv0o1UYCZp, NVzttd0H1pzo67Z0guTw, "Create Case" )
 
 
 @enduml
