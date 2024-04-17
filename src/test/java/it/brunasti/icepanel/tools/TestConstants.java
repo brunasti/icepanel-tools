@@ -23,6 +23,7 @@ public interface TestConstants {
 
 
   String outputFileName = docsDirectory + "output.puml";
+  String outputFileNameMermaid = docsDirectory + "output.md";
 
   String configurationFileName = docsDirectory + "config.json";
   String wrongConfigurationFileName = outputFileName;

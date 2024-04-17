@@ -4,7 +4,7 @@
 ' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
 ' IcePanel JSON File : [./examples/sg/sg-001.json]
 ' Configuration      : [./examples/sg/config.json]
-' Generated at       : Wed Apr 17 11:24:12 CEST 2024
+' Generated at       : Wed Apr 17 16:27:46 CEST 2024
 
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
@@ -13,14 +13,14 @@
 
 System_Boundary(gTWo4W2ihM3ZFFQsRPF5, "Connector" ) {
     ' CLASSES =======
-    Component(Kl9tTaoCuXqdHTvo4lkZ, "Signavio BPM Connector", "" )
-    Component(7exSkve2BLQcqhzdAB20, "SAP HANA  - Cloud", "" )
+    Component(Kl9tTaoCuXqdHTvo4lkZ, "Signavio BPM Connector", "")
+    Component(7exSkve2BLQcqhzdAB20, "SAP HANA  - Cloud", "")
 }
 
 
 ' NEIGHBOR CLASSES =======
-Component(UDzF9znNIXtFk9LwBDHM, "Destination Service", "" )
-Container(FMEFRLGEAtEaY3KE4ZT3, "Cypress Engine", "", "" )
+Component(UDzF9znNIXtFk9LwBDHM, "Destination Service", "")
+Container(FMEFRLGEAtEaY3KE4ZT3, "Cypress Engine", "", "")
 
 
 ' CONNECTIONS =======

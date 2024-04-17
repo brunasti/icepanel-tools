@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-public class IcePanelToolsMainTest implements TestConstants {
+class IcePanelToolsMainTest implements TestConstants {
 
   // Test IcePanelToolsMain methods ---------------------------
   @Test
@@ -66,6 +66,21 @@ public class IcePanelToolsMainTest implements TestConstants {
     moreArgs[3] = outputFileName;
     moreArgs[4] = "-j";
     moreArgs[5] = icePanelJSONFile;
+    assertDoesNotThrow(() -> IcePanelToolsMain.main(moreArgs));
+  }
+
+  @Test
+  @DisplayName("Call IcePanelToolsMain main with parameters in Mermaid format")
+  void testMainMethod_Params_Mermaid() {
+    System.err.println("IcePanelToolsMain.main ------ 6 args -----");
+    String[] moreArgs = new String[7];
+    moreArgs[0] = "-c";
+    moreArgs[1] = configurationFileName;
+    moreArgs[2] = "-o";
+    moreArgs[3] = outputFileNameMermaid;
+    moreArgs[4] = "-j";
+    moreArgs[5] = icePanelJSONFile;
+    moreArgs[6] = "-m";
     assertDoesNotThrow(() -> IcePanelToolsMain.main(moreArgs));
   }
 

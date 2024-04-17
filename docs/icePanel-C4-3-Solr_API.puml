@@ -4,7 +4,7 @@
 ' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
 ' IcePanel JSON File : [./src/test/resources/icepanel-plain.json]
 ' Configuration      : [./docs/config.json]
-' Generated at       : Wed Apr 17 11:24:12 CEST 2024
+' Generated at       : Wed Apr 17 16:27:46 CEST 2024
 
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
@@ -15,18 +15,18 @@ hide empty members
 ' Include end     : --------------------------
 
 
-Component(OmsC5XSTv64h2ua9yNDK, "Solr API", "" ) { 
+Component(OmsC5XSTv64h2ua9yNDK, "Solr API", "") { 
     ' CLASSES =======
-    Container(Vg8nvjzPDirSBRjT8K3Q, "Solr API Code", "", "" )
+    Container(Vg8nvjzPDirSBRjT8K3Q, "Solr API Code", "", "")
 }
 
 
 ' NEIGHBOR CLASSES =======
-Container(JOCj92Vc2CEAUN8hquBI, "Spring Framework", "", "" )
-ContainerDb(MzZVLTUQ74KbySVwdHfZ, "OpenSearch", "", "" )
-Component(heuHGHPQyPiOSCrreA29, "API Gateway", "" )
-Container(DqaxYHtWGYqlWeYgZkyP, "Common Lib", "", "" )
-Component(nd7uOWs4bfaeXm73vKFa, "Solr_Repo", "" )
+Container(JOCj92Vc2CEAUN8hquBI, "Spring Framework", "", "")
+ContainerDb(MzZVLTUQ74KbySVwdHfZ, "OpenSearch", "", "")
+Component(heuHGHPQyPiOSCrreA29, "API Gateway", "")
+Container(DqaxYHtWGYqlWeYgZkyP, "Common Lib", "", "")
+Component(nd7uOWs4bfaeXm73vKFa, "Solr_Repo", "")
 
 
 ' CONNECTIONS =======

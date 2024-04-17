@@ -29,7 +29,6 @@ public class IcePanelToolsMain {
   static Logger log = LogManager.getLogger(IcePanelToolsMain.class);
 
   static CommandLine commandLine;
-  static IcePanelToPlantUmlConverter icePanelToPlantUMLConverter;
 
   private static String icePanelJSONExportFile = "";
   private static String outputFile = "";
@@ -45,6 +44,7 @@ public class IcePanelToolsMain {
     configurationFile = "";
 
     debug = false;
+    mermaid = false;
 
     options = null;
   }
@@ -229,8 +229,11 @@ public class IcePanelToolsMain {
       String subOutputFileNameBase = "icePanel-C4";
 
       if (mermaid) {
+        IcePanelToMermaidConverter icePanelToMermaidConverter = new IcePanelToMermaidConverter(output);
+        icePanelToMermaidConverter.convertIcePanelToMermaid(
+                icePanelJSONExportFile, configurationFile, subOutputFileNameBase);
       } else {
-        icePanelToPlantUMLConverter = new IcePanelToPlantUmlConverter(output);
+        IcePanelToPlantUmlConverter icePanelToPlantUMLConverter = new IcePanelToPlantUmlConverter(output);
         icePanelToPlantUMLConverter.convertIcePanelToUml(
                 icePanelJSONExportFile, configurationFile, subOutputFileNameBase);
       }

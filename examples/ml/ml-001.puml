@@ -4,7 +4,7 @@
 ' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
 ' IcePanel JSON File : [./examples/ml/ml-001.json]
 ' Configuration      : [./examples/ml/config.json]
-' Generated at       : Wed Apr 17 11:24:12 CEST 2024
+' Generated at       : Wed Apr 17 16:27:46 CEST 2024
 
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
@@ -12,34 +12,34 @@
 
 
 ' CLASSES =======
-Container(33Kg8Q2DCyyLP8jWFykQ, "AWS Lambda", "", "" )
-Component(VWktJSaXSl372JIm5Gpp, "Notification- -  npm run zip-aws-lambda", "" )
-Container(JSFDlVBLMP20g7tshKdj, "Registered Extensions", "", "" )
-Component(iihE1V4k7JDKwrS5GunC, "CommerceTools System", "CommerceTools is cloud-native, headless commerce APIs that gives company control over e-commerce\nfuture, enabling to create game-changing features and functionality and consistently deliver modern shopping\nexperiences while retaining agility, scalability and performance." )
-Component(l52I4Jt4Jb5kAgRBaYg8, "Create Types Script", "" )
-System(BoNLOPSR4qOFGuDfePUN, "CommerceTools", "Commercetools, stylized as commercetools, is a cloud-based headless commerce platform that\nprovides APIs to power e-commerce sales and similar functions for large businesses.[2] Both the company and platform\nare called Commercetools." )
-Container(H0bjyiKM0oWqEi6zJSnu, "Notification Module", "", "" )
-Container(B2danvdNerKouHi6xarl, "CommerceTools Core", "", "" )
-ContainerDb(Ej5YcER9nMhwYyQHnI2A, "GCP - extension", "", "" )
-Container(WstWXOpYlewLWkdCJcZ7, "GCP Function", "", "" )
-Component(XPRwthglnMC6q9afCTyJ, "Mollie System", "Effortless payments, seamless checkout, multiple payment methods, powerful integrations, fast and\nflexible financing, robust security, an advanced dashboard and app – and even more." )
-System(9xUmKihwlYUmsasTGOsv, "Merchant Shop", "" )
-ContainerDb(NHBcYqGYVf3Jg92QMvlU, "mollie-commercetools-integration S3", "", "" )
-ContainerDb(eM0PYHq5PJCIHkPU0lIQ, "extension-module.zip", "", "" )
-Component(MRgvJ9ygR2wFH6SewIIW, "Mollie - Notification Module - Mourice", "The Notification module is a publicly exposed service which receives asynchronous notifications sent\nby Mollie.\n\nThrough notifications, Mollie provides asynchronous payment status changes like\nauthorized, captured, or refunded.\n\nThe notification module will process the notification sent by Mollie and\nmatch the commercetools payment for this notification, and modify commercetools payment accordingly." )
-Person(Y6PAtZA6NBy0cUvAAEuZ, "AWS IAM User", "" )
-ContainerDb(xeYjkZ3SYUESS7DQqtOp, "notification-module.zip", "", "" )
-Component(Tjw5lB5ohmKHZoQuRSrO, "Extension -  - npm run zip-aws-lambda", "" )
-Person(BCKMekwHTOlQNWYVHxta, "Bank", "" )
-System(1f0muXjKMuOqQb8fDcH6, "Dev Env", "" )
-System(BUVyar8CF5L9QiBG1ctm, "Mollie", "Mollie, a finance industry pioneer and one of Europe’s fastest-growing fintechs. Mollie believes that\nevery business has the right to grow, and that drives us to create products that simplify financial\nservices – effortless payments, flexible financing, powerful integrations, and more." )
-ContainerDb(6qCrC2gc3FXqZrXO3WX8, "Git Repository - mollie/commercetools", "", "" )
-Component(03XCn8Gai9J6GFDmJFfJ, "Mollie  - API Extension - Julian", "Extend the behavior of an API with your business logic.\n\nThe commercetools Composable Commerce APIs\nprovide default data structures and default behavior that is useful for many customers. However, each Project\nhas its unique requirements. Similar to data structures that can be customized with [Custom\nTypes](https://docs.commercetools.com/api/projects/types) and [Product Types](https://docs.commercetools.com/api/projects/productTypes), additional behavior can be added.\nFor behavior to be executed within a short\ntimeframe, [Subscriptions](https://docs.commercetools.com/api/projects/subscriptions) can be used. For behavior that needs to be executed before the API call succeeds, API Extensions can be\nused.\n\nGood use cases for API Extensions are: Validating the content of a Cart (for example no more than 8 crates\nof beverages can be ordered at once), calculating custom shipping costs, or adding mandatory items, like\ninsurance, to a Cart.\n\nAn API Extension gets called after the processing of a create or update request of an\nAPI call, but before the result is persisted. The API Extension can validate the object, or\napply [additional updates](https://docs.commercetools.com/api/projects/api-extensions#updates-requested) to it.\n\n##" )
-Container(GecJ5QlG47xgNEoHmv9V, "webhook", "", "" )
-Person(901quKQooOwHHO3mAvwr, "Customer", "" )
-Container(8pkWYfQwfpK1zZ5UJlIK, "API Extensions Framework", "", "" )
-Person(zT1BIuiGKsOS5Iyzaz4n, "Seller", "" )
-ContainerDb(HGU1rfF8iaCD4IQNbzTG, "Env Variable - CT_MOLLIE_CONFIG", "", "" )
+Container(33Kg8Q2DCyyLP8jWFykQ, "AWS Lambda", "", "")
+Component(VWktJSaXSl372JIm5Gpp, "Notification- -  npm run zip-aws-lambda", "")
+Container(JSFDlVBLMP20g7tshKdj, "Registered Extensions", "", "")
+Component(iihE1V4k7JDKwrS5GunC, "CommerceTools System", "CommerceTools is cloud-native, headless commerce APIs that gives company control over e-commerce\nfuture, enabling to create game-changing features and functionality and consistently deliver modern shopping\nexperiences while retaining agility, scalability and performance.")
+Component(l52I4Jt4Jb5kAgRBaYg8, "Create Types Script", "")
+System(BoNLOPSR4qOFGuDfePUN, "CommerceTools", "Commercetools, stylized as commercetools, is a cloud-based headless commerce platform that\nprovides APIs to power e-commerce sales and similar functions for large businesses.[2] Both the company and platform\nare called Commercetools.")
+Container(H0bjyiKM0oWqEi6zJSnu, "Notification Module", "", "")
+Container(B2danvdNerKouHi6xarl, "CommerceTools Core", "", "")
+ContainerDb(Ej5YcER9nMhwYyQHnI2A, "GCP - extension", "", "")
+Container(WstWXOpYlewLWkdCJcZ7, "GCP Function", "", "")
+Component(XPRwthglnMC6q9afCTyJ, "Mollie System", "Effortless payments, seamless checkout, multiple payment methods, powerful integrations, fast and\nflexible financing, robust security, an advanced dashboard and app – and even more.")
+System(9xUmKihwlYUmsasTGOsv, "Merchant Shop", "")
+ContainerDb(NHBcYqGYVf3Jg92QMvlU, "mollie-commercetools-integration S3", "", "")
+ContainerDb(eM0PYHq5PJCIHkPU0lIQ, "extension-module.zip", "", "")
+Component(MRgvJ9ygR2wFH6SewIIW, "Mollie - Notification Module - Mourice", "The Notification module is a publicly exposed service which receives asynchronous notifications sent\nby Mollie.\n\nThrough notifications, Mollie provides asynchronous payment status changes like\nauthorized, captured, or refunded.\n\nThe notification module will process the notification sent by Mollie and\nmatch the commercetools payment for this notification, and modify commercetools payment accordingly.")
+Person(Y6PAtZA6NBy0cUvAAEuZ, "AWS IAM User", "")
+ContainerDb(xeYjkZ3SYUESS7DQqtOp, "notification-module.zip", "", "")
+Component(Tjw5lB5ohmKHZoQuRSrO, "Extension -  - npm run zip-aws-lambda", "")
+Person(BCKMekwHTOlQNWYVHxta, "Bank", "")
+System(1f0muXjKMuOqQb8fDcH6, "Dev Env", "")
+System(BUVyar8CF5L9QiBG1ctm, "Mollie", "Mollie, a finance industry pioneer and one of Europe’s fastest-growing fintechs. Mollie believes that\nevery business has the right to grow, and that drives us to create products that simplify financial\nservices – effortless payments, flexible financing, powerful integrations, and more.")
+ContainerDb(6qCrC2gc3FXqZrXO3WX8, "Git Repository - mollie/commercetools", "", "")
+Component(03XCn8Gai9J6GFDmJFfJ, "Mollie  - API Extension - Julian", "Extend the behavior of an API with your business logic.\n\nThe commercetools Composable Commerce APIs\nprovide default data structures and default behavior that is useful for many customers. However, each Project\nhas its unique requirements. Similar to data structures that can be customized with [Custom\nTypes](https://docs.commercetools.com/api/projects/types) and [Product Types](https://docs.commercetools.com/api/projects/productTypes), additional behavior can be added.\nFor behavior to be executed within a short\ntimeframe, [Subscriptions](https://docs.commercetools.com/api/projects/subscriptions) can be used. For behavior that needs to be executed before the API call succeeds, API Extensions can be\nused.\n\nGood use cases for API Extensions are: Validating the content of a Cart (for example no more than 8 crates\nof beverages can be ordered at once), calculating custom shipping costs, or adding mandatory items, like\ninsurance, to a Cart.\n\nAn API Extension gets called after the processing of a create or update request of an\nAPI call, but before the result is persisted. The API Extension can validate the object, or\napply [additional updates](https://docs.commercetools.com/api/projects/api-extensions#updates-requested) to it.\n\n##")
+Container(GecJ5QlG47xgNEoHmv9V, "webhook", "", "")
+Person(901quKQooOwHHO3mAvwr, "Customer", "")
+Container(8pkWYfQwfpK1zZ5UJlIK, "API Extensions Framework", "", "")
+Person(zT1BIuiGKsOS5Iyzaz4n, "Seller", "")
+ContainerDb(HGU1rfF8iaCD4IQNbzTG, "Env Variable - CT_MOLLIE_CONFIG", "", "")
 
 
 ' CONNECTIONS =======

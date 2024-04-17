@@ -4,23 +4,23 @@
 ' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
 ' IcePanel JSON File : [./examples/ml/ml-001.json]
 ' Configuration      : [./examples/ml/config.json]
-' Generated at       : Wed Apr 17 11:24:12 CEST 2024
+' Generated at       : Wed Apr 17 16:27:46 CEST 2024
 
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
 
 
 
-Component(MRgvJ9ygR2wFH6SewIIW, "Mollie - Notification Module - Mourice", "The Notification module is a publicly exposed service which receives asynchronous notifications sent\nby Mollie.\n\nThrough notifications, Mollie provides asynchronous payment status changes like\nauthorized, captured, or refunded.\n\nThe notification module will process the notification sent by Mollie and\nmatch the commercetools payment for this notification, and modify commercetools payment accordingly." ) { 
+Component(MRgvJ9ygR2wFH6SewIIW, "Mollie - Notification Module - Mourice", "The Notification module is a publicly exposed service which receives asynchronous notifications sent\nby Mollie.\n\nThrough notifications, Mollie provides asynchronous payment status changes like\nauthorized, captured, or refunded.\n\nThe notification module will process the notification sent by Mollie and\nmatch the commercetools payment for this notification, and modify commercetools payment accordingly.") { 
     ' CLASSES =======
-    Container(H0bjyiKM0oWqEi6zJSnu, "Notification Module", "", "" )
-    Container(GecJ5QlG47xgNEoHmv9V, "webhook", "", "" )
+    Container(H0bjyiKM0oWqEi6zJSnu, "Notification Module", "", "")
+    Container(GecJ5QlG47xgNEoHmv9V, "webhook", "", "")
 }
 
 
 ' NEIGHBOR CLASSES =======
-Component(XPRwthglnMC6q9afCTyJ, "Mollie System", "Effortless payments, seamless checkout, multiple payment methods, powerful integrations, fast and\nflexible financing, robust security, an advanced dashboard and app – and even more." )
-Container(B2danvdNerKouHi6xarl, "CommerceTools Core", "", "" )
+Component(XPRwthglnMC6q9afCTyJ, "Mollie System", "Effortless payments, seamless checkout, multiple payment methods, powerful integrations, fast and\nflexible financing, robust security, an advanced dashboard and app – and even more.")
+Container(B2danvdNerKouHi6xarl, "CommerceTools Core", "", "")
 
 
 ' CONNECTIONS =======
