@@ -21,7 +21,6 @@ import org.apache.logging.log4j.Logger;
  */
 public class IcePanelToolsMain {
 
-  // TODO: Enable conversion to Mermaid https://mermaid.js.org/syntax/c4.html
   // TODO: Check the diagrams: examples/ml/icePanel-C4-output-Mollie
   //  - API Extension - Julian.puml : Description too long
 

@@ -18,7 +18,7 @@ public interface TestConstants {
   String nonExistingDirectoryAndFile = "./errorDir/test.txt";
 
 
-  String icePanelJSONFile = testResourcesDirectory + "icepanel-structured.json";
+  String icePanelJSONFile = testResourcesDirectory + "icepanel-plain.json";
   String icePanelJSONFileCompact_02 = testResourcesDirectory + "icepanel-plain.json";
 
 
