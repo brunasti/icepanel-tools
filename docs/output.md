@@ -44,7 +44,7 @@ C4Context
       Person(wSyyLfkRhknshpX3pdWJ, "Internal Consumer", "")
       Component(4teQrlbMUj5LLqxdVcPK, "BAHPCA API", "")
       ContainerDb(zKtL799aVzgaZLWgIcD6, "DP", "", "")
-      ContainerDb(N5ViUhQIiCffQr67385p, "BAH CA - SQL Server", "Steve Edgerton:\n\n- BAHSQL1.bah.ba.com\n- CNG , schema dbo.\n- 100.64.64.215\n- Account: bahsql-prd\n(147441800008)\n- TCP 1433\n\nLive and Test users\n\nSystem:\n\nWindows Server 2019 ,SQL Server 2017, Domain BAH.ba.com", "")
+      ContainerDb(N5ViUhQIiCffQr67385p, "BAH CA - SQL Server", "Steve Edgerton:\n\n- BAHSQL1.bah.ba.com\n- CNG , schema dbo.\n- 100.64.64.215\n- Account:\nbahsql-prd (147441800008)\n- TCP 1433\n\nLive and Test users\n\nSystem:\n\nWindows Server 2019 ,SQL Server\n2017, Domain BAH.ba.com", "")
       Component(HRtqQ8npZIhFIJyE4fny, "Control-M - Stored Procedure", "")
       ContainerDb(MzZVLTUQ74KbySVwdHfZ, "OpenSearch", "", "")
       Component(sevE1WSEK6p75cxmStkb, "Git Actions", "")

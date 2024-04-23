@@ -4,14 +4,14 @@
 ' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
 ' IcePanel JSON File : [./examples/ml/ml-001.json]
 ' Configuration      : [./examples/ml/config.json]
-' Generated at       : Thu Apr 18 14:38:09 CEST 2024
+' Generated at       : Tue Apr 23 11:26:22 CEST 2024
 
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
 
 
 
-Component(iihE1V4k7JDKwrS5GunC, "CommerceTools System", "CommerceTools is cloud-native, headless commerce APIs that gives company control over e-commerce\nfuture, enabling to create game-changing features and functionality and consistently deliver modern shopping\nexperiences while retaining agility, scalability and performance.") { 
+Component(iihE1V4k7JDKwrS5GunC, "CommerceTools System", "CommerceTools is cloud-native, headless commerce APIs that gives company control over e-commerce\nfuture, enabling to create game-changing features and functionality and consistently deliver modern\nshopping experiences while retaining agility, scalability and performance.") { 
     ' CLASSES =======
     Container(JSFDlVBLMP20g7tshKdj, "Registered Extensions", "", "")
     Container(B2danvdNerKouHi6xarl, "CommerceTools Core", "", "")

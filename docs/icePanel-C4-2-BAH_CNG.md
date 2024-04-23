@@ -13,7 +13,7 @@ System_Boundary(cpxxV9fxmR1pgCAxHFdB, "BAH CNG") {
     Component(MoA8eTudOD7sWkzZF9av, "Transit Gateway", "")
     Component(uFk6F6ZcKKvnkVRkCNgH, "FireWall", "")
     Component(4teQrlbMUj5LLqxdVcPK, "BAHPCA API", "")
-    ContainerDb(N5ViUhQIiCffQr67385p, "BAH CA - SQL Server", "Steve Edgerton:\n\n- BAHSQL1.bah.ba.com\n- CNG , schema dbo.\n- 100.64.64.215\n- Account: bahsql-prd\n(147441800008)\n- TCP 1433\n\nLive and Test users\n\nSystem:\n\nWindows Server 2019 ,SQL Server 2017, Domain BAH.ba.com", "")
+    ContainerDb(N5ViUhQIiCffQr67385p, "BAH CA - SQL Server", "Steve Edgerton:\n\n- BAHSQL1.bah.ba.com\n- CNG , schema dbo.\n- 100.64.64.215\n- Account:\nbahsql-prd (147441800008)\n- TCP 1433\n\nLive and Test users\n\nSystem:\n\nWindows Server 2019 ,SQL Server\n2017, Domain BAH.ba.com", "")
     ContainerDb(MzZVLTUQ74KbySVwdHfZ, "OpenSearch", "", "")
 }
 

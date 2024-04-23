@@ -377,7 +377,7 @@ public class IcePanelToMermaidConverter extends AbstractIcePanelConverter {
             }
     );
     output.println("    }");
-    output.println("");
+    output.println();
   }
 
   private void generateHeader(final JSONObject icePanelDiagramJson,
@@ -432,7 +432,7 @@ public class IcePanelToMermaidConverter extends AbstractIcePanelConverter {
 
   // ======================================================================
   // Main entry point =====================================================
-  /** Generate a diagram for the IcePanel JSON file.
+  /** Generate a diagram for the IcePanel JSON file in Mermaid format.
    *
    * @param icePanelJsonFile The JSON file exported from IcePanel to be converted
    * @param configurationFile The configuration file with the list
@@ -460,12 +460,6 @@ public class IcePanelToMermaidConverter extends AbstractIcePanelConverter {
             icePanelDiagramJson,
             configurationFile,
             outputPath + subOutputFileNameBase);
-
-    // TODO: Generate Flow diagram in Mermaid format
-    //    convertIcePanelFlowToUml(icePanelJsonFile,
-    //            icePanelDiagramJson,
-    //            configurationFile,
-    //            outputPath + subOutputFileNameBase);
   }
 
 }
