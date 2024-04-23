@@ -16,6 +16,14 @@
 
     <dependencies>
         <dependency>
+            <groupId>it.brunasti.java.utils.Utils</groupId>
+            <artifactId>Java-Utils</artifactId>
+            <version>1.0.0</version>
+            <scope>system</scope>
+            <systemPath>/Users/paolobrunasti/Work/Mine/icepanel/icepanel-tools/libs/Java-Utils-1.0.0.jar</systemPath>
+        </dependency>
+
+        <dependency>
             <groupId>org.ow2.asm</groupId>
             <artifactId>asm</artifactId>
             <version>9.6</version>
