@@ -1,0 +1,156 @@
+@startuml
+'https://plantuml.com/class-diagram
+' CONVERT ICEPANEL DIAGRAM ===========
+' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
+' IcePanel JSON File : [./examples/ai/ARS-AI_Readiness_Survey.json]
+' Configuration      : [./examples/ai/config.json]
+' Generated at       : Wed May 01 15:06:54 CEST 2024
+
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+
+
+' CLASSES =======
+Container(ccRXgtE4SCPOsJ86Bucd, "Question Option", "", "")
+Container(kqoiQoApomG9vCdJgRCS, "Demographic Dimension", "", "")
+Container(VK9ZFiCYByBvFGzQxBpq, "Static Content", "", "")
+Container(dOWFs1FDNaWOGsbJJUas, "Survey Status", "", "")
+Person(aoPaRfmaQuiM5hH5QhmS, "AND Developer", "")
+Container(VfVOeO3QyBIGXrvCOwIi, "I18N System", "", "")
+Component(Zas67UmkOs1zk4BhDirK, "Reporting System", "")
+Container(SuPXys2m8MHNajNDAovG, "Security Component (FireWall...)", "", "")
+Component(mCLYSixzXMXK6M59oIYW, "API Gateway", "")
+Component(5hrlGZy5caua0ihnw1fz, "AI Readiness Survey WebApp", "")
+Person(I3ut2I4Ct9f3UDszgxf1, "Translator", "")
+Container(TxZtQCNHfOvU0hauU7me, "I18N Translation", "", "")
+Container(awiZhehg5tNZRyDuZDr9, "Survey Dimension", "", "")
+ContainerDb(iZVcQxlnkbrnOYjJqqv2, "Dynamic I18N Content", "", "")
+Person(KkUEHQQOml7FBUrTDfgF, "AND User", "")
+Container(fhOu4B6mDXc7nf9z8b9C, "AWS API Gateway", "", "")
+System(DTAvEftAPfnuVbWeBkJO, "Git Repo", "")
+Person(3zCEc0A8nh1jzwekwJ9e, "User (Customer CEO)", "")
+Container(K4wE6hv7lp6PXCIzvmzi, "User Survey Rel", "", "")
+Container(LsUYohywFy73cbNxkS1m, "User Response", "", "")
+Container(tkH0Nyiet0J81k3G0P0b, "Survey Question", "", "")
+Container(XrwLMmIqBRBHFCQBkwLC, "User Demografic Value", "", "")
+Component(3aSu0mcX7m60VrLzm7L6, "OpenAPI Doc", "")
+Container(bJilmQwJf6L105KZVIqf, "User", "", "")
+Container(LS52GSxTaF82aLsMAGUJ, "Language", "", "")
+Container(7eu55kM96LjjrzxMB2kO, "Survey (Assessment)", "", "")
+Container(4S6STeueefjDuU4xPjRW, "User Dimentsion Value", "", "")
+Component(SPQI7VF4lQr2xI6LfLFL, "AI Readiness Survey BE", "")
+System(MVsaKWytzsPec5DvAzrJ, "AI Readiness Survey Application", "Enable the AI Readiness Survey")
+Container(d0yXDxJmyhA9EL5YiepF, "BE Application", "", "")
+Container(ToaUegZzOkTYIdKge5Qq, "Stage", "", "")
+Container(x6BTWIQ3rThpdBgHOSRZ, "VueJS", "", "")
+Component(INwNu3tqXQVOUeQ95rmz, "Notification System", "")
+ContainerDb(Fyh0CkKDWXU6cSuyq7FS, "GitHub Repo System", "", "")
+Container(V9vsEFD13t044w0g9kcU, "Web Server", "", "")
+ContainerDb(tlobGJ03gGg0eTGJjeCt, "AI Readiness Survey Storage", "", "")
+
+
+' CONNECTIONS =======
+Rel(d0yXDxJmyhA9EL5YiepF, tlobGJ03gGg0eTGJjeCt, "Stores and reads" )
+Rel(tlobGJ03gGg0eTGJjeCt, d0yXDxJmyhA9EL5YiepF, "Return of Stores and reads" )
+Rel(ccRXgtE4SCPOsJ86Bucd, tkH0Nyiet0J81k3G0P0b, "Responds" )
+Rel(d0yXDxJmyhA9EL5YiepF, VfVOeO3QyBIGXrvCOwIi, "Utilises" )
+Rel(bJilmQwJf6L105KZVIqf, LS52GSxTaF82aLsMAGUJ, "Uses" )
+Rel(tkH0Nyiet0J81k3G0P0b, 7eu55kM96LjjrzxMB2kO, "Composes" )
+Rel(tlobGJ03gGg0eTGJjeCt, Zas67UmkOs1zk4BhDirK, "Extracts" )
+Rel(3aSu0mcX7m60VrLzm7L6, aoPaRfmaQuiM5hH5QhmS, "Mantain" )
+Rel(4S6STeueefjDuU4xPjRW, bJilmQwJf6L105KZVIqf, "User Survey Result" )
+Rel(K4wE6hv7lp6PXCIzvmzi, 7eu55kM96LjjrzxMB2kO, "Compiles" )
+Rel(SuPXys2m8MHNajNDAovG, V9vsEFD13t044w0g9kcU, "Controls Access" )
+Rel(3zCEc0A8nh1jzwekwJ9e, SuPXys2m8MHNajNDAovG, "Access" )
+Rel(K4wE6hv7lp6PXCIzvmzi, bJilmQwJf6L105KZVIqf, "Answered by" )
+Rel(ccRXgtE4SCPOsJ86Bucd, ToaUegZzOkTYIdKge5Qq, "Corresponds" )
+Rel(I3ut2I4Ct9f3UDszgxf1, iZVcQxlnkbrnOYjJqqv2, "Updates" )
+Rel(V9vsEFD13t044w0g9kcU, VK9ZFiCYByBvFGzQxBpq, "Delivers" )
+Rel(x6BTWIQ3rThpdBgHOSRZ, mCLYSixzXMXK6M59oIYW, "API" )
+Rel(mCLYSixzXMXK6M59oIYW, x6BTWIQ3rThpdBgHOSRZ, "Return of API" )
+Rel(d0yXDxJmyhA9EL5YiepF, fhOu4B6mDXc7nf9z8b9C, "Implements" )
+Rel(iZVcQxlnkbrnOYjJqqv2, VfVOeO3QyBIGXrvCOwIi, "Provides I18N Content" )
+Rel(XrwLMmIqBRBHFCQBkwLC, kqoiQoApomG9vCdJgRCS, "Set Value for" )
+Rel(aoPaRfmaQuiM5hH5QhmS, tlobGJ03gGg0eTGJjeCt, "Setups DB Structure" )
+Rel(5hrlGZy5caua0ihnw1fz, Fyh0CkKDWXU6cSuyq7FS, "Uses" )
+Rel(XrwLMmIqBRBHFCQBkwLC, bJilmQwJf6L105KZVIqf, "Refers to User" )
+Rel(LsUYohywFy73cbNxkS1m, ToaUegZzOkTYIdKge5Qq, "Corresponds to Stage (Derived)" )
+Rel(aoPaRfmaQuiM5hH5QhmS, Fyh0CkKDWXU6cSuyq7FS, "Commits code" )
+Rel(mCLYSixzXMXK6M59oIYW, 3aSu0mcX7m60VrLzm7L6, "Publish" )
+Rel(awiZhehg5tNZRyDuZDr9, 7eu55kM96LjjrzxMB2kO, "Rappresents" )
+Rel(INwNu3tqXQVOUeQ95rmz, Fyh0CkKDWXU6cSuyq7FS, "Uses" )
+Rel(TxZtQCNHfOvU0hauU7me, LS52GSxTaF82aLsMAGUJ, "Translates" )
+Rel(4S6STeueefjDuU4xPjRW, awiZhehg5tNZRyDuZDr9, "Dimension" )
+Rel(INwNu3tqXQVOUeQ95rmz, 3zCEc0A8nh1jzwekwJ9e, "Sends Result" )
+Rel(fhOu4B6mDXc7nf9z8b9C, mCLYSixzXMXK6M59oIYW, "Exposes" )
+Rel(V9vsEFD13t044w0g9kcU, x6BTWIQ3rThpdBgHOSRZ, "Executes" )
+Rel(K4wE6hv7lp6PXCIzvmzi, dOWFs1FDNaWOGsbJJUas, "status" )
+Rel(tlobGJ03gGg0eTGJjeCt, INwNu3tqXQVOUeQ95rmz, "Reads data" )
+Rel(SPQI7VF4lQr2xI6LfLFL, Fyh0CkKDWXU6cSuyq7FS, "Uses" )
+Rel(tkH0Nyiet0J81k3G0P0b, awiZhehg5tNZRyDuZDr9, "Is Part Of" )
+Rel(Zas67UmkOs1zk4BhDirK, Fyh0CkKDWXU6cSuyq7FS, "Uses" )
+Rel(Zas67UmkOs1zk4BhDirK, KkUEHQQOml7FBUrTDfgF, "Reads report" )
+Rel(kqoiQoApomG9vCdJgRCS, 7eu55kM96LjjrzxMB2kO, "Refers to" )
+Rel(7eu55kM96LjjrzxMB2kO, kqoiQoApomG9vCdJgRCS, "Return of Refers to" )
+Rel(LsUYohywFy73cbNxkS1m, ccRXgtE4SCPOsJ86Bucd, "User Question Response" )
+Rel(iZVcQxlnkbrnOYjJqqv2, tlobGJ03gGg0eTGJjeCt, "Sotered in" )
+Rel(3zCEc0A8nh1jzwekwJ9e, SuPXys2m8MHNajNDAovG, "Accesses" )
+Rel(Fyh0CkKDWXU6cSuyq7FS, MVsaKWytzsPec5DvAzrJ, "Provide Sources" )
+
+
+' PARENT CONNECTIONS =======
+  tlobGJ03gGg0eTGJjeCt <.. ccRXgtE4SCPOsJ86Bucd 
+  MVsaKWytzsPec5DvAzrJ <.. ccRXgtE4SCPOsJ86Bucd 
+  tlobGJ03gGg0eTGJjeCt <.. kqoiQoApomG9vCdJgRCS 
+  MVsaKWytzsPec5DvAzrJ <.. kqoiQoApomG9vCdJgRCS 
+  5hrlGZy5caua0ihnw1fz <.. VK9ZFiCYByBvFGzQxBpq 
+  MVsaKWytzsPec5DvAzrJ <.. VK9ZFiCYByBvFGzQxBpq 
+  tlobGJ03gGg0eTGJjeCt <.. dOWFs1FDNaWOGsbJJUas 
+  MVsaKWytzsPec5DvAzrJ <.. dOWFs1FDNaWOGsbJJUas 
+  SPQI7VF4lQr2xI6LfLFL <.. VfVOeO3QyBIGXrvCOwIi 
+  MVsaKWytzsPec5DvAzrJ <.. VfVOeO3QyBIGXrvCOwIi 
+  MVsaKWytzsPec5DvAzrJ <.. Zas67UmkOs1zk4BhDirK 
+  5hrlGZy5caua0ihnw1fz <.. SuPXys2m8MHNajNDAovG 
+  MVsaKWytzsPec5DvAzrJ <.. SuPXys2m8MHNajNDAovG 
+  MVsaKWytzsPec5DvAzrJ <.. mCLYSixzXMXK6M59oIYW 
+  MVsaKWytzsPec5DvAzrJ <.. 5hrlGZy5caua0ihnw1fz 
+  tlobGJ03gGg0eTGJjeCt <.. TxZtQCNHfOvU0hauU7me 
+  MVsaKWytzsPec5DvAzrJ <.. TxZtQCNHfOvU0hauU7me 
+  tlobGJ03gGg0eTGJjeCt <.. awiZhehg5tNZRyDuZDr9 
+  MVsaKWytzsPec5DvAzrJ <.. awiZhehg5tNZRyDuZDr9 
+  MVsaKWytzsPec5DvAzrJ <.. iZVcQxlnkbrnOYjJqqv2 
+  SPQI7VF4lQr2xI6LfLFL <.. fhOu4B6mDXc7nf9z8b9C 
+  MVsaKWytzsPec5DvAzrJ <.. fhOu4B6mDXc7nf9z8b9C 
+  tlobGJ03gGg0eTGJjeCt <.. K4wE6hv7lp6PXCIzvmzi 
+  MVsaKWytzsPec5DvAzrJ <.. K4wE6hv7lp6PXCIzvmzi 
+  tlobGJ03gGg0eTGJjeCt <.. LsUYohywFy73cbNxkS1m 
+  MVsaKWytzsPec5DvAzrJ <.. LsUYohywFy73cbNxkS1m 
+  tlobGJ03gGg0eTGJjeCt <.. tkH0Nyiet0J81k3G0P0b 
+  MVsaKWytzsPec5DvAzrJ <.. tkH0Nyiet0J81k3G0P0b 
+  tlobGJ03gGg0eTGJjeCt <.. XrwLMmIqBRBHFCQBkwLC 
+  MVsaKWytzsPec5DvAzrJ <.. XrwLMmIqBRBHFCQBkwLC 
+  MVsaKWytzsPec5DvAzrJ <.. 3aSu0mcX7m60VrLzm7L6 
+  tlobGJ03gGg0eTGJjeCt <.. bJilmQwJf6L105KZVIqf 
+  MVsaKWytzsPec5DvAzrJ <.. bJilmQwJf6L105KZVIqf 
+  tlobGJ03gGg0eTGJjeCt <.. LS52GSxTaF82aLsMAGUJ 
+  MVsaKWytzsPec5DvAzrJ <.. LS52GSxTaF82aLsMAGUJ 
+  tlobGJ03gGg0eTGJjeCt <.. 7eu55kM96LjjrzxMB2kO 
+  MVsaKWytzsPec5DvAzrJ <.. 7eu55kM96LjjrzxMB2kO 
+  tlobGJ03gGg0eTGJjeCt <.. 4S6STeueefjDuU4xPjRW 
+  MVsaKWytzsPec5DvAzrJ <.. 4S6STeueefjDuU4xPjRW 
+  MVsaKWytzsPec5DvAzrJ <.. SPQI7VF4lQr2xI6LfLFL 
+  SPQI7VF4lQr2xI6LfLFL <.. d0yXDxJmyhA9EL5YiepF 
+  MVsaKWytzsPec5DvAzrJ <.. d0yXDxJmyhA9EL5YiepF 
+  tlobGJ03gGg0eTGJjeCt <.. ToaUegZzOkTYIdKge5Qq 
+  MVsaKWytzsPec5DvAzrJ <.. ToaUegZzOkTYIdKge5Qq 
+  5hrlGZy5caua0ihnw1fz <.. x6BTWIQ3rThpdBgHOSRZ 
+  MVsaKWytzsPec5DvAzrJ <.. x6BTWIQ3rThpdBgHOSRZ 
+  MVsaKWytzsPec5DvAzrJ <.. INwNu3tqXQVOUeQ95rmz 
+  DTAvEftAPfnuVbWeBkJO <.. Fyh0CkKDWXU6cSuyq7FS 
+  5hrlGZy5caua0ihnw1fz <.. V9vsEFD13t044w0g9kcU 
+  MVsaKWytzsPec5DvAzrJ <.. V9vsEFD13t044w0g9kcU 
+  MVsaKWytzsPec5DvAzrJ <.. tlobGJ03gGg0eTGJjeCt 
+
+
+@enduml

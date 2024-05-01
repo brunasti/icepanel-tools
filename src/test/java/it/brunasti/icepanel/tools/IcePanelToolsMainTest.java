@@ -125,6 +125,32 @@ class IcePanelToolsMainTest implements TestConstants {
     args[5] = ML_CONF;
     assertDoesNotThrow(() -> IcePanelToolsMain.main(args));
 
+    System.err.println("testMainMethod_Examples ------ AI -----");
+    args[0] = AI_JSON;
+    args[1] = AI_OUT;
+    args[2] = "-d";
+    args[3] = "10";
+    args[4] = "-c";
+    args[5] = AI_CONF;
+    assertDoesNotThrow(() -> IcePanelToolsMain.main(args));
+
+  }
+
+  @Test
+  @DisplayName("Call IcePanelToolsMain main to create sub diagrams")
+  void testMainMethod_Example_02() {
+    System.err.println("testMainMethod_Example_02 ------ BA -----");
+    String[] args = new String[6];
+
+    System.err.println("testMainMethod_Examples ------ AI -----");
+    args[0] = AI_JSON;
+    args[1] = AI_OUT;
+    args[2] = "-d";
+    args[3] = "10";
+    args[4] = "-c";
+    args[5] = AI_CONF;
+    assertDoesNotThrow(() -> IcePanelToolsMain.main(args));
+
   }
 
   @Test

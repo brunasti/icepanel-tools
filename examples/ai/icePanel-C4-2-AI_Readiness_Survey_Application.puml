@@ -1,0 +1,61 @@
+@startuml
+'https://plantuml.com/class-diagram
+' CONVERT ICEPANEL DIAGRAM ===========
+' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
+' IcePanel JSON File : [./examples/ai/ARS-AI_Readiness_Survey.json]
+' Configuration      : [./examples/ai/config.json]
+' Generated at       : Wed May 01 15:06:54 CEST 2024
+
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+
+
+System_Boundary(MVsaKWytzsPec5DvAzrJ, "AI Readiness Survey Application" ) {
+    ' CLASSES =======
+    Component(Zas67UmkOs1zk4BhDirK, "Reporting System", "")
+    Component(mCLYSixzXMXK6M59oIYW, "API Gateway", "")
+    Component(5hrlGZy5caua0ihnw1fz, "AI Readiness Survey WebApp", "")
+    ContainerDb(iZVcQxlnkbrnOYjJqqv2, "Dynamic I18N Content", "", "")
+    Component(3aSu0mcX7m60VrLzm7L6, "OpenAPI Doc", "")
+    Component(SPQI7VF4lQr2xI6LfLFL, "AI Readiness Survey BE", "")
+    Component(INwNu3tqXQVOUeQ95rmz, "Notification System", "")
+    ContainerDb(tlobGJ03gGg0eTGJjeCt, "AI Readiness Survey Storage", "", "")
+}
+
+
+' NEIGHBOR CLASSES =======
+Person(aoPaRfmaQuiM5hH5QhmS, "AND Developer", "")
+Container(VfVOeO3QyBIGXrvCOwIi, "I18N System", "", "")
+Person(I3ut2I4Ct9f3UDszgxf1, "Translator", "")
+Container(d0yXDxJmyhA9EL5YiepF, "BE Application", "", "")
+Container(x6BTWIQ3rThpdBgHOSRZ, "VueJS", "", "")
+Person(KkUEHQQOml7FBUrTDfgF, "AND User", "")
+ContainerDb(Fyh0CkKDWXU6cSuyq7FS, "GitHub Repo System", "", "")
+Container(fhOu4B6mDXc7nf9z8b9C, "AWS API Gateway", "", "")
+Person(3zCEc0A8nh1jzwekwJ9e, "User (Customer CEO)", "")
+
+
+' CONNECTIONS =======
+Rel(d0yXDxJmyhA9EL5YiepF, tlobGJ03gGg0eTGJjeCt, "Stores and reads" )
+Rel(tlobGJ03gGg0eTGJjeCt, d0yXDxJmyhA9EL5YiepF, "Return of Stores and reads" )
+Rel(tlobGJ03gGg0eTGJjeCt, Zas67UmkOs1zk4BhDirK, "Extracts" )
+Rel(3aSu0mcX7m60VrLzm7L6, aoPaRfmaQuiM5hH5QhmS, "Mantain" )
+Rel(I3ut2I4Ct9f3UDszgxf1, iZVcQxlnkbrnOYjJqqv2, "Updates" )
+Rel(x6BTWIQ3rThpdBgHOSRZ, mCLYSixzXMXK6M59oIYW, "API" )
+Rel(mCLYSixzXMXK6M59oIYW, x6BTWIQ3rThpdBgHOSRZ, "Return of API" )
+Rel(iZVcQxlnkbrnOYjJqqv2, VfVOeO3QyBIGXrvCOwIi, "Provides I18N Content" )
+Rel(aoPaRfmaQuiM5hH5QhmS, tlobGJ03gGg0eTGJjeCt, "Setups DB Structure" )
+Rel(5hrlGZy5caua0ihnw1fz, Fyh0CkKDWXU6cSuyq7FS, "Uses" )
+Rel(mCLYSixzXMXK6M59oIYW, 3aSu0mcX7m60VrLzm7L6, "Publish" )
+Rel(INwNu3tqXQVOUeQ95rmz, Fyh0CkKDWXU6cSuyq7FS, "Uses" )
+Rel(INwNu3tqXQVOUeQ95rmz, 3zCEc0A8nh1jzwekwJ9e, "Sends Result" )
+Rel(fhOu4B6mDXc7nf9z8b9C, mCLYSixzXMXK6M59oIYW, "Exposes" )
+Rel(tlobGJ03gGg0eTGJjeCt, INwNu3tqXQVOUeQ95rmz, "Reads data" )
+Rel(SPQI7VF4lQr2xI6LfLFL, Fyh0CkKDWXU6cSuyq7FS, "Uses" )
+Rel(Zas67UmkOs1zk4BhDirK, Fyh0CkKDWXU6cSuyq7FS, "Uses" )
+Rel(Zas67UmkOs1zk4BhDirK, KkUEHQQOml7FBUrTDfgF, "Reads report" )
+Rel(iZVcQxlnkbrnOYjJqqv2, tlobGJ03gGg0eTGJjeCt, "Sotered in" )
+
+
+@enduml

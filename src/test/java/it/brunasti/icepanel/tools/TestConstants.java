@@ -50,4 +50,9 @@ public interface TestConstants {
   String ML_OUT = ML_DIR + "ml-001.puml";
   String ML_CONF = ML_DIR + "config.json";
 
+  String AI_DIR = examplesDirectory + "ai/";
+  String AI_JSON = AI_DIR + "ARS-AI_Readiness_Survey.json";
+  String AI_OUT = AI_DIR + "ARS-AI_Readiness_Survey.puml";
+  String AI_CONF = AI_DIR + "config.json";
+
 }

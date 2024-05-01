@@ -1,0 +1,37 @@
+@startuml
+'https://plantuml.com/class-diagram
+' CONVERT ICEPANEL DIAGRAM ===========
+' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
+' IcePanel JSON File : [./examples/ai/ARS-AI_Readiness_Survey.json]
+' Configuration      : [./examples/ai/config.json]
+' Generated at       : Wed May 01 15:06:54 CEST 2024
+
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+
+
+Component(SPQI7VF4lQr2xI6LfLFL, "AI Readiness Survey BE", "") { 
+    ' CLASSES =======
+    Container(VfVOeO3QyBIGXrvCOwIi, "I18N System", "", "")
+    Container(fhOu4B6mDXc7nf9z8b9C, "AWS API Gateway", "", "")
+    Container(d0yXDxJmyhA9EL5YiepF, "BE Application", "", "")
+}
+
+
+' NEIGHBOR CLASSES =======
+ContainerDb(iZVcQxlnkbrnOYjJqqv2, "Dynamic I18N Content", "", "")
+Component(mCLYSixzXMXK6M59oIYW, "API Gateway", "")
+ContainerDb(tlobGJ03gGg0eTGJjeCt, "AI Readiness Survey Storage", "", "")
+
+
+' CONNECTIONS =======
+Rel(d0yXDxJmyhA9EL5YiepF, tlobGJ03gGg0eTGJjeCt, "Stores and reads" )
+Rel(tlobGJ03gGg0eTGJjeCt, d0yXDxJmyhA9EL5YiepF, "Return of Stores and reads" )
+Rel(d0yXDxJmyhA9EL5YiepF, VfVOeO3QyBIGXrvCOwIi, "Utilises" )
+Rel(d0yXDxJmyhA9EL5YiepF, fhOu4B6mDXc7nf9z8b9C, "Implements" )
+Rel(iZVcQxlnkbrnOYjJqqv2, VfVOeO3QyBIGXrvCOwIi, "Provides I18N Content" )
+Rel(fhOu4B6mDXc7nf9z8b9C, mCLYSixzXMXK6M59oIYW, "Exposes" )
+
+
+@enduml

@@ -1,0 +1,38 @@
+@startuml
+'https://plantuml.com/class-diagram
+' CONVERT ICEPANEL DIAGRAM ===========
+' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
+' IcePanel JSON File : [./examples/ai/ARS-AI_Readiness_Survey.json]
+' Configuration      : [./examples/ai/config.json]
+' Generated at       : Wed May 01 15:06:54 CEST 2024
+
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+
+
+System_Boundary(DTAvEftAPfnuVbWeBkJO, "Git Repo" ) {
+    ' CLASSES =======
+    ContainerDb(Fyh0CkKDWXU6cSuyq7FS, "GitHub Repo System", "", "")
+}
+
+
+' NEIGHBOR CLASSES =======
+Component(5hrlGZy5caua0ihnw1fz, "AI Readiness Survey WebApp", "")
+Component(INwNu3tqXQVOUeQ95rmz, "Notification System", "")
+Person(aoPaRfmaQuiM5hH5QhmS, "AND Developer", "")
+Component(Zas67UmkOs1zk4BhDirK, "Reporting System", "")
+Component(SPQI7VF4lQr2xI6LfLFL, "AI Readiness Survey BE", "")
+System(MVsaKWytzsPec5DvAzrJ, "AI Readiness Survey Application", "Enable the AI Readiness Survey")
+
+
+' CONNECTIONS =======
+Rel(5hrlGZy5caua0ihnw1fz, Fyh0CkKDWXU6cSuyq7FS, "Uses" )
+Rel(aoPaRfmaQuiM5hH5QhmS, Fyh0CkKDWXU6cSuyq7FS, "Commits code" )
+Rel(INwNu3tqXQVOUeQ95rmz, Fyh0CkKDWXU6cSuyq7FS, "Uses" )
+Rel(SPQI7VF4lQr2xI6LfLFL, Fyh0CkKDWXU6cSuyq7FS, "Uses" )
+Rel(Zas67UmkOs1zk4BhDirK, Fyh0CkKDWXU6cSuyq7FS, "Uses" )
+Rel(Fyh0CkKDWXU6cSuyq7FS, MVsaKWytzsPec5DvAzrJ, "Provide Sources" )
+
+
+@enduml
