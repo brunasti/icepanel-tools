@@ -374,6 +374,7 @@ public class IcePanelToPlantUmlConverter extends AbstractIcePanelConverter {
       return;
     }
 
+    // TODO: check the inclusion of entities of lower level and the corresponding links
     ArrayList<JSONObject> neighbors = extractNeighbors(icePanelDiagramJson, base, children);
 
     generateSubDiagramHeader(printStream, icePanelJsonFile, configurationFile);
