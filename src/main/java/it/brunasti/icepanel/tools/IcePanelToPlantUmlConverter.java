@@ -290,6 +290,7 @@ public class IcePanelToPlantUmlConverter extends AbstractIcePanelConverter {
                                                  final JSONObject base,
                                                  final ArrayList<JSONObject> children) {
     log.debug( "generateSubDiagramNeighborClasses() START ------------------");
+    log.debug( "generateSubDiagramNeighborClasses() -BASE - {} ({})", base.get(IcePanelConstants.ID), base.get(IcePanelConstants.NAME));
     output.println();
     output.println("' NEIGHBOR CLASSES =======");
     children.forEach( object -> {
@@ -328,12 +329,13 @@ public class IcePanelToPlantUmlConverter extends AbstractIcePanelConverter {
               String source = getValue(connectionObject, IcePanelConstants.ORIGIN_ID);
               String target = getValue(connectionObject, IcePanelConstants.TARGET_ID);
               String direction = getValue(connectionObject, IcePanelConstants.DIRECTION);
+              output.println("' CONNECTION : ["+name+"] ["+source+"] ["+target+"] ["+direction+"]");
 
               JSONObject sourceObject = getObject(icePanelDiagramJson, source);
               JSONObject targetObject = getObject(icePanelDiagramJson, target);
 
-              if (childrenMap.containsValue(sourceObject)
-                      || childrenMap.containsValue(targetObject)) {
+//              if (childrenMap.containsValue(sourceObject)
+//                      || childrenMap.containsValue(targetObject)) {
 
                 // Check if both nodes are part inside the base
                 String head = "";
@@ -406,7 +408,7 @@ public class IcePanelToPlantUmlConverter extends AbstractIcePanelConverter {
                   output.println(head+"Rel(" + target + ", " + source
                           + ", \"Return of " + name + "\" )");
                 }
-              }
+//              }
             }
     );
     output.println();
