@@ -31,6 +31,7 @@ public final class IcePanelConstants {
   public static final String DESCRIPTION = "description";
   public static final String ORIGIN_ID = "originId";
   public static final String PARENT_ID = "parentId";
+  public static final String PARENT_NAME = "parentName";
   public static final String TARGET_ID = "targetId";
   public static final String DIRECTION = "direction";
   public static final String MODEL_CONNECTIONS = "modelConnections";

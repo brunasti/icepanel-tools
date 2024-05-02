@@ -4,7 +4,7 @@
 ' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
 ' IcePanel JSON File : [./examples/ai/ARS-AI_Readiness_Survey.json]
 ' Configuration      : [./examples/ai/config.json]
-' Generated at       : Wed May 01 15:06:54 CEST 2024
+' Generated at       : Thu May 02 13:56:38 CEST 2024
 
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
@@ -17,8 +17,10 @@ Container(kqoiQoApomG9vCdJgRCS, "Demographic Dimension", "", "")
 Container(VK9ZFiCYByBvFGzQxBpq, "Static Content", "", "")
 Container(dOWFs1FDNaWOGsbJJUas, "Survey Status", "", "")
 Person(aoPaRfmaQuiM5hH5QhmS, "AND Developer", "")
+Container(I9erkX6JvcRx0uM4iieJ, "HubSpot", "", "")
 Container(VfVOeO3QyBIGXrvCOwIi, "I18N System", "", "")
 Component(Zas67UmkOs1zk4BhDirK, "Reporting System", "")
+Container(5eGbhrgZL6CVjXVxG9EB, "CRM System", "", "")
 Container(SuPXys2m8MHNajNDAovG, "Security Component (FireWall...)", "", "")
 Component(mCLYSixzXMXK6M59oIYW, "API Gateway", "")
 Component(5hrlGZy5caua0ihnw1fz, "AI Readiness Survey WebApp", "")
@@ -26,6 +28,7 @@ Person(I3ut2I4Ct9f3UDszgxf1, "Translator", "")
 Container(TxZtQCNHfOvU0hauU7me, "I18N Translation", "", "")
 Container(awiZhehg5tNZRyDuZDr9, "Survey Dimension", "", "")
 ContainerDb(iZVcQxlnkbrnOYjJqqv2, "Dynamic I18N Content", "", "")
+ContainerDb(6KEeGMtfXzcAtPxRMm95, "CRM Contents", "", "")
 Person(KkUEHQQOml7FBUrTDfgF, "AND User", "")
 Container(fhOu4B6mDXc7nf9z8b9C, "AWS API Gateway", "", "")
 System(DTAvEftAPfnuVbWeBkJO, "Git Repo", "")
@@ -38,6 +41,7 @@ Component(3aSu0mcX7m60VrLzm7L6, "OpenAPI Doc", "")
 Container(bJilmQwJf6L105KZVIqf, "User", "", "")
 Container(LS52GSxTaF82aLsMAGUJ, "Language", "", "")
 Container(7eu55kM96LjjrzxMB2kO, "Survey (Assessment)", "", "")
+Container(Q4JwBYUNizhrOK6IVNU0, "Integration System", "", "")
 Container(4S6STeueefjDuU4xPjRW, "User Dimentsion Value", "", "")
 Component(SPQI7VF4lQr2xI6LfLFL, "AI Readiness Survey BE", "")
 System(MVsaKWytzsPec5DvAzrJ, "AI Readiness Survey Application", "Enable the AI Readiness Survey")
@@ -58,18 +62,20 @@ Rel(d0yXDxJmyhA9EL5YiepF, VfVOeO3QyBIGXrvCOwIi, "Utilises" )
 Rel(bJilmQwJf6L105KZVIqf, LS52GSxTaF82aLsMAGUJ, "Uses" )
 Rel(tkH0Nyiet0J81k3G0P0b, 7eu55kM96LjjrzxMB2kO, "Composes" )
 Rel(tlobGJ03gGg0eTGJjeCt, Zas67UmkOs1zk4BhDirK, "Extracts" )
+Rel(d0yXDxJmyhA9EL5YiepF, 5eGbhrgZL6CVjXVxG9EB, "Accesses" )
 Rel(3aSu0mcX7m60VrLzm7L6, aoPaRfmaQuiM5hH5QhmS, "Mantain" )
 Rel(4S6STeueefjDuU4xPjRW, bJilmQwJf6L105KZVIqf, "User Survey Result" )
 Rel(K4wE6hv7lp6PXCIzvmzi, 7eu55kM96LjjrzxMB2kO, "Compiles" )
 Rel(SuPXys2m8MHNajNDAovG, V9vsEFD13t044w0g9kcU, "Controls Access" )
+Rel(6KEeGMtfXzcAtPxRMm95, 5eGbhrgZL6CVjXVxG9EB, "Provides Contents" )
 Rel(3zCEc0A8nh1jzwekwJ9e, SuPXys2m8MHNajNDAovG, "Access" )
 Rel(K4wE6hv7lp6PXCIzvmzi, bJilmQwJf6L105KZVIqf, "Answered by" )
 Rel(ccRXgtE4SCPOsJ86Bucd, ToaUegZzOkTYIdKge5Qq, "Corresponds" )
 Rel(I3ut2I4Ct9f3UDszgxf1, iZVcQxlnkbrnOYjJqqv2, "Updates" )
 Rel(V9vsEFD13t044w0g9kcU, VK9ZFiCYByBvFGzQxBpq, "Delivers" )
-Rel(x6BTWIQ3rThpdBgHOSRZ, mCLYSixzXMXK6M59oIYW, "API" )
-Rel(mCLYSixzXMXK6M59oIYW, x6BTWIQ3rThpdBgHOSRZ, "Return of API" )
-Rel(d0yXDxJmyhA9EL5YiepF, fhOu4B6mDXc7nf9z8b9C, "Implements" )
+Rel(x6BTWIQ3rThpdBgHOSRZ, mCLYSixzXMXK6M59oIYW, "API Intreface" )
+Rel(mCLYSixzXMXK6M59oIYW, x6BTWIQ3rThpdBgHOSRZ, "Return of API Intreface" )
+Rel(fhOu4B6mDXc7nf9z8b9C, d0yXDxJmyhA9EL5YiepF, "Implemented by" )
 Rel(iZVcQxlnkbrnOYjJqqv2, VfVOeO3QyBIGXrvCOwIi, "Provides I18N Content" )
 Rel(XrwLMmIqBRBHFCQBkwLC, kqoiQoApomG9vCdJgRCS, "Set Value for" )
 Rel(aoPaRfmaQuiM5hH5QhmS, tlobGJ03gGg0eTGJjeCt, "Setups DB Structure" )
@@ -82,11 +88,11 @@ Rel(awiZhehg5tNZRyDuZDr9, 7eu55kM96LjjrzxMB2kO, "Rappresents" )
 Rel(INwNu3tqXQVOUeQ95rmz, Fyh0CkKDWXU6cSuyq7FS, "Uses" )
 Rel(TxZtQCNHfOvU0hauU7me, LS52GSxTaF82aLsMAGUJ, "Translates" )
 Rel(4S6STeueefjDuU4xPjRW, awiZhehg5tNZRyDuZDr9, "Dimension" )
-Rel(INwNu3tqXQVOUeQ95rmz, 3zCEc0A8nh1jzwekwJ9e, "Sends Result" )
-Rel(fhOu4B6mDXc7nf9z8b9C, mCLYSixzXMXK6M59oIYW, "Exposes" )
+Rel(I9erkX6JvcRx0uM4iieJ, 3zCEc0A8nh1jzwekwJ9e, "Sends Result" )
+Rel(fhOu4B6mDXc7nf9z8b9C, mCLYSixzXMXK6M59oIYW, "Exposes Endpoints" )
 Rel(V9vsEFD13t044w0g9kcU, x6BTWIQ3rThpdBgHOSRZ, "Executes" )
 Rel(K4wE6hv7lp6PXCIzvmzi, dOWFs1FDNaWOGsbJJUas, "status" )
-Rel(tlobGJ03gGg0eTGJjeCt, INwNu3tqXQVOUeQ95rmz, "Reads data" )
+Rel(Q4JwBYUNizhrOK6IVNU0, d0yXDxJmyhA9EL5YiepF, "Reads data" )
 Rel(SPQI7VF4lQr2xI6LfLFL, Fyh0CkKDWXU6cSuyq7FS, "Uses" )
 Rel(tkH0Nyiet0J81k3G0P0b, awiZhehg5tNZRyDuZDr9, "Is Part Of" )
 Rel(Zas67UmkOs1zk4BhDirK, Fyh0CkKDWXU6cSuyq7FS, "Uses" )
@@ -96,6 +102,7 @@ Rel(7eu55kM96LjjrzxMB2kO, kqoiQoApomG9vCdJgRCS, "Return of Refers to" )
 Rel(LsUYohywFy73cbNxkS1m, ccRXgtE4SCPOsJ86Bucd, "User Question Response" )
 Rel(iZVcQxlnkbrnOYjJqqv2, tlobGJ03gGg0eTGJjeCt, "Sotered in" )
 Rel(3zCEc0A8nh1jzwekwJ9e, SuPXys2m8MHNajNDAovG, "Accesses" )
+Rel(Q4JwBYUNizhrOK6IVNU0, I9erkX6JvcRx0uM4iieJ, "Requests sending of email" )
 Rel(Fyh0CkKDWXU6cSuyq7FS, MVsaKWytzsPec5DvAzrJ, "Provide Sources" )
 
 
@@ -108,9 +115,13 @@ Rel(Fyh0CkKDWXU6cSuyq7FS, MVsaKWytzsPec5DvAzrJ, "Provide Sources" )
   MVsaKWytzsPec5DvAzrJ <.. VK9ZFiCYByBvFGzQxBpq 
   tlobGJ03gGg0eTGJjeCt <.. dOWFs1FDNaWOGsbJJUas 
   MVsaKWytzsPec5DvAzrJ <.. dOWFs1FDNaWOGsbJJUas 
+  INwNu3tqXQVOUeQ95rmz <.. I9erkX6JvcRx0uM4iieJ 
+  MVsaKWytzsPec5DvAzrJ <.. I9erkX6JvcRx0uM4iieJ 
   SPQI7VF4lQr2xI6LfLFL <.. VfVOeO3QyBIGXrvCOwIi 
   MVsaKWytzsPec5DvAzrJ <.. VfVOeO3QyBIGXrvCOwIi 
   MVsaKWytzsPec5DvAzrJ <.. Zas67UmkOs1zk4BhDirK 
+  SPQI7VF4lQr2xI6LfLFL <.. 5eGbhrgZL6CVjXVxG9EB 
+  MVsaKWytzsPec5DvAzrJ <.. 5eGbhrgZL6CVjXVxG9EB 
   5hrlGZy5caua0ihnw1fz <.. SuPXys2m8MHNajNDAovG 
   MVsaKWytzsPec5DvAzrJ <.. SuPXys2m8MHNajNDAovG 
   MVsaKWytzsPec5DvAzrJ <.. mCLYSixzXMXK6M59oIYW 
@@ -120,6 +131,7 @@ Rel(Fyh0CkKDWXU6cSuyq7FS, MVsaKWytzsPec5DvAzrJ, "Provide Sources" )
   tlobGJ03gGg0eTGJjeCt <.. awiZhehg5tNZRyDuZDr9 
   MVsaKWytzsPec5DvAzrJ <.. awiZhehg5tNZRyDuZDr9 
   MVsaKWytzsPec5DvAzrJ <.. iZVcQxlnkbrnOYjJqqv2 
+  MVsaKWytzsPec5DvAzrJ <.. 6KEeGMtfXzcAtPxRMm95 
   SPQI7VF4lQr2xI6LfLFL <.. fhOu4B6mDXc7nf9z8b9C 
   MVsaKWytzsPec5DvAzrJ <.. fhOu4B6mDXc7nf9z8b9C 
   tlobGJ03gGg0eTGJjeCt <.. K4wE6hv7lp6PXCIzvmzi 
@@ -137,6 +149,8 @@ Rel(Fyh0CkKDWXU6cSuyq7FS, MVsaKWytzsPec5DvAzrJ, "Provide Sources" )
   MVsaKWytzsPec5DvAzrJ <.. LS52GSxTaF82aLsMAGUJ 
   tlobGJ03gGg0eTGJjeCt <.. 7eu55kM96LjjrzxMB2kO 
   MVsaKWytzsPec5DvAzrJ <.. 7eu55kM96LjjrzxMB2kO 
+  INwNu3tqXQVOUeQ95rmz <.. Q4JwBYUNizhrOK6IVNU0 
+  MVsaKWytzsPec5DvAzrJ <.. Q4JwBYUNizhrOK6IVNU0 
   tlobGJ03gGg0eTGJjeCt <.. 4S6STeueefjDuU4xPjRW 
   MVsaKWytzsPec5DvAzrJ <.. 4S6STeueefjDuU4xPjRW 
   MVsaKWytzsPec5DvAzrJ <.. SPQI7VF4lQr2xI6LfLFL 

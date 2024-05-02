@@ -230,9 +230,11 @@ public class AbstractIcePanelConverter {
           final JSONObject icePanelDiagramJson,
           final JSONObject parent,
           final ArrayList<JSONObject> children) {
-    log.debug("extractNeighbors({}) ------------------", parent );
+    log.debug("#### extractNeighbors({}) ------------------", getName("[?]", parent) );
+    log.debug("#### extractNeighbors({}) ------------------", parent );
 
-    String givenParentId = getValue(parent, "id");
+    String givenParentId = getValue(parent, IcePanelConstants.ID);
+    String givenParentName = getValue(parent, IcePanelConstants.NAME);
     log.debug("extractNeighbors({}) ------------------",  givenParentId );
 
     // Definition of neighbors: not part of the group, but connected to one of the group
@@ -240,7 +242,9 @@ public class AbstractIcePanelConverter {
     // Map of children to facilitate checks
     HashMap<String, JSONObject> childrenMap = new HashMap<>();
     children.forEach(jsonObject -> {
-      String id = getValue(jsonObject, "id", "");
+      jsonObject.put(IcePanelConstants.PARENT_NAME, givenParentName);
+
+      String id = getValue(jsonObject, IcePanelConstants.ID, "");
       childrenMap.put(id, jsonObject);
     });
 
@@ -287,6 +291,26 @@ public class AbstractIcePanelConverter {
       int depth = depth(icePanelDiagramJson, parent) + 1;
       log.debug( "depth ({}) ------------------", depth);
       return depth;
+    }
+  }
+
+  protected boolean checkIsAncestor(JSONObject icePanelDiagramJson, JSONObject base, JSONObject node) {
+    log.debug( "checkIsAncestor ------------------");
+    String parentId = getValue(node, IcePanelConstants.PARENT_ID);
+    if (parentId == null) {
+      return false;
+    }
+
+    String baseId = getValue(base, IcePanelConstants.ID);
+    if (baseId.equalsIgnoreCase(parentId)) {
+      return true;
+    } else {
+      JSONObject parent = getObject(icePanelDiagramJson, parentId);
+      if (parent == null) {
+        return false;
+      } else {
+        return checkIsAncestor(icePanelDiagramJson, base, parent);
+      }
     }
   }
 

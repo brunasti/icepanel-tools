@@ -1,0 +1,32 @@
+@startuml
+'https://plantuml.com/class-diagram
+' CONVERT ICEPANEL DIAGRAM ===========
+' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
+' IcePanel JSON File : [./examples/ai/ARS-AI_Readiness_Survey.json]
+' Configuration      : [./examples/ai/config.json]
+' Generated at       : Thu May 02 13:56:38 CEST 2024
+
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+
+
+Component(INwNu3tqXQVOUeQ95rmz, "Notification System", "") { 
+    ' CLASSES =======
+    Container(I9erkX6JvcRx0uM4iieJ, "HubSpot", "", "")
+    Container(Q4JwBYUNizhrOK6IVNU0, "Integration System", "", "")
+}
+
+
+' NEIGHBOR CLASSES =======
+Container(d0yXDxJmyhA9EL5YiepF, "BE Application", "", "")
+Person(3zCEc0A8nh1jzwekwJ9e, "User (Customer CEO)", "")
+
+
+' CONNECTIONS =======
+Rel(I9erkX6JvcRx0uM4iieJ, 3zCEc0A8nh1jzwekwJ9e, "Sends Result" )
+Rel(Q4JwBYUNizhrOK6IVNU0, d0yXDxJmyhA9EL5YiepF, "Reads data" )
+Rel(Q4JwBYUNizhrOK6IVNU0, I9erkX6JvcRx0uM4iieJ, "Requests sending of email" )
+
+
+@enduml

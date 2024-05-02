@@ -286,11 +286,20 @@ public class IcePanelToPlantUmlConverter extends AbstractIcePanelConverter {
 
 
   private void generateSubDiagramNeighborClasses(final PrintStream output,
+                                                 final JSONObject icePanelDiagramJson,
+                                                 final JSONObject base,
                                                  final ArrayList<JSONObject> children) {
-    log.debug( "generateSubDiagramNeighborClasses() ------------------");
+    log.debug( "generateSubDiagramNeighborClasses() START ------------------");
     output.println();
     output.println("' NEIGHBOR CLASSES =======");
-    children.forEach( object -> generateClassInDiagram("", output, object) );
+    children.forEach( object -> {
+      log.debug( "generateSubDiagramNeighborClasses() -- {} ({})", object.get(IcePanelConstants.NAME), object.get(IcePanelConstants.PARENT_NAME));
+      if (checkIsAncestor(icePanelDiagramJson, base, object)) {
+        log.debug( "generateSubDiagramNeighborClasses() -- -- Skipping {}", object.get(IcePanelConstants.NAME));
+      } else {
+        generateClassInDiagram("", output, object);
+      }
+    } );
     output.println();
   }
 
@@ -379,7 +388,7 @@ public class IcePanelToPlantUmlConverter extends AbstractIcePanelConverter {
 
     generateSubDiagramHeader(printStream, icePanelJsonFile, configurationFile);
     generateSubDiagramClasses(printStream, base, children);
-    generateSubDiagramNeighborClasses(printStream, neighbors);
+    generateSubDiagramNeighborClasses(printStream, icePanelDiagramJson, base, neighbors);
     generateSubDiagramLinks(printStream, icePanelDiagramJson, children);
     generateFooter(printStream);
 

@@ -4,7 +4,7 @@
 ' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
 ' IcePanel JSON File : [./examples/ai/ARS-AI_Readiness_Survey.json]
 ' Configuration      : [./examples/ai/config.json]
-' Generated at       : Wed May 01 15:06:54 CEST 2024
+' Generated at       : Thu May 02 13:56:38 CEST 2024
 
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
@@ -14,6 +14,7 @@
 Component(SPQI7VF4lQr2xI6LfLFL, "AI Readiness Survey BE", "") { 
     ' CLASSES =======
     Container(VfVOeO3QyBIGXrvCOwIi, "I18N System", "", "")
+    Container(5eGbhrgZL6CVjXVxG9EB, "CRM System", "", "")
     Container(fhOu4B6mDXc7nf9z8b9C, "AWS API Gateway", "", "")
     Container(d0yXDxJmyhA9EL5YiepF, "BE Application", "", "")
 }
@@ -21,6 +22,8 @@ Component(SPQI7VF4lQr2xI6LfLFL, "AI Readiness Survey BE", "") {
 
 ' NEIGHBOR CLASSES =======
 ContainerDb(iZVcQxlnkbrnOYjJqqv2, "Dynamic I18N Content", "", "")
+ContainerDb(6KEeGMtfXzcAtPxRMm95, "CRM Contents", "", "")
+Container(Q4JwBYUNizhrOK6IVNU0, "Integration System", "", "")
 Component(mCLYSixzXMXK6M59oIYW, "API Gateway", "")
 ContainerDb(tlobGJ03gGg0eTGJjeCt, "AI Readiness Survey Storage", "", "")
 
@@ -29,9 +32,12 @@ ContainerDb(tlobGJ03gGg0eTGJjeCt, "AI Readiness Survey Storage", "", "")
 Rel(d0yXDxJmyhA9EL5YiepF, tlobGJ03gGg0eTGJjeCt, "Stores and reads" )
 Rel(tlobGJ03gGg0eTGJjeCt, d0yXDxJmyhA9EL5YiepF, "Return of Stores and reads" )
 Rel(d0yXDxJmyhA9EL5YiepF, VfVOeO3QyBIGXrvCOwIi, "Utilises" )
-Rel(d0yXDxJmyhA9EL5YiepF, fhOu4B6mDXc7nf9z8b9C, "Implements" )
+Rel(d0yXDxJmyhA9EL5YiepF, 5eGbhrgZL6CVjXVxG9EB, "Accesses" )
+Rel(6KEeGMtfXzcAtPxRMm95, 5eGbhrgZL6CVjXVxG9EB, "Provides Contents" )
+Rel(fhOu4B6mDXc7nf9z8b9C, d0yXDxJmyhA9EL5YiepF, "Implemented by" )
 Rel(iZVcQxlnkbrnOYjJqqv2, VfVOeO3QyBIGXrvCOwIi, "Provides I18N Content" )
-Rel(fhOu4B6mDXc7nf9z8b9C, mCLYSixzXMXK6M59oIYW, "Exposes" )
+Rel(fhOu4B6mDXc7nf9z8b9C, mCLYSixzXMXK6M59oIYW, "Exposes Endpoints" )
+Rel(Q4JwBYUNizhrOK6IVNU0, d0yXDxJmyhA9EL5YiepF, "Reads data" )
 
 
 @enduml
