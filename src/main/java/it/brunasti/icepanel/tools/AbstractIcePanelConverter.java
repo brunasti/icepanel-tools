@@ -195,14 +195,14 @@ public class AbstractIcePanelConverter {
     return (JSONObject) modelObjects.get(objectId);
   }
 
-  protected ArrayList<JSONObject> extractNodeNeighbors(
+  protected ArrayList<JSONObject> extractChildNodeNeighbors(
           final JSONObject icePanelDiagramJson,
           final JSONObject child) {
     ArrayList<JSONObject> neighbors = new ArrayList<>();
 
     String childId = getValue(child, "id");
 
-    log.debug("extractNodeNeighbors( {} ) ------------------", childId);
+    log.debug("extractChildNodeNeighbors( {} ) ------------------", childId);
     JSONObject modelConnections = (JSONObject) icePanelDiagramJson.get(IcePanelConstants.MODEL_CONNECTIONS);
     modelConnections.keySet().forEach(
         object -> {
@@ -211,14 +211,14 @@ public class AbstractIcePanelConverter {
           String target = getValue(modelObject, IcePanelConstants.TARGET_ID);
 
           if (childId.equals(source) || childId.equals(target)) {
-            log.debug( "   extractNodeNeighbors [{}][{}]------", source, target);
+            log.debug( "   extractChildNodeNeighbors [{}][{}]------", source, target);
             JSONObject jsonObject;
             if (childId.equals(source)) {
               jsonObject = getObject(icePanelDiagramJson, target);
             } else {
               jsonObject = getObject(icePanelDiagramJson, source);
             }
-            log.debug( "   ---> extractNodeNeighbors add [{}][{}]---", childId, jsonObject.get(IcePanelConstants.NAME));
+            log.debug( "   ---> extractChildNodeNeighbors add [{}][{}]---", childId, jsonObject.get(IcePanelConstants.NAME));
             neighbors.add(jsonObject);
           }
         }
@@ -226,12 +226,11 @@ public class AbstractIcePanelConverter {
     return neighbors;
   }
 
+  // TODO: refactor for a more recursive way, so to extract the neighbors of the children too
   protected ArrayList<JSONObject> extractNeighbors(
           final JSONObject icePanelDiagramJson,
           final JSONObject parent,
           final ArrayList<JSONObject> children) {
-//    log.debug("#### extractNeighbors({}) ------------------", getName("[?]", parent) );
-//    log.debug("#### extractNeighbors({}) ------------------", parent );
 
     String givenParentId = getValue(parent, IcePanelConstants.ID);
     String givenParentName = getValue(parent, IcePanelConstants.NAME);
@@ -256,7 +255,7 @@ public class AbstractIcePanelConverter {
     children.forEach(child -> {
       log.debug( "extractNeighbors of child ({}) --------", child.get(IcePanelConstants.NAME));
       ArrayList<JSONObject> childNeighbors
-              = extractNodeNeighbors(icePanelDiagramJson, child);
+              = extractChildNodeNeighbors(icePanelDiagramJson, child);
       childNeighbors.forEach(neighbor -> {
         String neighborId = getValue(neighbor, "id");
         log.debug("   extractNeighbors add object ({},{}) ------------------", neighborId, neighbor.get(IcePanelConstants.NAME) );
@@ -264,6 +263,10 @@ public class AbstractIcePanelConverter {
       });
     });
 
+    // Should iterate down one level....
+
+
+    // Create the response, avoiding the children themselves
     ArrayList<JSONObject> neighbors = new ArrayList<>();
     neighborsMap.values().forEach(
         object -> {
