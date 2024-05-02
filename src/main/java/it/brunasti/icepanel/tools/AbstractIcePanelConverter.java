@@ -218,7 +218,7 @@ public class AbstractIcePanelConverter {
             } else {
               jsonObject = getObject(icePanelDiagramJson, source);
             }
-            log.debug( "   ---> extractNodeNeighbors add [{}][{}]---", childId, jsonObject);
+            log.debug( "   ---> extractNodeNeighbors add [{}][{}]---", childId, jsonObject.get(IcePanelConstants.NAME));
             neighbors.add(jsonObject);
           }
         }
@@ -230,12 +230,12 @@ public class AbstractIcePanelConverter {
           final JSONObject icePanelDiagramJson,
           final JSONObject parent,
           final ArrayList<JSONObject> children) {
-    log.debug("#### extractNeighbors({}) ------------------", getName("[?]", parent) );
-    log.debug("#### extractNeighbors({}) ------------------", parent );
+//    log.debug("#### extractNeighbors({}) ------------------", getName("[?]", parent) );
+//    log.debug("#### extractNeighbors({}) ------------------", parent );
 
     String givenParentId = getValue(parent, IcePanelConstants.ID);
     String givenParentName = getValue(parent, IcePanelConstants.NAME);
-    log.debug("extractNeighbors({}) ------------------",  givenParentId );
+    log.debug("#### - extractNeighbors({}) [{}]------------------",  givenParentId, givenParentName );
 
     // Definition of neighbors: not part of the group, but connected to one of the group
 
@@ -245,6 +245,7 @@ public class AbstractIcePanelConverter {
       jsonObject.put(IcePanelConstants.PARENT_NAME, givenParentName);
 
       String id = getValue(jsonObject, IcePanelConstants.ID, "");
+      log.debug("#### - - extractNeighbors children ({}) [{}]------------------",  id, jsonObject.get(IcePanelConstants.NAME) );
       childrenMap.put(id, jsonObject);
     });
 
@@ -253,12 +254,12 @@ public class AbstractIcePanelConverter {
 
     // For each child search for its neighbors
     children.forEach(child -> {
-      log.debug( "extractNeighbors of child ({}) --------", child);
+      log.debug( "extractNeighbors of child ({}) --------", child.get(IcePanelConstants.NAME));
       ArrayList<JSONObject> childNeighbors
               = extractNodeNeighbors(icePanelDiagramJson, child);
       childNeighbors.forEach(neighbor -> {
         String neighborId = getValue(neighbor, "id");
-        log.debug("   extractNeighbors add object ({},{}) ------------------", neighborId, neighbor );
+        log.debug("   extractNeighbors add object ({},{}) ------------------", neighborId, neighbor.get(IcePanelConstants.NAME) );
         neighborsMap.put(neighborId, neighbor);
       });
     });
@@ -266,7 +267,7 @@ public class AbstractIcePanelConverter {
     ArrayList<JSONObject> neighbors = new ArrayList<>();
     neighborsMap.values().forEach(
         object -> {
-          log.debug( "extractNeighbors LAST add object ({}) -------", object);
+          log.debug( "extractNeighbors LAST add object ({}) -------", object.get(IcePanelConstants.NAME));
           String objectId = getValue(object, "id");
           // Check if it's one of the children
           JSONObject child = childrenMap.get(objectId);

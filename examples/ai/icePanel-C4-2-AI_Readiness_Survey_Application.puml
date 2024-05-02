@@ -4,7 +4,7 @@
 ' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
 ' IcePanel JSON File : [./examples/ai/ARS-AI_Readiness_Survey.json]
 ' Configuration      : [./examples/ai/config.json]
-' Generated at       : Thu May 02 16:14:47 CEST 2024
+' Generated at       : Thu May 02 16:59:08 CEST 2024
 
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
@@ -132,7 +132,6 @@ Rel(5hrlGZy5caua0ihnw1fz, Fyh0CkKDWXU6cSuyq7FS, "Uses" )
 ' Internal of (MVsaKWytzsPec5DvAzrJ) (MVsaKWytzsPec5DvAzrJ)
 ' Rel(LsUYohywFy73cbNxkS1m, ToaUegZzOkTYIdKge5Qq, "Corresponds to Stage (Derived)" )
 ' CONNECTION : [Commits code] [aoPaRfmaQuiM5hH5QhmS] [Fyh0CkKDWXU6cSuyq7FS] [outgoing]
-Rel(aoPaRfmaQuiM5hH5QhmS, Fyh0CkKDWXU6cSuyq7FS, "Commits code" )
 ' CONNECTION : [Publish] [mCLYSixzXMXK6M59oIYW] [3aSu0mcX7m60VrLzm7L6] [outgoing]
 ' Internal of (MVsaKWytzsPec5DvAzrJ) (MVsaKWytzsPec5DvAzrJ)
 ' but at least one first level
@@ -205,7 +204,6 @@ Rel(3zCEc0A8nh1jzwekwJ9e, SuPXys2m8MHNajNDAovG, "Accesses" )
 ' Internal of (MVsaKWytzsPec5DvAzrJ) (MVsaKWytzsPec5DvAzrJ)
 ' Rel(Q4JwBYUNizhrOK6IVNU0, I9erkX6JvcRx0uM4iieJ, "Requests sending of email" )
 ' CONNECTION : [Provide Sources] [Fyh0CkKDWXU6cSuyq7FS] [MVsaKWytzsPec5DvAzrJ] [outgoing]
-Rel(Fyh0CkKDWXU6cSuyq7FS, MVsaKWytzsPec5DvAzrJ, "Provide Sources" )
 
 
 @enduml
