@@ -4,7 +4,7 @@
 ' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
 ' IcePanel JSON File : [./examples/ai/ARS-AI_Readiness_Survey.json]
 ' Configuration      : [./examples/ai/config.json]
-' Generated at       : Thu May 02 18:03:09 CEST 2024
+' Generated at       : Thu May 02 18:27:59 CEST 2024
 
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
@@ -30,75 +30,22 @@ ContainerDb(tlobGJ03gGg0eTGJjeCt, "AI Readiness Survey Storage", "", "")
 
 ' SUB DIAGRAM CONNECTIONS ======= Base : [SPQI7VF4lQr2xI6LfLFL]
 ' CONNECTION : [Stores and reads] [d0yXDxJmyhA9EL5YiepF] [tlobGJ03gGg0eTGJjeCt] [bidirectional]
-' search target ancestor
-' Target ancestor out of the container
 Rel(d0yXDxJmyhA9EL5YiepF, tlobGJ03gGg0eTGJjeCt, "Stores and reads" )
 Rel(tlobGJ03gGg0eTGJjeCt, d0yXDxJmyhA9EL5YiepF, "Return of Stores and reads" )
-' CONNECTION : [Responds] [ccRXgtE4SCPOsJ86Bucd] [tkH0Nyiet0J81k3G0P0b] [outgoing]
 ' CONNECTION : [Utilises] [d0yXDxJmyhA9EL5YiepF] [VfVOeO3QyBIGXrvCOwIi] [outgoing]
-' Internal of (SPQI7VF4lQr2xI6LfLFL) (SPQI7VF4lQr2xI6LfLFL)
-' both
 Rel(d0yXDxJmyhA9EL5YiepF, VfVOeO3QyBIGXrvCOwIi, "Utilises" )
-' CONNECTION : [Uses] [bJilmQwJf6L105KZVIqf] [LS52GSxTaF82aLsMAGUJ] [outgoing]
-' CONNECTION : [Composes] [tkH0Nyiet0J81k3G0P0b] [7eu55kM96LjjrzxMB2kO] [outgoing]
-' CONNECTION : [Extracts] [tlobGJ03gGg0eTGJjeCt] [Zas67UmkOs1zk4BhDirK] [outgoing]
 ' CONNECTION : [Accesses] [d0yXDxJmyhA9EL5YiepF] [5eGbhrgZL6CVjXVxG9EB] [outgoing]
-' Internal of (SPQI7VF4lQr2xI6LfLFL) (SPQI7VF4lQr2xI6LfLFL)
-' both
 Rel(d0yXDxJmyhA9EL5YiepF, 5eGbhrgZL6CVjXVxG9EB, "Accesses" )
-' CONNECTION : [Maintain] [aoPaRfmaQuiM5hH5QhmS] [3aSu0mcX7m60VrLzm7L6] [outgoing]
-' CONNECTION : [User Survey Result] [4S6STeueefjDuU4xPjRW] [bJilmQwJf6L105KZVIqf] [outgoing]
-' CONNECTION : [Compiles] [K4wE6hv7lp6PXCIzvmzi] [7eu55kM96LjjrzxMB2kO] [outgoing]
-' CONNECTION : [Controls Access] [SuPXys2m8MHNajNDAovG] [V9vsEFD13t044w0g9kcU] [outgoing]
 ' CONNECTION : [Provides Contents] [6KEeGMtfXzcAtPxRMm95] [5eGbhrgZL6CVjXVxG9EB] [outgoing]
-' search source ancestor
-' Source ancestor out of the container
 Rel(6KEeGMtfXzcAtPxRMm95, 5eGbhrgZL6CVjXVxG9EB, "Provides Contents" )
-' CONNECTION : [Answered by] [K4wE6hv7lp6PXCIzvmzi] [bJilmQwJf6L105KZVIqf] [outgoing]
-' CONNECTION : [Corresponds] [ccRXgtE4SCPOsJ86Bucd] [ToaUegZzOkTYIdKge5Qq] [outgoing]
-' CONNECTION : [Updates] [I3ut2I4Ct9f3UDszgxf1] [iZVcQxlnkbrnOYjJqqv2] [outgoing]
-' CONNECTION : [Delivers] [V9vsEFD13t044w0g9kcU] [VK9ZFiCYByBvFGzQxBpq] [outgoing]
-' CONNECTION : [API Intreface] [x6BTWIQ3rThpdBgHOSRZ] [mCLYSixzXMXK6M59oIYW] [bidirectional]
 ' CONNECTION : [Implemented by] [fhOu4B6mDXc7nf9z8b9C] [d0yXDxJmyhA9EL5YiepF] [outgoing]
-' Internal of (SPQI7VF4lQr2xI6LfLFL) (SPQI7VF4lQr2xI6LfLFL)
-' both
 Rel(fhOu4B6mDXc7nf9z8b9C, d0yXDxJmyhA9EL5YiepF, "Implemented by" )
 ' CONNECTION : [Provides I18N Content] [iZVcQxlnkbrnOYjJqqv2] [VfVOeO3QyBIGXrvCOwIi] [outgoing]
-' search source ancestor
-' Source ancestor out of the container
 Rel(iZVcQxlnkbrnOYjJqqv2, VfVOeO3QyBIGXrvCOwIi, "Provides I18N Content" )
-' CONNECTION : [Set Value for] [XrwLMmIqBRBHFCQBkwLC] [kqoiQoApomG9vCdJgRCS] [outgoing]
-' CONNECTION : [Setups DB Structure] [aoPaRfmaQuiM5hH5QhmS] [tlobGJ03gGg0eTGJjeCt] [outgoing]
-' CONNECTION : [Uses] [5hrlGZy5caua0ihnw1fz] [Fyh0CkKDWXU6cSuyq7FS] [outgoing]
-' CONNECTION : [Refers to User] [XrwLMmIqBRBHFCQBkwLC] [bJilmQwJf6L105KZVIqf] [outgoing]
-' CONNECTION : [Corresponds to Stage (Derived)] [LsUYohywFy73cbNxkS1m] [ToaUegZzOkTYIdKge5Qq] [outgoing]
-' CONNECTION : [Commits code] [aoPaRfmaQuiM5hH5QhmS] [Fyh0CkKDWXU6cSuyq7FS] [outgoing]
-' CONNECTION : [Publish] [mCLYSixzXMXK6M59oIYW] [3aSu0mcX7m60VrLzm7L6] [outgoing]
-' CONNECTION : [Rappresents] [awiZhehg5tNZRyDuZDr9] [7eu55kM96LjjrzxMB2kO] [outgoing]
-' CONNECTION : [Uses] [INwNu3tqXQVOUeQ95rmz] [Fyh0CkKDWXU6cSuyq7FS] [outgoing]
-' CONNECTION : [Translates] [TxZtQCNHfOvU0hauU7me] [LS52GSxTaF82aLsMAGUJ] [outgoing]
-' CONNECTION : [Dimension] [4S6STeueefjDuU4xPjRW] [awiZhehg5tNZRyDuZDr9] [outgoing]
-' CONNECTION : [Sends Result] [I9erkX6JvcRx0uM4iieJ] [3zCEc0A8nh1jzwekwJ9e] [outgoing]
 ' CONNECTION : [Exposes Endpoints] [fhOu4B6mDXc7nf9z8b9C] [mCLYSixzXMXK6M59oIYW] [outgoing]
-' search target ancestor
-' Target ancestor out of the container
 Rel(fhOu4B6mDXc7nf9z8b9C, mCLYSixzXMXK6M59oIYW, "Exposes Endpoints" )
-' CONNECTION : [Executes] [V9vsEFD13t044w0g9kcU] [x6BTWIQ3rThpdBgHOSRZ] [outgoing]
-' CONNECTION : [status] [K4wE6hv7lp6PXCIzvmzi] [dOWFs1FDNaWOGsbJJUas] [outgoing]
 ' CONNECTION : [Reads data] [Q4JwBYUNizhrOK6IVNU0] [d0yXDxJmyhA9EL5YiepF] [outgoing]
-' search source ancestor
-' Source ancestor out of the container
 Rel(Q4JwBYUNizhrOK6IVNU0, d0yXDxJmyhA9EL5YiepF, "Reads data" )
-' CONNECTION : [Uses] [SPQI7VF4lQr2xI6LfLFL] [Fyh0CkKDWXU6cSuyq7FS] [outgoing]
-' CONNECTION : [Is Part Of] [tkH0Nyiet0J81k3G0P0b] [awiZhehg5tNZRyDuZDr9] [outgoing]
-' CONNECTION : [Uses] [Zas67UmkOs1zk4BhDirK] [Fyh0CkKDWXU6cSuyq7FS] [outgoing]
-' CONNECTION : [Reads report] [Zas67UmkOs1zk4BhDirK] [KkUEHQQOml7FBUrTDfgF] [outgoing]
-' CONNECTION : [Refers to] [kqoiQoApomG9vCdJgRCS] [7eu55kM96LjjrzxMB2kO] [bidirectional]
-' CONNECTION : [User Question Response] [LsUYohywFy73cbNxkS1m] [ccRXgtE4SCPOsJ86Bucd] [outgoing]
-' CONNECTION : [Stored in] [iZVcQxlnkbrnOYjJqqv2] [tlobGJ03gGg0eTGJjeCt] [outgoing]
-' CONNECTION : [Accesses] [3zCEc0A8nh1jzwekwJ9e] [SuPXys2m8MHNajNDAovG] [outgoing]
-' CONNECTION : [Requests sending of email] [Q4JwBYUNizhrOK6IVNU0] [I9erkX6JvcRx0uM4iieJ] [outgoing]
-' CONNECTION : [Provide Sources] [Fyh0CkKDWXU6cSuyq7FS] [MVsaKWytzsPec5DvAzrJ] [outgoing]
 
 
 @enduml
