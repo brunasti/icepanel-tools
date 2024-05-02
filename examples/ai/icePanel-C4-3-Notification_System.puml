@@ -4,7 +4,7 @@
 ' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
 ' IcePanel JSON File : [./examples/ai/ARS-AI_Readiness_Survey.json]
 ' Configuration      : [./examples/ai/config.json]
-' Generated at       : Thu May 02 13:56:38 CEST 2024
+' Generated at       : Thu May 02 15:48:25 CEST 2024
 
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
@@ -23,9 +23,18 @@ Container(d0yXDxJmyhA9EL5YiepF, "BE Application", "", "")
 Person(3zCEc0A8nh1jzwekwJ9e, "User (Customer CEO)", "")
 
 
-' CONNECTIONS =======
+' SUB DIAGRAM CONNECTIONS ======= Base : [INwNu3tqXQVOUeQ95rmz]
+' but at least one first level
+' search target ancestor
+' Target ancestor out of the container
 Rel(I9erkX6JvcRx0uM4iieJ, 3zCEc0A8nh1jzwekwJ9e, "Sends Result" )
+' but at least one first level
+' search target ancestor
+' Target ancestor out of the container
 Rel(Q4JwBYUNizhrOK6IVNU0, d0yXDxJmyhA9EL5YiepF, "Reads data" )
+' Internal of (INwNu3tqXQVOUeQ95rmz) (INwNu3tqXQVOUeQ95rmz)
+' but at least one first level
+' both
 Rel(Q4JwBYUNizhrOK6IVNU0, I9erkX6JvcRx0uM4iieJ, "Requests sending of email" )
 
 

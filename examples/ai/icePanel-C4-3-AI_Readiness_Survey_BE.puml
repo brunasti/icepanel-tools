@@ -4,7 +4,7 @@
 ' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
 ' IcePanel JSON File : [./examples/ai/ARS-AI_Readiness_Survey.json]
 ' Configuration      : [./examples/ai/config.json]
-' Generated at       : Thu May 02 13:56:38 CEST 2024
+' Generated at       : Thu May 02 15:48:25 CEST 2024
 
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
@@ -28,15 +28,39 @@ Component(mCLYSixzXMXK6M59oIYW, "API Gateway", "")
 ContainerDb(tlobGJ03gGg0eTGJjeCt, "AI Readiness Survey Storage", "", "")
 
 
-' CONNECTIONS =======
+' SUB DIAGRAM CONNECTIONS ======= Base : [SPQI7VF4lQr2xI6LfLFL]
+' but at least one first level
+' search target ancestor
+' Target ancestor out of the container
 Rel(d0yXDxJmyhA9EL5YiepF, tlobGJ03gGg0eTGJjeCt, "Stores and reads" )
 Rel(tlobGJ03gGg0eTGJjeCt, d0yXDxJmyhA9EL5YiepF, "Return of Stores and reads" )
+' Internal of (SPQI7VF4lQr2xI6LfLFL) (SPQI7VF4lQr2xI6LfLFL)
+' but at least one first level
+' both
 Rel(d0yXDxJmyhA9EL5YiepF, VfVOeO3QyBIGXrvCOwIi, "Utilises" )
+' Internal of (SPQI7VF4lQr2xI6LfLFL) (SPQI7VF4lQr2xI6LfLFL)
+' but at least one first level
+' both
 Rel(d0yXDxJmyhA9EL5YiepF, 5eGbhrgZL6CVjXVxG9EB, "Accesses" )
+' but at least one first level
+' search source ancestor
+' Source ancestor out of the container
 Rel(6KEeGMtfXzcAtPxRMm95, 5eGbhrgZL6CVjXVxG9EB, "Provides Contents" )
+' Internal of (SPQI7VF4lQr2xI6LfLFL) (SPQI7VF4lQr2xI6LfLFL)
+' but at least one first level
+' both
 Rel(fhOu4B6mDXc7nf9z8b9C, d0yXDxJmyhA9EL5YiepF, "Implemented by" )
+' but at least one first level
+' search source ancestor
+' Source ancestor out of the container
 Rel(iZVcQxlnkbrnOYjJqqv2, VfVOeO3QyBIGXrvCOwIi, "Provides I18N Content" )
+' but at least one first level
+' search target ancestor
+' Target ancestor out of the container
 Rel(fhOu4B6mDXc7nf9z8b9C, mCLYSixzXMXK6M59oIYW, "Exposes Endpoints" )
+' but at least one first level
+' search source ancestor
+' Source ancestor out of the container
 Rel(Q4JwBYUNizhrOK6IVNU0, d0yXDxJmyhA9EL5YiepF, "Reads data" )
 
 

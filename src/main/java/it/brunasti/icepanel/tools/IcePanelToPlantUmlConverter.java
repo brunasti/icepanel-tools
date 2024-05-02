@@ -295,7 +295,7 @@ public class IcePanelToPlantUmlConverter extends AbstractIcePanelConverter {
     children.forEach( object -> {
       log.debug( "generateSubDiagramNeighborClasses() -- {} ({})", object.get(IcePanelConstants.NAME), object.get(IcePanelConstants.PARENT_NAME));
       if (checkIsAncestor(icePanelDiagramJson, base, object)) {
-        log.debug( "generateSubDiagramNeighborClasses() -- -- Skipping {}", object.get(IcePanelConstants.NAME));
+        log.debug( "generateSubDiagramNeighborClasses() -- -- Skipping {} {} SKIP", object.get(IcePanelConstants.NAME), object.get(IcePanelConstants.ID));
       } else {
         generateClassInDiagram("", output, object);
       }
@@ -306,8 +306,11 @@ public class IcePanelToPlantUmlConverter extends AbstractIcePanelConverter {
   private void generateSubDiagramLinks(
           final PrintStream output,
           final JSONObject icePanelDiagramJson,
+          final JSONObject base,
           ArrayList<JSONObject> children) {
     log.debug( "generateSubDiagramLinks() ------------------");
+
+    String baseId = getValue(base,IcePanelConstants.ID);
 
     HashMap<String, JSONObject> childrenMap = new HashMap<>();
     children.forEach(jsonObject -> {
@@ -316,7 +319,7 @@ public class IcePanelToPlantUmlConverter extends AbstractIcePanelConverter {
     });
 
     output.println();
-    output.println("' CONNECTIONS =======");
+    output.println("' SUB DIAGRAM CONNECTIONS ======= Base : ["+baseId+"]");
     JSONObject modelConnections = (JSONObject) icePanelDiagramJson.get(IcePanelConstants.MODEL_CONNECTIONS);
     modelConnections.keySet().forEach(
             object -> {
@@ -331,13 +334,76 @@ public class IcePanelToPlantUmlConverter extends AbstractIcePanelConverter {
 
               if (childrenMap.containsValue(sourceObject)
                       || childrenMap.containsValue(targetObject)) {
+
+                // Check if both nodes are part inside the base
+                String head = "";
+                if ((checkIsAncestor(icePanelDiagramJson, base, sourceObject)) && (checkIsAncestor(icePanelDiagramJson, base, targetObject)))
+                {
+                  output.println("' Internal of ("+baseId+") ("+getValue(base, IcePanelConstants.ID)+")");
+                  head = "' ";
+                }
+
+                if ((baseId.equalsIgnoreCase(getValue(sourceObject,IcePanelConstants.PARENT_ID))) ||
+                        (baseId.equalsIgnoreCase(getValue(targetObject,IcePanelConstants.PARENT_ID))))
+                {
+                  output.println("' but at least one first level");
+
+                  if ((baseId.equalsIgnoreCase(getValue(sourceObject,IcePanelConstants.PARENT_ID))) &&
+                          (baseId.equalsIgnoreCase(getValue(targetObject,IcePanelConstants.PARENT_ID)))) {
+                    output.println("' both");
+                    head = "";
+                  } else {
+
+                    // Find the ancestors within the first level ones
+                    if (targetObject != null) {
+                      if (!baseId.equalsIgnoreCase(getValue(targetObject, IcePanelConstants.PARENT_ID))) {
+                        output.println("' search target ancestor");
+                        // Search for the ancestor of the target...
+                        if (checkIsAncestor(icePanelDiagramJson, base, targetObject)) {
+                          targetObject = getFirstChild(icePanelDiagramJson, base, targetObject);
+                          if (targetObject != null) {
+                            output.println("' Found target ancestor");
+                            target = getValue(targetObject, IcePanelConstants.ID);
+                            head = "";
+                          }
+                        } else {
+                          output.println("' Target ancestor out of the container");
+                        }
+                      }
+                    }else {
+                      output.println("' target NULL");
+                    }
+
+                    if (sourceObject != null) {
+                      if (!baseId.equalsIgnoreCase(getValue(sourceObject, IcePanelConstants.PARENT_ID))) {
+                        output.println("' search source ancestor");
+                        // Search for the ancestor of the source...
+                        if (checkIsAncestor(icePanelDiagramJson, base, sourceObject)) {
+                          sourceObject = getFirstChild(icePanelDiagramJson, base, sourceObject);
+                          if (sourceObject != null) {
+                            output.println("' Found source ancestor");
+                            source = getValue(sourceObject, IcePanelConstants.ID);
+                            head = "";
+                          }
+                        } else {
+                          output.println("' Source ancestor out of the container");
+                        }
+
+                      }
+                    } else {
+                      output.println("' source NULL");
+                    }
+
+                  }
+                }
+
                 if ("outgoing".equals(direction)) {
-                  output.println("Rel(" + source + ", " + target
+                  output.println(head+"Rel(" + source + ", " + target
                           + ", \"" + name + "\" )");
                 } else if ("bidirectional".equals(direction)) {
-                  output.println("Rel(" + source + ", " + target
+                  output.println(head+"Rel(" + source + ", " + target
                           + ", \"" + name + "\" )");
-                  output.println("Rel(" + target + ", " + source
+                  output.println(head+"Rel(" + target + ", " + source
                           + ", \"Return of " + name + "\" )");
                 }
               }
@@ -356,7 +422,7 @@ public class IcePanelToPlantUmlConverter extends AbstractIcePanelConverter {
 
     String name = getValue(base, "name").replace(' ','_');
     String id = getValue(base, "id");
-    log.debug("generateSubDiagram ({},{}) ------------------", id , name);
+    log.debug("generateSubDiagram ([{}],[{}]) ------------------", id , name);
 
     ArrayList<JSONObject> children = extractChildren(icePanelDiagramJson, base);
 
@@ -389,7 +455,7 @@ public class IcePanelToPlantUmlConverter extends AbstractIcePanelConverter {
     generateSubDiagramHeader(printStream, icePanelJsonFile, configurationFile);
     generateSubDiagramClasses(printStream, base, children);
     generateSubDiagramNeighborClasses(printStream, icePanelDiagramJson, base, neighbors);
-    generateSubDiagramLinks(printStream, icePanelDiagramJson, children);
+    generateSubDiagramLinks(printStream, icePanelDiagramJson, base, children);
     generateFooter(printStream);
 
     printStream.close();

@@ -4,7 +4,7 @@
 ' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
 ' IcePanel JSON File : [./examples/ai/ARS-AI_Readiness_Survey.json]
 ' Configuration      : [./examples/ai/config.json]
-' Generated at       : Thu May 02 13:56:38 CEST 2024
+' Generated at       : Thu May 02 15:48:25 CEST 2024
 
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
@@ -32,24 +32,75 @@
 ' NEIGHBOR CLASSES =======
 
 
-' CONNECTIONS =======
+' SUB DIAGRAM CONNECTIONS ======= Base : [tlobGJ03gGg0eTGJjeCt]
+' Internal of (tlobGJ03gGg0eTGJjeCt) (tlobGJ03gGg0eTGJjeCt)
+' but at least one first level
+' both
 Rel(ccRXgtE4SCPOsJ86Bucd, tkH0Nyiet0J81k3G0P0b, "Responds" )
+' Internal of (tlobGJ03gGg0eTGJjeCt) (tlobGJ03gGg0eTGJjeCt)
+' but at least one first level
+' both
 Rel(bJilmQwJf6L105KZVIqf, LS52GSxTaF82aLsMAGUJ, "Uses" )
+' Internal of (tlobGJ03gGg0eTGJjeCt) (tlobGJ03gGg0eTGJjeCt)
+' but at least one first level
+' both
 Rel(tkH0Nyiet0J81k3G0P0b, 7eu55kM96LjjrzxMB2kO, "Composes" )
+' Internal of (tlobGJ03gGg0eTGJjeCt) (tlobGJ03gGg0eTGJjeCt)
+' but at least one first level
+' both
 Rel(4S6STeueefjDuU4xPjRW, bJilmQwJf6L105KZVIqf, "User Survey Result" )
+' Internal of (tlobGJ03gGg0eTGJjeCt) (tlobGJ03gGg0eTGJjeCt)
+' but at least one first level
+' both
 Rel(K4wE6hv7lp6PXCIzvmzi, 7eu55kM96LjjrzxMB2kO, "Compiles" )
+' Internal of (tlobGJ03gGg0eTGJjeCt) (tlobGJ03gGg0eTGJjeCt)
+' but at least one first level
+' both
 Rel(K4wE6hv7lp6PXCIzvmzi, bJilmQwJf6L105KZVIqf, "Answered by" )
+' Internal of (tlobGJ03gGg0eTGJjeCt) (tlobGJ03gGg0eTGJjeCt)
+' but at least one first level
+' both
 Rel(ccRXgtE4SCPOsJ86Bucd, ToaUegZzOkTYIdKge5Qq, "Corresponds" )
+' Internal of (tlobGJ03gGg0eTGJjeCt) (tlobGJ03gGg0eTGJjeCt)
+' but at least one first level
+' both
 Rel(XrwLMmIqBRBHFCQBkwLC, kqoiQoApomG9vCdJgRCS, "Set Value for" )
+' Internal of (tlobGJ03gGg0eTGJjeCt) (tlobGJ03gGg0eTGJjeCt)
+' but at least one first level
+' both
 Rel(XrwLMmIqBRBHFCQBkwLC, bJilmQwJf6L105KZVIqf, "Refers to User" )
+' Internal of (tlobGJ03gGg0eTGJjeCt) (tlobGJ03gGg0eTGJjeCt)
+' but at least one first level
+' both
 Rel(LsUYohywFy73cbNxkS1m, ToaUegZzOkTYIdKge5Qq, "Corresponds to Stage (Derived)" )
+' Internal of (tlobGJ03gGg0eTGJjeCt) (tlobGJ03gGg0eTGJjeCt)
+' but at least one first level
+' both
 Rel(awiZhehg5tNZRyDuZDr9, 7eu55kM96LjjrzxMB2kO, "Rappresents" )
+' Internal of (tlobGJ03gGg0eTGJjeCt) (tlobGJ03gGg0eTGJjeCt)
+' but at least one first level
+' both
 Rel(TxZtQCNHfOvU0hauU7me, LS52GSxTaF82aLsMAGUJ, "Translates" )
+' Internal of (tlobGJ03gGg0eTGJjeCt) (tlobGJ03gGg0eTGJjeCt)
+' but at least one first level
+' both
 Rel(4S6STeueefjDuU4xPjRW, awiZhehg5tNZRyDuZDr9, "Dimension" )
+' Internal of (tlobGJ03gGg0eTGJjeCt) (tlobGJ03gGg0eTGJjeCt)
+' but at least one first level
+' both
 Rel(K4wE6hv7lp6PXCIzvmzi, dOWFs1FDNaWOGsbJJUas, "status" )
+' Internal of (tlobGJ03gGg0eTGJjeCt) (tlobGJ03gGg0eTGJjeCt)
+' but at least one first level
+' both
 Rel(tkH0Nyiet0J81k3G0P0b, awiZhehg5tNZRyDuZDr9, "Is Part Of" )
+' Internal of (tlobGJ03gGg0eTGJjeCt) (tlobGJ03gGg0eTGJjeCt)
+' but at least one first level
+' both
 Rel(kqoiQoApomG9vCdJgRCS, 7eu55kM96LjjrzxMB2kO, "Refers to" )
 Rel(7eu55kM96LjjrzxMB2kO, kqoiQoApomG9vCdJgRCS, "Return of Refers to" )
+' Internal of (tlobGJ03gGg0eTGJjeCt) (tlobGJ03gGg0eTGJjeCt)
+' but at least one first level
+' both
 Rel(LsUYohywFy73cbNxkS1m, ccRXgtE4SCPOsJ86Bucd, "User Question Response" )
 
 

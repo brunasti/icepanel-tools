@@ -4,7 +4,7 @@
 ' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
 ' IcePanel JSON File : [./examples/ai/ARS-AI_Readiness_Survey.json]
 ' Configuration      : [./examples/ai/config.json]
-' Generated at       : Thu May 02 13:56:38 CEST 2024
+' Generated at       : Thu May 02 15:48:25 CEST 2024
 
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
@@ -26,12 +26,30 @@ Component(SPQI7VF4lQr2xI6LfLFL, "AI Readiness Survey BE", "")
 System(MVsaKWytzsPec5DvAzrJ, "AI Readiness Survey Application", "Enable the AI Readiness Survey")
 
 
-' CONNECTIONS =======
+' SUB DIAGRAM CONNECTIONS ======= Base : [DTAvEftAPfnuVbWeBkJO]
+' but at least one first level
+' search source ancestor
+' Source ancestor out of the container
 Rel(5hrlGZy5caua0ihnw1fz, Fyh0CkKDWXU6cSuyq7FS, "Uses" )
+' but at least one first level
+' search source ancestor
+' Source ancestor out of the container
 Rel(aoPaRfmaQuiM5hH5QhmS, Fyh0CkKDWXU6cSuyq7FS, "Commits code" )
+' but at least one first level
+' search source ancestor
+' Source ancestor out of the container
 Rel(INwNu3tqXQVOUeQ95rmz, Fyh0CkKDWXU6cSuyq7FS, "Uses" )
+' but at least one first level
+' search source ancestor
+' Source ancestor out of the container
 Rel(SPQI7VF4lQr2xI6LfLFL, Fyh0CkKDWXU6cSuyq7FS, "Uses" )
+' but at least one first level
+' search source ancestor
+' Source ancestor out of the container
 Rel(Zas67UmkOs1zk4BhDirK, Fyh0CkKDWXU6cSuyq7FS, "Uses" )
+' but at least one first level
+' search target ancestor
+' Target ancestor out of the container
 Rel(Fyh0CkKDWXU6cSuyq7FS, MVsaKWytzsPec5DvAzrJ, "Provide Sources" )
 
 

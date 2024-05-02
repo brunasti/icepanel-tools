@@ -314,6 +314,29 @@ public class AbstractIcePanelConverter {
     }
   }
 
+  protected JSONObject getFirstChild(JSONObject icePanelDiagramJson, JSONObject base, JSONObject node) {
+    String parentId = getValue(node, IcePanelConstants.PARENT_ID);
+    log.debug( "getFirstChild ------------------ {} - {} - {} - {} GFC",
+            getValue(base, IcePanelConstants.ID),
+            parentId, getValue(node,IcePanelConstants.PARENT_ID), getValue(node,IcePanelConstants.ID));
+    if (parentId == null) {
+      log.debug( "getFirstChild ------------------ parentId null");
+      return null;
+    }
+
+    if (parentId.equalsIgnoreCase(getValue(node,IcePanelConstants.PARENT_ID))) {
+      log.debug( "getFirstChild ----------- FOUND : {}", getValue(node, IcePanelConstants.ID));
+      return getObject(icePanelDiagramJson, parentId);
+    } else {
+      JSONObject parent = getObject(icePanelDiagramJson, parentId);
+      if (parent == null) {
+        log.debug( "getFirstChild ------------------ parent null");
+        return null;
+      }
+      return getFirstChild(icePanelDiagramJson, base, parent);
+    }
+  }
+
   protected String findRoot(final JSONObject icePanelDiagramJson) {
     log.debug( "findRoot() ------------------");
     JSONObject modelObjects = (JSONObject) icePanelDiagramJson.get(IcePanelConstants.MODEL_OBJECTS);

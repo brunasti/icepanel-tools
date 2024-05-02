@@ -4,7 +4,7 @@
 ' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
 ' IcePanel JSON File : [./examples/ai/ARS-AI_Readiness_Survey.json]
 ' Configuration      : [./examples/ai/config.json]
-' Generated at       : Thu May 02 13:56:38 CEST 2024
+' Generated at       : Thu May 02 15:48:25 CEST 2024
 
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
@@ -32,24 +32,77 @@ Person(KkUEHQQOml7FBUrTDfgF, "AND User", "")
 ContainerDb(Fyh0CkKDWXU6cSuyq7FS, "GitHub Repo System", "", "")
 
 
-' CONNECTIONS =======
-Rel(d0yXDxJmyhA9EL5YiepF, tlobGJ03gGg0eTGJjeCt, "Stores and reads" )
-Rel(tlobGJ03gGg0eTGJjeCt, d0yXDxJmyhA9EL5YiepF, "Return of Stores and reads" )
+' SUB DIAGRAM CONNECTIONS ======= Base : [MVsaKWytzsPec5DvAzrJ]
+' Internal of (MVsaKWytzsPec5DvAzrJ) (MVsaKWytzsPec5DvAzrJ)
+' but at least one first level
+' search source ancestor
+' Found source ancestor
+Rel(SPQI7VF4lQr2xI6LfLFL, tlobGJ03gGg0eTGJjeCt, "Stores and reads" )
+Rel(tlobGJ03gGg0eTGJjeCt, SPQI7VF4lQr2xI6LfLFL, "Return of Stores and reads" )
+' Internal of (MVsaKWytzsPec5DvAzrJ) (MVsaKWytzsPec5DvAzrJ)
+' but at least one first level
+' both
 Rel(tlobGJ03gGg0eTGJjeCt, Zas67UmkOs1zk4BhDirK, "Extracts" )
+' but at least one first level
+' search target ancestor
+' Target ancestor out of the container
 Rel(3aSu0mcX7m60VrLzm7L6, aoPaRfmaQuiM5hH5QhmS, "Mantain" )
-Rel(6KEeGMtfXzcAtPxRMm95, 5eGbhrgZL6CVjXVxG9EB, "Provides Contents" )
+' Internal of (MVsaKWytzsPec5DvAzrJ) (MVsaKWytzsPec5DvAzrJ)
+' but at least one first level
+' search target ancestor
+' Found target ancestor
+Rel(6KEeGMtfXzcAtPxRMm95, SPQI7VF4lQr2xI6LfLFL, "Provides Contents" )
+' but at least one first level
+' search source ancestor
+' Source ancestor out of the container
 Rel(I3ut2I4Ct9f3UDszgxf1, iZVcQxlnkbrnOYjJqqv2, "Updates" )
-Rel(x6BTWIQ3rThpdBgHOSRZ, mCLYSixzXMXK6M59oIYW, "API Intreface" )
-Rel(mCLYSixzXMXK6M59oIYW, x6BTWIQ3rThpdBgHOSRZ, "Return of API Intreface" )
-Rel(iZVcQxlnkbrnOYjJqqv2, VfVOeO3QyBIGXrvCOwIi, "Provides I18N Content" )
+' Internal of (MVsaKWytzsPec5DvAzrJ) (MVsaKWytzsPec5DvAzrJ)
+' but at least one first level
+' search source ancestor
+' Found source ancestor
+Rel(5hrlGZy5caua0ihnw1fz, mCLYSixzXMXK6M59oIYW, "API Intreface" )
+Rel(mCLYSixzXMXK6M59oIYW, 5hrlGZy5caua0ihnw1fz, "Return of API Intreface" )
+' Internal of (MVsaKWytzsPec5DvAzrJ) (MVsaKWytzsPec5DvAzrJ)
+' but at least one first level
+' search target ancestor
+' Found target ancestor
+Rel(iZVcQxlnkbrnOYjJqqv2, SPQI7VF4lQr2xI6LfLFL, "Provides I18N Content" )
+' but at least one first level
+' search source ancestor
+' Source ancestor out of the container
 Rel(aoPaRfmaQuiM5hH5QhmS, tlobGJ03gGg0eTGJjeCt, "Setups DB Structure" )
+' but at least one first level
+' search target ancestor
+' Target ancestor out of the container
 Rel(5hrlGZy5caua0ihnw1fz, Fyh0CkKDWXU6cSuyq7FS, "Uses" )
+' Internal of (MVsaKWytzsPec5DvAzrJ) (MVsaKWytzsPec5DvAzrJ)
+' but at least one first level
+' both
 Rel(mCLYSixzXMXK6M59oIYW, 3aSu0mcX7m60VrLzm7L6, "Publish" )
+' but at least one first level
+' search target ancestor
+' Target ancestor out of the container
 Rel(INwNu3tqXQVOUeQ95rmz, Fyh0CkKDWXU6cSuyq7FS, "Uses" )
-Rel(fhOu4B6mDXc7nf9z8b9C, mCLYSixzXMXK6M59oIYW, "Exposes Endpoints" )
+' Internal of (MVsaKWytzsPec5DvAzrJ) (MVsaKWytzsPec5DvAzrJ)
+' but at least one first level
+' search source ancestor
+' Found source ancestor
+Rel(SPQI7VF4lQr2xI6LfLFL, mCLYSixzXMXK6M59oIYW, "Exposes Endpoints" )
+' but at least one first level
+' search target ancestor
+' Target ancestor out of the container
 Rel(SPQI7VF4lQr2xI6LfLFL, Fyh0CkKDWXU6cSuyq7FS, "Uses" )
+' but at least one first level
+' search target ancestor
+' Target ancestor out of the container
 Rel(Zas67UmkOs1zk4BhDirK, Fyh0CkKDWXU6cSuyq7FS, "Uses" )
+' but at least one first level
+' search target ancestor
+' Target ancestor out of the container
 Rel(Zas67UmkOs1zk4BhDirK, KkUEHQQOml7FBUrTDfgF, "Reads report" )
+' Internal of (MVsaKWytzsPec5DvAzrJ) (MVsaKWytzsPec5DvAzrJ)
+' but at least one first level
+' both
 Rel(iZVcQxlnkbrnOYjJqqv2, tlobGJ03gGg0eTGJjeCt, "Sotered in" )
 
 
