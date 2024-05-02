@@ -223,6 +223,16 @@ public class AbstractIcePanelConverter {
           }
         }
     );
+
+    // Reiterate on the child children
+    ArrayList<JSONObject> children = extractChildren(icePanelDiagramJson, child);
+    children.forEach(subChild -> {
+      ArrayList<JSONObject> childNeighbors = extractChildNodeNeighbors(icePanelDiagramJson, subChild);
+      childNeighbors.forEach(subNeighbor -> {
+        neighbors.add(subNeighbor);
+      });
+    });
+
     return neighbors;
   }
 
