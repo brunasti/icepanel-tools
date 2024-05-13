@@ -4,7 +4,7 @@
 ' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
 ' IcePanel JSON File : [./examples/ai/ARS-AI_Readiness_Survey.json]
 ' Configuration      : [./examples/ai/config.json]
-' Generated at       : Thu May 02 18:27:59 CEST 2024
+' Generated at       : Mon May 13 16:35:34 CEST 2024
 
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
@@ -18,8 +18,10 @@ System_Boundary(MVsaKWytzsPec5DvAzrJ, "AI Readiness Survey Application" ) {
     Component(5hrlGZy5caua0ihnw1fz, "AI Readiness Survey WebApp", "")
     ContainerDb(iZVcQxlnkbrnOYjJqqv2, "Dynamic I18N Content", "", "")
     ContainerDb(6KEeGMtfXzcAtPxRMm95, "CRM Contents", "", "")
+    ContainerDb(8XnH1JDLLaz64a6mgFNw, "PDF report storage", "", "")
     Component(3aSu0mcX7m60VrLzm7L6, "OpenAPI Doc", "")
     Component(SPQI7VF4lQr2xI6LfLFL, "AI Readiness Survey BE", "")
+    Component(GR2NFQnbfwI9v8VPtCdf, "Survey Managing App", "")
     Component(INwNu3tqXQVOUeQ95rmz, "Notification System", "")
     ContainerDb(tlobGJ03gGg0eTGJjeCt, "AI Readiness Survey Storage", "", "")
 }
@@ -41,10 +43,15 @@ Rel(tlobGJ03gGg0eTGJjeCt, SPQI7VF4lQr2xI6LfLFL, "Return of Stores and reads" )
 Rel(tlobGJ03gGg0eTGJjeCt, Zas67UmkOs1zk4BhDirK, "Extracts" )
 ' CONNECTION : [Maintain] [aoPaRfmaQuiM5hH5QhmS] [3aSu0mcX7m60VrLzm7L6] [outgoing]
 Rel(aoPaRfmaQuiM5hH5QhmS, 3aSu0mcX7m60VrLzm7L6, "Maintain" )
+' CONNECTION : [Sends data to] [GR2NFQnbfwI9v8VPtCdf] [mCLYSixzXMXK6M59oIYW] [bidirectional]
+Rel(GR2NFQnbfwI9v8VPtCdf, mCLYSixzXMXK6M59oIYW, "Sends data to" )
+Rel(mCLYSixzXMXK6M59oIYW, GR2NFQnbfwI9v8VPtCdf, "Return of Sends data to" )
 ' CONNECTION : [Provides Contents] [6KEeGMtfXzcAtPxRMm95] [SPQI7VF4lQr2xI6LfLFL] [outgoing]
 Rel(6KEeGMtfXzcAtPxRMm95, SPQI7VF4lQr2xI6LfLFL, "Provides Contents" )
 ' CONNECTION : [Updates] [I3ut2I4Ct9f3UDszgxf1] [iZVcQxlnkbrnOYjJqqv2] [outgoing]
 Rel(I3ut2I4Ct9f3UDszgxf1, iZVcQxlnkbrnOYjJqqv2, "Updates" )
+' CONNECTION : [Reads the PDF to be published] [5hrlGZy5caua0ihnw1fz] [8XnH1JDLLaz64a6mgFNw] [outgoing]
+Rel(5hrlGZy5caua0ihnw1fz, 8XnH1JDLLaz64a6mgFNw, "Reads the PDF to be published" )
 ' CONNECTION : [API Intreface] [5hrlGZy5caua0ihnw1fz] [mCLYSixzXMXK6M59oIYW] [bidirectional]
 Rel(5hrlGZy5caua0ihnw1fz, mCLYSixzXMXK6M59oIYW, "API Intreface" )
 Rel(mCLYSixzXMXK6M59oIYW, 5hrlGZy5caua0ihnw1fz, "Return of API Intreface" )
@@ -62,6 +69,8 @@ Rel(INwNu3tqXQVOUeQ95rmz, Fyh0CkKDWXU6cSuyq7FS, "Uses" )
 Rel(INwNu3tqXQVOUeQ95rmz, 3zCEc0A8nh1jzwekwJ9e, "Sends Result" )
 ' CONNECTION : [Exposes Endpoints] [SPQI7VF4lQr2xI6LfLFL] [mCLYSixzXMXK6M59oIYW] [outgoing]
 Rel(SPQI7VF4lQr2xI6LfLFL, mCLYSixzXMXK6M59oIYW, "Exposes Endpoints" )
+' CONNECTION : [Stores the PDF] [INwNu3tqXQVOUeQ95rmz] [8XnH1JDLLaz64a6mgFNw] [outgoing]
+Rel(INwNu3tqXQVOUeQ95rmz, 8XnH1JDLLaz64a6mgFNw, "Stores the PDF" )
 ' CONNECTION : [Reads data] [INwNu3tqXQVOUeQ95rmz] [SPQI7VF4lQr2xI6LfLFL] [outgoing]
 Rel(INwNu3tqXQVOUeQ95rmz, SPQI7VF4lQr2xI6LfLFL, "Reads data" )
 ' CONNECTION : [Uses] [SPQI7VF4lQr2xI6LfLFL] [Fyh0CkKDWXU6cSuyq7FS] [outgoing]

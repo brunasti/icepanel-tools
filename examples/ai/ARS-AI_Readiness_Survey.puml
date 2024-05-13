@@ -4,7 +4,7 @@
 ' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
 ' IcePanel JSON File : [./examples/ai/ARS-AI_Readiness_Survey.json]
 ' Configuration      : [./examples/ai/config.json]
-' Generated at       : Thu May 02 18:27:59 CEST 2024
+' Generated at       : Mon May 13 16:35:34 CEST 2024
 
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
@@ -36,6 +36,7 @@ Person(3zCEc0A8nh1jzwekwJ9e, "User (Customer CEO)", "")
 Container(K4wE6hv7lp6PXCIzvmzi, "User Survey Rel", "", "")
 Container(LsUYohywFy73cbNxkS1m, "User Response", "", "")
 Container(tkH0Nyiet0J81k3G0P0b, "Survey Question", "", "")
+ContainerDb(8XnH1JDLLaz64a6mgFNw, "PDF report storage", "", "")
 Container(XrwLMmIqBRBHFCQBkwLC, "User Demografic Value", "", "")
 Component(3aSu0mcX7m60VrLzm7L6, "OpenAPI Doc", "")
 Container(bJilmQwJf6L105KZVIqf, "User", "", "")
@@ -45,6 +46,7 @@ Container(Q4JwBYUNizhrOK6IVNU0, "Integration System", "", "")
 Container(4S6STeueefjDuU4xPjRW, "User Dimentsion Value", "", "")
 Component(SPQI7VF4lQr2xI6LfLFL, "AI Readiness Survey BE", "")
 System(MVsaKWytzsPec5DvAzrJ, "AI Readiness Survey Application", "Enable the AI Readiness Survey")
+Component(GR2NFQnbfwI9v8VPtCdf, "Survey Managing App", "")
 Container(d0yXDxJmyhA9EL5YiepF, "BE Application", "", "")
 Container(ToaUegZzOkTYIdKge5Qq, "Stage", "", "")
 Container(x6BTWIQ3rThpdBgHOSRZ, "VueJS", "", "")
@@ -66,11 +68,14 @@ Rel(d0yXDxJmyhA9EL5YiepF, 5eGbhrgZL6CVjXVxG9EB, "Accesses" )
 Rel(aoPaRfmaQuiM5hH5QhmS, 3aSu0mcX7m60VrLzm7L6, "Maintain" )
 Rel(4S6STeueefjDuU4xPjRW, bJilmQwJf6L105KZVIqf, "User Survey Result" )
 Rel(K4wE6hv7lp6PXCIzvmzi, 7eu55kM96LjjrzxMB2kO, "Compiles" )
+Rel(GR2NFQnbfwI9v8VPtCdf, mCLYSixzXMXK6M59oIYW, "Sends data to" )
+Rel(mCLYSixzXMXK6M59oIYW, GR2NFQnbfwI9v8VPtCdf, "Return of Sends data to" )
 Rel(SuPXys2m8MHNajNDAovG, V9vsEFD13t044w0g9kcU, "Controls Access" )
 Rel(6KEeGMtfXzcAtPxRMm95, 5eGbhrgZL6CVjXVxG9EB, "Provides Contents" )
 Rel(K4wE6hv7lp6PXCIzvmzi, bJilmQwJf6L105KZVIqf, "Answered by" )
 Rel(ccRXgtE4SCPOsJ86Bucd, ToaUegZzOkTYIdKge5Qq, "Corresponds" )
 Rel(I3ut2I4Ct9f3UDszgxf1, iZVcQxlnkbrnOYjJqqv2, "Updates" )
+Rel(5hrlGZy5caua0ihnw1fz, 8XnH1JDLLaz64a6mgFNw, "Reads the PDF to be published" )
 Rel(V9vsEFD13t044w0g9kcU, VK9ZFiCYByBvFGzQxBpq, "Delivers" )
 Rel(x6BTWIQ3rThpdBgHOSRZ, mCLYSixzXMXK6M59oIYW, "API Intreface" )
 Rel(mCLYSixzXMXK6M59oIYW, x6BTWIQ3rThpdBgHOSRZ, "Return of API Intreface" )
@@ -90,6 +95,7 @@ Rel(4S6STeueefjDuU4xPjRW, awiZhehg5tNZRyDuZDr9, "Dimension" )
 Rel(I9erkX6JvcRx0uM4iieJ, 3zCEc0A8nh1jzwekwJ9e, "Sends Result" )
 Rel(fhOu4B6mDXc7nf9z8b9C, mCLYSixzXMXK6M59oIYW, "Exposes Endpoints" )
 Rel(V9vsEFD13t044w0g9kcU, x6BTWIQ3rThpdBgHOSRZ, "Executes" )
+Rel(INwNu3tqXQVOUeQ95rmz, 8XnH1JDLLaz64a6mgFNw, "Stores the PDF" )
 Rel(K4wE6hv7lp6PXCIzvmzi, dOWFs1FDNaWOGsbJJUas, "status" )
 Rel(Q4JwBYUNizhrOK6IVNU0, d0yXDxJmyhA9EL5YiepF, "Reads data" )
 Rel(SPQI7VF4lQr2xI6LfLFL, Fyh0CkKDWXU6cSuyq7FS, "Uses" )
@@ -139,6 +145,7 @@ Rel(Fyh0CkKDWXU6cSuyq7FS, MVsaKWytzsPec5DvAzrJ, "Provide Sources" )
   MVsaKWytzsPec5DvAzrJ <.. LsUYohywFy73cbNxkS1m 
   tlobGJ03gGg0eTGJjeCt <.. tkH0Nyiet0J81k3G0P0b 
   MVsaKWytzsPec5DvAzrJ <.. tkH0Nyiet0J81k3G0P0b 
+  MVsaKWytzsPec5DvAzrJ <.. 8XnH1JDLLaz64a6mgFNw 
   tlobGJ03gGg0eTGJjeCt <.. XrwLMmIqBRBHFCQBkwLC 
   MVsaKWytzsPec5DvAzrJ <.. XrwLMmIqBRBHFCQBkwLC 
   MVsaKWytzsPec5DvAzrJ <.. 3aSu0mcX7m60VrLzm7L6 
@@ -153,6 +160,7 @@ Rel(Fyh0CkKDWXU6cSuyq7FS, MVsaKWytzsPec5DvAzrJ, "Provide Sources" )
   tlobGJ03gGg0eTGJjeCt <.. 4S6STeueefjDuU4xPjRW 
   MVsaKWytzsPec5DvAzrJ <.. 4S6STeueefjDuU4xPjRW 
   MVsaKWytzsPec5DvAzrJ <.. SPQI7VF4lQr2xI6LfLFL 
+  MVsaKWytzsPec5DvAzrJ <.. GR2NFQnbfwI9v8VPtCdf 
   SPQI7VF4lQr2xI6LfLFL <.. d0yXDxJmyhA9EL5YiepF 
   MVsaKWytzsPec5DvAzrJ <.. d0yXDxJmyhA9EL5YiepF 
   tlobGJ03gGg0eTGJjeCt <.. ToaUegZzOkTYIdKge5Qq 
