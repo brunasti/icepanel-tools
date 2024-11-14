@@ -20,7 +20,7 @@
             <artifactId>Java-Utils</artifactId>
             <version>1.0.0</version>
             <scope>system</scope>
-            <systemPath>/Users/paolobrunasti/Work/Mine/icepanel/icepanel-tools/libs/Java-Utils-1.0.0.jar</systemPath>
+            <systemPath>/Users/paolobrunasti/Work/MyTools/icepanel-tools/libs/Java-Utils-1.0.0.jar</systemPath>
         </dependency>
 
         <dependency>
@@ -36,7 +36,7 @@
         <dependency>
             <groupId>org.apache.bcel</groupId>
             <artifactId>bcel</artifactId>
-            <version>6.5.0</version>
+            <version>6.6.0</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/com.thoughtworks.qdox/qdox -->
         <dependency>
