@@ -4,7 +4,7 @@
 ' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
 ' IcePanel JSON File : [./examples/pg/pg-001.json]
 ' Configuration      : [./examples/pg/config.json]
-' Generated at       : Wed May 01 15:03:17 CEST 2024
+' Generated at       : Sun Dec 29 18:49:47 CET 2024
 
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
@@ -33,23 +33,37 @@ System(SLMBPAA5stAJyw9w6YTR, "TBC Member Service", "")
 System(SLmOFIXEutPoocdCdOE1, "Agilea (CRM)", "")
 
 
-' CONNECTIONS =======
+' SUB DIAGRAM CONNECTIONS ======= Base : [XyelrH1G0uxlThooT8jX]
+' CONNECTION : [Club information - Contract information - Coupon information - FAQ] [SLMBPAA5stAJyw9w6YTR] [aE7OfZew41kPVk1SABBx] [outgoing]
 Rel(SLMBPAA5stAJyw9w6YTR, aE7OfZew41kPVk1SABBx, "Club information - Contract information - Coupon information - FAQ" )
+' CONNECTION : [Unnamed connection] [SLMBPAA5stAJyw9w6YTR] [BDy6EhnLdszv0o1UYCZp] [outgoing]
 Rel(SLMBPAA5stAJyw9w6YTR, BDy6EhnLdszv0o1UYCZp, "Unnamed connection" )
+' CONNECTION : [Dynamic activities] [Df8PP21Dc8ejtFQtIHmV] [AInfIdvnaXbaFmyIidHG] [bidirectional]
 Rel(Df8PP21Dc8ejtFQtIHmV, AInfIdvnaXbaFmyIidHG, "Dynamic activities" )
 Rel(AInfIdvnaXbaFmyIidHG, Df8PP21Dc8ejtFQtIHmV, "Return of Dynamic activities" )
+' CONNECTION : [Create Case] [BDy6EhnLdszv0o1UYCZp] [NVzttd0H1pzo67Z0guTw] [outgoing]
 Rel(BDy6EhnLdszv0o1UYCZp, NVzttd0H1pzo67Z0guTw, "Create Case" )
+' CONNECTION : [Staff Provision] [aE7OfZew41kPVk1SABBx] [SLMBPAA5stAJyw9w6YTR] [outgoing]
 Rel(aE7OfZew41kPVk1SABBx, SLMBPAA5stAJyw9w6YTR, "Staff Provision" )
+' CONNECTION : [SSO] [XWiacBLGn7k983RqmMWv] [Lmcmoump6qMx52ccGHD9] [outgoing]
 Rel(XWiacBLGn7k983RqmMWv, Lmcmoump6qMx52ccGHD9, "SSO" )
+' CONNECTION : [Login - Upgrade Flats - Upgrade Contract - Change Member Information - Cancellation - Break] [Lmcmoump6qMx52ccGHD9] [SLmOFIXEutPoocdCdOE1] [outgoing]
 Rel(Lmcmoump6qMx52ccGHD9, SLmOFIXEutPoocdCdOE1, "Login - Upgrade Flats - Upgrade Contract - Change Member Information - Cancellation - Break" )
+' CONNECTION : [Price information] [BDy6EhnLdszv0o1UYCZp] [aE7OfZew41kPVk1SABBx] [outgoing]
 Rel(BDy6EhnLdszv0o1UYCZp, aE7OfZew41kPVk1SABBx, "Price information" )
+' CONNECTION : [Book trial training] [BDy6EhnLdszv0o1UYCZp] [SLMBPAA5stAJyw9w6YTR] [outgoing]
 Rel(BDy6EhnLdszv0o1UYCZp, SLMBPAA5stAJyw9w6YTR, "Book trial training" )
+' CONNECTION : [Subscribe new Membership] [tWBMOSLhpcqKS34CzvM1] [AInfIdvnaXbaFmyIidHG] [bidirectional]
 Rel(tWBMOSLhpcqKS34CzvM1, AInfIdvnaXbaFmyIidHG, "Subscribe new Membership" )
 Rel(AInfIdvnaXbaFmyIidHG, tWBMOSLhpcqKS34CzvM1, "Return of Subscribe new Membership" )
+' CONNECTION : [New Members] [aE7OfZew41kPVk1SABBx] [SLMBPAA5stAJyw9w6YTR] [outgoing]
 Rel(aE7OfZew41kPVk1SABBx, SLMBPAA5stAJyw9w6YTR, "New Members" )
+' CONNECTION : [Club informations, content and picture] [BDy6EhnLdszv0o1UYCZp] [SLMBPAA5stAJyw9w6YTR] [outgoing]
 Rel(BDy6EhnLdszv0o1UYCZp, SLMBPAA5stAJyw9w6YTR, "Club informations, content and picture" )
+' CONNECTION : [Access www] [Df8PP21Dc8ejtFQtIHmV] [Bt0upOQ7ISx0R8IRiY7Y] [bidirectional]
 Rel(Df8PP21Dc8ejtFQtIHmV, Bt0upOQ7ISx0R8IRiY7Y, "Access www" )
 Rel(Bt0upOQ7ISx0R8IRiY7Y, Df8PP21Dc8ejtFQtIHmV, "Return of Access www" )
+' CONNECTION : [User Data] [sYLxW4jvnSXS0361wc3B] [SLmOFIXEutPoocdCdOE1] [bidirectional]
 Rel(sYLxW4jvnSXS0361wc3B, SLmOFIXEutPoocdCdOE1, "User Data" )
 Rel(SLmOFIXEutPoocdCdOE1, sYLxW4jvnSXS0361wc3B, "Return of User Data" )
 

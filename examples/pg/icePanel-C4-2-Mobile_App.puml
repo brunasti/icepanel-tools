@@ -4,7 +4,7 @@
 ' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
 ' IcePanel JSON File : [./examples/pg/pg-001.json]
 ' Configuration      : [./examples/pg/config.json]
-' Generated at       : Wed May 01 15:03:17 CEST 2024
+' Generated at       : Sun Dec 29 18:49:47 CET 2024
 
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
@@ -24,7 +24,8 @@ System_Boundary(jSH31KrEZPWsgMgpk5Pl, "Mobile App" ) {
 Component(Lmcmoump6qMx52ccGHD9, "TBC myPureGym", "")
 
 
-' CONNECTIONS =======
+' SUB DIAGRAM CONNECTIONS ======= Base : [jSH31KrEZPWsgMgpk5Pl]
+' CONNECTION : [SSO] [XWiacBLGn7k983RqmMWv] [Lmcmoump6qMx52ccGHD9] [outgoing]
 Rel(XWiacBLGn7k983RqmMWv, Lmcmoump6qMx52ccGHD9, "SSO" )
 
 

@@ -4,7 +4,7 @@
 ' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
 ' IcePanel JSON File : [./src/test/resources/icepanel-plain.json]
 ' Configuration      : [./docs/config.json]
-' Generated at       : Wed May 01 15:03:17 CEST 2024
+' Generated at       : Sun Dec 29 18:49:47 CET 2024
 
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
@@ -38,23 +38,39 @@ Component(p4yomm0RrOrYTNX8VvEg, "Direct Connect", "")
 Person(mtyHirRmDImFDmca6URg, "Cache Admin", "")
 
 
-' CONNECTIONS =======
+' SUB DIAGRAM CONNECTIONS ======= Base : [ZCIGbr1fDwSZINSjOb44]
+' CONNECTION : [Enrich query data] [JDgumJdxCj5dCURdCtKN] [FbHUk96QaZQVUumba63H] [outgoing]
 Rel(JDgumJdxCj5dCURdCtKN, FbHUk96QaZQVUumba63H, "Enrich query data" )
+' CONNECTION : [Message with Batch Instruction] [P8FRwIacDu7PGvfS8xYm] [FbHUk96QaZQVUumba63H] [outgoing]
 Rel(P8FRwIacDu7PGvfS8xYm, FbHUk96QaZQVUumba63H, "Message with Batch Instruction" )
+' CONNECTION : [Puts message into MQ Series] [iCsNVDctelyaR2c4wnkh] [P8FRwIacDu7PGvfS8xYm] [outgoing]
 Rel(iCsNVDctelyaR2c4wnkh, P8FRwIacDu7PGvfS8xYm, "Puts message into MQ Series" )
+' CONNECTION : [Reads query data] [HhxISGaz4P94iRFwLQgB] [FbHUk96QaZQVUumba63H] [outgoing]
 Rel(HhxISGaz4P94iRFwLQgB, FbHUk96QaZQVUumba63H, "Reads query data" )
+' CONNECTION : [Extract details] [CBSTDIDaQZluhMUnj5Mq] [oTdOuXLuTyPzLeCjIYDx] [outgoing]
 Rel(CBSTDIDaQZluhMUnj5Mq, oTdOuXLuTyPzLeCjIYDx, "Extract details" )
+' CONNECTION : [Activate] [gjWRDpkTJ13KPRmh36F5] [HRtqQ8npZIhFIJyE4fny] [outgoing]
 Rel(gjWRDpkTJ13KPRmh36F5, HRtqQ8npZIhFIJyE4fny, "Activate" )
+' CONNECTION : [Create Cache] [mtyHirRmDImFDmca6URg] [ca13KkX3DwaOlAXtqCBu] [outgoing]
 Rel(mtyHirRmDImFDmca6URg, ca13KkX3DwaOlAXtqCBu, "Create Cache" )
+' CONNECTION : [Every 1 hour] [gjWRDpkTJ13KPRmh36F5] [fw0FSosDQxrXPus6KZ6i] [outgoing]
 Rel(gjWRDpkTJ13KPRmh36F5, fw0FSosDQxrXPus6KZ6i, "Every 1 hour" )
+' CONNECTION : [Invoke Stored Procedure] [HRtqQ8npZIhFIJyE4fny] [HhxISGaz4P94iRFwLQgB] [outgoing]
 Rel(HRtqQ8npZIhFIJyE4fny, HhxISGaz4P94iRFwLQgB, "Invoke Stored Procedure" )
+' CONNECTION : [Read config from] [M6xfKV1sWabaqUXxMo6D] [zKtL799aVzgaZLWgIcD6] [outgoing]
 Rel(M6xfKV1sWabaqUXxMo6D, zKtL799aVzgaZLWgIcD6, "Read config from" )
+' CONNECTION : [Offers extracted] [HhxISGaz4P94iRFwLQgB] [iCsNVDctelyaR2c4wnkh] [outgoing]
 Rel(HhxISGaz4P94iRFwLQgB, iCsNVDctelyaR2c4wnkh, "Offers extracted" )
+' CONNECTION : [OnPrem / AWS connectivity] [FbHUk96QaZQVUumba63H] [p4yomm0RrOrYTNX8VvEg] [outgoing]
 Rel(FbHUk96QaZQVUumba63H, p4yomm0RrOrYTNX8VvEg, "OnPrem / AWS connectivity" )
+' CONNECTION : [adds additional info from the config database] [FbHUk96QaZQVUumba63H] [CBSTDIDaQZluhMUnj5Mq] [bidirectional]
 Rel(FbHUk96QaZQVUumba63H, CBSTDIDaQZluhMUnj5Mq, "adds additional info from the config database" )
 Rel(CBSTDIDaQZluhMUnj5Mq, FbHUk96QaZQVUumba63H, "Return of adds additional info from the config database" )
+' CONNECTION : [Every 1 minute] [fw0FSosDQxrXPus6KZ6i] [iCsNVDctelyaR2c4wnkh] [outgoing]
 Rel(fw0FSosDQxrXPus6KZ6i, iCsNVDctelyaR2c4wnkh, "Every 1 minute" )
+' CONNECTION : [Nousekeeps] [M6xfKV1sWabaqUXxMo6D] [HhxISGaz4P94iRFwLQgB] [outgoing]
 Rel(M6xfKV1sWabaqUXxMo6D, HhxISGaz4P94iRFwLQgB, "Nousekeeps" )
+' CONNECTION : [Set search criteria] [ca13KkX3DwaOlAXtqCBu] [HhxISGaz4P94iRFwLQgB] [outgoing]
 Rel(ca13KkX3DwaOlAXtqCBu, HhxISGaz4P94iRFwLQgB, "Set search criteria" )
 
 

@@ -1,0 +1,39 @@
+@startuml
+'https://plantuml.com/class-diagram
+' CONVERT ICEPANEL DIAGRAM ===========
+' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
+' IcePanel JSON File : [examples/anonym/Document Anonymizer (Current).json]
+' Configuration      : [./docs/config.json]
+' Generated at       : Sun Dec 29 18:49:47 CET 2024
+
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+
+' Include         : [./docs/include.txt] ---------
+hide empty members
+' Include end     : --------------------------
+
+
+System_Boundary(SVg4NZbdZy8FnI61GISs, "Original Document" ) {
+    ' CLASSES =======
+    Component(y4C4NA0F0J8eLXSEyK59, "Convert PDF -&gt; Text", "")
+    ContainerDb(RrTHlYMFjqv4KzFtWBGQ, "PDF Document", "", "")
+    ContainerDb(FOv7PGuNDuzzI9E2i9pr, "Text Document", "", "")
+}
+
+
+' NEIGHBOR CLASSES =======
+Component(XxVJMcQGienpUEXxv1W8, "Word Extractor", "")
+
+
+' SUB DIAGRAM CONNECTIONS ======= Base : [SVg4NZbdZy8FnI61GISs]
+' CONNECTION : [input] [FOv7PGuNDuzzI9E2i9pr] [XxVJMcQGienpUEXxv1W8] [outgoing]
+Rel(FOv7PGuNDuzzI9E2i9pr, XxVJMcQGienpUEXxv1W8, "input" )
+' CONNECTION : [output] [y4C4NA0F0J8eLXSEyK59] [FOv7PGuNDuzzI9E2i9pr] [outgoing]
+Rel(y4C4NA0F0J8eLXSEyK59, FOv7PGuNDuzzI9E2i9pr, "output" )
+' CONNECTION : [input] [RrTHlYMFjqv4KzFtWBGQ] [y4C4NA0F0J8eLXSEyK59] [outgoing]
+Rel(RrTHlYMFjqv4KzFtWBGQ, y4C4NA0F0J8eLXSEyK59, "input" )
+
+
+@enduml

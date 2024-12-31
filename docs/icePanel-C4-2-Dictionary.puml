@@ -1,0 +1,36 @@
+@startuml
+'https://plantuml.com/class-diagram
+' CONVERT ICEPANEL DIAGRAM ===========
+' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
+' IcePanel JSON File : [examples/anonym/Document Anonymizer (Current).json]
+' Configuration      : [./docs/config.json]
+' Generated at       : Sun Dec 29 18:49:47 CET 2024
+
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+
+' Include         : [./docs/include.txt] ---------
+hide empty members
+' Include end     : --------------------------
+
+
+System_Boundary(QjKTKNSXZsLVNBtbDpC8, "Dictionary" ) {
+    ' CLASSES =======
+    ContainerDb(jZduRTYIuxzbaQzAgYZO, "Standard - Dictionary", "", "")
+    ContainerDb(11A3PwwC3aKDSAcWV7EH, "Matching - Table", "", "")
+}
+
+
+' NEIGHBOR CLASSES =======
+Component(ryHXp2S4krLTLW8KNoL1, "Exception - Finder", "")
+
+
+' SUB DIAGRAM CONNECTIONS ======= Base : [QjKTKNSXZsLVNBtbDpC8]
+' CONNECTION : [proposed] [11A3PwwC3aKDSAcWV7EH] [ryHXp2S4krLTLW8KNoL1] [outgoing]
+Rel(11A3PwwC3aKDSAcWV7EH, ryHXp2S4krLTLW8KNoL1, "proposed" )
+' CONNECTION : [standard list] [jZduRTYIuxzbaQzAgYZO] [ryHXp2S4krLTLW8KNoL1] [outgoing]
+Rel(jZduRTYIuxzbaQzAgYZO, ryHXp2S4krLTLW8KNoL1, "standard list" )
+
+
+@enduml

@@ -1,0 +1,63 @@
+@startuml
+'https://plantuml.com/class-diagram
+' CONVERT ICEPANEL DIAGRAM ===========
+' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
+' IcePanel JSON File : [examples/anonym/Document Anonymizer (Current).json]
+' Configuration      : [./docs/config.json]
+' Generated at       : Sun Dec 29 18:49:47 CET 2024
+
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+
+' Include         : [./docs/include.txt] ---------
+hide empty members
+' Include end     : --------------------------
+
+
+System_Boundary(h6iDi2X0EqwashqKREmH, "Document Anonymize System" ) {
+    ' CLASSES =======
+    ContainerDb(0y769Vmvo5Tuvb6TR08e, "Document Proposed Matches", "", "")
+    Component(n1dCZsXdpvx1B0VFrFUb, "Replacer", "")
+    Component(ryHXp2S4krLTLW8KNoL1, "Exception - Finder", "")
+    ContainerDb(fAmwYlg11653hGzmKOZS, "Document  - Words List", "", "")
+    Component(XxVJMcQGienpUEXxv1W8, "Word Extractor", "")
+    Component(dRxcTKSZxMRK9uPx2OnQ, "Match Editor", "")
+}
+
+
+' NEIGHBOR CLASSES =======
+ContainerDb(jZduRTYIuxzbaQzAgYZO, "Standard - Dictionary", "", "")
+System(vCVl0ek9J39J1NXHKNEV, "Anonymized Document", "")
+ContainerDb(11A3PwwC3aKDSAcWV7EH, "Matching - Table", "", "")
+System(SVg4NZbdZy8FnI61GISs, "Original Document", "")
+ContainerDb(FOv7PGuNDuzzI9E2i9pr, "Text Document", "", "")
+
+
+' SUB DIAGRAM CONNECTIONS ======= Base : [h6iDi2X0EqwashqKREmH]
+' CONNECTION : [create] [ryHXp2S4krLTLW8KNoL1] [0y769Vmvo5Tuvb6TR08e] [outgoing]
+Rel(ryHXp2S4krLTLW8KNoL1, 0y769Vmvo5Tuvb6TR08e, "create" )
+' CONNECTION : [proposed] [11A3PwwC3aKDSAcWV7EH] [ryHXp2S4krLTLW8KNoL1] [outgoing]
+Rel(11A3PwwC3aKDSAcWV7EH, ryHXp2S4krLTLW8KNoL1, "proposed" )
+' CONNECTION : [input] [FOv7PGuNDuzzI9E2i9pr] [XxVJMcQGienpUEXxv1W8] [outgoing]
+Rel(FOv7PGuNDuzzI9E2i9pr, XxVJMcQGienpUEXxv1W8, "input" )
+' CONNECTION : [input] [SVg4NZbdZy8FnI61GISs] [XxVJMcQGienpUEXxv1W8] [outgoing]
+Rel(SVg4NZbdZy8FnI61GISs, XxVJMcQGienpUEXxv1W8, "input" )
+' CONNECTION : [document list] [fAmwYlg11653hGzmKOZS] [ryHXp2S4krLTLW8KNoL1] [outgoing]
+Rel(fAmwYlg11653hGzmKOZS, ryHXp2S4krLTLW8KNoL1, "document list" )
+' CONNECTION : [edit] [dRxcTKSZxMRK9uPx2OnQ] [0y769Vmvo5Tuvb6TR08e] [bidirectional]
+Rel(dRxcTKSZxMRK9uPx2OnQ, 0y769Vmvo5Tuvb6TR08e, "edit" )
+Rel(0y769Vmvo5Tuvb6TR08e, dRxcTKSZxMRK9uPx2OnQ, "Return of edit" )
+' CONNECTION : [standard list] [jZduRTYIuxzbaQzAgYZO] [ryHXp2S4krLTLW8KNoL1] [outgoing]
+Rel(jZduRTYIuxzbaQzAgYZO, ryHXp2S4krLTLW8KNoL1, "standard list" )
+' CONNECTION : [read] [0y769Vmvo5Tuvb6TR08e] [n1dCZsXdpvx1B0VFrFUb] [outgoing]
+Rel(0y769Vmvo5Tuvb6TR08e, n1dCZsXdpvx1B0VFrFUb, "read" )
+' CONNECTION : [list all words] [XxVJMcQGienpUEXxv1W8] [fAmwYlg11653hGzmKOZS] [outgoing]
+Rel(XxVJMcQGienpUEXxv1W8, fAmwYlg11653hGzmKOZS, "list all words" )
+' CONNECTION : [input] [SVg4NZbdZy8FnI61GISs] [n1dCZsXdpvx1B0VFrFUb] [outgoing]
+Rel(SVg4NZbdZy8FnI61GISs, n1dCZsXdpvx1B0VFrFUb, "input" )
+' CONNECTION : [generate] [n1dCZsXdpvx1B0VFrFUb] [vCVl0ek9J39J1NXHKNEV] [outgoing]
+Rel(n1dCZsXdpvx1B0VFrFUb, vCVl0ek9J39J1NXHKNEV, "generate" )
+
+
+@enduml

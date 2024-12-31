@@ -4,7 +4,7 @@
 ' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
 ' IcePanel JSON File : [./examples/sg/sg-001.json]
 ' Configuration      : [./examples/sg/config.json]
-' Generated at       : Wed May 01 15:03:17 CEST 2024
+' Generated at       : Sun Dec 29 18:49:47 CET 2024
 
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
@@ -23,9 +23,12 @@ Component(UDzF9znNIXtFk9LwBDHM, "Destination Service", "")
 Container(FMEFRLGEAtEaY3KE4ZT3, "Cypress Engine", "", "")
 
 
-' CONNECTIONS =======
+' SUB DIAGRAM CONNECTIONS ======= Base : [kcZ6JMZ3WNq8pReNTFS2]
+' CONNECTION : [Setup Test Data] [FMEFRLGEAtEaY3KE4ZT3] [QkIAEDVBPA2TLsAXXWO2] [outgoing]
 Rel(FMEFRLGEAtEaY3KE4ZT3, QkIAEDVBPA2TLsAXXWO2, "Setup Test Data" )
+' CONNECTION : [Secure VPN tunnel] [UDzF9znNIXtFk9LwBDHM] [OHrd5OnZcC3om9jIhGs3] [outgoing]
 Rel(UDzF9znNIXtFk9LwBDHM, OHrd5OnZcC3om9jIhGs3, "Secure VPN tunnel" )
+' CONNECTION : [HTTPS / Basic] [OHrd5OnZcC3om9jIhGs3] [QkIAEDVBPA2TLsAXXWO2] [outgoing]
 Rel(OHrd5OnZcC3om9jIhGs3, QkIAEDVBPA2TLsAXXWO2, "HTTPS / Basic" )
 
 

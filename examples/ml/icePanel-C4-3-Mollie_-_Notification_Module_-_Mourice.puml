@@ -4,7 +4,7 @@
 ' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
 ' IcePanel JSON File : [./examples/ml/ml-001.json]
 ' Configuration      : [./examples/ml/config.json]
-' Generated at       : Wed May 01 15:03:17 CEST 2024
+' Generated at       : Sun Dec 29 18:49:47 CET 2024
 
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
@@ -23,9 +23,12 @@ Component(XPRwthglnMC6q9afCTyJ, "Mollie System", "Effortless payments, seamless 
 Container(B2danvdNerKouHi6xarl, "CommerceTools Core", "", "")
 
 
-' CONNECTIONS =======
+' SUB DIAGRAM CONNECTIONS ======= Base : [MRgvJ9ygR2wFH6SewIIW]
+' CONNECTION : [Updates] [H0bjyiKM0oWqEi6zJSnu] [B2danvdNerKouHi6xarl] [outgoing]
 Rel(H0bjyiKM0oWqEi6zJSnu, B2danvdNerKouHi6xarl, "Updates" )
+' CONNECTION : [Reads Payment] [H0bjyiKM0oWqEi6zJSnu] [XPRwthglnMC6q9afCTyJ] [outgoing]
 Rel(H0bjyiKM0oWqEi6zJSnu, XPRwthglnMC6q9afCTyJ, "Reads Payment" )
+' CONNECTION : [Notification] [XPRwthglnMC6q9afCTyJ] [GecJ5QlG47xgNEoHmv9V] [outgoing]
 Rel(XPRwthglnMC6q9afCTyJ, GecJ5QlG47xgNEoHmv9V, "Notification" )
 
 

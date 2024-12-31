@@ -4,7 +4,7 @@
 ' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
 ' IcePanel JSON File : [./examples/pg/pg-001.json]
 ' Configuration      : [./examples/pg/config.json]
-' Generated at       : Wed May 01 15:03:17 CEST 2024
+' Generated at       : Sun Dec 29 18:49:47 CET 2024
 
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
@@ -28,13 +28,20 @@ System(7yUxSWwQWb7vyfM17Jbo, "Basico Bots", "")
 System(soKzn6Drl9ZnctLZPvDw, "Finance System", "")
 
 
-' CONNECTIONS =======
+' SUB DIAGRAM CONNECTIONS ======= Base : [AB7gRm4G0FDSwC6Ax9Br]
+' CONNECTION : [Export Payments] [dJ9mBEcPcpgDp4FzPGBJ] [09BlbXVqavc3SISvhm3x] [outgoing]
 Rel(dJ9mBEcPcpgDp4FzPGBJ, 09BlbXVqavc3SISvhm3x, "Export Payments" )
+' CONNECTION : [Uploading payments file] [sdXhz2x5m12JfZI7CPqK] [dJ9mBEcPcpgDp4FzPGBJ] [outgoing]
 Rel(sdXhz2x5m12JfZI7CPqK, dJ9mBEcPcpgDp4FzPGBJ, "Uploading payments file" )
+' CONNECTION : [Export movements] [dJ9mBEcPcpgDp4FzPGBJ] [lzbazUSB1JSCrGUmiIvS] [outgoing]
 Rel(dJ9mBEcPcpgDp4FzPGBJ, lzbazUSB1JSCrGUmiIvS, "Export movements" )
+' CONNECTION : [Manual Import] [6zrbWT3rue9s7yTmq2vt] [soKzn6Drl9ZnctLZPvDw] [outgoing]
 Rel(6zrbWT3rue9s7yTmq2vt, soKzn6Drl9ZnctLZPvDw, "Manual Import" )
+' CONNECTION : [Process incoming payment] [09BlbXVqavc3SISvhm3x] [7yUxSWwQWb7vyfM17Jbo] [outgoing]
 Rel(09BlbXVqavc3SISvhm3x, 7yUxSWwQWb7vyfM17Jbo, "Process incoming payment" )
+' CONNECTION : [Write movements] [lzbazUSB1JSCrGUmiIvS] [AdhsdndKmvhsBWvLfJTK] [outgoing]
 Rel(lzbazUSB1JSCrGUmiIvS, AdhsdndKmvhsBWvLfJTK, "Write movements" )
+' CONNECTION : [Generate XML with Payments] [soKzn6Drl9ZnctLZPvDw] [sdXhz2x5m12JfZI7CPqK] [outgoing]
 Rel(soKzn6Drl9ZnctLZPvDw, sdXhz2x5m12JfZI7CPqK, "Generate XML with Payments" )
 
 

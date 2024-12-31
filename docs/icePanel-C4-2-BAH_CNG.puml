@@ -4,7 +4,7 @@
 ' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
 ' IcePanel JSON File : [./src/test/resources/icepanel-plain.json]
 ' Configuration      : [./docs/config.json]
-' Generated at       : Wed May 01 15:03:17 CEST 2024
+' Generated at       : Sun Dec 29 18:49:47 CET 2024
 
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
@@ -35,36 +35,67 @@ System_Boundary(cpxxV9fxmR1pgCAxHFdB, "BAH CNG" ) {
 
 ' NEIGHBOR CLASSES =======
 Person(wSyyLfkRhknshpX3pdWJ, "Internal Consumer", "")
+Component(DzQ4VPgJYKxSkilz6snk, "BAHPCA_repo", "")
+Component(6uyz5GXgHFSVjrwIwRKC, "Common_Repo", "")
 System(LqXZYPgQ9UPjc7lqtp7S, "Akamai", "")
-Container(Vg8nvjzPDirSBRjT8K3Q, "Solr API Code", "", "")
-Container(Nr2rq32hBezwoAGeNT2U, "BAHPCA API Code", "", "")
+Component(nd7uOWs4bfaeXm73vKFa, "Solr_Repo", "")
 Component(FbHUk96QaZQVUumba63H, "Batch Controller", "")
 Component(F2hUPV68esNdYOZlEDZp, "Git Pipeline", "")
 Person(mtyHirRmDImFDmca6URg, "Cache Admin", "")
 Person(f1fiXJziytRGVe7hFuLo, "Commercial Analyst", "")
 
 
-' CONNECTIONS =======
-Rel(MzZVLTUQ74KbySVwdHfZ, Vg8nvjzPDirSBRjT8K3Q, "reads data" )
+' SUB DIAGRAM CONNECTIONS ======= Base : [cpxxV9fxmR1pgCAxHFdB]
+' CONNECTION : [reads data] [MzZVLTUQ74KbySVwdHfZ] [OmsC5XSTv64h2ua9yNDK] [outgoing]
+Rel(MzZVLTUQ74KbySVwdHfZ, OmsC5XSTv64h2ua9yNDK, "reads data" )
+' CONNECTION : [Accesses API implementations] [heuHGHPQyPiOSCrreA29] [4teQrlbMUj5LLqxdVcPK] [outgoing]
 Rel(heuHGHPQyPiOSCrreA29, 4teQrlbMUj5LLqxdVcPK, "Accesses API implementations" )
+' CONNECTION : [Deployed as] [DzQ4VPgJYKxSkilz6snk] [4teQrlbMUj5LLqxdVcPK] [outgoing]
+Rel(DzQ4VPgJYKxSkilz6snk, 4teQrlbMUj5LLqxdVcPK, "Deployed as" )
+' CONNECTION : [Access  secured systems] [LqXZYPgQ9UPjc7lqtp7S] [heuHGHPQyPiOSCrreA29] [outgoing]
 Rel(LqXZYPgQ9UPjc7lqtp7S, heuHGHPQyPiOSCrreA29, "Access  secured systems" )
-Rel(MzZVLTUQ74KbySVwdHfZ, Nr2rq32hBezwoAGeNT2U, "reads data" )
+' CONNECTION : [Uses] [OmsC5XSTv64h2ua9yNDK] [4teQrlbMUj5LLqxdVcPK] [outgoing]
+Rel(OmsC5XSTv64h2ua9yNDK, 4teQrlbMUj5LLqxdVcPK, "Uses" )
+' CONNECTION : [reads data] [MzZVLTUQ74KbySVwdHfZ] [4teQrlbMUj5LLqxdVcPK] [outgoing]
+Rel(MzZVLTUQ74KbySVwdHfZ, 4teQrlbMUj5LLqxdVcPK, "reads data" )
+' CONNECTION : [Deployed as] [nd7uOWs4bfaeXm73vKFa] [OmsC5XSTv64h2ua9yNDK] [outgoing]
+Rel(nd7uOWs4bfaeXm73vKFa, OmsC5XSTv64h2ua9yNDK, "Deployed as" )
+' CONNECTION : [Retrieve Cache] [MzZVLTUQ74KbySVwdHfZ] [LOCysP2vMe5DXLAHEYdU] [outgoing]
 Rel(MzZVLTUQ74KbySVwdHfZ, LOCysP2vMe5DXLAHEYdU, "Retrieve Cache" )
+' CONNECTION : [Request Cache Data] [wSyyLfkRhknshpX3pdWJ] [Xoxj4IX90NjN8wiNvxFB] [outgoing]
 Rel(wSyyLfkRhknshpX3pdWJ, Xoxj4IX90NjN8wiNvxFB, "Request Cache Data" )
+' CONNECTION : [Deploy] [F2hUPV68esNdYOZlEDZp] [4teQrlbMUj5LLqxdVcPK] [outgoing]
 Rel(F2hUPV68esNdYOZlEDZp, 4teQrlbMUj5LLqxdVcPK, "Deploy" )
+' CONNECTION : [Based on] [OmsC5XSTv64h2ua9yNDK] [4teQrlbMUj5LLqxdVcPK] [outgoing]
+Rel(OmsC5XSTv64h2ua9yNDK, 4teQrlbMUj5LLqxdVcPK, "Based on" )
+' CONNECTION : [Flow] [p4yomm0RrOrYTNX8VvEg] [MoA8eTudOD7sWkzZF9av] [outgoing]
 Rel(p4yomm0RrOrYTNX8VvEg, MoA8eTudOD7sWkzZF9av, "Flow" )
+' CONNECTION : [OnPrem / AWS connectivity] [FbHUk96QaZQVUumba63H] [p4yomm0RrOrYTNX8VvEg] [outgoing]
 Rel(FbHUk96QaZQVUumba63H, p4yomm0RrOrYTNX8VvEg, "OnPrem / AWS connectivity" )
+' CONNECTION : [Access SQL Server] [uFk6F6ZcKKvnkVRkCNgH] [N5ViUhQIiCffQr67385p] [bidirectional]
 Rel(uFk6F6ZcKKvnkVRkCNgH, N5ViUhQIiCffQr67385p, "Access SQL Server" )
 Rel(N5ViUhQIiCffQr67385p, uFk6F6ZcKKvnkVRkCNgH, "Return of Access SQL Server" )
+' CONNECTION : [Create Commercial Analysis Data] [BxsQud7gKwTvBJQ0KNj2] [uFk6F6ZcKKvnkVRkCNgH] [outgoing]
 Rel(BxsQud7gKwTvBJQ0KNj2, uFk6F6ZcKKvnkVRkCNgH, "Create Commercial Analysis Data" )
+' CONNECTION : [Store Offers] [oLiyCOrWiJ4p4jQxIr1F] [MzZVLTUQ74KbySVwdHfZ] [outgoing]
 Rel(oLiyCOrWiJ4p4jQxIr1F, MzZVLTUQ74KbySVwdHfZ, "Store Offers" )
-Rel(heuHGHPQyPiOSCrreA29, Vg8nvjzPDirSBRjT8K3Q, "Accesses API implementations" )
+' CONNECTION : [Accesses API implementations] [heuHGHPQyPiOSCrreA29] [OmsC5XSTv64h2ua9yNDK] [outgoing]
+Rel(heuHGHPQyPiOSCrreA29, OmsC5XSTv64h2ua9yNDK, "Accesses API implementations" )
+' CONNECTION : [Analyse Commercial Data] [uFk6F6ZcKKvnkVRkCNgH] [f1fiXJziytRGVe7hFuLo] [outgoing]
 Rel(uFk6F6ZcKKvnkVRkCNgH, f1fiXJziytRGVe7hFuLo, "Analyse Commercial Data" )
+' CONNECTION : [Visualize Cache] [LOCysP2vMe5DXLAHEYdU] [mtyHirRmDImFDmca6URg] [outgoing]
 Rel(LOCysP2vMe5DXLAHEYdU, mtyHirRmDImFDmca6URg, "Visualize Cache" )
+' CONNECTION : [Deployed as] [6uyz5GXgHFSVjrwIwRKC] [4teQrlbMUj5LLqxdVcPK] [outgoing]
+Rel(6uyz5GXgHFSVjrwIwRKC, 4teQrlbMUj5LLqxdVcPK, "Deployed as" )
+' CONNECTION : [Deploy] [F2hUPV68esNdYOZlEDZp] [OmsC5XSTv64h2ua9yNDK] [outgoing]
 Rel(F2hUPV68esNdYOZlEDZp, OmsC5XSTv64h2ua9yNDK, "Deploy" )
+' CONNECTION : [Retrieve Cache] [MzZVLTUQ74KbySVwdHfZ] [BxsQud7gKwTvBJQ0KNj2] [outgoing]
 Rel(MzZVLTUQ74KbySVwdHfZ, BxsQud7gKwTvBJQ0KNj2, "Retrieve Cache" )
+' CONNECTION : [Flow] [MoA8eTudOD7sWkzZF9av] [oLiyCOrWiJ4p4jQxIr1F] [outgoing]
 Rel(MoA8eTudOD7sWkzZF9av, oLiyCOrWiJ4p4jQxIr1F, "Flow" )
+' CONNECTION : [Deploy] [F2hUPV68esNdYOZlEDZp] [BxsQud7gKwTvBJQ0KNj2] [outgoing]
 Rel(F2hUPV68esNdYOZlEDZp, BxsQud7gKwTvBJQ0KNj2, "Deploy" )
+' CONNECTION : [Delete Cache Records] [hQNUt4ZkKRpf1tU4WmD7] [MzZVLTUQ74KbySVwdHfZ] [outgoing]
 Rel(hQNUt4ZkKRpf1tU4WmD7, MzZVLTUQ74KbySVwdHfZ, "Delete Cache Records" )
 
 

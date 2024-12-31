@@ -4,7 +4,7 @@
 ' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
 ' IcePanel JSON File : [./examples/ml/ml-001.json]
 ' Configuration      : [./examples/ml/config.json]
-' Generated at       : Wed May 01 15:03:17 CEST 2024
+' Generated at       : Sun Dec 29 18:49:47 CET 2024
 
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
@@ -20,16 +20,54 @@ System_Boundary(BoNLOPSR4qOFGuDfePUN, "CommerceTools" ) {
 
 
 ' NEIGHBOR CLASSES =======
+System(9xUmKihwlYUmsasTGOsv, "Merchant Shop", "")
+Component(l52I4Jt4Jb5kAgRBaYg8, "Create Types Script", "")
 ContainerDb(eM0PYHq5PJCIHkPU0lIQ, "extension-module.zip", "", "")
-Person(zT1BIuiGKsOS5Iyzaz4n, "Seller", "")
+ContainerDb(NHBcYqGYVf3Jg92QMvlU, "mollie-commercetools-integration S3", "", "")
+Person(Y6PAtZA6NBy0cUvAAEuZ, "AWS IAM User", "")
 ContainerDb(xeYjkZ3SYUESS7DQqtOp, "notification-module.zip", "", "")
+ContainerDb(Ej5YcER9nMhwYyQHnI2A, "GCP - extension", "", "")
+Component(XPRwthglnMC6q9afCTyJ, "Mollie System", "Effortless payments, seamless checkout, multiple payment methods, powerful integrations, fast and\nflexible financing, robust security, an advanced dashboard and app – and even more.")
+Person(zT1BIuiGKsOS5Iyzaz4n, "Seller", "")
 ContainerDb(HGU1rfF8iaCD4IQNbzTG, "Env Variable - CT_MOLLIE_CONFIG", "", "")
 
 
-' CONNECTIONS =======
+' SUB DIAGRAM CONNECTIONS ======= Base : [BoNLOPSR4qOFGuDfePUN]
+' CONNECTION : [Configure] [HGU1rfF8iaCD4IQNbzTG] [03XCn8Gai9J6GFDmJFfJ] [outgoing]
+Rel(HGU1rfF8iaCD4IQNbzTG, 03XCn8Gai9J6GFDmJFfJ, "Configure" )
+' CONNECTION : [Deployment] [xeYjkZ3SYUESS7DQqtOp] [MRgvJ9ygR2wFH6SewIIW] [outgoing]
 Rel(xeYjkZ3SYUESS7DQqtOp, MRgvJ9ygR2wFH6SewIIW, "Deployment" )
+' CONNECTION : [Auth] [Y6PAtZA6NBy0cUvAAEuZ] [03XCn8Gai9J6GFDmJFfJ] [outgoing]
+Rel(Y6PAtZA6NBy0cUvAAEuZ, 03XCn8Gai9J6GFDmJFfJ, "Auth" )
+' CONNECTION : [Supported By] [9xUmKihwlYUmsasTGOsv] [iihE1V4k7JDKwrS5GunC] [outgoing]
+Rel(9xUmKihwlYUmsasTGOsv, iihE1V4k7JDKwrS5GunC, "Supported By" )
+' CONNECTION : [Deploy] [NHBcYqGYVf3Jg92QMvlU] [03XCn8Gai9J6GFDmJFfJ] [outgoing]
+Rel(NHBcYqGYVf3Jg92QMvlU, 03XCn8Gai9J6GFDmJFfJ, "Deploy" )
+' CONNECTION : [Updates] [MRgvJ9ygR2wFH6SewIIW] [iihE1V4k7JDKwrS5GunC] [outgoing]
+Rel(MRgvJ9ygR2wFH6SewIIW, iihE1V4k7JDKwrS5GunC, "Updates" )
+' CONNECTION : [Execute Script] [l52I4Jt4Jb5kAgRBaYg8] [iihE1V4k7JDKwrS5GunC] [outgoing]
+Rel(l52I4Jt4Jb5kAgRBaYg8, iihE1V4k7JDKwrS5GunC, "Execute Script" )
+' CONNECTION : [Deploy] [Ej5YcER9nMhwYyQHnI2A] [03XCn8Gai9J6GFDmJFfJ] [outgoing]
+Rel(Ej5YcER9nMhwYyQHnI2A, 03XCn8Gai9J6GFDmJFfJ, "Deploy" )
+' CONNECTION : [Reads Payment] [MRgvJ9ygR2wFH6SewIIW] [XPRwthglnMC6q9afCTyJ] [outgoing]
+Rel(MRgvJ9ygR2wFH6SewIIW, XPRwthglnMC6q9afCTyJ, "Reads Payment" )
+' CONNECTION : [Deployment] [eM0PYHq5PJCIHkPU0lIQ] [03XCn8Gai9J6GFDmJFfJ] [outgoing]
 Rel(eM0PYHq5PJCIHkPU0lIQ, 03XCn8Gai9J6GFDmJFfJ, "Deployment" )
+' CONNECTION : [Configure] [HGU1rfF8iaCD4IQNbzTG] [03XCn8Gai9J6GFDmJFfJ] [outgoing]
+Rel(HGU1rfF8iaCD4IQNbzTG, 03XCn8Gai9J6GFDmJFfJ, "Configure" )
+' CONNECTION : [Notification] [XPRwthglnMC6q9afCTyJ] [MRgvJ9ygR2wFH6SewIIW] [outgoing]
+Rel(XPRwthglnMC6q9afCTyJ, MRgvJ9ygR2wFH6SewIIW, "Notification" )
+' CONNECTION : [Access API] [03XCn8Gai9J6GFDmJFfJ] [XPRwthglnMC6q9afCTyJ] [outgoing]
+Rel(03XCn8Gai9J6GFDmJFfJ, XPRwthglnMC6q9afCTyJ, "Access API" )
+' CONNECTION : [Invokes on event] [iihE1V4k7JDKwrS5GunC] [03XCn8Gai9J6GFDmJFfJ] [outgoing]
+Rel(iihE1V4k7JDKwrS5GunC, 03XCn8Gai9J6GFDmJFfJ, "Invokes on event" )
+' CONNECTION : [Invokes] [iihE1V4k7JDKwrS5GunC] [03XCn8Gai9J6GFDmJFfJ] [outgoing]
+Rel(iihE1V4k7JDKwrS5GunC, 03XCn8Gai9J6GFDmJFfJ, "Invokes" )
+' CONNECTION : [Access API] [03XCn8Gai9J6GFDmJFfJ] [XPRwthglnMC6q9afCTyJ] [outgoing]
+Rel(03XCn8Gai9J6GFDmJFfJ, XPRwthglnMC6q9afCTyJ, "Access API" )
+' CONNECTION : [Send messages] [iihE1V4k7JDKwrS5GunC] [zT1BIuiGKsOS5Iyzaz4n] [outgoing]
 Rel(iihE1V4k7JDKwrS5GunC, zT1BIuiGKsOS5Iyzaz4n, "Send messages" )
+' CONNECTION : [Configure] [HGU1rfF8iaCD4IQNbzTG] [MRgvJ9ygR2wFH6SewIIW] [outgoing]
 Rel(HGU1rfF8iaCD4IQNbzTG, MRgvJ9ygR2wFH6SewIIW, "Configure" )
 
 

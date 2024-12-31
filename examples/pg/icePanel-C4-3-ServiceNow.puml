@@ -4,7 +4,7 @@
 ' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
 ' IcePanel JSON File : [./examples/pg/pg-001.json]
 ' Configuration      : [./examples/pg/config.json]
-' Generated at       : Wed May 01 15:03:17 CEST 2024
+' Generated at       : Sun Dec 29 18:49:47 CET 2024
 
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
@@ -24,7 +24,8 @@ Component(w8uGBpoOuSbjImUW8RfU, "ServiceNow", "") {
 Component(BDy6EhnLdszv0o1UYCZp, "Homepage  - TBC Plugins", "")
 
 
-' CONNECTIONS =======
+' SUB DIAGRAM CONNECTIONS ======= Base : [w8uGBpoOuSbjImUW8RfU]
+' CONNECTION : [Create Case] [BDy6EhnLdszv0o1UYCZp] [NVzttd0H1pzo67Z0guTw] [outgoing]
 Rel(BDy6EhnLdszv0o1UYCZp, NVzttd0H1pzo67Z0guTw, "Create Case" )
 
 

@@ -19,7 +19,12 @@ System_Boundary(cpxxV9fxmR1pgCAxHFdB, "BAH CNG") {
 
 
 Person(wSyyLfkRhknshpX3pdWJ, "Internal Consumer", "")
+Component(DzQ4VPgJYKxSkilz6snk, "BAHPCA_repo", "")
+Component(6uyz5GXgHFSVjrwIwRKC, "Common_Repo", "")
+Container(DqaxYHtWGYqlWeYgZkyP, "Common Lib", "", "")
 System(LqXZYPgQ9UPjc7lqtp7S, "Akamai", "")
+Component(nd7uOWs4bfaeXm73vKFa, "Solr_Repo", "")
+Container(JOCj92Vc2CEAUN8hquBI, "Spring Framework", "", "")
 Container(Vg8nvjzPDirSBRjT8K3Q, "Solr API Code", "", "")
 Container(Nr2rq32hBezwoAGeNT2U, "BAHPCA API Code", "", "")
 Component(FbHUk96QaZQVUumba63H, "Batch Controller", "")

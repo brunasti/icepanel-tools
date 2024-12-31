@@ -4,7 +4,7 @@
 ' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
 ' IcePanel JSON File : [./examples/ml/ml-001.json]
 ' Configuration      : [./examples/ml/config.json]
-' Generated at       : Wed May 01 15:03:17 CEST 2024
+' Generated at       : Sun Dec 29 18:49:47 CET 2024
 
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
@@ -26,12 +26,18 @@ Container(H0bjyiKM0oWqEi6zJSnu, "Notification Module", "", "")
 Person(BCKMekwHTOlQNWYVHxta, "Bank", "")
 
 
-' CONNECTIONS =======
+' SUB DIAGRAM CONNECTIONS ======= Base : [BUVyar8CF5L9QiBG1ctm]
+' CONNECTION : [Set Payment] [XPRwthglnMC6q9afCTyJ] [BCKMekwHTOlQNWYVHxta] [outgoing]
 Rel(XPRwthglnMC6q9afCTyJ, BCKMekwHTOlQNWYVHxta, "Set Payment" )
+' CONNECTION : [Reads Payment] [H0bjyiKM0oWqEi6zJSnu] [XPRwthglnMC6q9afCTyJ] [outgoing]
 Rel(H0bjyiKM0oWqEi6zJSnu, XPRwthglnMC6q9afCTyJ, "Reads Payment" )
+' CONNECTION : [Payment] [901quKQooOwHHO3mAvwr] [XPRwthglnMC6q9afCTyJ] [outgoing]
 Rel(901quKQooOwHHO3mAvwr, XPRwthglnMC6q9afCTyJ, "Payment" )
+' CONNECTION : [Notification] [XPRwthglnMC6q9afCTyJ] [GecJ5QlG47xgNEoHmv9V] [outgoing]
 Rel(XPRwthglnMC6q9afCTyJ, GecJ5QlG47xgNEoHmv9V, "Notification" )
+' CONNECTION : [Access API] [33Kg8Q2DCyyLP8jWFykQ] [XPRwthglnMC6q9afCTyJ] [outgoing]
 Rel(33Kg8Q2DCyyLP8jWFykQ, XPRwthglnMC6q9afCTyJ, "Access API" )
+' CONNECTION : [Access API] [WstWXOpYlewLWkdCJcZ7] [XPRwthglnMC6q9afCTyJ] [outgoing]
 Rel(WstWXOpYlewLWkdCJcZ7, XPRwthglnMC6q9afCTyJ, "Access API" )
 
 

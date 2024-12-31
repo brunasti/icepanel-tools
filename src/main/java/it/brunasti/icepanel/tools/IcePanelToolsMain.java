@@ -4,6 +4,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.io.PrintWriter;
+import java.util.Optional;
+
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.DefaultParser;
@@ -132,7 +134,7 @@ public class IcePanelToolsMain {
           mermaid = true;
         }
         log.debug(IcePanelConstants.DEBUG_TEXT_SET_TO,
-                optionToMermaid.getDescription(), mermaid);
+                optionToMermaid.getDescription(), Optional.of(mermaid));
       }
 
     } catch (ParseException | NullPointerException e) {
@@ -194,7 +196,7 @@ public class IcePanelToolsMain {
 
     boolean cliIsCorrect = processCommandLine(args);
 
-    log.debug("CommandLine parsed [{}]", cliIsCorrect);
+    log.debug("CommandLine parsed [{}]", Optional.of(cliIsCorrect));
 
     if (!cliIsCorrect) {
       printHelp();
@@ -204,7 +206,7 @@ public class IcePanelToolsMain {
     log.debug("IcePanel JSON file [{}]", icePanelJSONExportFile);
     log.debug("OutputFile         [{}]", outputFile);
     log.debug("ConfigurationFile  [{}]",configurationFile);
-    log.debug("Mermaid option [{}]",mermaid);
+    log.debug("Mermaid option [{}]", Optional.of(mermaid));
 
     if ((null == icePanelJSONExportFile) || (icePanelJSONExportFile.isBlank())) {
       log.info("IcePanel JSON export file to be transformed not defined");

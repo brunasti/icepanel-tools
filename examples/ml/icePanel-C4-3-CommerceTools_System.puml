@@ -4,7 +4,7 @@
 ' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
 ' IcePanel JSON File : [./examples/ml/ml-001.json]
 ' Configuration      : [./examples/ml/config.json]
-' Generated at       : Wed May 01 15:03:17 CEST 2024
+' Generated at       : Sun Dec 29 18:49:47 CET 2024
 
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
@@ -27,11 +27,16 @@ Component(l52I4Jt4Jb5kAgRBaYg8, "Create Types Script", "")
 Container(H0bjyiKM0oWqEi6zJSnu, "Notification Module", "", "")
 
 
-' CONNECTIONS =======
+' SUB DIAGRAM CONNECTIONS ======= Base : [iihE1V4k7JDKwrS5GunC]
+' CONNECTION : [Supported By] [9xUmKihwlYUmsasTGOsv] [B2danvdNerKouHi6xarl] [outgoing]
 Rel(9xUmKihwlYUmsasTGOsv, B2danvdNerKouHi6xarl, "Supported By" )
+' CONNECTION : [Updates] [H0bjyiKM0oWqEi6zJSnu] [B2danvdNerKouHi6xarl] [outgoing]
 Rel(H0bjyiKM0oWqEi6zJSnu, B2danvdNerKouHi6xarl, "Updates" )
+' CONNECTION : [Execute Script] [l52I4Jt4Jb5kAgRBaYg8] [B2danvdNerKouHi6xarl] [outgoing]
 Rel(l52I4Jt4Jb5kAgRBaYg8, B2danvdNerKouHi6xarl, "Execute Script" )
+' CONNECTION : [Invokes on event] [JSFDlVBLMP20g7tshKdj] [33Kg8Q2DCyyLP8jWFykQ] [outgoing]
 Rel(JSFDlVBLMP20g7tshKdj, 33Kg8Q2DCyyLP8jWFykQ, "Invokes on event" )
+' CONNECTION : [Invokes] [JSFDlVBLMP20g7tshKdj] [WstWXOpYlewLWkdCJcZ7] [outgoing]
 Rel(JSFDlVBLMP20g7tshKdj, WstWXOpYlewLWkdCJcZ7, "Invokes" )
 
 

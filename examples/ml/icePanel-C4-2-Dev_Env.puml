@@ -4,7 +4,7 @@
 ' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
 ' IcePanel JSON File : [./examples/ml/ml-001.json]
 ' Configuration      : [./examples/ml/config.json]
-' Generated at       : Wed May 01 15:03:17 CEST 2024
+' Generated at       : Sun Dec 29 18:49:47 CET 2024
 
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
@@ -33,22 +33,38 @@ Container(WstWXOpYlewLWkdCJcZ7, "GCP Function", "", "")
 Component(03XCn8Gai9J6GFDmJFfJ, "Mollie  - API Extension - Julian", "Extend the behavior of an API with your business logic.\n\nThe commercetools Composable Commerce\nAPIs provide default data structures and default behavior that is useful for many customers. However,\neach Project has its unique requirements. Similar to data structures that can be customized\nwith [Custom Types](https://docs.commercetools.com/api/projects/types) and [Product\nTypes](https://docs.commercetools.com/api/projects/productTypes), additional behavior can be added. For behavior to be executed within a short\ntimeframe, [Subscriptions](https://docs.commercetools.com/api/projects/subscriptions) can be used. For behavior that needs to be executed before the API call succeeds, API Extensions can\nbe used.\n\nGood use cases for API Extensions are: Validating the content of a Cart (for example no\nmore than 8 crates of beverages can be ordered at once), calculating custom shipping costs, or adding\nmandatory items, like insurance, to a Cart.\n\nAn API Extension gets called after the processing of a create\nor update request of an API call, but before the result is persisted. The API Extension can validate\nthe object, or apply [additional\nupdates](https://docs.commercetools.com/api/projects/api-extensions#updates-requested) to it.\n\n##")
 
 
-' CONNECTIONS =======
+' SUB DIAGRAM CONNECTIONS ======= Base : [1f0muXjKMuOqQb8fDcH6]
+' CONNECTION : [source] [6qCrC2gc3FXqZrXO3WX8] [HGU1rfF8iaCD4IQNbzTG] [outgoing]
 Rel(6qCrC2gc3FXqZrXO3WX8, HGU1rfF8iaCD4IQNbzTG, "source" )
+' CONNECTION : [Configure] [HGU1rfF8iaCD4IQNbzTG] [WstWXOpYlewLWkdCJcZ7] [outgoing]
 Rel(HGU1rfF8iaCD4IQNbzTG, WstWXOpYlewLWkdCJcZ7, "Configure" )
+' CONNECTION : [Deployment] [xeYjkZ3SYUESS7DQqtOp] [MRgvJ9ygR2wFH6SewIIW] [outgoing]
 Rel(xeYjkZ3SYUESS7DQqtOp, MRgvJ9ygR2wFH6SewIIW, "Deployment" )
+' CONNECTION : [Deploy] [NHBcYqGYVf3Jg92QMvlU] [33Kg8Q2DCyyLP8jWFykQ] [outgoing]
 Rel(NHBcYqGYVf3Jg92QMvlU, 33Kg8Q2DCyyLP8jWFykQ, "Deploy" )
+' CONNECTION : [build] [Tjw5lB5ohmKHZoQuRSrO] [eM0PYHq5PJCIHkPU0lIQ] [outgoing]
 Rel(Tjw5lB5ohmKHZoQuRSrO, eM0PYHq5PJCIHkPU0lIQ, "build" )
+' CONNECTION : [source] [6qCrC2gc3FXqZrXO3WX8] [l52I4Jt4Jb5kAgRBaYg8] [outgoing]
 Rel(6qCrC2gc3FXqZrXO3WX8, l52I4Jt4Jb5kAgRBaYg8, "source" )
+' CONNECTION : [deploy] [eM0PYHq5PJCIHkPU0lIQ] [Ej5YcER9nMhwYyQHnI2A] [outgoing]
 Rel(eM0PYHq5PJCIHkPU0lIQ, Ej5YcER9nMhwYyQHnI2A, "deploy" )
+' CONNECTION : [Execute Script] [l52I4Jt4Jb5kAgRBaYg8] [B2danvdNerKouHi6xarl] [outgoing]
 Rel(l52I4Jt4Jb5kAgRBaYg8, B2danvdNerKouHi6xarl, "Execute Script" )
+' CONNECTION : [Deploy] [Ej5YcER9nMhwYyQHnI2A] [WstWXOpYlewLWkdCJcZ7] [outgoing]
 Rel(Ej5YcER9nMhwYyQHnI2A, WstWXOpYlewLWkdCJcZ7, "Deploy" )
+' CONNECTION : [build] [VWktJSaXSl372JIm5Gpp] [xeYjkZ3SYUESS7DQqtOp] [outgoing]
 Rel(VWktJSaXSl372JIm5Gpp, xeYjkZ3SYUESS7DQqtOp, "build" )
+' CONNECTION : [source] [6qCrC2gc3FXqZrXO3WX8] [Tjw5lB5ohmKHZoQuRSrO] [outgoing]
 Rel(6qCrC2gc3FXqZrXO3WX8, Tjw5lB5ohmKHZoQuRSrO, "source" )
+' CONNECTION : [deploy] [eM0PYHq5PJCIHkPU0lIQ] [NHBcYqGYVf3Jg92QMvlU] [outgoing]
 Rel(eM0PYHq5PJCIHkPU0lIQ, NHBcYqGYVf3Jg92QMvlU, "deploy" )
+' CONNECTION : [Deployment] [eM0PYHq5PJCIHkPU0lIQ] [03XCn8Gai9J6GFDmJFfJ] [outgoing]
 Rel(eM0PYHq5PJCIHkPU0lIQ, 03XCn8Gai9J6GFDmJFfJ, "Deployment" )
+' CONNECTION : [Configure] [HGU1rfF8iaCD4IQNbzTG] [33Kg8Q2DCyyLP8jWFykQ] [outgoing]
 Rel(HGU1rfF8iaCD4IQNbzTG, 33Kg8Q2DCyyLP8jWFykQ, "Configure" )
+' CONNECTION : [source] [6qCrC2gc3FXqZrXO3WX8] [VWktJSaXSl372JIm5Gpp] [outgoing]
 Rel(6qCrC2gc3FXqZrXO3WX8, VWktJSaXSl372JIm5Gpp, "source" )
+' CONNECTION : [Configure] [HGU1rfF8iaCD4IQNbzTG] [MRgvJ9ygR2wFH6SewIIW] [outgoing]
 Rel(HGU1rfF8iaCD4IQNbzTG, MRgvJ9ygR2wFH6SewIIW, "Configure" )
 
 

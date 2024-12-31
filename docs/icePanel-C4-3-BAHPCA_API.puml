@@ -4,7 +4,7 @@
 ' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
 ' IcePanel JSON File : [./src/test/resources/icepanel-plain.json]
 ' Configuration      : [./docs/config.json]
-' Generated at       : Wed May 01 15:03:17 CEST 2024
+' Generated at       : Sun Dec 29 18:49:47 CET 2024
 
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
@@ -30,12 +30,18 @@ Component(DzQ4VPgJYKxSkilz6snk, "BAHPCA_repo", "")
 Component(6uyz5GXgHFSVjrwIwRKC, "Common_Repo", "")
 
 
-' CONNECTIONS =======
+' SUB DIAGRAM CONNECTIONS ======= Base : [4teQrlbMUj5LLqxdVcPK]
+' CONNECTION : [Deployed as] [DzQ4VPgJYKxSkilz6snk] [Nr2rq32hBezwoAGeNT2U] [outgoing]
 Rel(DzQ4VPgJYKxSkilz6snk, Nr2rq32hBezwoAGeNT2U, "Deployed as" )
+' CONNECTION : [Uses] [Vg8nvjzPDirSBRjT8K3Q] [DqaxYHtWGYqlWeYgZkyP] [outgoing]
 Rel(Vg8nvjzPDirSBRjT8K3Q, DqaxYHtWGYqlWeYgZkyP, "Uses" )
+' CONNECTION : [reads data] [MzZVLTUQ74KbySVwdHfZ] [Nr2rq32hBezwoAGeNT2U] [outgoing]
 Rel(MzZVLTUQ74KbySVwdHfZ, Nr2rq32hBezwoAGeNT2U, "reads data" )
+' CONNECTION : [Based on] [Vg8nvjzPDirSBRjT8K3Q] [JOCj92Vc2CEAUN8hquBI] [outgoing]
 Rel(Vg8nvjzPDirSBRjT8K3Q, JOCj92Vc2CEAUN8hquBI, "Based on" )
+' CONNECTION : [Based on] [Nr2rq32hBezwoAGeNT2U] [JOCj92Vc2CEAUN8hquBI] [outgoing]
 Rel(Nr2rq32hBezwoAGeNT2U, JOCj92Vc2CEAUN8hquBI, "Based on" )
+' CONNECTION : [Deployed as] [6uyz5GXgHFSVjrwIwRKC] [DqaxYHtWGYqlWeYgZkyP] [outgoing]
 Rel(6uyz5GXgHFSVjrwIwRKC, DqaxYHtWGYqlWeYgZkyP, "Deployed as" )
 
 

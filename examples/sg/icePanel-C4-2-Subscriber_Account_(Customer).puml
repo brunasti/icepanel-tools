@@ -4,7 +4,7 @@
 ' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
 ' IcePanel JSON File : [./examples/sg/sg-001.json]
 ' Configuration      : [./examples/sg/config.json]
-' Generated at       : Wed May 01 15:03:17 CEST 2024
+' Generated at       : Sun Dec 29 18:49:47 CET 2024
 
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
@@ -24,11 +24,14 @@ Component(42e8Z1KIHKsxaWdqk3nq, "Test Signavio BPM", "")
 Component(OHrd5OnZcC3om9jIhGs3, "SCC - SAP Cloud Connector", "")
 
 
-' CONNECTIONS =======
+' SUB DIAGRAM CONNECTIONS ======= Base : [z8HfnmEu1FwVBLuoFTXM]
+' CONNECTION : [HTTPS / Basic] [UDzF9znNIXtFk9LwBDHM] [42e8Z1KIHKsxaWdqk3nq] [bidirectional]
 Rel(UDzF9znNIXtFk9LwBDHM, 42e8Z1KIHKsxaWdqk3nq, "HTTPS / Basic" )
 Rel(42e8Z1KIHKsxaWdqk3nq, UDzF9znNIXtFk9LwBDHM, "Return of HTTPS / Basic" )
+' CONNECTION : [Trusted Call] [Kl9tTaoCuXqdHTvo4lkZ] [UDzF9znNIXtFk9LwBDHM] [bidirectional]
 Rel(Kl9tTaoCuXqdHTvo4lkZ, UDzF9znNIXtFk9LwBDHM, "Trusted Call" )
 Rel(UDzF9znNIXtFk9LwBDHM, Kl9tTaoCuXqdHTvo4lkZ, "Return of Trusted Call" )
+' CONNECTION : [Secure VPN tunnel] [UDzF9znNIXtFk9LwBDHM] [OHrd5OnZcC3om9jIhGs3] [outgoing]
 Rel(UDzF9znNIXtFk9LwBDHM, OHrd5OnZcC3om9jIhGs3, "Secure VPN tunnel" )
 
 

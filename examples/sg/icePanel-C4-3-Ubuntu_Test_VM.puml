@@ -4,7 +4,7 @@
 ' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
 ' IcePanel JSON File : [./examples/sg/sg-001.json]
 ' Configuration      : [./examples/sg/config.json]
-' Generated at       : Wed May 01 15:03:17 CEST 2024
+' Generated at       : Sun Dec 29 18:49:47 CET 2024
 
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
@@ -26,15 +26,23 @@ Component(QkIAEDVBPA2TLsAXXWO2, "Test SAP SolMan 7.2", "")
 Component(42e8Z1KIHKsxaWdqk3nq, "Test Signavio BPM", "")
 
 
-' CONNECTIONS =======
+' SUB DIAGRAM CONNECTIONS ======= Base : [BNfOC7foqk1s1ibyQ05W]
+' CONNECTION : [Execute Tests] [FMEFRLGEAtEaY3KE4ZT3] [Kl9tTaoCuXqdHTvo4lkZ] [outgoing]
 Rel(FMEFRLGEAtEaY3KE4ZT3, Kl9tTaoCuXqdHTvo4lkZ, "Execute Tests" )
+' CONNECTION : [Push/Pull] [UWeoMC7K0ntstoLn4FBh] [j57mi6bn5IBAPBBcqa2b] [bidirectional]
 Rel(UWeoMC7K0ntstoLn4FBh, j57mi6bn5IBAPBBcqa2b, "Push/Pull" )
 Rel(j57mi6bn5IBAPBBcqa2b, UWeoMC7K0ntstoLn4FBh, "Return of Push/Pull" )
+' CONNECTION : [Run] [kmbDI3cUwBYgzZCyulAH] [FMEFRLGEAtEaY3KE4ZT3] [outgoing]
 Rel(kmbDI3cUwBYgzZCyulAH, FMEFRLGEAtEaY3KE4ZT3, "Run" )
+' CONNECTION : [Access] [kmbDI3cUwBYgzZCyulAH] [j57mi6bn5IBAPBBcqa2b] [outgoing]
 Rel(kmbDI3cUwBYgzZCyulAH, j57mi6bn5IBAPBBcqa2b, "Access" )
+' CONNECTION : [Read Tests] [FMEFRLGEAtEaY3KE4ZT3] [j57mi6bn5IBAPBBcqa2b] [outgoing]
 Rel(FMEFRLGEAtEaY3KE4ZT3, j57mi6bn5IBAPBBcqa2b, "Read Tests" )
+' CONNECTION : [Access] [kmbDI3cUwBYgzZCyulAH] [UWeoMC7K0ntstoLn4FBh] [outgoing]
 Rel(kmbDI3cUwBYgzZCyulAH, UWeoMC7K0ntstoLn4FBh, "Access" )
+' CONNECTION : [Setup Test Data] [FMEFRLGEAtEaY3KE4ZT3] [QkIAEDVBPA2TLsAXXWO2] [outgoing]
 Rel(FMEFRLGEAtEaY3KE4ZT3, QkIAEDVBPA2TLsAXXWO2, "Setup Test Data" )
+' CONNECTION : [Setup Test Data] [FMEFRLGEAtEaY3KE4ZT3] [42e8Z1KIHKsxaWdqk3nq] [outgoing]
 Rel(FMEFRLGEAtEaY3KE4ZT3, 42e8Z1KIHKsxaWdqk3nq, "Setup Test Data" )
 
 

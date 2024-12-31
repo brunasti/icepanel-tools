@@ -4,7 +4,7 @@
 ' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
 ' IcePanel JSON File : [./examples/ml/ml-001.json]
 ' Configuration      : [./examples/ml/config.json]
-' Generated at       : Wed May 01 15:03:17 CEST 2024
+' Generated at       : Sun Dec 29 18:49:47 CET 2024
 
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
@@ -27,15 +27,24 @@ Person(Y6PAtZA6NBy0cUvAAEuZ, "AWS IAM User", "")
 ContainerDb(HGU1rfF8iaCD4IQNbzTG, "Env Variable - CT_MOLLIE_CONFIG", "", "")
 
 
-' CONNECTIONS =======
+' SUB DIAGRAM CONNECTIONS ======= Base : [03XCn8Gai9J6GFDmJFfJ]
+' CONNECTION : [Configure] [HGU1rfF8iaCD4IQNbzTG] [WstWXOpYlewLWkdCJcZ7] [outgoing]
 Rel(HGU1rfF8iaCD4IQNbzTG, WstWXOpYlewLWkdCJcZ7, "Configure" )
+' CONNECTION : [Auth] [Y6PAtZA6NBy0cUvAAEuZ] [33Kg8Q2DCyyLP8jWFykQ] [outgoing]
 Rel(Y6PAtZA6NBy0cUvAAEuZ, 33Kg8Q2DCyyLP8jWFykQ, "Auth" )
+' CONNECTION : [Deploy] [NHBcYqGYVf3Jg92QMvlU] [33Kg8Q2DCyyLP8jWFykQ] [outgoing]
 Rel(NHBcYqGYVf3Jg92QMvlU, 33Kg8Q2DCyyLP8jWFykQ, "Deploy" )
+' CONNECTION : [Deploy] [Ej5YcER9nMhwYyQHnI2A] [WstWXOpYlewLWkdCJcZ7] [outgoing]
 Rel(Ej5YcER9nMhwYyQHnI2A, WstWXOpYlewLWkdCJcZ7, "Deploy" )
+' CONNECTION : [Configure] [HGU1rfF8iaCD4IQNbzTG] [33Kg8Q2DCyyLP8jWFykQ] [outgoing]
 Rel(HGU1rfF8iaCD4IQNbzTG, 33Kg8Q2DCyyLP8jWFykQ, "Configure" )
+' CONNECTION : [Access API] [33Kg8Q2DCyyLP8jWFykQ] [XPRwthglnMC6q9afCTyJ] [outgoing]
 Rel(33Kg8Q2DCyyLP8jWFykQ, XPRwthglnMC6q9afCTyJ, "Access API" )
+' CONNECTION : [Invokes on event] [JSFDlVBLMP20g7tshKdj] [33Kg8Q2DCyyLP8jWFykQ] [outgoing]
 Rel(JSFDlVBLMP20g7tshKdj, 33Kg8Q2DCyyLP8jWFykQ, "Invokes on event" )
+' CONNECTION : [Invokes] [JSFDlVBLMP20g7tshKdj] [WstWXOpYlewLWkdCJcZ7] [outgoing]
 Rel(JSFDlVBLMP20g7tshKdj, WstWXOpYlewLWkdCJcZ7, "Invokes" )
+' CONNECTION : [Access API] [WstWXOpYlewLWkdCJcZ7] [XPRwthglnMC6q9afCTyJ] [outgoing]
 Rel(WstWXOpYlewLWkdCJcZ7, XPRwthglnMC6q9afCTyJ, "Access API" )
 
 

@@ -4,7 +4,7 @@
 ' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
 ' IcePanel JSON File : [./examples/pg/pg-001.json]
 ' Configuration      : [./examples/pg/config.json]
-' Generated at       : Wed May 01 15:03:17 CEST 2024
+' Generated at       : Sun Dec 29 18:49:47 CET 2024
 
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
@@ -39,23 +39,40 @@ System(fhpop0p1F3Q5SH6sW7Ie, "Exterrnal Equipment Maintenance", "")
 System(aMYszCJvHb6cP7hiHw7f, "Nayax Vending Machine", "")
 System(UpEFJxsN4ZWEpN0e8RgJ, "Boditrax", "")
 System(gdPnpYi2Xih4P6wLQX6x, "TBC WebShop", "")
+Component(BDy6EhnLdszv0o1UYCZp, "Homepage  - TBC Plugins", "")
 
 
-' CONNECTIONS =======
+' SUB DIAGRAM CONNECTIONS ======= Base : [AdhsdndKmvhsBWvLfJTK]
+' CONNECTION : [Export Database] [ccjXxgy74gi9Z75BYdQl] [hPa1gkYEDR8ckn11BmCT] [outgoing]
 Rel(ccjXxgy74gi9Z75BYdQl, hPa1gkYEDR8ckn11BmCT, "Export Database" )
+' CONNECTION : [API] [UpEFJxsN4ZWEpN0e8RgJ] [KZVaNoTMJp3IWrLzKwgE] [outgoing]
 Rel(UpEFJxsN4ZWEpN0e8RgJ, KZVaNoTMJp3IWrLzKwgE, "API" )
+' CONNECTION : [Create Case] [BDy6EhnLdszv0o1UYCZp] [w8uGBpoOuSbjImUW8RfU] [outgoing]
+Rel(BDy6EhnLdszv0o1UYCZp, w8uGBpoOuSbjImUW8RfU, "Create Case" )
+' CONNECTION : [Members Email Address] [ccjXxgy74gi9Z75BYdQl] [wOR937sPvgoWsOOpbtjl] [outgoing]
 Rel(ccjXxgy74gi9Z75BYdQl, wOR937sPvgoWsOOpbtjl, "Members Email Address" )
+' CONNECTION : [emails] [w8uGBpoOuSbjImUW8RfU] [hMTXPO2qds4ypEVlH0TC] [bidirectional]
 Rel(w8uGBpoOuSbjImUW8RfU, hMTXPO2qds4ypEVlH0TC, "emails" )
 Rel(hMTXPO2qds4ypEVlH0TC, w8uGBpoOuSbjImUW8RfU, "Return of emails" )
+' CONNECTION : [Maintenance Ticket] [w8uGBpoOuSbjImUW8RfU] [fhpop0p1F3Q5SH6sW7Ie] [outgoing]
 Rel(w8uGBpoOuSbjImUW8RfU, fhpop0p1F3Q5SH6sW7Ie, "Maintenance Ticket" )
+' CONNECTION : [Filling the Guests book] [oRWUt1MEkGzsjxGUyu1m] [3AscZ6uydpMZWsDirR10] [outgoing]
 Rel(oRWUt1MEkGzsjxGUyu1m, 3AscZ6uydpMZWsDirR10, "Filling the Guests book" )
+' CONNECTION : [Changed prices, contract templates and member informations] [ccjXxgy74gi9Z75BYdQl] [gdPnpYi2Xih4P6wLQX6x] [outgoing]
 Rel(ccjXxgy74gi9Z75BYdQl, gdPnpYi2Xih4P6wLQX6x, "Changed prices, contract templates and member informations" )
+' CONNECTION : [WebHook] [KZVaNoTMJp3IWrLzKwgE] [2p8Khp4ecjAr7jWOw1rF] [outgoing]
 Rel(KZVaNoTMJp3IWrLzKwgE, 2p8Khp4ecjAr7jWOw1rF, "WebHook" )
+' CONNECTION : [Tickets] [ccjXxgy74gi9Z75BYdQl] [w8uGBpoOuSbjImUW8RfU] [outgoing]
 Rel(ccjXxgy74gi9Z75BYdQl, w8uGBpoOuSbjImUW8RfU, "Tickets" )
+' CONNECTION : [API] [Rprhv7hrshfmdvxFZcy7] [KZVaNoTMJp3IWrLzKwgE] [outgoing]
 Rel(Rprhv7hrshfmdvxFZcy7, KZVaNoTMJp3IWrLzKwgE, "API" )
+' CONNECTION : [REST API] [aMYszCJvHb6cP7hiHw7f] [KZVaNoTMJp3IWrLzKwgE] [outgoing]
 Rel(aMYszCJvHb6cP7hiHw7f, KZVaNoTMJp3IWrLzKwgE, "REST API" )
+' CONNECTION : [Flat File] [KZVaNoTMJp3IWrLzKwgE] [w8uGBpoOuSbjImUW8RfU] [outgoing]
 Rel(KZVaNoTMJp3IWrLzKwgE, w8uGBpoOuSbjImUW8RfU, "Flat File" )
+' CONNECTION : [New Member] [3AscZ6uydpMZWsDirR10] [ccjXxgy74gi9Z75BYdQl] [outgoing]
 Rel(3AscZ6uydpMZWsDirR10, ccjXxgy74gi9Z75BYdQl, "New Member" )
+' CONNECTION : [New - Subscription] [gdPnpYi2Xih4P6wLQX6x] [3AscZ6uydpMZWsDirR10] [outgoing]
 Rel(gdPnpYi2Xih4P6wLQX6x, 3AscZ6uydpMZWsDirR10, "New - Subscription" )
 
 

@@ -4,7 +4,7 @@
 ' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
 ' IcePanel JSON File : [./src/test/resources/icepanel-plain.json]
 ' Configuration      : [./docs/config.json]
-' Generated at       : Wed May 01 15:03:17 CEST 2024
+' Generated at       : Sun Dec 29 18:49:47 CET 2024
 
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
@@ -36,20 +36,34 @@ Component(BxsQud7gKwTvBJQ0KNj2, "Commercial Analysis Export", "")
 Container(DqaxYHtWGYqlWeYgZkyP, "Common Lib", "", "")
 
 
-' CONNECTIONS =======
+' SUB DIAGRAM CONNECTIONS ======= Base : [axBWvtIPYmpByC3xkoHt]
+' CONNECTION : [Deployed as] [DzQ4VPgJYKxSkilz6snk] [Nr2rq32hBezwoAGeNT2U] [outgoing]
 Rel(DzQ4VPgJYKxSkilz6snk, Nr2rq32hBezwoAGeNT2U, "Deployed as" )
+' CONNECTION : [Develops] [oTbmuU7ncIHqPnGupIDk] [6uyz5GXgHFSVjrwIwRKC] [outgoing]
 Rel(oTbmuU7ncIHqPnGupIDk, 6uyz5GXgHFSVjrwIwRKC, "Develops" )
+' CONNECTION : [Deployed as] [nd7uOWs4bfaeXm73vKFa] [Vg8nvjzPDirSBRjT8K3Q] [outgoing]
 Rel(nd7uOWs4bfaeXm73vKFa, Vg8nvjzPDirSBRjT8K3Q, "Deployed as" )
+' CONNECTION : [Develops] [oTbmuU7ncIHqPnGupIDk] [DzQ4VPgJYKxSkilz6snk] [outgoing]
 Rel(oTbmuU7ncIHqPnGupIDk, DzQ4VPgJYKxSkilz6snk, "Develops" )
+' CONNECTION : [Deploy] [F2hUPV68esNdYOZlEDZp] [4teQrlbMUj5LLqxdVcPK] [outgoing]
 Rel(F2hUPV68esNdYOZlEDZp, 4teQrlbMUj5LLqxdVcPK, "Deploy" )
+' CONNECTION : [Develops] [oTbmuU7ncIHqPnGupIDk] [nd7uOWs4bfaeXm73vKFa] [outgoing]
 Rel(oTbmuU7ncIHqPnGupIDk, nd7uOWs4bfaeXm73vKFa, "Develops" )
+' CONNECTION : [Deployed via] [DzQ4VPgJYKxSkilz6snk] [F2hUPV68esNdYOZlEDZp] [outgoing]
 Rel(DzQ4VPgJYKxSkilz6snk, F2hUPV68esNdYOZlEDZp, "Deployed via" )
+' CONNECTION : [Deployed via] [nd7uOWs4bfaeXm73vKFa] [F2hUPV68esNdYOZlEDZp] [outgoing]
 Rel(nd7uOWs4bfaeXm73vKFa, F2hUPV68esNdYOZlEDZp, "Deployed via" )
+' CONNECTION : [Deployed via] [aik6DuJQc2KhSf4c5QZV] [F2hUPV68esNdYOZlEDZp] [outgoing]
 Rel(aik6DuJQc2KhSf4c5QZV, F2hUPV68esNdYOZlEDZp, "Deployed via" )
+' CONNECTION : [Deployed as] [6uyz5GXgHFSVjrwIwRKC] [DqaxYHtWGYqlWeYgZkyP] [outgoing]
 Rel(6uyz5GXgHFSVjrwIwRKC, DqaxYHtWGYqlWeYgZkyP, "Deployed as" )
+' CONNECTION : [Deploy] [F2hUPV68esNdYOZlEDZp] [OmsC5XSTv64h2ua9yNDK] [outgoing]
 Rel(F2hUPV68esNdYOZlEDZp, OmsC5XSTv64h2ua9yNDK, "Deploy" )
+' CONNECTION : [Develops] [oTbmuU7ncIHqPnGupIDk] [aik6DuJQc2KhSf4c5QZV] [outgoing]
 Rel(oTbmuU7ncIHqPnGupIDk, aik6DuJQc2KhSf4c5QZV, "Develops" )
+' CONNECTION : [Executes] [F2hUPV68esNdYOZlEDZp] [sevE1WSEK6p75cxmStkb] [outgoing]
 Rel(F2hUPV68esNdYOZlEDZp, sevE1WSEK6p75cxmStkb, "Executes" )
+' CONNECTION : [Deploy] [F2hUPV68esNdYOZlEDZp] [BxsQud7gKwTvBJQ0KNj2] [outgoing]
 Rel(F2hUPV68esNdYOZlEDZp, BxsQud7gKwTvBJQ0KNj2, "Deploy" )
 
 

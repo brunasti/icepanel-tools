@@ -1,0 +1,72 @@
+@startuml
+'https://plantuml.com/class-diagram
+' CONVERT ICEPANEL DIAGRAM ===========
+' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
+' IcePanel JSON File : [examples/anonym/Document Anonymizer (Current).json]
+' Configuration      : [./docs/config.json]
+' Generated at       : Sun Dec 29 18:49:47 CET 2024
+
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+
+' Include         : [./docs/include.txt] ---------
+hide empty members
+' Include end     : --------------------------
+
+
+' CLASSES =======
+ContainerDb(0y769Vmvo5Tuvb6TR08e, "Document Proposed Matches", "", "")
+Component(y4C4NA0F0J8eLXSEyK59, "Convert PDF -&gt; Text", "")
+System(SVg4NZbdZy8FnI61GISs, "Original Document", "")
+Component(n1dCZsXdpvx1B0VFrFUb, "Replacer", "")
+System(h6iDi2X0EqwashqKREmH, "Document Anonymize System", "")
+ContainerDb(jZduRTYIuxzbaQzAgYZO, "Standard - Dictionary", "", "")
+Component(ryHXp2S4krLTLW8KNoL1, "Exception - Finder", "")
+ContainerDb(fAmwYlg11653hGzmKOZS, "Document  - Words List", "", "")
+System(vCVl0ek9J39J1NXHKNEV, "Anonymized Document", "")
+ContainerDb(11A3PwwC3aKDSAcWV7EH, "Matching - Table", "", "")
+ContainerDb(RrTHlYMFjqv4KzFtWBGQ, "PDF Document", "", "")
+Component(XxVJMcQGienpUEXxv1W8, "Word Extractor", "")
+Component(dRxcTKSZxMRK9uPx2OnQ, "Match Editor", "")
+Person(mYHYZN4TJC2WfQ7PIz5B, "User", "")
+System(QjKTKNSXZsLVNBtbDpC8, "Dictionary", "")
+ContainerDb(FOv7PGuNDuzzI9E2i9pr, "Text Document", "", "")
+
+
+' CONNECTIONS =======
+Rel(ryHXp2S4krLTLW8KNoL1, 0y769Vmvo5Tuvb6TR08e, "create" )
+Rel(11A3PwwC3aKDSAcWV7EH, ryHXp2S4krLTLW8KNoL1, "proposed" )
+Rel(h6iDi2X0EqwashqKREmH, vCVl0ek9J39J1NXHKNEV, "output" )
+Rel(FOv7PGuNDuzzI9E2i9pr, XxVJMcQGienpUEXxv1W8, "input" )
+Rel(SVg4NZbdZy8FnI61GISs, XxVJMcQGienpUEXxv1W8, "input" )
+Rel(fAmwYlg11653hGzmKOZS, ryHXp2S4krLTLW8KNoL1, "document list" )
+Rel(dRxcTKSZxMRK9uPx2OnQ, 0y769Vmvo5Tuvb6TR08e, "edit" )
+Rel(0y769Vmvo5Tuvb6TR08e, dRxcTKSZxMRK9uPx2OnQ, "Return of edit" )
+Rel(jZduRTYIuxzbaQzAgYZO, ryHXp2S4krLTLW8KNoL1, "standard list" )
+Rel(y4C4NA0F0J8eLXSEyK59, FOv7PGuNDuzzI9E2i9pr, "output" )
+Rel(0y769Vmvo5Tuvb6TR08e, n1dCZsXdpvx1B0VFrFUb, "read" )
+Rel(RrTHlYMFjqv4KzFtWBGQ, y4C4NA0F0J8eLXSEyK59, "input" )
+Rel(XxVJMcQGienpUEXxv1W8, fAmwYlg11653hGzmKOZS, "list all words" )
+Rel(QjKTKNSXZsLVNBtbDpC8, h6iDi2X0EqwashqKREmH, "anonymization data" )
+Rel(h6iDi2X0EqwashqKREmH, QjKTKNSXZsLVNBtbDpC8, "Return of anonymization data" )
+Rel(SVg4NZbdZy8FnI61GISs, n1dCZsXdpvx1B0VFrFUb, "input" )
+Rel(n1dCZsXdpvx1B0VFrFUb, vCVl0ek9J39J1NXHKNEV, "generate" )
+Rel(mYHYZN4TJC2WfQ7PIz5B, h6iDi2X0EqwashqKREmH, "edits matching" )
+
+
+' PARENT CONNECTIONS =======
+  h6iDi2X0EqwashqKREmH <.. 0y769Vmvo5Tuvb6TR08e 
+  SVg4NZbdZy8FnI61GISs <.. y4C4NA0F0J8eLXSEyK59 
+  h6iDi2X0EqwashqKREmH <.. n1dCZsXdpvx1B0VFrFUb 
+  QjKTKNSXZsLVNBtbDpC8 <.. jZduRTYIuxzbaQzAgYZO 
+  h6iDi2X0EqwashqKREmH <.. ryHXp2S4krLTLW8KNoL1 
+  h6iDi2X0EqwashqKREmH <.. fAmwYlg11653hGzmKOZS 
+  QjKTKNSXZsLVNBtbDpC8 <.. 11A3PwwC3aKDSAcWV7EH 
+  SVg4NZbdZy8FnI61GISs <.. RrTHlYMFjqv4KzFtWBGQ 
+  h6iDi2X0EqwashqKREmH <.. XxVJMcQGienpUEXxv1W8 
+  h6iDi2X0EqwashqKREmH <.. dRxcTKSZxMRK9uPx2OnQ 
+  SVg4NZbdZy8FnI61GISs <.. FOv7PGuNDuzzI9E2i9pr 
+
+
+@enduml

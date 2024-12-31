@@ -4,7 +4,7 @@
 ' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
 ' IcePanel JSON File : [./examples/pg/pg-001.json]
 ' Configuration      : [./examples/pg/config.json]
-' Generated at       : Wed May 01 15:03:17 CEST 2024
+' Generated at       : Sun Dec 29 18:49:47 CET 2024
 
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
@@ -24,8 +24,10 @@ System_Boundary(soKzn6Drl9ZnctLZPvDw, "Finance System" ) {
 System(Dh7TjqtXo9JVsCCn3bol, "POS", "")
 
 
-' CONNECTIONS =======
+' SUB DIAGRAM CONNECTIONS ======= Base : [soKzn6Drl9ZnctLZPvDw]
+' CONNECTION : [Every 30'] [Dh7TjqtXo9JVsCCn3bol] [symQsnQ4xP2tak7w7OaM] [outgoing]
 Rel(Dh7TjqtXo9JVsCCn3bol, symQsnQ4xP2tak7w7OaM, "Every 30'" )
+' CONNECTION : [EoD Syncronization] [symQsnQ4xP2tak7w7OaM] [ZEp4TXWq29d0jSeELGSI] [outgoing]
 Rel(symQsnQ4xP2tak7w7OaM, ZEp4TXWq29d0jSeELGSI, "EoD Syncronization" )
 
 
