@@ -55,4 +55,10 @@ public interface TestConstants {
   String AI_OUT = AI_DIR + "ARS-AI_Readiness_Survey.puml";
   String AI_CONF = AI_DIR + "config.json";
 
+  String TADAAH_DIR = examplesDirectory + "tadaah/";
+  String TADAAH_JSON = TADAAH_DIR + "tadaah-001.json";
+  String TADAAH_OUT = TADAAH_DIR + "tadaah-001.puml";
+  String TADAAH_CONF = TADAAH_DIR + "config.json";
+
+
 }

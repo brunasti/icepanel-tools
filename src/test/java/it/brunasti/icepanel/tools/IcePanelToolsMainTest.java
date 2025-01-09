@@ -84,6 +84,23 @@ class IcePanelToolsMainTest implements TestConstants {
     assertDoesNotThrow(() -> IcePanelToolsMain.main(moreArgs));
   }
 
+
+  @Test
+  @DisplayName("Call IcePanelToolsMain main to create Tadaah examples")
+  void testMainMethod_Tadaah() {
+    System.err.println("testMainMethod_Tadaah ------ Tadaah -----");
+    String[] args = new String[6];
+
+    args[0] = TADAAH_JSON;
+    args[1] = TADAAH_OUT;
+    args[2] = "-d";
+    args[3] = "10";
+    args[4] = "-c";
+    args[5] = TADAAH_CONF;
+    assertDoesNotThrow(() -> IcePanelToolsMain.main(args));
+
+  }
+
   @Test
   @DisplayName("Call IcePanelToolsMain main to create examples")
   void testMainMethod_Example() {

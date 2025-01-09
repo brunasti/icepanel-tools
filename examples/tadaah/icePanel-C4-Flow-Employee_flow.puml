@@ -1,0 +1,28 @@
+@startuml
+' CONVERT ICEPANEL FLOW DIAGRAM ===========
+' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
+' IcePanel JSON File : [./examples/tadaah/tadaah-001.json]
+' Configuration      : [./examples/tadaah/config.json]
+' Generated at       : Thu Jan 09 17:37:58 CET 2025
+
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+title Employee_flow
+
+
+' Elements =======
+' Steps =======
+participant "Web App" as 01MRBoO6TNPt4PmaELoO 
+participant "Backend Apps" as LXvhwDpIAwiWY9cfveXB 
+participant "Backend Apps" as LXvhwDpIAwiWY9cfveXB 
+participant "Tadaah Database" as 7GHp8F8aCdHY91UqUPRd 
+participant "Tadaah Staff" as kI67J5sJZiz7LxjwL6OT 
+
+01MRBoO6TNPt4PmaELoO -> LXvhwDpIAwiWY9cfveXB : 1 Request to API
+LXvhwDpIAwiWY9cfveXB -> 7GHp8F8aCdHY91UqUPRd : 2 Store data in cache
+LXvhwDpIAwiWY9cfveXB -> 01MRBoO6TNPt4PmaELoO : 3 Respond with result
+01MRBoO6TNPt4PmaELoO -> kI67J5sJZiz7LxjwL6OT : 4 Success message
+
+
+@enduml

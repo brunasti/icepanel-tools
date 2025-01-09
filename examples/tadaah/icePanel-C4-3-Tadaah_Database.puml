@@ -1,0 +1,45 @@
+@startuml
+'https://plantuml.com/class-diagram
+' CONVERT ICEPANEL DIAGRAM ===========
+' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
+' IcePanel JSON File : [./examples/tadaah/tadaah-001.json]
+' Configuration      : [./examples/tadaah/config.json]
+' Generated at       : Thu Jan 09 17:37:58 CET 2025
+
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+    ' CLASSES =======
+    Container(0tsl8NoqQthetjG1IfCY, "Payment DB", "", "")
+    Container(K7gvMXFEhBLyFvU9emlk, "User DB", "", "")
+    Container(iHxJuDcOScVk3PbjBcJm, "Notification DB", "", "")
+    Container(AtImPU6py93rBswwEwtO, "Invoice DB", "", "")
+    Container(XaKbISuZOfRaAYbo9UM9, "Hiring DB", "", "")
+    Container(uzTJfXJ4WIOTbEyYvR2M, "Document DB", "", "")
+}
+
+' NEIGHBOR CLASSES =======
+Container(jXlbjUjjr2WB6pexPMxU, "Invoice microservice", "", "")
+Container(E7di0Acs7tcqBfqOKmWa, "Documents microservice", "", "")
+Container(OJhfZ67lBSzo6O8q5N5D, "Hiring microservice", "", "")
+Container(xujXNZvKo0NhWwHHnzNi, "Payment microservice", "", "")
+Container(OW3XMbiGuD47ot1uwmK9, "Users and Organisations microservice", "", "")
+Container(xNzhCu9TkahbVVVwZMa7, "Notification microservice", "", "")
+
+
+' SUB DIAGRAM CONNECTIONS ======= Base : [7GHp8F8aCdHY91UqUPRd]
+' CONNECTION : [Sends data to] [xujXNZvKo0NhWwHHnzNi] [0tsl8NoqQthetjG1IfCY] [outgoing]
+Rel(xujXNZvKo0NhWwHHnzNi, 0tsl8NoqQthetjG1IfCY, "Sends data to" )
+' CONNECTION : [Sends data to] [E7di0Acs7tcqBfqOKmWa] [uzTJfXJ4WIOTbEyYvR2M] [outgoing]
+Rel(E7di0Acs7tcqBfqOKmWa, uzTJfXJ4WIOTbEyYvR2M, "Sends data to" )
+' CONNECTION : [Sends data to] [OW3XMbiGuD47ot1uwmK9] [K7gvMXFEhBLyFvU9emlk] [outgoing]
+Rel(OW3XMbiGuD47ot1uwmK9, K7gvMXFEhBLyFvU9emlk, "Sends data to" )
+' CONNECTION : [Sends data to] [jXlbjUjjr2WB6pexPMxU] [AtImPU6py93rBswwEwtO] [outgoing]
+Rel(jXlbjUjjr2WB6pexPMxU, AtImPU6py93rBswwEwtO, "Sends data to" )
+' CONNECTION : [Store data] [OJhfZ67lBSzo6O8q5N5D] [XaKbISuZOfRaAYbo9UM9] [outgoing]
+Rel(OJhfZ67lBSzo6O8q5N5D, XaKbISuZOfRaAYbo9UM9, "Store data" )
+' CONNECTION : [Sends data to] [xNzhCu9TkahbVVVwZMa7] [iHxJuDcOScVk3PbjBcJm] [outgoing]
+Rel(xNzhCu9TkahbVVVwZMa7, iHxJuDcOScVk3PbjBcJm, "Sends data to" )
+
+
+@enduml

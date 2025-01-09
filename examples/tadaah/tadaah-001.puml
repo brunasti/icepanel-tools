@@ -1,0 +1,138 @@
+@startuml
+'https://plantuml.com/class-diagram
+' CONVERT ICEPANEL DIAGRAM ===========
+' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
+' IcePanel JSON File : [./examples/tadaah/tadaah-001.json]
+' Configuration      : [./examples/tadaah/config.json]
+' Generated at       : Thu Jan 09 17:37:58 CET 2025
+
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+
+
+' CLASSES =======
+Container(0tsl8NoqQthetjG1IfCY, "Payment DB", "", "")
+Container(7xAFfcMNmb9CCOt7pucC, "Android Tadaah App", "", "")
+ContainerDb(Crj6OVjno3V3VzBN9ZV7, "AWS S3", "", "")
+System(wo1hNaUSBe6V30cFCgBt, "External Provider", "")
+Container(xujXNZvKo0NhWwHHnzNi, "Payment microservice", "", "")
+Component(LXvhwDpIAwiWY9cfveXB, "Backend Apps", "")
+Container(jXlbjUjjr2WB6pexPMxU, "Invoice microservice", "", "")
+Person(meF1nRjud1koeACE8CFO, "Organisation", "")
+Person(kI67J5sJZiz7LxjwL6OT, "Tadaah Staff", "")
+Container(zIMMYLB32509d1pPM9ef, "Common Lib", "", "")
+Component(2JDmHPAMah1HIF7dqy8m, "Mobile Push Notification Systems", "")
+Container(K7gvMXFEhBLyFvU9emlk, "User DB", "", "")
+Component(wiZgyeKZbmqMpX3umth7, "Mobile App", "")
+Container(E7di0Acs7tcqBfqOKmWa, "Documents microservice", "", "")
+Container(OJhfZ67lBSzo6O8q5N5D, "Hiring microservice", "", "")
+Container(iHxJuDcOScVk3PbjBcJm, "Notification DB", "", "")
+Component(01MRBoO6TNPt4PmaELoO, "Web App", "")
+Container(AtImPU6py93rBswwEwtO, "Invoice DB", "", "")
+Container(xNzhCu9TkahbVVVwZMa7, "Notification microservice", "", "")
+Container(XaKbISuZOfRaAYbo9UM9, "Hiring DB", "", "")
+System(VZo4IA6ttTp0XCmX1h6o, "Tadaa System", "A brief description of your system")
+Container(VNmHaS6AUVW37Ia1oIKo, "Auth Proxy", "", "")
+Container(og7u5YsEYstGrVnlMGnr, "iOS Tadaah App", "", "")
+Person(ye2OoAgJhthRThhjIe69, "Freelancer", "")
+Component(lBh7KhgVrh9fCPMlt1PE, "Oauth Service", "")
+ContainerDb(7GHp8F8aCdHY91UqUPRd, "Tadaah Database", "", "")
+Component(TUJ4gE8Z8W1QkQOuPH4W, "EMail Server", "")
+Container(uzTJfXJ4WIOTbEyYvR2M, "Document DB", "", "")
+Container(OW3XMbiGuD47ot1uwmK9, "Users and Organisations microservice", "", "")
+
+
+' CONNECTIONS =======
+Rel(01MRBoO6TNPt4PmaELoO, LXvhwDpIAwiWY9cfveXB, "Access Endpoints" )
+Rel(xujXNZvKo0NhWwHHnzNi, 0tsl8NoqQthetjG1IfCY, "Sends data to" )
+Rel(OW3XMbiGuD47ot1uwmK9, VNmHaS6AUVW37Ia1oIKo, "Authenticate" )
+Rel(E7di0Acs7tcqBfqOKmWa, uzTJfXJ4WIOTbEyYvR2M, "Sends data to" )
+Rel(ye2OoAgJhthRThhjIe69, 7xAFfcMNmb9CCOt7pucC, "Uses" )
+Rel(OW3XMbiGuD47ot1uwmK9, K7gvMXFEhBLyFvU9emlk, "Sends data to" )
+Rel(jXlbjUjjr2WB6pexPMxU, AtImPU6py93rBswwEwtO, "Sends data to" )
+Rel(xNzhCu9TkahbVVVwZMa7, 2JDmHPAMah1HIF7dqy8m, "Push" )
+Rel(OJhfZ67lBSzo6O8q5N5D, XaKbISuZOfRaAYbo9UM9, "Store data" )
+Rel(xNzhCu9TkahbVVVwZMa7, iHxJuDcOScVk3PbjBcJm, "Sends data to" )
+Rel(LXvhwDpIAwiWY9cfveXB, Crj6OVjno3V3VzBN9ZV7, "Store Document" )
+Rel(wiZgyeKZbmqMpX3umth7, LXvhwDpIAwiWY9cfveXB, "Access Endpoints" )
+Rel(meF1nRjud1koeACE8CFO, 01MRBoO6TNPt4PmaELoO, "Uses" )
+Rel(ye2OoAgJhthRThhjIe69, og7u5YsEYstGrVnlMGnr, "Uses" )
+Rel(VNmHaS6AUVW37Ia1oIKo, lBh7KhgVrh9fCPMlt1PE, "Validate auth" )
+Rel(xNzhCu9TkahbVVVwZMa7, TUJ4gE8Z8W1QkQOuPH4W, "Send eMail" )
+Rel(kI67J5sJZiz7LxjwL6OT, 01MRBoO6TNPt4PmaELoO, "Uses" )
+
+
+' PARENT CONNECTIONS =======
+  7GHp8F8aCdHY91UqUPRd <.. 0tsl8NoqQthetjG1IfCY 
+  VZo4IA6ttTp0XCmX1h6o <.. 0tsl8NoqQthetjG1IfCY 
+  ZrO7EKBJrWX4yzMUQE7L <.. 0tsl8NoqQthetjG1IfCY 
+  wiZgyeKZbmqMpX3umth7 <.. 7xAFfcMNmb9CCOt7pucC 
+  VZo4IA6ttTp0XCmX1h6o <.. 7xAFfcMNmb9CCOt7pucC 
+  ZrO7EKBJrWX4yzMUQE7L <.. 7xAFfcMNmb9CCOt7pucC 
+  VZo4IA6ttTp0XCmX1h6o <.. Crj6OVjno3V3VzBN9ZV7 
+  ZrO7EKBJrWX4yzMUQE7L <.. Crj6OVjno3V3VzBN9ZV7 
+  ZrO7EKBJrWX4yzMUQE7L <.. wo1hNaUSBe6V30cFCgBt 
+  LXvhwDpIAwiWY9cfveXB <.. xujXNZvKo0NhWwHHnzNi 
+  VZo4IA6ttTp0XCmX1h6o <.. xujXNZvKo0NhWwHHnzNi 
+  ZrO7EKBJrWX4yzMUQE7L <.. xujXNZvKo0NhWwHHnzNi 
+  VZo4IA6ttTp0XCmX1h6o <.. LXvhwDpIAwiWY9cfveXB 
+  ZrO7EKBJrWX4yzMUQE7L <.. LXvhwDpIAwiWY9cfveXB 
+  LXvhwDpIAwiWY9cfveXB <.. jXlbjUjjr2WB6pexPMxU 
+  VZo4IA6ttTp0XCmX1h6o <.. jXlbjUjjr2WB6pexPMxU 
+  ZrO7EKBJrWX4yzMUQE7L <.. jXlbjUjjr2WB6pexPMxU 
+  ZrO7EKBJrWX4yzMUQE7L <.. meF1nRjud1koeACE8CFO 
+  ZrO7EKBJrWX4yzMUQE7L <.. kI67J5sJZiz7LxjwL6OT 
+  LXvhwDpIAwiWY9cfveXB <.. zIMMYLB32509d1pPM9ef 
+  VZo4IA6ttTp0XCmX1h6o <.. zIMMYLB32509d1pPM9ef 
+  ZrO7EKBJrWX4yzMUQE7L <.. zIMMYLB32509d1pPM9ef 
+  wo1hNaUSBe6V30cFCgBt <.. 2JDmHPAMah1HIF7dqy8m 
+  ZrO7EKBJrWX4yzMUQE7L <.. 2JDmHPAMah1HIF7dqy8m 
+  7GHp8F8aCdHY91UqUPRd <.. K7gvMXFEhBLyFvU9emlk 
+  VZo4IA6ttTp0XCmX1h6o <.. K7gvMXFEhBLyFvU9emlk 
+  ZrO7EKBJrWX4yzMUQE7L <.. K7gvMXFEhBLyFvU9emlk 
+  VZo4IA6ttTp0XCmX1h6o <.. wiZgyeKZbmqMpX3umth7 
+  ZrO7EKBJrWX4yzMUQE7L <.. wiZgyeKZbmqMpX3umth7 
+  LXvhwDpIAwiWY9cfveXB <.. E7di0Acs7tcqBfqOKmWa 
+  VZo4IA6ttTp0XCmX1h6o <.. E7di0Acs7tcqBfqOKmWa 
+  ZrO7EKBJrWX4yzMUQE7L <.. E7di0Acs7tcqBfqOKmWa 
+  LXvhwDpIAwiWY9cfveXB <.. OJhfZ67lBSzo6O8q5N5D 
+  VZo4IA6ttTp0XCmX1h6o <.. OJhfZ67lBSzo6O8q5N5D 
+  ZrO7EKBJrWX4yzMUQE7L <.. OJhfZ67lBSzo6O8q5N5D 
+  7GHp8F8aCdHY91UqUPRd <.. iHxJuDcOScVk3PbjBcJm 
+  VZo4IA6ttTp0XCmX1h6o <.. iHxJuDcOScVk3PbjBcJm 
+  ZrO7EKBJrWX4yzMUQE7L <.. iHxJuDcOScVk3PbjBcJm 
+  VZo4IA6ttTp0XCmX1h6o <.. 01MRBoO6TNPt4PmaELoO 
+  ZrO7EKBJrWX4yzMUQE7L <.. 01MRBoO6TNPt4PmaELoO 
+  7GHp8F8aCdHY91UqUPRd <.. AtImPU6py93rBswwEwtO 
+  VZo4IA6ttTp0XCmX1h6o <.. AtImPU6py93rBswwEwtO 
+  ZrO7EKBJrWX4yzMUQE7L <.. AtImPU6py93rBswwEwtO 
+  LXvhwDpIAwiWY9cfveXB <.. xNzhCu9TkahbVVVwZMa7 
+  VZo4IA6ttTp0XCmX1h6o <.. xNzhCu9TkahbVVVwZMa7 
+  ZrO7EKBJrWX4yzMUQE7L <.. xNzhCu9TkahbVVVwZMa7 
+  7GHp8F8aCdHY91UqUPRd <.. XaKbISuZOfRaAYbo9UM9 
+  VZo4IA6ttTp0XCmX1h6o <.. XaKbISuZOfRaAYbo9UM9 
+  ZrO7EKBJrWX4yzMUQE7L <.. XaKbISuZOfRaAYbo9UM9 
+  ZrO7EKBJrWX4yzMUQE7L <.. VZo4IA6ttTp0XCmX1h6o 
+  LXvhwDpIAwiWY9cfveXB <.. VNmHaS6AUVW37Ia1oIKo 
+  VZo4IA6ttTp0XCmX1h6o <.. VNmHaS6AUVW37Ia1oIKo 
+  ZrO7EKBJrWX4yzMUQE7L <.. VNmHaS6AUVW37Ia1oIKo 
+  wiZgyeKZbmqMpX3umth7 <.. og7u5YsEYstGrVnlMGnr 
+  VZo4IA6ttTp0XCmX1h6o <.. og7u5YsEYstGrVnlMGnr 
+  ZrO7EKBJrWX4yzMUQE7L <.. og7u5YsEYstGrVnlMGnr 
+  ZrO7EKBJrWX4yzMUQE7L <.. ye2OoAgJhthRThhjIe69 
+  wo1hNaUSBe6V30cFCgBt <.. lBh7KhgVrh9fCPMlt1PE 
+  ZrO7EKBJrWX4yzMUQE7L <.. lBh7KhgVrh9fCPMlt1PE 
+  VZo4IA6ttTp0XCmX1h6o <.. 7GHp8F8aCdHY91UqUPRd 
+  ZrO7EKBJrWX4yzMUQE7L <.. 7GHp8F8aCdHY91UqUPRd 
+  wo1hNaUSBe6V30cFCgBt <.. TUJ4gE8Z8W1QkQOuPH4W 
+  ZrO7EKBJrWX4yzMUQE7L <.. TUJ4gE8Z8W1QkQOuPH4W 
+  7GHp8F8aCdHY91UqUPRd <.. uzTJfXJ4WIOTbEyYvR2M 
+  VZo4IA6ttTp0XCmX1h6o <.. uzTJfXJ4WIOTbEyYvR2M 
+  ZrO7EKBJrWX4yzMUQE7L <.. uzTJfXJ4WIOTbEyYvR2M 
+  LXvhwDpIAwiWY9cfveXB <.. OW3XMbiGuD47ot1uwmK9 
+  VZo4IA6ttTp0XCmX1h6o <.. OW3XMbiGuD47ot1uwmK9 
+  ZrO7EKBJrWX4yzMUQE7L <.. OW3XMbiGuD47ot1uwmK9 
+
+
+@enduml

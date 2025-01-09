@@ -1,0 +1,32 @@
+@startuml
+'https://plantuml.com/class-diagram
+' CONVERT ICEPANEL DIAGRAM ===========
+' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
+' IcePanel JSON File : [./examples/tadaah/tadaah-001.json]
+' Configuration      : [./examples/tadaah/config.json]
+' Generated at       : Thu Jan 09 17:37:58 CET 2025
+
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+
+
+Component(wiZgyeKZbmqMpX3umth7, "Mobile App", "") { 
+    ' CLASSES =======
+    Container(7xAFfcMNmb9CCOt7pucC, "Android Tadaah App", "", "")
+    Container(og7u5YsEYstGrVnlMGnr, "iOS Tadaah App", "", "")
+}
+
+
+' NEIGHBOR CLASSES =======
+Person(ye2OoAgJhthRThhjIe69, "Freelancer", "")
+
+
+' SUB DIAGRAM CONNECTIONS ======= Base : [wiZgyeKZbmqMpX3umth7]
+' CONNECTION : [Uses] [ye2OoAgJhthRThhjIe69] [7xAFfcMNmb9CCOt7pucC] [outgoing]
+Rel(ye2OoAgJhthRThhjIe69, 7xAFfcMNmb9CCOt7pucC, "Uses" )
+' CONNECTION : [Uses] [ye2OoAgJhthRThhjIe69] [og7u5YsEYstGrVnlMGnr] [outgoing]
+Rel(ye2OoAgJhthRThhjIe69, og7u5YsEYstGrVnlMGnr, "Uses" )
+
+
+@enduml

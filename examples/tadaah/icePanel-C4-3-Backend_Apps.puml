@@ -1,0 +1,68 @@
+@startuml
+'https://plantuml.com/class-diagram
+' CONVERT ICEPANEL DIAGRAM ===========
+' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
+' IcePanel JSON File : [./examples/tadaah/tadaah-001.json]
+' Configuration      : [./examples/tadaah/config.json]
+' Generated at       : Thu Jan 09 17:37:58 CET 2025
+
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+
+
+Component(LXvhwDpIAwiWY9cfveXB, "Backend Apps", "") { 
+    ' CLASSES =======
+    Container(xujXNZvKo0NhWwHHnzNi, "Payment microservice", "", "")
+    Container(jXlbjUjjr2WB6pexPMxU, "Invoice microservice", "", "")
+    Container(zIMMYLB32509d1pPM9ef, "Common Lib", "", "")
+    Container(E7di0Acs7tcqBfqOKmWa, "Documents microservice", "", "")
+    Container(OJhfZ67lBSzo6O8q5N5D, "Hiring microservice", "", "")
+    Container(xNzhCu9TkahbVVVwZMa7, "Notification microservice", "", "")
+    Container(VNmHaS6AUVW37Ia1oIKo, "Auth Proxy", "", "")
+    Container(OW3XMbiGuD47ot1uwmK9, "Users and Organisations microservice", "", "")
+}
+
+
+' NEIGHBOR CLASSES =======
+Container(0tsl8NoqQthetjG1IfCY, "Payment DB", "", "")
+Container(iHxJuDcOScVk3PbjBcJm, "Notification DB", "", "")
+Container(AtImPU6py93rBswwEwtO, "Invoice DB", "", "")
+Container(XaKbISuZOfRaAYbo9UM9, "Hiring DB", "", "")
+Component(lBh7KhgVrh9fCPMlt1PE, "Oauth Service", "")
+Component(TUJ4gE8Z8W1QkQOuPH4W, "EMail Server", "")
+Container(uzTJfXJ4WIOTbEyYvR2M, "Document DB", "", "")
+Component(2JDmHPAMah1HIF7dqy8m, "Mobile Push Notification Systems", "")
+Container(K7gvMXFEhBLyFvU9emlk, "User DB", "", "")
+
+
+' SUB DIAGRAM CONNECTIONS ======= Base : [LXvhwDpIAwiWY9cfveXB]
+' CONNECTION : [Uses] [zIMMYLB32509d1pPM9ef] [xujXNZvKo0NhWwHHnzNi] [null]
+' CONNECTION : [Sends data to] [xujXNZvKo0NhWwHHnzNi] [0tsl8NoqQthetjG1IfCY] [outgoing]
+Rel(xujXNZvKo0NhWwHHnzNi, 0tsl8NoqQthetjG1IfCY, "Sends data to" )
+' CONNECTION : [Uses] [zIMMYLB32509d1pPM9ef] [E7di0Acs7tcqBfqOKmWa] [null]
+' CONNECTION : [Authenticate] [OW3XMbiGuD47ot1uwmK9] [VNmHaS6AUVW37Ia1oIKo] [outgoing]
+Rel(OW3XMbiGuD47ot1uwmK9, VNmHaS6AUVW37Ia1oIKo, "Authenticate" )
+' CONNECTION : [Sends data to] [E7di0Acs7tcqBfqOKmWa] [uzTJfXJ4WIOTbEyYvR2M] [outgoing]
+Rel(E7di0Acs7tcqBfqOKmWa, uzTJfXJ4WIOTbEyYvR2M, "Sends data to" )
+' CONNECTION : [Sends data to] [OW3XMbiGuD47ot1uwmK9] [K7gvMXFEhBLyFvU9emlk] [outgoing]
+Rel(OW3XMbiGuD47ot1uwmK9, K7gvMXFEhBLyFvU9emlk, "Sends data to" )
+' CONNECTION : [Sends data to] [jXlbjUjjr2WB6pexPMxU] [AtImPU6py93rBswwEwtO] [outgoing]
+Rel(jXlbjUjjr2WB6pexPMxU, AtImPU6py93rBswwEwtO, "Sends data to" )
+' CONNECTION : [Uses] [zIMMYLB32509d1pPM9ef] [OW3XMbiGuD47ot1uwmK9] [null]
+' CONNECTION : [Uses] [zIMMYLB32509d1pPM9ef] [jXlbjUjjr2WB6pexPMxU] [null]
+' CONNECTION : [Push] [xNzhCu9TkahbVVVwZMa7] [2JDmHPAMah1HIF7dqy8m] [outgoing]
+Rel(xNzhCu9TkahbVVVwZMa7, 2JDmHPAMah1HIF7dqy8m, "Push" )
+' CONNECTION : [Store data] [OJhfZ67lBSzo6O8q5N5D] [XaKbISuZOfRaAYbo9UM9] [outgoing]
+Rel(OJhfZ67lBSzo6O8q5N5D, XaKbISuZOfRaAYbo9UM9, "Store data" )
+' CONNECTION : [Sends data to] [xNzhCu9TkahbVVVwZMa7] [iHxJuDcOScVk3PbjBcJm] [outgoing]
+Rel(xNzhCu9TkahbVVVwZMa7, iHxJuDcOScVk3PbjBcJm, "Sends data to" )
+' CONNECTION : [Uses] [zIMMYLB32509d1pPM9ef] [xNzhCu9TkahbVVVwZMa7] [null]
+' CONNECTION : [Uses] [zIMMYLB32509d1pPM9ef] [OJhfZ67lBSzo6O8q5N5D] [null]
+' CONNECTION : [Validate auth] [VNmHaS6AUVW37Ia1oIKo] [lBh7KhgVrh9fCPMlt1PE] [outgoing]
+Rel(VNmHaS6AUVW37Ia1oIKo, lBh7KhgVrh9fCPMlt1PE, "Validate auth" )
+' CONNECTION : [Send eMail] [xNzhCu9TkahbVVVwZMa7] [TUJ4gE8Z8W1QkQOuPH4W] [outgoing]
+Rel(xNzhCu9TkahbVVVwZMa7, TUJ4gE8Z8W1QkQOuPH4W, "Send eMail" )
+
+
+@enduml
