@@ -4,7 +4,7 @@
 ' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
 ' IcePanel JSON File : [./examples/tadaah/tadaah-001.json]
 ' Configuration      : [./examples/tadaah/config.json]
-' Generated at       : Fri Jan 10 14:30:43 CET 2025
+' Generated at       : Fri Jan 10 17:22:14 CET 2025
 
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
@@ -64,8 +64,8 @@ Rel(xNzhCu9TkahbVVVwZMa7, TUJ4gE8Z8W1QkQOuPH4W, "Send eMail" )
 Rel(OW3XMbiGuD47ot1uwmK9, K7gvMXFEhBLyFvU9emlk, "Sends data to" )
 ' CONNECTION : [Sends data to] [jXlbjUjjr2WB6pexPMxU] [AtImPU6py93rBswwEwtO] [outgoing]
 Rel(jXlbjUjjr2WB6pexPMxU, AtImPU6py93rBswwEwtO, "Sends data to" )
-' CONNECTION : [Store data] [OJhfZ67lBSzo6O8q5N5D] [XaKbISuZOfRaAYbo9UM9] [outgoing]
-Rel(OJhfZ67lBSzo6O8q5N5D, XaKbISuZOfRaAYbo9UM9, "Store data" )
+' CONNECTION : [Sands data to] [OJhfZ67lBSzo6O8q5N5D] [XaKbISuZOfRaAYbo9UM9] [outgoing]
+Rel(OJhfZ67lBSzo6O8q5N5D, XaKbISuZOfRaAYbo9UM9, "Sands data to" )
 ' CONNECTION : [Sends data to] [xNzhCu9TkahbVVVwZMa7] [iHxJuDcOScVk3PbjBcJm] [outgoing]
 Rel(xNzhCu9TkahbVVVwZMa7, iHxJuDcOScVk3PbjBcJm, "Sends data to" )
 ' CONNECTION : [Uses Service] [E7di0Acs7tcqBfqOKmWa] [OJhfZ67lBSzo6O8q5N5D] [outgoing]
