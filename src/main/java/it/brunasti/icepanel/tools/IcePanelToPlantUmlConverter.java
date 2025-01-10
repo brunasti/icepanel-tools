@@ -259,6 +259,10 @@ public class IcePanelToPlantUmlConverter extends AbstractIcePanelConverter {
           output.println(IcePanelPlantUmlConstants.OUTPUT_COMPONENT
                   + id + ", \"" + name + IcePanelPlantUmlConstants.OUTPUT_VAL_SEPARATOR_STRING
                   + description + IcePanelPlantUmlConstants.OUTPUT_SUBDIAGRAM_CLOSER_STRING);
+        case IcePanelConstants.TYPE_STORE:
+          output.println(IcePanelPlantUmlConstants.OUTPUT_CONTAINER_DB
+                  + id + ", \"" + name + IcePanelPlantUmlConstants.OUTPUT_VAL_SEPARATOR_STRING
+                  + description + IcePanelPlantUmlConstants.OUTPUT_SUBDIAGRAM_CLOSER_STRING);
           break;
         default:
           log.error("unknown type : [{}] from object [{}]", type, jsonObject);
@@ -278,6 +282,7 @@ public class IcePanelToPlantUmlConverter extends AbstractIcePanelConverter {
     log.debug( "generateSubDiagramClasses() ------------------");
     output.println();
     generateSubDiagramBoundaryStart(output, icePanelDiagramJson);
+    log.debug( "generateSubDiagramClasses() ' CLASSES =======");
     output.println("    ' CLASSES =======");
     children.forEach( object -> generateClassInDiagram("    ", output, object) );
     generateSubDiagramBoundaryEnd(output);
@@ -442,6 +447,8 @@ public class IcePanelToPlantUmlConverter extends AbstractIcePanelConverter {
 
     // TODO: check the inclusion of entities of lower level and the corresponding links
     ArrayList<JSONObject> neighbors = extractNeighbors(icePanelDiagramJson, base, children);
+
+    log.debug("generateSubDiagram ([{}],[{}]) ------------------", id , name);
 
     generateSubDiagramHeader(printStream, icePanelJsonFile, configurationFile);
     generateSubDiagramClasses(printStream, base, children);

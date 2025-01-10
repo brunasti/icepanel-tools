@@ -4,11 +4,14 @@
 ' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
 ' IcePanel JSON File : [./examples/tadaah/tadaah-001.json]
 ' Configuration      : [./examples/tadaah/config.json]
-' Generated at       : Thu Jan 09 17:37:58 CET 2025
+' Generated at       : Fri Jan 10 10:54:38 CET 2025
 
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
 
+
+
+ContainerDb(7GHp8F8aCdHY91UqUPRd, "Tadaah Database", "") { 
     ' CLASSES =======
     Container(0tsl8NoqQthetjG1IfCY, "Payment DB", "", "")
     Container(K7gvMXFEhBLyFvU9emlk, "User DB", "", "")
@@ -17,6 +20,7 @@
     Container(XaKbISuZOfRaAYbo9UM9, "Hiring DB", "", "")
     Container(uzTJfXJ4WIOTbEyYvR2M, "Document DB", "", "")
 }
+
 
 ' NEIGHBOR CLASSES =======
 Container(jXlbjUjjr2WB6pexPMxU, "Invoice microservice", "", "")
