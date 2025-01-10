@@ -13,6 +13,7 @@ public final class IcePanelPlantUmlConstants {
   static final String OUTPUT_CONTAINER_BOUNDARY = "Container_Boundary(";
   static final String OUTPUT_PERSON = "Person(";
   static final String OUTPUT_COMPONENT = "Component(";
+  static final String OUTPUT_COMPONENT_DB = "ComponentDb(";
   static final String OUTPUT_CONTAINER_DB = "ContainerDb(";
   static final String OUTPUT_CONTAINER = "Container(";
   static final String OUTPUT_VAL_SEPARATOR_STRING = "\", \"";
