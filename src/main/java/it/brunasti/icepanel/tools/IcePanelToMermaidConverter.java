@@ -274,6 +274,8 @@ public class IcePanelToMermaidConverter extends AbstractIcePanelConverter {
                                       final JSONObject jsonObject,
                                       int depth) {
     log.debug( "generateClassHeader() ------------------");
+    log.debug( "generateClassHeader() head "+head);
+    log.debug( "generateClassHeader() depth "+depth);
     String type = getValue(jsonObject, "type", "");
     if (type != null) {
       switch (depth) {

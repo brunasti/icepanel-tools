@@ -259,6 +259,7 @@ public class IcePanelToPlantUmlConverter extends AbstractIcePanelConverter {
           output.println(IcePanelPlantUmlConstants.OUTPUT_COMPONENT
                   + id + ", \"" + name + IcePanelPlantUmlConstants.OUTPUT_VAL_SEPARATOR_STRING
                   + description + IcePanelPlantUmlConstants.OUTPUT_SUBDIAGRAM_CLOSER_STRING);
+          break;
         case IcePanelConstants.TYPE_STORE:
           output.println(IcePanelPlantUmlConstants.OUTPUT_CONTAINER_DB
                   + id + ", \"" + name + IcePanelPlantUmlConstants.OUTPUT_VAL_SEPARATOR_STRING

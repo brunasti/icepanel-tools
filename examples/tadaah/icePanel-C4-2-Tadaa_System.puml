@@ -4,7 +4,7 @@
 ' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
 ' IcePanel JSON File : [./examples/tadaah/tadaah-001.json]
 ' Configuration      : [./examples/tadaah/config.json]
-' Generated at       : Fri Jan 10 13:38:34 CET 2025
+' Generated at       : Fri Jan 10 14:30:43 CET 2025
 
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
@@ -31,20 +31,26 @@ Component(2JDmHPAMah1HIF7dqy8m, "Mobile Push Notification Systems", "")
 
 
 ' SUB DIAGRAM CONNECTIONS ======= Base : [VZo4IA6ttTp0XCmX1h6o]
-' CONNECTION : [Access Endpoints] [01MRBoO6TNPt4PmaELoO] [LXvhwDpIAwiWY9cfveXB] [outgoing]
-Rel(01MRBoO6TNPt4PmaELoO, LXvhwDpIAwiWY9cfveXB, "Access Endpoints" )
 ' CONNECTION : [Sends data to] [LXvhwDpIAwiWY9cfveXB] [7GHp8F8aCdHY91UqUPRd] [outgoing]
 Rel(LXvhwDpIAwiWY9cfveXB, 7GHp8F8aCdHY91UqUPRd, "Sends data to" )
 ' CONNECTION : [Sends data to] [LXvhwDpIAwiWY9cfveXB] [7GHp8F8aCdHY91UqUPRd] [outgoing]
 Rel(LXvhwDpIAwiWY9cfveXB, 7GHp8F8aCdHY91UqUPRd, "Sends data to" )
 ' CONNECTION : [Uses] [ye2OoAgJhthRThhjIe69] [wiZgyeKZbmqMpX3umth7] [outgoing]
 Rel(ye2OoAgJhthRThhjIe69, wiZgyeKZbmqMpX3umth7, "Uses" )
-' CONNECTION : [Sends data to] [LXvhwDpIAwiWY9cfveXB] [7GHp8F8aCdHY91UqUPRd] [outgoing]
-Rel(LXvhwDpIAwiWY9cfveXB, 7GHp8F8aCdHY91UqUPRd, "Sends data to" )
-' CONNECTION : [Sends data to] [LXvhwDpIAwiWY9cfveXB] [7GHp8F8aCdHY91UqUPRd] [outgoing]
-Rel(LXvhwDpIAwiWY9cfveXB, 7GHp8F8aCdHY91UqUPRd, "Sends data to" )
 ' CONNECTION : [Push] [LXvhwDpIAwiWY9cfveXB] [2JDmHPAMah1HIF7dqy8m] [outgoing]
 Rel(LXvhwDpIAwiWY9cfveXB, 2JDmHPAMah1HIF7dqy8m, "Push" )
+' CONNECTION : [Uses] [ye2OoAgJhthRThhjIe69] [wiZgyeKZbmqMpX3umth7] [outgoing]
+Rel(ye2OoAgJhthRThhjIe69, wiZgyeKZbmqMpX3umth7, "Uses" )
+' CONNECTION : [Send eMail] [LXvhwDpIAwiWY9cfveXB] [TUJ4gE8Z8W1QkQOuPH4W] [outgoing]
+Rel(LXvhwDpIAwiWY9cfveXB, TUJ4gE8Z8W1QkQOuPH4W, "Send eMail" )
+' CONNECTION : [Uses] [kI67J5sJZiz7LxjwL6OT] [01MRBoO6TNPt4PmaELoO] [outgoing]
+Rel(kI67J5sJZiz7LxjwL6OT, 01MRBoO6TNPt4PmaELoO, "Uses" )
+' CONNECTION : [Access Endpoints] [01MRBoO6TNPt4PmaELoO] [LXvhwDpIAwiWY9cfveXB] [outgoing]
+Rel(01MRBoO6TNPt4PmaELoO, LXvhwDpIAwiWY9cfveXB, "Access Endpoints" )
+' CONNECTION : [Sends data to] [LXvhwDpIAwiWY9cfveXB] [7GHp8F8aCdHY91UqUPRd] [outgoing]
+Rel(LXvhwDpIAwiWY9cfveXB, 7GHp8F8aCdHY91UqUPRd, "Sends data to" )
+' CONNECTION : [Sends data to] [LXvhwDpIAwiWY9cfveXB] [7GHp8F8aCdHY91UqUPRd] [outgoing]
+Rel(LXvhwDpIAwiWY9cfveXB, 7GHp8F8aCdHY91UqUPRd, "Sends data to" )
 ' CONNECTION : [Store data] [LXvhwDpIAwiWY9cfveXB] [7GHp8F8aCdHY91UqUPRd] [outgoing]
 Rel(LXvhwDpIAwiWY9cfveXB, 7GHp8F8aCdHY91UqUPRd, "Store data" )
 ' CONNECTION : [Sends data to] [LXvhwDpIAwiWY9cfveXB] [7GHp8F8aCdHY91UqUPRd] [outgoing]
@@ -55,14 +61,8 @@ Rel(LXvhwDpIAwiWY9cfveXB, Crj6OVjno3V3VzBN9ZV7, "Store Document" )
 Rel(wiZgyeKZbmqMpX3umth7, LXvhwDpIAwiWY9cfveXB, "Access Endpoints" )
 ' CONNECTION : [Uses] [meF1nRjud1koeACE8CFO] [01MRBoO6TNPt4PmaELoO] [outgoing]
 Rel(meF1nRjud1koeACE8CFO, 01MRBoO6TNPt4PmaELoO, "Uses" )
-' CONNECTION : [Uses] [ye2OoAgJhthRThhjIe69] [wiZgyeKZbmqMpX3umth7] [outgoing]
-Rel(ye2OoAgJhthRThhjIe69, wiZgyeKZbmqMpX3umth7, "Uses" )
 ' CONNECTION : [Validate auth] [LXvhwDpIAwiWY9cfveXB] [lBh7KhgVrh9fCPMlt1PE] [outgoing]
 Rel(LXvhwDpIAwiWY9cfveXB, lBh7KhgVrh9fCPMlt1PE, "Validate auth" )
-' CONNECTION : [Send eMail] [LXvhwDpIAwiWY9cfveXB] [TUJ4gE8Z8W1QkQOuPH4W] [outgoing]
-Rel(LXvhwDpIAwiWY9cfveXB, TUJ4gE8Z8W1QkQOuPH4W, "Send eMail" )
-' CONNECTION : [Uses] [kI67J5sJZiz7LxjwL6OT] [01MRBoO6TNPt4PmaELoO] [outgoing]
-Rel(kI67J5sJZiz7LxjwL6OT, 01MRBoO6TNPt4PmaELoO, "Uses" )
 
 
 @enduml
