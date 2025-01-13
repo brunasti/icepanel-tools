@@ -4,7 +4,7 @@
 ' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
 ' IcePanel JSON File : [./examples/tadaah/tadaah-001.json]
 ' Configuration      : [./examples/tadaah/config.json]
-' Generated at       : Fri Jan 10 17:22:14 CET 2025
+' Generated at       : Mon Jan 13 14:43:54 CET 2025
 
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
@@ -15,38 +15,37 @@ System_Boundary(VZo4IA6ttTp0XCmX1h6o, "Tadaa System" ) {
     ' CLASSES =======
     ContainerDb(Crj6OVjno3V3VzBN9ZV7, "AWS S3", "", "")
     Component(LXvhwDpIAwiWY9cfveXB, "Backend Apps", "")
+    ContainerDb(4RHCmF9wWC54tv94wZha, "Tadaah v1.0", "", "")
     Component(wiZgyeKZbmqMpX3umth7, "Mobile App", "")
     Component(01MRBoO6TNPt4PmaELoO, "Web App", "")
-    ContainerDb(7GHp8F8aCdHY91UqUPRd, "Tadaah Database", "", "")
+    ContainerDb(7GHp8F8aCdHY91UqUPRd, "Tadaah v2.0 Database", "", "")
 }
 
 
 ' NEIGHBOR CLASSES =======
+Container(PPsKcTiOTIF44We88VOs, "Payment DB Replica", "", "")
 Person(meF1nRjud1koeACE8CFO, "Organisation", "")
+Person(kI67J5sJZiz7LxjwL6OT, "Tadaah Staff", "")
+Container(uto1SdyIZwaqL7wSHRx1, "Document DB Replica", "", "")
+Component(2JDmHPAMah1HIF7dqy8m, "Mobile Push Notification Systems", "")
+Container(ErmSGEFjt3933cjfWsae, "Notification DB Replica", "", "")
+Container(jH3vKLGq8d8InYPs9p4N, "Invoice DB Replica", "", "")
+Container(Dqntl7RMPixIOoFKX33z, "User DB Replica", "", "")
 Person(ye2OoAgJhthRThhjIe69, "Freelancer", "")
+Container(TMgxrOsSCJOKTsB4vDlx, "Hiring DB Replica", "", "")
 Component(lBh7KhgVrh9fCPMlt1PE, "Oauth Service", "")
 Component(TUJ4gE8Z8W1QkQOuPH4W, "EMail Server", "")
-Person(kI67J5sJZiz7LxjwL6OT, "Tadaah Staff", "")
-Component(2JDmHPAMah1HIF7dqy8m, "Mobile Push Notification Systems", "")
 
 
 ' SUB DIAGRAM CONNECTIONS ======= Base : [VZo4IA6ttTp0XCmX1h6o]
-' CONNECTION : [Sends data to] [LXvhwDpIAwiWY9cfveXB] [7GHp8F8aCdHY91UqUPRd] [outgoing]
-Rel(LXvhwDpIAwiWY9cfveXB, 7GHp8F8aCdHY91UqUPRd, "Sends data to" )
-' CONNECTION : [Sends data to] [LXvhwDpIAwiWY9cfveXB] [7GHp8F8aCdHY91UqUPRd] [outgoing]
-Rel(LXvhwDpIAwiWY9cfveXB, 7GHp8F8aCdHY91UqUPRd, "Sends data to" )
-' CONNECTION : [Uses] [ye2OoAgJhthRThhjIe69] [wiZgyeKZbmqMpX3umth7] [outgoing]
-Rel(ye2OoAgJhthRThhjIe69, wiZgyeKZbmqMpX3umth7, "Uses" )
 ' CONNECTION : [Push] [LXvhwDpIAwiWY9cfveXB] [2JDmHPAMah1HIF7dqy8m] [outgoing]
 Rel(LXvhwDpIAwiWY9cfveXB, 2JDmHPAMah1HIF7dqy8m, "Push" )
+' CONNECTION : [Replicated into] [7GHp8F8aCdHY91UqUPRd] [TMgxrOsSCJOKTsB4vDlx] [outgoing]
+Rel(7GHp8F8aCdHY91UqUPRd, TMgxrOsSCJOKTsB4vDlx, "Replicated into" )
+' CONNECTION : [Replicated into] [7GHp8F8aCdHY91UqUPRd] [Dqntl7RMPixIOoFKX33z] [outgoing]
+Rel(7GHp8F8aCdHY91UqUPRd, Dqntl7RMPixIOoFKX33z, "Replicated into" )
 ' CONNECTION : [Uses] [ye2OoAgJhthRThhjIe69] [wiZgyeKZbmqMpX3umth7] [outgoing]
 Rel(ye2OoAgJhthRThhjIe69, wiZgyeKZbmqMpX3umth7, "Uses" )
-' CONNECTION : [Send eMail] [LXvhwDpIAwiWY9cfveXB] [TUJ4gE8Z8W1QkQOuPH4W] [outgoing]
-Rel(LXvhwDpIAwiWY9cfveXB, TUJ4gE8Z8W1QkQOuPH4W, "Send eMail" )
-' CONNECTION : [Uses] [kI67J5sJZiz7LxjwL6OT] [01MRBoO6TNPt4PmaELoO] [outgoing]
-Rel(kI67J5sJZiz7LxjwL6OT, 01MRBoO6TNPt4PmaELoO, "Uses" )
-' CONNECTION : [Access Endpoints] [01MRBoO6TNPt4PmaELoO] [LXvhwDpIAwiWY9cfveXB] [outgoing]
-Rel(01MRBoO6TNPt4PmaELoO, LXvhwDpIAwiWY9cfveXB, "Access Endpoints" )
 ' CONNECTION : [Sends data to] [LXvhwDpIAwiWY9cfveXB] [7GHp8F8aCdHY91UqUPRd] [outgoing]
 Rel(LXvhwDpIAwiWY9cfveXB, 7GHp8F8aCdHY91UqUPRd, "Sends data to" )
 ' CONNECTION : [Sends data to] [LXvhwDpIAwiWY9cfveXB] [7GHp8F8aCdHY91UqUPRd] [outgoing]
@@ -55,12 +54,32 @@ Rel(LXvhwDpIAwiWY9cfveXB, 7GHp8F8aCdHY91UqUPRd, "Sends data to" )
 Rel(LXvhwDpIAwiWY9cfveXB, 7GHp8F8aCdHY91UqUPRd, "Sands data to" )
 ' CONNECTION : [Sends data to] [LXvhwDpIAwiWY9cfveXB] [7GHp8F8aCdHY91UqUPRd] [outgoing]
 Rel(LXvhwDpIAwiWY9cfveXB, 7GHp8F8aCdHY91UqUPRd, "Sends data to" )
+' CONNECTION : [Replicated into] [7GHp8F8aCdHY91UqUPRd] [jH3vKLGq8d8InYPs9p4N] [outgoing]
+Rel(7GHp8F8aCdHY91UqUPRd, jH3vKLGq8d8InYPs9p4N, "Replicated into" )
+' CONNECTION : [Uses] [meF1nRjud1koeACE8CFO] [01MRBoO6TNPt4PmaELoO] [outgoing]
+Rel(meF1nRjud1koeACE8CFO, 01MRBoO6TNPt4PmaELoO, "Uses" )
+' CONNECTION : [Sends data to] [LXvhwDpIAwiWY9cfveXB] [7GHp8F8aCdHY91UqUPRd] [outgoing]
+Rel(LXvhwDpIAwiWY9cfveXB, 7GHp8F8aCdHY91UqUPRd, "Sends data to" )
+' CONNECTION : [Sends data to] [LXvhwDpIAwiWY9cfveXB] [7GHp8F8aCdHY91UqUPRd] [outgoing]
+Rel(LXvhwDpIAwiWY9cfveXB, 7GHp8F8aCdHY91UqUPRd, "Sends data to" )
+' CONNECTION : [Uses] [ye2OoAgJhthRThhjIe69] [wiZgyeKZbmqMpX3umth7] [outgoing]
+Rel(ye2OoAgJhthRThhjIe69, wiZgyeKZbmqMpX3umth7, "Uses" )
+' CONNECTION : [Replicated into] [7GHp8F8aCdHY91UqUPRd] [ErmSGEFjt3933cjfWsae] [outgoing]
+Rel(7GHp8F8aCdHY91UqUPRd, ErmSGEFjt3933cjfWsae, "Replicated into" )
+' CONNECTION : [Send eMail] [LXvhwDpIAwiWY9cfveXB] [TUJ4gE8Z8W1QkQOuPH4W] [outgoing]
+Rel(LXvhwDpIAwiWY9cfveXB, TUJ4gE8Z8W1QkQOuPH4W, "Send eMail" )
+' CONNECTION : [Uses] [kI67J5sJZiz7LxjwL6OT] [01MRBoO6TNPt4PmaELoO] [outgoing]
+Rel(kI67J5sJZiz7LxjwL6OT, 01MRBoO6TNPt4PmaELoO, "Uses" )
+' CONNECTION : [Access Endpoints] [01MRBoO6TNPt4PmaELoO] [LXvhwDpIAwiWY9cfveXB] [outgoing]
+Rel(01MRBoO6TNPt4PmaELoO, LXvhwDpIAwiWY9cfveXB, "Access Endpoints" )
+' CONNECTION : [Replicated into] [7GHp8F8aCdHY91UqUPRd] [PPsKcTiOTIF44We88VOs] [outgoing]
+Rel(7GHp8F8aCdHY91UqUPRd, PPsKcTiOTIF44We88VOs, "Replicated into" )
 ' CONNECTION : [Store Document] [LXvhwDpIAwiWY9cfveXB] [Crj6OVjno3V3VzBN9ZV7] [outgoing]
 Rel(LXvhwDpIAwiWY9cfveXB, Crj6OVjno3V3VzBN9ZV7, "Store Document" )
 ' CONNECTION : [Access Endpoints] [wiZgyeKZbmqMpX3umth7] [LXvhwDpIAwiWY9cfveXB] [outgoing]
 Rel(wiZgyeKZbmqMpX3umth7, LXvhwDpIAwiWY9cfveXB, "Access Endpoints" )
-' CONNECTION : [Uses] [meF1nRjud1koeACE8CFO] [01MRBoO6TNPt4PmaELoO] [outgoing]
-Rel(meF1nRjud1koeACE8CFO, 01MRBoO6TNPt4PmaELoO, "Uses" )
+' CONNECTION : [Replicated into] [7GHp8F8aCdHY91UqUPRd] [uto1SdyIZwaqL7wSHRx1] [outgoing]
+Rel(7GHp8F8aCdHY91UqUPRd, uto1SdyIZwaqL7wSHRx1, "Replicated into" )
 ' CONNECTION : [Validate auth] [LXvhwDpIAwiWY9cfveXB] [lBh7KhgVrh9fCPMlt1PE] [outgoing]
 Rel(LXvhwDpIAwiWY9cfveXB, lBh7KhgVrh9fCPMlt1PE, "Validate auth" )
 

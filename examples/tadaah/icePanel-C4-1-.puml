@@ -4,7 +4,7 @@
 ' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
 ' IcePanel JSON File : [./examples/tadaah/tadaah-001.json]
 ' Configuration      : [./examples/tadaah/config.json]
-' Generated at       : Fri Jan 10 17:22:14 CET 2025
+' Generated at       : Mon Jan 13 14:43:54 CET 2025
 
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
@@ -17,28 +17,39 @@ System_Boundary(ZrO7EKBJrWX4yzMUQE7L, "" ) {
     Person(meF1nRjud1koeACE8CFO, "Organisation", "")
     Person(kI67J5sJZiz7LxjwL6OT, "Tadaah Staff", "")
     System(VZo4IA6ttTp0XCmX1h6o, "Tadaa System", "A brief description of your system")
+    Person(HSHxou6PlnzMBfem3vDF, "Marketing", "")
     Person(ye2OoAgJhthRThhjIe69, "Freelancer", "")
 }
 
 
 ' NEIGHBOR CLASSES =======
+Component(7LNJ74mouR5kXwMUd40R, "Business Intelligence and Query System", "")
+Container(PPsKcTiOTIF44We88VOs, "Payment DB Replica", "", "")
+System(Vp5nQO6McVzGhiRfTq4I, "Freelancer Plaza", "")
+Container(uto1SdyIZwaqL7wSHRx1, "Document DB Replica", "", "")
+Container(ErmSGEFjt3933cjfWsae, "Notification DB Replica", "", "")
+Container(jH3vKLGq8d8InYPs9p4N, "Invoice DB Replica", "", "")
+Container(Dqntl7RMPixIOoFKX33z, "User DB Replica", "", "")
+Container(TMgxrOsSCJOKTsB4vDlx, "Hiring DB Replica", "", "")
 
 
 ' SUB DIAGRAM CONNECTIONS ======= Base : [ZrO7EKBJrWX4yzMUQE7L]
-' CONNECTION : [Sends data to] [LXvhwDpIAwiWY9cfveXB] [7GHp8F8aCdHY91UqUPRd] [outgoing]
-Rel(LXvhwDpIAwiWY9cfveXB, 7GHp8F8aCdHY91UqUPRd, "Sends data to" )
-' CONNECTION : [Sends data to] [LXvhwDpIAwiWY9cfveXB] [7GHp8F8aCdHY91UqUPRd] [outgoing]
-Rel(LXvhwDpIAwiWY9cfveXB, 7GHp8F8aCdHY91UqUPRd, "Sends data to" )
-' CONNECTION : [Uses] [ye2OoAgJhthRThhjIe69] [wiZgyeKZbmqMpX3umth7] [outgoing]
-Rel(ye2OoAgJhthRThhjIe69, wiZgyeKZbmqMpX3umth7, "Uses" )
+' CONNECTION : [Leverage] [VZo4IA6ttTp0XCmX1h6o] [wo1hNaUSBe6V30cFCgBt] [outgoing]
+Rel(VZo4IA6ttTp0XCmX1h6o, wo1hNaUSBe6V30cFCgBt, "Leverage" )
 ' CONNECTION : [Push] [LXvhwDpIAwiWY9cfveXB] [wo1hNaUSBe6V30cFCgBt] [outgoing]
 Rel(LXvhwDpIAwiWY9cfveXB, wo1hNaUSBe6V30cFCgBt, "Push" )
+' CONNECTION : [Replicated into] [7GHp8F8aCdHY91UqUPRd] [TMgxrOsSCJOKTsB4vDlx] [outgoing]
+Rel(7GHp8F8aCdHY91UqUPRd, TMgxrOsSCJOKTsB4vDlx, "Replicated into" )
+' CONNECTION : [Replicated into] [7GHp8F8aCdHY91UqUPRd] [Dqntl7RMPixIOoFKX33z] [outgoing]
+Rel(7GHp8F8aCdHY91UqUPRd, Dqntl7RMPixIOoFKX33z, "Replicated into" )
+' CONNECTION : [Analyse Data] [HSHxou6PlnzMBfem3vDF] [7LNJ74mouR5kXwMUd40R] [outgoing]
+Rel(HSHxou6PlnzMBfem3vDF, 7LNJ74mouR5kXwMUd40R, "Analyse Data" )
+' CONNECTION : [Uses] [kI67J5sJZiz7LxjwL6OT] [Vp5nQO6McVzGhiRfTq4I] [outgoing]
+Rel(kI67J5sJZiz7LxjwL6OT, Vp5nQO6McVzGhiRfTq4I, "Uses" )
 ' CONNECTION : [Uses] [ye2OoAgJhthRThhjIe69] [wiZgyeKZbmqMpX3umth7] [outgoing]
 Rel(ye2OoAgJhthRThhjIe69, wiZgyeKZbmqMpX3umth7, "Uses" )
-' CONNECTION : [Send eMail] [LXvhwDpIAwiWY9cfveXB] [wo1hNaUSBe6V30cFCgBt] [outgoing]
-Rel(LXvhwDpIAwiWY9cfveXB, wo1hNaUSBe6V30cFCgBt, "Send eMail" )
-' CONNECTION : [Uses] [kI67J5sJZiz7LxjwL6OT] [VZo4IA6ttTp0XCmX1h6o] [outgoing]
-Rel(kI67J5sJZiz7LxjwL6OT, VZo4IA6ttTp0XCmX1h6o, "Uses" )
+' CONNECTION : [Uses] [meF1nRjud1koeACE8CFO] [Vp5nQO6McVzGhiRfTq4I] [outgoing]
+Rel(meF1nRjud1koeACE8CFO, Vp5nQO6McVzGhiRfTq4I, "Uses" )
 ' CONNECTION : [Sends data to] [LXvhwDpIAwiWY9cfveXB] [7GHp8F8aCdHY91UqUPRd] [outgoing]
 Rel(LXvhwDpIAwiWY9cfveXB, 7GHp8F8aCdHY91UqUPRd, "Sends data to" )
 ' CONNECTION : [Sends data to] [LXvhwDpIAwiWY9cfveXB] [7GHp8F8aCdHY91UqUPRd] [outgoing]
@@ -47,10 +58,32 @@ Rel(LXvhwDpIAwiWY9cfveXB, 7GHp8F8aCdHY91UqUPRd, "Sends data to" )
 Rel(LXvhwDpIAwiWY9cfveXB, 7GHp8F8aCdHY91UqUPRd, "Sands data to" )
 ' CONNECTION : [Sends data to] [LXvhwDpIAwiWY9cfveXB] [7GHp8F8aCdHY91UqUPRd] [outgoing]
 Rel(LXvhwDpIAwiWY9cfveXB, 7GHp8F8aCdHY91UqUPRd, "Sends data to" )
-' CONNECTION : [Store Document] [LXvhwDpIAwiWY9cfveXB] [VZo4IA6ttTp0XCmX1h6o] [outgoing]
-Rel(LXvhwDpIAwiWY9cfveXB, VZo4IA6ttTp0XCmX1h6o, "Store Document" )
+' CONNECTION : [Access Data] [kI67J5sJZiz7LxjwL6OT] [7LNJ74mouR5kXwMUd40R] [outgoing]
+Rel(kI67J5sJZiz7LxjwL6OT, 7LNJ74mouR5kXwMUd40R, "Access Data" )
+' CONNECTION : [Replicated into] [7GHp8F8aCdHY91UqUPRd] [jH3vKLGq8d8InYPs9p4N] [outgoing]
+Rel(7GHp8F8aCdHY91UqUPRd, jH3vKLGq8d8InYPs9p4N, "Replicated into" )
 ' CONNECTION : [Uses] [meF1nRjud1koeACE8CFO] [VZo4IA6ttTp0XCmX1h6o] [outgoing]
 Rel(meF1nRjud1koeACE8CFO, VZo4IA6ttTp0XCmX1h6o, "Uses" )
+' CONNECTION : [Sends data to] [LXvhwDpIAwiWY9cfveXB] [7GHp8F8aCdHY91UqUPRd] [outgoing]
+Rel(LXvhwDpIAwiWY9cfveXB, 7GHp8F8aCdHY91UqUPRd, "Sends data to" )
+' CONNECTION : [Sends data to] [LXvhwDpIAwiWY9cfveXB] [7GHp8F8aCdHY91UqUPRd] [outgoing]
+Rel(LXvhwDpIAwiWY9cfveXB, 7GHp8F8aCdHY91UqUPRd, "Sends data to" )
+' CONNECTION : [Uses] [ye2OoAgJhthRThhjIe69] [wiZgyeKZbmqMpX3umth7] [outgoing]
+Rel(ye2OoAgJhthRThhjIe69, wiZgyeKZbmqMpX3umth7, "Uses" )
+' CONNECTION : [Replicated into] [7GHp8F8aCdHY91UqUPRd] [ErmSGEFjt3933cjfWsae] [outgoing]
+Rel(7GHp8F8aCdHY91UqUPRd, ErmSGEFjt3933cjfWsae, "Replicated into" )
+' CONNECTION : [Send eMail] [LXvhwDpIAwiWY9cfveXB] [wo1hNaUSBe6V30cFCgBt] [outgoing]
+Rel(LXvhwDpIAwiWY9cfveXB, wo1hNaUSBe6V30cFCgBt, "Send eMail" )
+' CONNECTION : [Uses] [kI67J5sJZiz7LxjwL6OT] [VZo4IA6ttTp0XCmX1h6o] [outgoing]
+Rel(kI67J5sJZiz7LxjwL6OT, VZo4IA6ttTp0XCmX1h6o, "Uses" )
+' CONNECTION : [Uses] [ye2OoAgJhthRThhjIe69] [Vp5nQO6McVzGhiRfTq4I] [outgoing]
+Rel(ye2OoAgJhthRThhjIe69, Vp5nQO6McVzGhiRfTq4I, "Uses" )
+' CONNECTION : [Replicated into] [7GHp8F8aCdHY91UqUPRd] [PPsKcTiOTIF44We88VOs] [outgoing]
+Rel(7GHp8F8aCdHY91UqUPRd, PPsKcTiOTIF44We88VOs, "Replicated into" )
+' CONNECTION : [Store Document] [LXvhwDpIAwiWY9cfveXB] [VZo4IA6ttTp0XCmX1h6o] [outgoing]
+Rel(LXvhwDpIAwiWY9cfveXB, VZo4IA6ttTp0XCmX1h6o, "Store Document" )
+' CONNECTION : [Replicated into] [7GHp8F8aCdHY91UqUPRd] [uto1SdyIZwaqL7wSHRx1] [outgoing]
+Rel(7GHp8F8aCdHY91UqUPRd, uto1SdyIZwaqL7wSHRx1, "Replicated into" )
 ' CONNECTION : [Validate auth] [LXvhwDpIAwiWY9cfveXB] [wo1hNaUSBe6V30cFCgBt] [outgoing]
 Rel(LXvhwDpIAwiWY9cfveXB, wo1hNaUSBe6V30cFCgBt, "Validate auth" )
 

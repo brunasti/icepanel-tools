@@ -3,7 +3,7 @@
 ' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
 ' IcePanel JSON File : [./examples/tadaah/tadaah-001.json]
 ' Configuration      : [./examples/tadaah/config.json]
-' Generated at       : Fri Jan 10 17:22:14 CET 2025
+' Generated at       : Mon Jan 13 14:43:54 CET 2025
 
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
@@ -16,7 +16,7 @@ title Employee_flow
 participant "Web App" as 01MRBoO6TNPt4PmaELoO 
 participant "Backend Apps" as LXvhwDpIAwiWY9cfveXB 
 participant "Backend Apps" as LXvhwDpIAwiWY9cfveXB 
-participant "Tadaah Database" as 7GHp8F8aCdHY91UqUPRd 
+participant "Tadaah v2.0 Database" as 7GHp8F8aCdHY91UqUPRd 
 participant "Tadaah Staff" as kI67J5sJZiz7LxjwL6OT 
 
 01MRBoO6TNPt4PmaELoO -> LXvhwDpIAwiWY9cfveXB : 1 Request to API
