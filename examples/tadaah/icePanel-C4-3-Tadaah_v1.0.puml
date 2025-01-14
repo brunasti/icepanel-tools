@@ -1,0 +1,26 @@
+@startuml
+'https://plantuml.com/class-diagram
+' CONVERT ICEPANEL DIAGRAM ===========
+' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
+' IcePanel JSON File : [./examples/tadaah/tadaah-001.json]
+' Configuration      : [./examples/tadaah/config.json]
+' Generated at       : Mon Jan 13 14:43:54 CET 2025
+
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+
+
+ContainerDb(4RHCmF9wWC54tv94wZha, "Tadaah v1.0", "") { 
+    ' CLASSES =======
+    Container(qx3zLDzD49NjzsGy8GsN, "ebdb", "", "")
+}
+
+
+' NEIGHBOR CLASSES =======
+
+
+' SUB DIAGRAM CONNECTIONS ======= Base : [4RHCmF9wWC54tv94wZha]
+
+
+@enduml

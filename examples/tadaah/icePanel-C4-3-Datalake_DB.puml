@@ -1,0 +1,65 @@
+@startuml
+'https://plantuml.com/class-diagram
+' CONVERT ICEPANEL DIAGRAM ===========
+' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
+' IcePanel JSON File : [./examples/tadaah/tadaah-001.json]
+' Configuration      : [./examples/tadaah/config.json]
+' Generated at       : Mon Jan 13 14:43:54 CET 2025
+
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+
+
+ContainerDb(8ZpwPsZtb62cdjIqZY9l, "Datalake DB", "") { 
+    ' CLASSES =======
+    Container(PPsKcTiOTIF44We88VOs, "Payment DB Replica", "", "")
+    Container(c3z1CGZZJbpBjd9oZl5S, "Merged DB", "", "")
+    Container(uto1SdyIZwaqL7wSHRx1, "Document DB Replica", "", "")
+    Container(ErmSGEFjt3933cjfWsae, "Notification DB Replica", "", "")
+    Container(jH3vKLGq8d8InYPs9p4N, "Invoice DB Replica", "", "")
+    Container(Dqntl7RMPixIOoFKX33z, "User DB Replica", "", "")
+    Container(TMgxrOsSCJOKTsB4vDlx, "Hiring DB Replica", "", "")
+}
+
+
+' NEIGHBOR CLASSES =======
+Container(0tsl8NoqQthetjG1IfCY, "Payment DB", "", "")
+Component(7LNJ74mouR5kXwMUd40R, "Business Intelligence and Query System", "")
+Container(iHxJuDcOScVk3PbjBcJm, "Notification DB", "", "")
+Container(AtImPU6py93rBswwEwtO, "Invoice DB", "", "")
+Container(XaKbISuZOfRaAYbo9UM9, "Hiring DB", "", "")
+Container(uzTJfXJ4WIOTbEyYvR2M, "Document DB", "", "")
+Container(K7gvMXFEhBLyFvU9emlk, "User DB", "", "")
+
+
+' SUB DIAGRAM CONNECTIONS ======= Base : [8ZpwPsZtb62cdjIqZY9l]
+' CONNECTION : [Replicated into] [XaKbISuZOfRaAYbo9UM9] [TMgxrOsSCJOKTsB4vDlx] [outgoing]
+Rel(XaKbISuZOfRaAYbo9UM9, TMgxrOsSCJOKTsB4vDlx, "Replicated into" )
+' CONNECTION : [Merge into] [jH3vKLGq8d8InYPs9p4N] [c3z1CGZZJbpBjd9oZl5S] [outgoing]
+Rel(jH3vKLGq8d8InYPs9p4N, c3z1CGZZJbpBjd9oZl5S, "Merge into" )
+' CONNECTION : [Replicated into] [K7gvMXFEhBLyFvU9emlk] [Dqntl7RMPixIOoFKX33z] [outgoing]
+Rel(K7gvMXFEhBLyFvU9emlk, Dqntl7RMPixIOoFKX33z, "Replicated into" )
+' CONNECTION : [Merge into] [PPsKcTiOTIF44We88VOs] [c3z1CGZZJbpBjd9oZl5S] [outgoing]
+Rel(PPsKcTiOTIF44We88VOs, c3z1CGZZJbpBjd9oZl5S, "Merge into" )
+' CONNECTION : [Replicated into] [AtImPU6py93rBswwEwtO] [jH3vKLGq8d8InYPs9p4N] [outgoing]
+Rel(AtImPU6py93rBswwEwtO, jH3vKLGq8d8InYPs9p4N, "Replicated into" )
+' CONNECTION : [Merge into] [uto1SdyIZwaqL7wSHRx1] [c3z1CGZZJbpBjd9oZl5S] [outgoing]
+Rel(uto1SdyIZwaqL7wSHRx1, c3z1CGZZJbpBjd9oZl5S, "Merge into" )
+' CONNECTION : [Replicated into] [iHxJuDcOScVk3PbjBcJm] [ErmSGEFjt3933cjfWsae] [outgoing]
+Rel(iHxJuDcOScVk3PbjBcJm, ErmSGEFjt3933cjfWsae, "Replicated into" )
+' CONNECTION : [Merge into] [Dqntl7RMPixIOoFKX33z] [c3z1CGZZJbpBjd9oZl5S] [outgoing]
+Rel(Dqntl7RMPixIOoFKX33z, c3z1CGZZJbpBjd9oZl5S, "Merge into" )
+' CONNECTION : [Merge into] [TMgxrOsSCJOKTsB4vDlx] [c3z1CGZZJbpBjd9oZl5S] [outgoing]
+Rel(TMgxrOsSCJOKTsB4vDlx, c3z1CGZZJbpBjd9oZl5S, "Merge into" )
+' CONNECTION : [Merge into] [ErmSGEFjt3933cjfWsae] [c3z1CGZZJbpBjd9oZl5S] [outgoing]
+Rel(ErmSGEFjt3933cjfWsae, c3z1CGZZJbpBjd9oZl5S, "Merge into" )
+' CONNECTION : [Read] [7LNJ74mouR5kXwMUd40R] [c3z1CGZZJbpBjd9oZl5S] [outgoing]
+Rel(7LNJ74mouR5kXwMUd40R, c3z1CGZZJbpBjd9oZl5S, "Read" )
+' CONNECTION : [Replicated into] [0tsl8NoqQthetjG1IfCY] [PPsKcTiOTIF44We88VOs] [outgoing]
+Rel(0tsl8NoqQthetjG1IfCY, PPsKcTiOTIF44We88VOs, "Replicated into" )
+' CONNECTION : [Replicated into] [uzTJfXJ4WIOTbEyYvR2M] [uto1SdyIZwaqL7wSHRx1] [outgoing]
+Rel(uzTJfXJ4WIOTbEyYvR2M, uto1SdyIZwaqL7wSHRx1, "Replicated into" )
+
+
+@enduml

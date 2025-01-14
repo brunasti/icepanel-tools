@@ -1,0 +1,53 @@
+@startuml
+'https://plantuml.com/class-diagram
+' CONVERT ICEPANEL DIAGRAM ===========
+' Converter          : it.brunasti.icepanel.tools.IcePanelToPlantUmlConverter
+' IcePanel JSON File : [./examples/tadaah/tadaah-001.json]
+' Configuration      : [./examples/tadaah/config.json]
+' Generated at       : Mon Jan 13 14:43:54 CET 2025
+
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+
+
+System_Boundary(JREgvfBWamzpvx8zxFaX, "DataLake" ) {
+    ' CLASSES =======
+    Component(7LNJ74mouR5kXwMUd40R, "Business Intelligence and Query System", "")
+    ContainerDb(8ZpwPsZtb62cdjIqZY9l, "Datalake DB", "", "")
+}
+
+
+' NEIGHBOR CLASSES =======
+Container(0tsl8NoqQthetjG1IfCY, "Payment DB", "", "")
+Container(iHxJuDcOScVk3PbjBcJm, "Notification DB", "", "")
+Container(AtImPU6py93rBswwEwtO, "Invoice DB", "", "")
+Container(XaKbISuZOfRaAYbo9UM9, "Hiring DB", "", "")
+Person(HSHxou6PlnzMBfem3vDF, "Marketing", "")
+Person(kI67J5sJZiz7LxjwL6OT, "Tadaah Staff", "")
+Container(uzTJfXJ4WIOTbEyYvR2M, "Document DB", "", "")
+Container(K7gvMXFEhBLyFvU9emlk, "User DB", "", "")
+
+
+' SUB DIAGRAM CONNECTIONS ======= Base : [JREgvfBWamzpvx8zxFaX]
+' CONNECTION : [Replicated into] [XaKbISuZOfRaAYbo9UM9] [8ZpwPsZtb62cdjIqZY9l] [outgoing]
+Rel(XaKbISuZOfRaAYbo9UM9, 8ZpwPsZtb62cdjIqZY9l, "Replicated into" )
+' CONNECTION : [Replicated into] [K7gvMXFEhBLyFvU9emlk] [8ZpwPsZtb62cdjIqZY9l] [outgoing]
+Rel(K7gvMXFEhBLyFvU9emlk, 8ZpwPsZtb62cdjIqZY9l, "Replicated into" )
+' CONNECTION : [Analyse Data] [HSHxou6PlnzMBfem3vDF] [7LNJ74mouR5kXwMUd40R] [outgoing]
+Rel(HSHxou6PlnzMBfem3vDF, 7LNJ74mouR5kXwMUd40R, "Analyse Data" )
+' CONNECTION : [Access Data] [kI67J5sJZiz7LxjwL6OT] [7LNJ74mouR5kXwMUd40R] [outgoing]
+Rel(kI67J5sJZiz7LxjwL6OT, 7LNJ74mouR5kXwMUd40R, "Access Data" )
+' CONNECTION : [Replicated into] [AtImPU6py93rBswwEwtO] [8ZpwPsZtb62cdjIqZY9l] [outgoing]
+Rel(AtImPU6py93rBswwEwtO, 8ZpwPsZtb62cdjIqZY9l, "Replicated into" )
+' CONNECTION : [Replicated into] [iHxJuDcOScVk3PbjBcJm] [8ZpwPsZtb62cdjIqZY9l] [outgoing]
+Rel(iHxJuDcOScVk3PbjBcJm, 8ZpwPsZtb62cdjIqZY9l, "Replicated into" )
+' CONNECTION : [Read] [7LNJ74mouR5kXwMUd40R] [8ZpwPsZtb62cdjIqZY9l] [outgoing]
+Rel(7LNJ74mouR5kXwMUd40R, 8ZpwPsZtb62cdjIqZY9l, "Read" )
+' CONNECTION : [Replicated into] [0tsl8NoqQthetjG1IfCY] [8ZpwPsZtb62cdjIqZY9l] [outgoing]
+Rel(0tsl8NoqQthetjG1IfCY, 8ZpwPsZtb62cdjIqZY9l, "Replicated into" )
+' CONNECTION : [Replicated into] [uzTJfXJ4WIOTbEyYvR2M] [8ZpwPsZtb62cdjIqZY9l] [outgoing]
+Rel(uzTJfXJ4WIOTbEyYvR2M, 8ZpwPsZtb62cdjIqZY9l, "Replicated into" )
+
+
+@enduml
