@@ -20,7 +20,7 @@
             <artifactId>Java-Utils</artifactId>
             <version>1.0.0</version>
             <scope>system</scope>
-            <systemPath>/Users/paolobrunasti/Work/MyTools/icepanel-tools/libs/Java-Utils-1.0.0.jar</systemPath>
+            <systemPath>/Users/paolo/IdeaProjects/mine/icepanel-tools/libs/Java-Utils-1.0.0.jar</systemPath>
         </dependency>
 
         <dependency>
