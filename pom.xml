@@ -20,7 +20,7 @@
             <artifactId>Java-Utils</artifactId>
             <version>1.0.0</version>
             <scope>system</scope>
-            <systemPath>/Users/paolo/IdeaProjects/mine/icepanel-tools/libs/Java-Utils-1.0.0.jar</systemPath>
+            <systemPath>/Users/paolobrunasti/IdeaProjects/mine/java-utils/target/it.brunasti.java.utils.Utils-1.0.1.jar</systemPath>
         </dependency>
 
         <dependency>
@@ -77,7 +77,7 @@
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-core</artifactId>
-            <version>2.23.1</version>
+            <version>2.25.3</version>
         </dependency>
 
 
